@@ -23,6 +23,11 @@ class Introduction extends StatelessWidget {
           title: Text("zengrui.jin [at] outlook.com",
               style: TextStyle(color: Colors.black.withOpacity(0.6))),
         ),
+        ListTile(
+          leading: const Icon(Icons.favorite),
+          title: Text("Collecting Polaroid cameras! 📷 📸️",
+              style: TextStyle(color: Colors.black.withOpacity(0.6))),
+        ),
         ButtonBar(alignment: MainAxisAlignment.start, children: [
           TextButton(
               child: const Text("GOOGLE SCHOLAR"),
@@ -37,7 +42,7 @@ class Introduction extends StatelessWidget {
       ],
     ));
   }
-}
 
-_launchURL(String url) async =>
-    await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+  _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+}

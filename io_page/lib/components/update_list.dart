@@ -7,12 +7,9 @@ class UpdateList extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        // children: const [
-        //   Text("[News]"),
-        //   Text("[2020]: One paper accepted by InterSpeech 2021."),
-        // ],
         children: const [
           ListTile(
+            leading: Icon(Icons.fiber_new),
             title: Text(
               "News",
               softWrap: true,
@@ -20,7 +17,7 @@ class UpdateList extends StatelessWidget {
           ),
           ListTile(
             title: Text(
-              '[2020]: One paper accepted by INTERSPEECH 2021.',
+              '[2020]: Two papers accepted by INTERSPEECH 2021.',
               softWrap: true,
             ),
           )

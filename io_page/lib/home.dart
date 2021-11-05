@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/self_intro.dart';
 import 'components/update_list.dart';
+import 'components/pub_list.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                   flex: 3,
                   child: Column(
-                    children: [UpdateList()],
+                    children: [UpdateList(), PublicationList()],
                   ))
             ],
           ),
