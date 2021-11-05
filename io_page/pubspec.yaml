@@ -1,5 +1,5 @@
 name: io_page
-description: A new Flutter project.
+description: Zengrui JIN's Homepage.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.0.12
-  flutter_webview_plugin: ^0.4.0
+  # flutter_webview_plugin: ^0.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -64,6 +64,9 @@ flutter:
     - images/avatar.jpeg
     - assets/texts/latest_update_list.json
     - assets/texts/publication_list.json
+    - assets/images/cameras/af670.jpeg
+    - assets/images/cameras/sx70.jpeg
+    - assets/images/cameras/spectra.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

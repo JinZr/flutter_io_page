@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/self_intro.dart';
 import 'components/update_list.dart';
 import 'components/pub_list.dart';
+import 'components/polaroid_gallery_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -52,7 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Introduction(),
+            child: Column(children: [
+              Introduction(),
+              PolaroidGalleryView(),
+            ]),
           ),
           Expanded(
               flex: 3,
@@ -70,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Introduction(),
           UpdateList(),
           PublicationList(),
+          PolaroidGalleryView(),
         ],
       );
 }
