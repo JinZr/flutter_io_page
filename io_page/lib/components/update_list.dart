@@ -30,6 +30,7 @@ class _UpdateListState extends State<UpdateList> {
                   if (snapshot.hasData) {
                     var items = json.decode(snapshot.data.toString());
                     return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: items.length <= 10 ? items.length : 10,
                         itemBuilder: (BuildContext context, int index) {

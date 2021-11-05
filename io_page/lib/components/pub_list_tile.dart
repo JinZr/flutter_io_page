@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
+import 'paper_web_view.dart';
 
 class PublicationListTile extends StatefulWidget {
   final dynamic json;

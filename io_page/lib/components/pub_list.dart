@@ -35,6 +35,7 @@ class _PublicationListState extends State<PublicationList> {
                     if (snapshot.hasData) {
                       var items = json.decode(snapshot.data.toString());
                       return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: items.length,
                           itemBuilder: (BuildContext context, int index) {
