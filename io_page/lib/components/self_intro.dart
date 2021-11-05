@@ -15,18 +15,28 @@ class Introduction extends StatelessWidget {
           subtitle: Text("金增锐",
               style: TextStyle(color: Colors.black.withOpacity(0.6))),
         ),
-        ListTile(
-            leading: const Icon(Icons.people_alt_rounded),
-            title: MyIntroduction()),
-        ListTile(
-          leading: const Icon(Icons.mail),
-          title: Text("zengrui.jin [at] outlook.com",
-              style: TextStyle(color: Colors.black.withOpacity(0.6))),
+        const Divider(
+          indent: 10,
         ),
-        ListTile(
-          leading: const Icon(Icons.favorite),
-          title: Text("Collecting Polaroid cameras! 📷 📸️",
-              style: TextStyle(color: Colors.black.withOpacity(0.6))),
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              ListTile(
+                  leading: const Icon(Icons.people_alt_rounded),
+                  title: MyIntroduction()),
+              ListTile(
+                leading: const Icon(Icons.mail),
+                title: SelectableText("zengrui.jin [at] outlook.com",
+                    style: TextStyle(color: Colors.black.withOpacity(0.6))),
+              ),
+              ListTile(
+                leading: const Icon(Icons.favorite),
+                title: Text("Collecting Polaroid cameras! 📷 📸️",
+                    style: TextStyle(color: Colors.black.withOpacity(0.6))),
+              ),
+            ],
+          ),
         ),
         ButtonBar(alignment: MainAxisAlignment.start, children: [
           TextButton(

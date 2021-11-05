@@ -1,40 +1,51 @@
+import 'dart:convert' show json;
+
 import 'package:flutter/material.dart';
 
-class PublicationList extends StatelessWidget {
+import 'pub_list_tile.dart';
+
+class PublicationList extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _PublicationListState();
+}
+
+class _PublicationListState extends State<PublicationList> {
   @override
   Widget build(BuildContext context) {
+    final assetStr = DefaultAssetBundle.of(context)
+        .loadString('assets/texts/publication_list.json');
+
     return Card(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const ListTile(
             leading: Icon(Icons.book),
-            title: Text(
-              "Publication",
-              softWrap: true,
-            ),
+            title: Text("Publications"),
           ),
-          ListTile(
-            title: const Text(
-              '[INTERSPEECH 2021]: Adversarial Data Augmentation for Disordered Speech Recognition',
-              softWrap: true,
-            ),
-            subtitle: Text(
-              "Zengrui Jin, Mengzhe Geng, Xurong Xie, Jianwei Yu, Shansong Liu, Xunying Liu, Helen Meng",
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
-            ),
+          const Divider(
+            indent: 10,
           ),
-          ListTile(
-            title: const Text(
-              '[INTERSPEECH 2021]: Spectro-Temporal Deep Features for Disordered Speech Assessment and Recognition',
-              softWrap: true,
-            ),
-            subtitle: Text(
-              "Mengzhe Geng, Shansong Liu, Jianwei Yu, Xurong Xie, Shoukang Hu, Zi Ye, Zengrui Jin, Xunying Liu, Helen Meng",
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
-            ),
-          )
+          Padding(
+              padding: const EdgeInsets.all(16),
+              child: FutureBuilder(
+                  future: assetStr,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var items = json.decode(snapshot.data.toString());
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return PublicationListTile(json: items[index]);
+                          });
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }))
         ],
       ),
     );
