@@ -58,7 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(flex: 1, child: Introduction()),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Introduction(),
+                    constraints: const BoxConstraints(minWidth: 300),
+                  )),
               Expanded(
                   flex: 3,
                   child: Column(

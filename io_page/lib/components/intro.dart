@@ -7,6 +7,7 @@ class MyIntroduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(str);
+    return Text(str,
+        softWrap: true, style: TextStyle(color: Colors.black.withOpacity(0.6)));
   }
 }

@@ -14,7 +14,7 @@ class UpdateList extends StatelessWidget {
         children: const [
           ListTile(
             title: Text(
-              "[News]",
+              "News",
               softWrap: true,
             ),
           ),
