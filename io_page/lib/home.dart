@@ -37,35 +37,39 @@ class _MyHomePageState extends State<MyHomePage> {
           // in the middle of the parent.
           child: ListView(
         children: [
-          screenSize.height < screenSize.width
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Introduction(),
-                    ),
-                    Expanded(
-                        flex: 3,
-                        child: Column(
-                          children: [UpdateList(), PublicationList()],
-                        ))
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Introduction(),
-                    UpdateList(),
-                    PublicationList(),
-                  ],
-                ),
+          screenSize.height < screenSize.width - 100
+              ? _buildWidgetForWideScreen()
+              : _buildWidgetForLongScreen(),
         ],
       )),
     );
   }
+
+  Widget _buildWidgetForWideScreen() => Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Introduction(),
+          ),
+          Expanded(
+              flex: 3,
+              child: Column(
+                children: [UpdateList(), PublicationList()],
+              ))
+        ],
+      );
+
+  Widget _buildWidgetForLongScreen() => Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Introduction(),
+          UpdateList(),
+          PublicationList(),
+        ],
+      );
 }
