@@ -17,7 +17,7 @@ class Introduction extends StatelessWidget {
         ButtonBar(alignment: MainAxisAlignment.start, children: [
           TextButton(
               child: const Text("GOOGLE SCHOLAR"),
-              onPressed: _launchURL(
+              onPressed: () => _launchURL(
                   'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
           TextButton(child: const Text("CV"), onPressed: null),
         ])
@@ -26,11 +26,5 @@ class Introduction extends StatelessWidget {
   }
 }
 
-_launchURL(String url) async {
-  // const url = ;
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
+_launchURL(String url) async =>
+    await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
