@@ -22,6 +22,8 @@ class MyIntroduction extends StatelessWidget {
           style: TextStyle(color: Colors.blue.withOpacity(0.6)),
           recognizer: TapGestureRecognizer()
             ..onTap = () => _launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
+      TextSpan(
+          text: ".", style: TextStyle(color: Colors.black.withOpacity(0.6))),
     ]));
   }
 

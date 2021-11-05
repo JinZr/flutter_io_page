@@ -37,7 +37,12 @@ class Introduction extends StatelessWidget {
               child: const Text("RESEARCH GATE"),
               onPressed: () => _launchURL(
                   "https://www.researchgate.net/profile/Zengrui-Jin")),
-          TextButton(child: const Text("CV"), onPressed: null),
+          TextButton(
+              child: const Text("CV"),
+              onPressed: () => {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("My CV is not available so far.")))
+                  }),
         ])
       ],
     ));

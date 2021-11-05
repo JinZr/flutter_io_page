@@ -25,12 +25,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -41,24 +37,33 @@ class _MyHomePageState extends State<MyHomePage> {
           // in the middle of the parent.
           child: ListView(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Introduction(),
-                    constraints: const BoxConstraints(minWidth: 300),
-                  )),
-              Expanded(
-                  flex: 3,
-                  child: Column(
-                    children: [UpdateList(), PublicationList()],
-                  ))
-            ],
-          ),
+          screenSize.height < screenSize.width
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Introduction(),
+                    ),
+                    Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: [UpdateList(), PublicationList()],
+                        ))
+                  ],
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Introduction(),
+                    UpdateList(),
+                    PublicationList(),
+                  ],
+                ),
         ],
       )),
     );
