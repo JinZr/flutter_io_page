@@ -15,16 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Zengrui JIN (金增锐)',
       theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          bodyText1: TextStyle(color: Colors.black.withOpacity(0.6)),
-          bodyText2: TextStyle(
-              color: Colors.black.withOpacity(0.6),
-              fontWeight: FontWeight.bold),
-          button: TextStyle(color: Colors.blue.shade500),
-        ),
-      ),
+          brightness: Brightness.light,
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.black.withOpacity(0.6)),
+            bodyText2: TextStyle(
+                color: Colors.black.withOpacity(0.6),
+                fontWeight: FontWeight.bold),
+            button: TextStyle(color: Colors.blue.shade500),
+          )),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.yellow,
