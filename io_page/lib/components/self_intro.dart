@@ -12,8 +12,7 @@ class Introduction extends StatelessWidget {
         ListTile(
           leading: const Image(image: AssetImage('images/avatar.jpeg')),
           title: const Text("Zengrui JIN"),
-          subtitle: Text("金增锐",
-              style: TextStyle(color: Colors.black.withOpacity(0.6))),
+          subtitle: Text("金增锐", style: Theme.of(context).textTheme.bodyText1!),
         ),
         const Divider(
           indent: 10,
@@ -28,12 +27,12 @@ class Introduction extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.mail),
                 title: SelectableText("zengrui.jin [at] outlook.com",
-                    style: TextStyle(color: Colors.black.withOpacity(0.6))),
+                    style: Theme.of(context).textTheme.bodyText1!),
               ),
               ListTile(
                 leading: const Icon(Icons.favorite),
                 title: Text("Collecting Polaroid cameras! 📷 📸️",
-                    style: TextStyle(color: Colors.black.withOpacity(0.6))),
+                    style: Theme.of(context).textTheme.bodyText1!),
               ),
             ],
           ),

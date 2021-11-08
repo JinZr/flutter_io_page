@@ -21,7 +21,7 @@ class PolaroidGalleryView extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Text(
                     "I have one Polaroid Spectra for shooting B&W files, one SX-70 Sonar for regular shooting, one SX-70 Model 2 and one 670-AF for collection.",
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    style: Theme.of(context).textTheme.bodyText1!,
                   )),
               Image.asset("assets/images/cameras/af670.jpeg"),
               Image.asset("assets/images/cameras/sx70.jpeg"),
