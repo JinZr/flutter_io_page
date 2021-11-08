@@ -37,22 +37,27 @@ class Introduction extends StatelessWidget {
             ],
           ),
         ),
-        ButtonBar(alignment: MainAxisAlignment.start, children: [
-          TextButton(
-              child: const Text("GOOGLE SCHOLAR"),
-              onPressed: () => _launchURL(
-                  'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
-          TextButton(
-              child: const Text("RESEARCH GATE"),
-              onPressed: () => _launchURL(
-                  "https://www.researchgate.net/profile/Zengrui-Jin")),
-          TextButton(
-              child: const Text("CV"),
-              onPressed: () => {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("My CV is not available so far.")))
-                  }),
-        ])
+        ButtonBar(
+            alignment: MainAxisAlignment.start,
+            layoutBehavior: ButtonBarLayoutBehavior.constrained,
+            children: [
+              TextButton(
+                  child: const Text("GOOGLE SCHOLAR"),
+                  onPressed: () => _launchURL(
+                      'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
+              TextButton(
+                  child: const Text("RESEARCH GATE"),
+                  onPressed: () => _launchURL(
+                      "https://www.researchgate.net/profile/Zengrui-Jin")),
+              TextButton(
+                  child: const Text("CV"),
+                  onPressed: () => {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text("My CV is not available so far.")))
+                      }),
+            ])
       ],
     ));
   }
