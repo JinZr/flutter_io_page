@@ -27,6 +27,6 @@ jobs:
         with:
           flutter-version: '2.5.3'
       - run: cd io_page
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build web
+      - run: cd io_page; flutter pub get
+      - run: cd io_page; flutter test
+      - run: cd io_page; flutter build web
