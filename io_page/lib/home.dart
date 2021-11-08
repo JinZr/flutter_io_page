@@ -31,7 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        // leading: const Image(image: AssetImage('images/avatar.jpeg')),
       ),
       // drawer: Drawer(
       //   child: ListView(
