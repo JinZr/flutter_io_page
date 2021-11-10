@@ -5,19 +5,24 @@ import 'components/update_list.dart';
 import 'components/pub_list.dart';
 import 'components/polaroid_gallery_view.dart';
 
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+  final List<Widget> _children = [
+    Introduction(),
+    UpdateList(),
+    PublicationList(),
+    PolaroidGalleryView(),
+  ];
+  final List<StaggeredTile> _tiles = [
+    StaggeredTile.count(1, 1.1),
+    StaggeredTile.count(1, 1),
+    StaggeredTile.count(1, 1),
+    StaggeredTile.count(1, 1),
+  ];
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -33,44 +38,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         // leading: const Image(image: AssetImage('images/avatar.jpeg')),
       ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     // Important: Remove any padding from the ListView.
-      //     padding: EdgeInsets.zero,
-      //     children: [
-      //       const DrawerHeader(
-      //         decoration: BoxDecoration(
-      //           color: Colors.blue,
-      //         ),
-      //         child: Text('Drawer Header'),
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 1'),
-      //         onTap: () {
-      //           // Update the state of the app.
-      //           // ...
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         onTap: () {
-      //           // Update the state of the app.
-      //           // ...
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: ListView(
-        children: [
-          screenSize.height < screenSize.width - 100
-              ? _buildWidgetForWideScreen()
-              : _buildWidgetForLongScreen(),
-        ],
-      )),
+        //     child: ListView(
+        //   children: [
+        //     screenSize.height < screenSize.width - 100
+        //         ? _buildWidgetForWideScreen()
+        //         : _buildWidgetForLongScreen(),
+        //   ],
+        // )
+        child: StaggeredGridView.count(
+          crossAxisCount: 3,
+          children: widget._children,
+          staggeredTiles: widget._tiles,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+        ),
+      ),
     );
   }
 
