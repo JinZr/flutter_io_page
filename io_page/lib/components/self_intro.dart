@@ -26,12 +26,12 @@ class Introduction extends StatelessWidget {
                   title: MyIntroduction()),
               ListTile(
                 leading: const Icon(Icons.mail),
-                title: SelectableText("zengrui.jin [at] outlook.com",
+                title: SelectableText("zengrui.jin [at] icloud.com",
                     style: Theme.of(context).textTheme.bodyText1!),
               ),
               ListTile(
                 leading: const Icon(Icons.favorite),
-                title: Text("Collecting Polaroid cameras! 📷 📸️",
+                title: Text("Collecting vintage Polaroid cameras! 📷 📸️",
                     style: Theme.of(context).textTheme.bodyText1!),
               ),
             ],
