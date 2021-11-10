@@ -20,9 +20,12 @@ class _PublicationListState extends State<PublicationList> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const ListTile(
-            leading: Icon(Icons.book),
-            title: Text("Publications"),
+          ListTile(
+            leading: const Icon(Icons.book),
+            title: Text(
+              "Publications",
+              style: Theme.of(context).textTheme.headline6!,
+            ),
           ),
           const Divider(
             indent: 10,
