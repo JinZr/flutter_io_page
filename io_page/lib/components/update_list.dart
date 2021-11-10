@@ -18,7 +18,10 @@ class _UpdateListState extends State<UpdateList> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const ListTile(leading: Icon(Icons.fiber_new), title: Text("News")),
+          ListTile(
+            leading: const Icon(Icons.fiber_new),
+            title: Text("News", style: Theme.of(context).textTheme.headline6!),
+          ),
           const Divider(
             indent: 10,
           ),

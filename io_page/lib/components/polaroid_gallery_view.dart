@@ -8,9 +8,12 @@ class PolaroidGalleryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-          const ListTile(
-            leading: Icon(Icons.camera),
-            title: Text("My Polaroid Camera Gallery"),
+          ListTile(
+            leading: const Icon(Icons.camera),
+            title: Text(
+              "My Polaroid Camera Gallery",
+              style: Theme.of(context).textTheme.headline6!,
+            ),
           ),
           const Divider(
             indent: 10,
