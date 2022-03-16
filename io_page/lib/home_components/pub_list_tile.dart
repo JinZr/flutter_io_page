@@ -18,10 +18,6 @@ class _PublicationListTileState extends State<PublicationListTile> {
   @override
   Widget build(BuildContext context) => InkWell(
         child: ListTile(
-          // trailing: IconButton(
-          // icon: const Icon(Icons.more_vert),
-          // onPressed: () => _launchURL(widget.json["link"]),
-          // ),
           trailing: PopupMenuButton(
               icon: const Icon(Icons.more_vert),
               itemBuilder: (BuildContext context) =>

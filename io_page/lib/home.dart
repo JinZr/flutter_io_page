@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'components/self_intro.dart';
-import 'components/update_list.dart';
-import 'components/pub_list.dart';
-import 'components/polaroid_gallery_view.dart';
+import 'home_components/self_intro.dart';
+import 'home_components/update_list.dart';
+import 'home_components/pub_list.dart';
+import 'home_components/polaroid_gallery_view.dart';
 
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-  final List<Widget> _children = [
-    Introduction(),
-    UpdateList(),
-    PublicationList(),
-    PolaroidGalleryView(),
-  ];
-  final List<StaggeredTile> _tiles = [
-    StaggeredTile.count(1, 1.1),
-    StaggeredTile.count(1, 1),
-    StaggeredTile.count(1, 1),
-    StaggeredTile.count(1, 1),
-  ];
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,20 +25,45 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.blue,
+      //         ),
+      //         child: Text(
+      //           'Navigation',
+      //           style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 24,
+      //           ),
+      //         ),
+      //       ),
+      //       InkWell(
+      //         child: ListTile(
+      //             leading: const Icon(Icons.book),
+      //             title: const Text("Full Publication List"),
+      //             onTap: () {
+      //               Navigator.of(context).pop();
+      //               Navigator.of(context).push(MaterialPageRoute(
+      //                   builder: (BuildContext context) =>
+      //                       const FullPublicationView(
+      //                         title: 'Full Publication List',
+      //                       )));
+      //             }),
+      //       )
+      //     ],
+      //   ),
+      // ),
       body: Center(
-        //     child: ListView(
-        //   children: [
-        //     screenSize.height < screenSize.width - 100
-        //         ? _buildWidgetForWideScreen()
-        //         : _buildWidgetForLongScreen(),
-        //   ],
-        // )
-        child: StaggeredGridView.count(
-          crossAxisCount: 3,
-          children: widget._children,
-          staggeredTiles: widget._tiles,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
+        child: ListView(
+          children: [
+            screenSize.height < screenSize.width - 100
+                ? _buildWidgetForWideScreen()
+                : _buildWidgetForLongScreen(),
+          ],
         ),
       ),
     );
