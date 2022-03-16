@@ -27,8 +27,8 @@ class PolaroidGalleryView extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1!,
                   )),
               Image.asset("assets/images/cameras/af670.jpeg"),
-              Image.asset("assets/images/cameras/sx70.jpeg"),
-              Image.asset("assets/images/cameras/spectra.jpeg"),
+              // Image.asset("assets/images/cameras/sx70.jpeg"),
+              // Image.asset("assets/images/cameras/spectra.jpeg"),
             ],
           )
         ]));
