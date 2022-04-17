@@ -25,45 +25,49 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     padding: EdgeInsets.zero,
-      //     children: [
-      //       const DrawerHeader(
-      //         decoration: BoxDecoration(
-      //           color: Colors.blue,
-      //         ),
-      //         child: Text(
-      //           'Navigation',
-      //           style: TextStyle(
-      //             color: Colors.white,
-      //             fontSize: 24,
-      //           ),
-      //         ),
-      //       ),
-      //       InkWell(
-      //         child: ListTile(
-      //             leading: const Icon(Icons.book),
-      //             title: const Text("Full Publication List"),
-      //             onTap: () {
-      //               Navigator.of(context).pop();
-      //               Navigator.of(context).push(MaterialPageRoute(
-      //                   builder: (BuildContext context) =>
-      //                       const FullPublicationView(
-      //                         title: 'Full Publication List',
-      //                       )));
-      //             }),
-      //       )
-      //     ],
-      //   ),
-      // ),
-      body: Center(
+      drawer: Drawer(
         child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            screenSize.height < screenSize.width - 100
-                ? _buildWidgetForWideScreen()
-                : _buildWidgetForLongScreen(),
+            // InkWell(
+            //   child: ListTile(
+            //       leading: const Icon(Icons.home),
+            //       title: const Text("Home"),
+            //       onTap: () {
+            //         Navigator.of(context).pop();
+            //         Navigator.of(context).push(MaterialPageRoute(
+            //             builder: (BuildContext context) =>
+            //                 const FullPublicationView(
+            //                   title: 'Full Publication List',
+            //                 )));
+            //       }),
+            // ),
+            InkWell(
+              child: ListTile(
+                  leading: const Icon(Icons.book),
+                  title: const Text("Full Publication List"),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const FullPublicationView(
+                              title: 'Full Publication List',
+                            )));
+                  }),
+            )
           ],
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8), 
+          child:  ListView(
+            children: [
+              screenSize.height < screenSize.width - 100
+                  ? _buildWidgetForWideScreen()
+                  : _buildWidgetForLongScreen(),
+            ],
+          ),
         ),
       ),
     );

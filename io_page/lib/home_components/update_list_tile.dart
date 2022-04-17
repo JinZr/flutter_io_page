@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'dart:convert' show json;
-import 'package:url_launcher/url_launcher.dart';
-
 class UpdateEventListTile extends StatelessWidget {
   final dynamic json;
 

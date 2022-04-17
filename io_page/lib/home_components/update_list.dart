@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'dart:convert' show json;
-import 'package:url_launcher/url_launcher.dart';
 import 'update_list_tile.dart';
 
 class UpdateList extends StatefulWidget {
@@ -48,7 +47,4 @@ class _UpdateListState extends State<UpdateList> {
       ),
     );
   }
-
-  _launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 }

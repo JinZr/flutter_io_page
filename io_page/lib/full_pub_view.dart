@@ -2,6 +2,7 @@ import 'dart:convert' show json;
 import 'package:flutter/material.dart';
 
 import 'full_pub_view_components/pub_item.dart';
+import 'full_pub_view_components/pub_cell.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class FullPublicationView extends StatefulWidget {
@@ -22,48 +23,38 @@ class _FullPublicationViewState extends State<FullPublicationView> {
     final assetStr = DefaultAssetBundle.of(context)
         .loadString('assets/texts/publication_list.json');
 
-    return SingleChildScrollView(
-      child: FutureBuilder(
-        future: assetStr,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var items = json.decode(snapshot.data.toString());
-            _data = generateItems(items);
-            return _buildPanel();
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Full Publication List"),
+      ),
+      body: Center(
+        child: FutureBuilder(
+          future: assetStr,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var items = json.decode(snapshot.data.toString());
+              _data = generateItems(items);
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: _buildPanel(),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
 
   Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _data.map<ExpansionPanel>((PublicationItem item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(item.json.toString()),
-            );
-          },
-          body: ListTile(
-            title: Text(item.json.toString() +
-                item.json.toString() +
-                item.json.toString()),
-            subtitle:
-                const Text('To delete this panel, tap the trash can icon'),
-          ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+    return ListView.builder(
+      itemCount: _data.length,
+      itemBuilder: (BuildContext context, int index) {
+        return FullPublicationCell(item: _data[index]);
+      }
     );
   }
 }
