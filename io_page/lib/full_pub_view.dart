@@ -22,6 +22,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   Widget build(BuildContext context) {
     final assetStr = DefaultAssetBundle.of(context)
         .loadString('assets/texts/publication_list.json');
+    var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +36,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
               var items = json.decode(snapshot.data.toString());
               _data = generateItems(items);
               return Padding(
-                padding: const EdgeInsets.all(8),
+                padding: screenSize.height < screenSize.width - 200 ? const EdgeInsets.fromLTRB(100, 8, 100, 8)  : const EdgeInsets.all(8) ,
                 child: _buildPanel(),
               );
             } else {
@@ -50,11 +51,18 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   }
 
   Widget _buildPanel() {
-    return ListView.builder(
-      itemCount: _data.length,
-      itemBuilder: (BuildContext context, int index) {
-        return FullPublicationCell(item: _data[index]);
-      }
-    );
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ListView.separated(
+          itemCount: _data.length,
+          itemBuilder: (BuildContext context, int index) {
+            return FullPublicationCell(item: _data[index]);
+          },
+          separatorBuilder: (context, index) {
+            return const Divider();
+          },
+      ),
+    ));
   }
 }

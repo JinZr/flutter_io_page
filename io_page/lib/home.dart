@@ -29,22 +29,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            // InkWell(
-            //   child: ListTile(
-            //       leading: const Icon(Icons.home),
-            //       title: const Text("Home"),
-            //       onTap: () {
-            //         Navigator.of(context).pop();
-            //         Navigator.of(context).push(MaterialPageRoute(
-            //             builder: (BuildContext context) =>
-            //                 const FullPublicationView(
-            //                   title: 'Full Publication List',
-            //                 )));
-            //       }),
-            // ),
+            const DrawerHeader(
+                decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Navigation Menu'),
+            ),
             InkWell(
               child: ListTile(
-                  leading: const Icon(Icons.book),
+                  leading: const Icon(Icons.library_books),
                   title: const Text("Full Publication List"),
                   onTap: () {
                     Navigator.of(context).pop();
