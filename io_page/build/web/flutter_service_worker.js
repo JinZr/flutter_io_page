@@ -6,10 +6,10 @@ const RESOURCES = {
   "avatar%202.jpeg": "a9745c3614da000b8b0268ee455a52d9",
 "favicon%202.png": "f101f41f592bfbbe11bac990f05dc7b3",
 "version.json": "afffc78b9994491ee0f8cae465465cda",
-"index.html": "3070e5fce024559bacd3ca21383824cc",
-"/": "3070e5fce024559bacd3ca21383824cc",
+"index.html": "f026ab891da6f54bad684b45abc8089b",
+"/": "f026ab891da6f54bad684b45abc8089b",
 "avatar%202.png": "85ac90ce5adf0e17190b61572b454cfa",
-"main.dart.js": "1637c22e9816140091ffb6fd4b1c7c52",
+"main.dart.js": "c8e478c618b57a2b45771c7c86bd41ad",
 "main.dart%202.js": "41faee3b23ee7cb4050e72c8db7c09cd",
 "avatar.png": "85ac90ce5adf0e17190b61572b454cfa",
 "favicon.png": "f101f41f592bfbbe11bac990f05dc7b3",
@@ -44,11 +44,7 @@ const RESOURCES = {
 "assets/assets/texts/latest_update_list%202.json": "0404971aa3d4bd2a62b2b6f9e4e452ed",
 "assets/assets/texts/publication_list.json": "50242950945850780e8528a5914f78bb",
 "assets/assets/texts/publication_list%202.json": "50242950945850780e8528a5914f78bb",
-"avatar.jpeg": "a9745c3614da000b8b0268ee455a52d9",
-"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
-"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
-"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
-"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
+"avatar.jpeg": "a9745c3614da000b8b0268ee455a52d9"
 };
 
 // The application shell files that are downloaded before a service worker can
