@@ -10,7 +10,7 @@ class Introduction extends StatelessWidget {
         child: Column(
       children: [
         ListTile(
-          leading: const Image(image: AssetImage('images/avatar.jpeg')),
+          leading: const Image(image: AssetImage('images/avatar_mono.jpeg')),
           title: const Text("Zengrui JIN"),
           subtitle: Text("金增锐", style: Theme.of(context).textTheme.bodyText1!),
         ),
