@@ -10,7 +10,7 @@ class Introduction extends StatelessWidget {
         child: Column(
       children: [
         ListTile(
-          leading: const Image(image: AssetImage('assets/avatar/avatar_mono.jpeg')),
+          leading: const Image(image: AssetImage('assets/images/avatar/avatar_mono.jpeg')),
           title: const Text("Zengrui JIN"),
           subtitle: Text("金增锐", style: Theme.of(context).textTheme.bodyText1!),
         ),
@@ -47,7 +47,7 @@ class Introduction extends StatelessWidget {
               onPressed: () => _launchURL(
                   "https://www.researchgate.net/profile/Zengrui-Jin")),
           TextButton(
-              child: const Text("CV"),
+              child: const Text("CURRICULUM VITAE"),
               onPressed: () => {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("My CV is not available so far.")))

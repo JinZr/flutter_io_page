@@ -38951,7 +38951,7 @@ this.k7()}}
 A.Dk.prototype={
 H(a,b){var s=null,r=A.ad(b),q=b.M(t.w).f.f.b,p=A.aeJ(b,s,s),o=B.zp.G(0,new A.aZ(0,q,0,0)),n=r.W.z
 n.toString
-n=A.lz(A.abd(B.Le,b,!1,!1,!1,!0),s,B.b2,!0,n,s,s,B.ab)
+n=A.lz(A.abd(B.Lf,b,!1,!1,!1,!0),s,B.b2,!0,n,s,s,B.ab)
 return A.eh(s,new A.rL(n,o,B.vh,s,B.a2,B.du,s,s),B.q,s,s,new A.dX(s,s,new A.cM(B.p,B.p,p,B.p),s,s,s,B.aS),s,q+161,B.zl,s,s,s,s)}}
 A.tY.prototype={
 gv(a){var s=this
@@ -61987,7 +61987,7 @@ r=A.hK(B.A2,o,o,new A.x0("zengrui.jin [at] icloud.com",r,B.Lt,o),o)
 q=A.ad(b).W.z
 q.toString
 p=t.F
-return A.C9(A.k0(A.b([n,B.ds,new A.ch(B.dx,A.k0(A.b([s,r,A.hK(B.A_,o,o,A.jp("Collecting vintage Polaroid cameras! \ud83d\udcf7 \ud83d\udcf8\ufe0f",o,q,o,o),o)],p),B.ba,B.ae,B.az),o),new A.BZ(B.ae,A.b([A.abE(B.Ld,new A.UU(this),o),A.abE(B.Lk,new A.UV(this),o),A.abE(B.Lg,new A.UW(b),o)],p),o)],p),B.ba,B.ae,B.az))},
+return A.C9(A.k0(A.b([n,B.ds,new A.ch(B.dx,A.k0(A.b([s,r,A.hK(B.A_,o,o,A.jp("Collecting vintage Polaroid cameras! \ud83d\udcf7 \ud83d\udcf8\ufe0f",o,q,o,o),o)],p),B.ba,B.ae,B.az),o),new A.BZ(B.ae,A.b([A.abE(B.Ld,new A.UU(this),o),A.abE(B.Lk,new A.UV(this),o),A.abE(B.Le,new A.UW(b),o)],p),o)],p),B.ba,B.ae,B.az))},
 lw(a){return this.YQ(a)},
 YQ(a){var s=0,r=A.a5(t.z),q
 var $async$lw=A.a6(function(b,c){if(b===1)return A.a2(c,r)
@@ -65021,7 +65021,7 @@ B.lG=new A.Dj(0,"start")
 B.zp=new A.aZ(16,16,16,8)
 B.zl=new A.aZ(0,0,0,8)
 B.du=new A.az(25e4)
-B.Le=new A.e5("Navigation Menu",null,null,null,null,null,null)
+B.Lf=new A.e5("Navigation Menu",null,null,null,null,null,null)
 B.z8=new A.Dk(null)
 B.z9=new A.tY(null,null,null,null)
 B.r=new A.az(0)
@@ -65136,7 +65136,7 @@ B.A8=new A.lY(0,"repeat")
 B.A9=new A.lY(1,"repeatX")
 B.Aa=new A.lY(2,"repeatY")
 B.cy=new A.lY(3,"noRepeat")
-B.uU=new A.nM("assets/avatar/avatar_mono.jpeg",null,null)
+B.uU=new A.nM("assets/images/avatar/avatar_mono.jpeg",null,null)
 B.Ab=new A.oD(B.uU,null)
 B.Ag=new A.dI(0,0.1,B.Z)
 B.Ae=new A.dI(0,0.3333333333333333,B.Z)
@@ -66297,8 +66297,8 @@ B.EU=new A.pe(1,"scroll")
 B.EV=new A.pe(2,"unknown")
 B.EW=new A.vZ(null)
 B.F3=new A.eL(2,"copyAuthor")
-B.Lf=new A.e5("Copy Author List",null,null,null,null,null,null)
-B.EX=new A.mv(B.F3,B.Lf,null,t.TW)
+B.Lg=new A.e5("Copy Author List",null,null,null,null,null,null)
+B.EX=new A.mv(B.F3,B.Lg,null,t.TW)
 B.F1=new A.eL(0,"openInBrowser")
 B.Li=new A.e5("Open in Browser",null,null,null,null,null,null)
 B.EY=new A.mv(B.F1,B.Li,null,t.TW)
@@ -66789,7 +66789,7 @@ B.IP=new A.o(!0,B.j,null,".SF UI Text",null,null,null,null,null,null,null,null,n
 B.Lb=new A.du(B.If,B.JW,B.K8,B.KM,B.Jv,B.IC,B.K2,B.Jy,B.JG,B.Ku,B.IM,B.KR,B.Jq,B.Km,B.IP)
 B.uk=new A.xE(1,"longestLine")
 B.Ld=new A.e5("GOOGLE SCHOLAR",null,null,null,null,null,null)
-B.Lg=new A.e5("CV",null,null,null,null,null,null)
+B.Le=new A.e5("CURRICULUM VITAE",null,null,null,null,null,null)
 B.Lj=new A.e5("Zengrui JIN",null,null,null,null,null,null)
 B.ul=new A.e5("Full Publication List",null,null,null,null,null,null)
 B.Lk=new A.e5("RESEARCH GATE",null,null,null,null,null,null)
