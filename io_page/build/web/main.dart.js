@@ -61978,7 +61978,7 @@ s=A.aa(b).W.Q
 s.toString
 return A.uA(!1,!0,A.hK(r,r,new A.t_(p,o,s,r),q,r),r,!0,r,r,r,r,r,r,r,r,r,r,r,r,r)}}
 A.uB.prototype={
-H(a,b){var s,r,q,p=null,o=A.afc("images/avatar/avatar.jpeg"),n=A.aa(b).W.r
+H(a,b){var s,r,q,p=null,o=A.afc("assets/images/avatar/avatar.jpeg"),n=A.aa(b).W.r
 n.toString
 n=A.ib("Zengrui JIN",p,n,p,p)
 s=A.aa(b).W.z
