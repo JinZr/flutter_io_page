@@ -15,7 +15,7 @@ class MyIntroduction extends StatelessWidget {
         text: TextSpan(children: [
       TextSpan(
           text:
-              "I am currently a Research Postgraduate student in the Department of System Engineering and Engineering Management at The Chinese University of Hong Kong. My advisor is ",
+              "I am currently a Research Postgraduate student in the Department of System Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ",
           style: Theme.of(context).textTheme.bodyText1!),
       TextSpan(
           text: "Prof. Xunying Liu",

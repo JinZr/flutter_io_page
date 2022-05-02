@@ -62640,7 +62640,7 @@ $S:58}
 A.Fh.prototype={
 H(a,b){var s,r,q=null,p=A.ae(b).X.z
 p.toString
-p=A.ey(q,q,p,"I am currently a Research Postgraduate student in the Department of System Engineering and Engineering Management at The Chinese University of Hong Kong. My advisor is ")
+p=A.ey(q,q,p,"I am currently a Research Postgraduate student in the Department of System Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ")
 s=A.ae(b).X.cx
 s.toString
 r=A.a2s(q)
@@ -65904,7 +65904,7 @@ B.As=new A.m7(0,"repeat")
 B.At=new A.m7(1,"repeatX")
 B.Au=new A.m7(2,"repeatY")
 B.cC=new A.m7(3,"noRepeat")
-B.v2=new A.nV("images/avatar.jpeg",null,null)
+B.v2=new A.nV("images/avatar_mono.jpeg",null,null)
 B.Av=new A.oM(B.v2,null)
 B.AA=new A.dL(0,0.1,B.a_)
 B.Ay=new A.dL(0,0.3333333333333333,B.a_)
