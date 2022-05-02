@@ -19,22 +19,22 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
-            headline6: GoogleFonts.roboto(
+            headline6: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
-            bodyText1: GoogleFonts.roboto(
+            bodyText1: TextStyle(
               color: Colors.black.withOpacity(0.6),
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
-            bodyText2: GoogleFonts.roboto(
+            bodyText2: TextStyle(
               color: Colors.black.withOpacity(0.6),
               fontWeight: FontWeight.bold,
               fontSize: 16,
               decoration: TextDecoration.underline,
             ),
-            button: GoogleFonts.roboto(
+            button: TextStyle(
               color: Colors.blue.shade500,
               fontWeight: FontWeight.w500,
               fontSize: 14,
@@ -44,22 +44,22 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.yellow,
         textTheme: TextTheme(
-          headline6: GoogleFonts.roboto(
+          headline6: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
           ),
-          bodyText1: GoogleFonts.roboto(
+          bodyText1: TextStyle(
             color: Colors.white.withOpacity(.8),
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
-          bodyText2: GoogleFonts.roboto(
+          bodyText2: TextStyle(
             color: Colors.white.withOpacity(.6),
             fontWeight: FontWeight.bold,
             fontSize: 16,
             decoration: TextDecoration.underline,
           ),
-          button: GoogleFonts.roboto(
+          button: const TextStyle(
             color: Colors.yellow,
             fontWeight: FontWeight.w500,
             fontSize: 14,
