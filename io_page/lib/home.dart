@@ -29,11 +29,24 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-                decoration: BoxDecoration(
+            DrawerHeader(
+                decoration:  BoxDecoration(
                 color: Colors.blue,
+                image: const DecorationImage(
+                  image: AssetImage('assets/images/avatar/avatar.jpeg'),
+                  fit: BoxFit.fitWidth,
+                ),
+                gradient: LinearGradient(
+                    begin: FractionalOffset.topCenter,
+                    end: FractionalOffset.bottomCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.0),
+                      Colors.white,
+                    ],
+                    stops: const [0.0, 1.0]
+                  )
               ),
-              child: Text('Navigation Menu'),
+              child: const Text("Navigation Menu")
             ),
             InkWell(
               child: ListTile(
