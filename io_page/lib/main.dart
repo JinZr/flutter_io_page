@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
             headline6: const TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
             bodyText1: TextStyle(
               color: Colors.black.withOpacity(0.6),
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
             bodyText2: TextStyle(
@@ -45,12 +45,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         textTheme: TextTheme(
           headline6: const TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
           bodyText1: TextStyle(
             color: Colors.white.withOpacity(.8),
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
           bodyText2: TextStyle(
