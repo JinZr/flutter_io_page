@@ -7,9 +7,10 @@ class UpdateEventListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(title: 
-      Text(
-        "[${json["date"]}]: ${json["content"]}",
+    return ListTile(
+      leading: Chip(label: Text(json["date"], style: Theme.of(context).textTheme.button!,)),
+      title: Text(
+        "${json["content"]}",
         style: Theme.of(context).textTheme.bodyText1!,
       )
     );
