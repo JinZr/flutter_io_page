@@ -1,5 +1,3 @@
-
-
 // stores ExpansionPanel state information
 class PublicationItem {
   PublicationItem({required this.json}) {
@@ -7,6 +5,7 @@ class PublicationItem {
     authorList = json["author"];
     publisher = json["publisher"];
     link = json["link"];
+    year = json["year"];
   }
 
   dynamic json;
@@ -15,6 +14,7 @@ class PublicationItem {
   late String authorList;
   late String publisher;
   late String link;
+  late int year;
 }
 
 List<PublicationItem> generateItems(List<dynamic> json) {

@@ -18950,10 +18950,11 @@ q.b=p.h(r,"title")
 q.c=p.h(r,"author")
 q.d=p.h(r,"publisher")
 q.e=p.h(r,"link")
+q.f=p.h(r,"year")
 m[s]=q}return m},
 GL:function GL(a){var _=this
 _.a=a
-_.e=_.d=_.c=_.b=$},
+_.f=_.e=_.d=_.c=_.b=$},
 vZ:function vZ(a){this.a=a},
 LS:function LS(a){this.a=null
 this.b=a
@@ -63917,7 +63918,7 @@ r=A.T(b).K.x
 r.toString
 q=A.T(b).K.Q
 q.toString
-j=A.a(j.d,m)
+j=A.a(j.d,m)+" "+A.e(A.a(j.f,"year"))
 p=A.T(b).K.cx
 p.toString
 return A.fq(o,o,A.iT(A.b([new A.lE(i,r,q,o),A.CT(A.cx(j,o,p,o,o))],t.F),B.ca,B.ag,B.au),s,k)}}}
