@@ -85,14 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(children: [
               Introduction(),
               PolaroidGalleryView(),
             ]),
           ),
           Expanded(
-              flex: 3,
+              flex: 5,
               child: Column(
                 children: [UpdateList(), PublicationList()],
               ))
