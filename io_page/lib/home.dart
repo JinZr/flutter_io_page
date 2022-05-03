@@ -32,10 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
             DrawerHeader(
                 decoration:  BoxDecoration(
                 color: Colors.blue,
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/avatar/avatar.jpeg'),
-                  fit: BoxFit.fitWidth,
-                ),
+                // image: const DecorationImage(
+                //   image: AssetImage('assets/images/avatar/avatar.jpeg'),
+                //   fit: BoxFit.fitWidth,
+                // ),
                 gradient: LinearGradient(
                     begin: FractionalOffset.topCenter,
                     end: FractionalOffset.bottomCenter,
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(children: [
               Introduction(),
               PolaroidGalleryView(),
