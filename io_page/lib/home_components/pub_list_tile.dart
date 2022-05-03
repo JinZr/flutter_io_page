@@ -13,18 +13,47 @@ class PublicationListTile extends StatefulWidget {
 
 class _PublicationListTileState extends State<PublicationListTile> {
   @override
-  Widget build(BuildContext context) => InkWell(
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    if (screenSize.height >= screenSize.width - 100) {
+      return InkWell(
         child: ListTile(
-          trailing: Chip(label: Text(widget.json["publisher"])),
           title: Text(
             "${widget.json["title"]}",
             style: Theme.of(context).textTheme.bodyText1!,
           ),
-          subtitle: AuthorListText(
-              text: widget.json["author"],
-              regularStyle: Theme.of(context).textTheme.subtitle1!,
-              matchStyle: Theme.of(context).textTheme.bodyText2!),
+          subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            AuthorListText(
+                text: widget.json["author"],
+                regularStyle: Theme.of(context).textTheme.subtitle1!,
+                matchStyle: Theme.of(context).textTheme.bodyText2!),
+            Chip(label: Text(
+              widget.json["publisher"],
+              style: Theme.of(context).textTheme.button!,
+            )),
+          ]),
+        )
+      );
+    } else {
+      return InkWell(
+        child: ListTile(
+          leading: Chip(label: 
+            Text(widget.json["publisher"], 
+            style: Theme.of(context).textTheme.button!,)
+          ),
+          title: Text(
+            "${widget.json["title"]}",
+            style: Theme.of(context).textTheme.bodyText1!,
+          ),
+          subtitle: 
+            AuthorListText(
+                text: widget.json["author"],
+                regularStyle: Theme.of(context).textTheme.subtitle1!,
+                matchStyle: Theme.of(context).textTheme.bodyText2!),
+            
         ),
       );
-
+    }
+    
+  }
 }
