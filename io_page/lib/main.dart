@@ -19,20 +19,36 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
+            headline1: GoogleFonts.roboto(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            headline5: GoogleFonts.roboto(
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ),
             headline6: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
-            bodyText1: GoogleFonts.roboto(
+            subtitle1: GoogleFonts.roboto(
               color: Colors.black.withOpacity(0.6),
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
+            bodyText1: GoogleFonts.roboto(
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
+            ),
             bodyText2: GoogleFonts.roboto(
               color: Colors.black.withOpacity(0.6),
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 14,
               decoration: TextDecoration.underline,
+            ),
+            caption: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
             ),
             button: GoogleFonts.roboto(
               color: Colors.blue.shade500,
@@ -44,20 +60,38 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.yellow,
         textTheme: TextTheme(
+          headline1: GoogleFonts.roboto(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+          headline5: GoogleFonts.roboto(
+            color: Colors.white.withOpacity(.8),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
           headline6: GoogleFonts.roboto(
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
-          bodyText1: GoogleFonts.roboto(
+          subtitle1: GoogleFonts.roboto(
             color: Colors.white.withOpacity(.8),
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
+          bodyText1: GoogleFonts.roboto(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
           bodyText2: GoogleFonts.roboto(
             color: Colors.white.withOpacity(.6),
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 14,
             decoration: TextDecoration.underline,
+          ),
+          caption: GoogleFonts.roboto(
+            color: Colors.white.withOpacity(.6),
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
           ),
           button: GoogleFonts.roboto(
             color: Colors.yellow,

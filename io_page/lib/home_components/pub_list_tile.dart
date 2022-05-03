@@ -15,12 +15,14 @@ class _PublicationListTileState extends State<PublicationListTile> {
   @override
   Widget build(BuildContext context) => InkWell(
         child: ListTile(
+          trailing: Chip(label: Text(widget.json["publisher"])),
           title: Text(
-            "[${widget.json["publisher"]}] ${widget.json["title"]}",
+            "${widget.json["title"]}",
+            style: Theme.of(context).textTheme.bodyText1!,
           ),
           subtitle: AuthorListText(
               text: widget.json["author"],
-              regularStyle: Theme.of(context).textTheme.bodyText1!,
+              regularStyle: Theme.of(context).textTheme.subtitle1!,
               matchStyle: Theme.of(context).textTheme.bodyText2!),
         ),
       );

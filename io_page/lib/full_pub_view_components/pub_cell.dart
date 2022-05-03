@@ -22,16 +22,24 @@ class FullPublicationCell extends StatelessWidget {
               icon: const Icon(Icons.more_vert),
               itemBuilder: (BuildContext context) =>
                   <PopupMenuEntry<PublicationTileDropdownMenuAction>>[
-                    const PopupMenuItem(
+                    PopupMenuItem(
                         value: PublicationTileDropdownMenuAction.openInBrowser,
-                        child: Text("Open in Browser")),
+                        child: Text(
+                          "Open in Browser",
+                          style: Theme.of(context).textTheme.caption,
+                        )),
                     const PopupMenuDivider(),
-                    const PopupMenuItem(
+                    PopupMenuItem(
                         value: PublicationTileDropdownMenuAction.copyTitle,
-                        child: Text("Copy Title")),
-                    const PopupMenuItem(
+                        child: Text(
+                          "Copy Title",
+                          style: Theme.of(context).textTheme.caption,)
+                    ),
+                    PopupMenuItem(
                         value: PublicationTileDropdownMenuAction.copyAuthor,
-                        child: Text("Copy Author List")),
+                        child: Text("Copy Author List", 
+                        style: Theme.of(context).textTheme.caption)
+                    ),
                   ],
               onSelected: (PublicationTileDropdownMenuAction action) {
                 switch (action) {
@@ -49,12 +57,14 @@ class FullPublicationCell extends StatelessWidget {
                 }
               }),
         title: Text(
-            "[${item.publisher}] ${item.title}",
+            item.title,
+            style: Theme.of(context).textTheme.bodyText1!,
           ),
         subtitle: AuthorListText(
             text: item.authorList,
-            regularStyle: Theme.of(context).textTheme.bodyText1!,
+            regularStyle: Theme.of(context).textTheme.subtitle1!,
             matchStyle: Theme.of(context).textTheme.bodyText2!),
-        );
+        leading: Chip(label: Text(item.publisher)),
+      );
   }
 }
