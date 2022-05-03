@@ -64,9 +64,11 @@ class FullPublicationCell extends StatelessWidget {
               matchStyle: Theme.of(context).textTheme.bodyText2!),
           leading: Chip(
               label: Text(
-            item.publisher,
-            style: Theme.of(context).textTheme.button!,
-          )));
+                "${item.publisher} ${item.year}",
+                style: Theme.of(context).textTheme.button!,
+              )
+            )
+          );
     } else {
       return ListTile(
         trailing: PopupMenuButton(
@@ -116,8 +118,8 @@ class FullPublicationCell extends StatelessWidget {
               matchStyle: Theme.of(context).textTheme.bodyText2!),
           Chip(
               label: Text(
-            "${item.publisher} ${item.year}",
-            style: Theme.of(context).textTheme.button!,
+                "${item.publisher} ${item.year}",
+                style: Theme.of(context).textTheme.button!,
           )),
         ]),
       );
