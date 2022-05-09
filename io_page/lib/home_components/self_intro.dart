@@ -12,7 +12,7 @@ class Introduction extends StatelessWidget {
         ListTile(
           leading: Image.asset('assets/images/avatar/avatar.jpeg'),
           title: Text("Zengrui JIN", style: Theme.of(context).textTheme.headline6!),
-          subtitle: Text("金增锐", style: Theme.of(context).textTheme.subtitle1!),
+          subtitle: Text("金增锐", style: Theme.of(context).textTheme.subtitle2!),
         ),
         const Divider(
           indent: 10,

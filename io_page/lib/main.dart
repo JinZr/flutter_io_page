@@ -36,6 +36,11 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
+            subtitle2: GoogleFonts.longCang(
+              color: Colors.black.withOpacity(0.6),
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
             bodyText1: GoogleFonts.roboto(
               fontSize: 15,
               fontWeight: FontWeight.normal,
@@ -78,6 +83,11 @@ class MyApp extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
+          subtitle2: GoogleFonts.longCang(
+            color: Colors.white.withOpacity(.8),
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
           bodyText1: GoogleFonts.roboto(
             fontSize: 15,
             fontWeight: FontWeight.normal,
@@ -101,7 +111,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Zengrui JIN (金增锐)'),
+      home: const MyHomePage(title: 'Zengrui JIN'),
       debugShowCheckedModeBanner: false,
     );
   }
