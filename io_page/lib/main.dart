@@ -111,7 +111,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Zengrui JIN'),
+      home: const MyHomePage(
+        title_en: 'Zengrui JIN',
+        title_zh: '金增锐',
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

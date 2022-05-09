@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'home_components/self_intro.dart';
 import 'home_components/update_list.dart';
@@ -8,9 +9,10 @@ import 'home_components/polaroid_gallery_view.dart';
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title_en, required this.title_zh}) : super(key: key);
 
-  final String title;
+  final String title_en;
+  final String title_zh;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -23,7 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+          children: [
+            Text(widget.title_en, style: GoogleFonts.roboto(),),
+            const Text("\t"),
+            Text(widget.title_zh, style: GoogleFonts.longCang(),),
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
       ),
       drawer: Drawer(
         child: ListView(
