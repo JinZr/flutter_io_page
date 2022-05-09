@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'author_text.dart';
+import '../utilities/chip_color.dart';
 
 class PublicationListTile extends StatefulWidget {
   final dynamic json;
@@ -15,6 +16,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
     if (screenSize.height >= screenSize.width - 100) {
       return InkWell(
         child: ListTile(
@@ -27,19 +29,23 @@ class _PublicationListTileState extends State<PublicationListTile> {
                 text: widget.json["author"],
                 regularStyle: Theme.of(context).textTheme.subtitle1!,
                 matchStyle: Theme.of(context).textTheme.bodyText2!),
-            Chip(label: Text(
-              widget.json["publisher"],
-              style: Theme.of(context).textTheme.button!,
-            )),
+            Chip(label: 
+              Text(
+                widget.json["publisher"],
+                style: chipTextStyle(widget.json["publisher"]),
+              )
+            ),
           ]),
         )
       );
     } else {
       return InkWell(
         child: ListTile(
-          leading: Chip(label: 
-            Text(widget.json["publisher"], 
-            style: Theme.of(context).textTheme.button!,)
+          leading: Chip(
+            label: Text(
+              widget.json["publisher"], 
+              style: chipTextStyle(widget.json["publisher"])
+            )
           ),
           title: Text(
             "${widget.json["title"]}",

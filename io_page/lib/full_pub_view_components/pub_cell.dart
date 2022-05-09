@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'pub_item.dart';
-import '../home_components/author_text.dart';
 import 'pub_cell_action.dart';
+import '../home_components/author_text.dart';
+import '../utilities/chip_color.dart';
 
 class FullPublicationCell extends StatelessWidget {
   final PublicationItem item;
@@ -21,7 +22,7 @@ class FullPublicationCell extends StatelessWidget {
 
     final chip = Chip(label: Text(
       "${item.publisher} ${item.year}",
-      style: Theme.of(context).textTheme.button!,));
+      style: chipTextStyle(item.publisher)));
     
     final popupMenuButton = PopupMenuButton(
               icon: const Icon(Icons.more_vert),
