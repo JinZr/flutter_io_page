@@ -19,9 +19,8 @@ class FullPublicationCell extends StatelessWidget {
 
   _copyTitle(BuildContext context, PublicationItem item) {
     Clipboard.setData(ClipboardData(text: item.title));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Title ${item.title} copied."))
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Title ${item.title} copied.")));
   }
 
   @override
@@ -82,7 +81,7 @@ class FullPublicationCell extends StatelessWidget {
           Text(
             item.abs,
             style: Theme.of(context).textTheme.caption!,
-            maxLines: screenSize.height < screenSize.width - 100 ? null : 3,
+            maxLines: screenSize.height < screenSize.width - 100 ? null : 5,
           ),
           const Divider(indent: 10.0),
           Row(
@@ -102,17 +101,40 @@ class FullPublicationCell extends StatelessWidget {
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
               const Spacer(flex: 2),
-              ElevatedButton(
-                onPressed: () => _launchURL("https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="), 
-                child: const Text("Google Scholar")
-              ),
-              ElevatedButton(
-                onPressed: () => _launchURL(item.link),
-                child: const Text("PDF"),
-              )
-          ],)
+              screenSize.height < screenSize.width - 100 ? _buildButton(item) : _buildIconButton(item)
+            ],
+          )
         ]),
       ),
     ));
   }
+
+  Widget _buildButton(PublicationItem item) =>
+    Row(
+      children: [
+        ElevatedButton(
+            onPressed: () => _launchURL(
+                "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
+            child: const Text("Google Scholar")),
+        ElevatedButton(
+          onPressed: () => _launchURL(item.link),
+          child: const Text("PDF"),
+        )
+      ],
+    );
+  
+  Widget _buildIconButton(PublicationItem item) =>
+    Row(
+      children: [
+        IconButton(
+          onPressed: () => _launchURL(
+              "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
+          icon: const Icon(Icons.web)
+        ),
+        IconButton(
+          onPressed: () => _launchURL(item.link),
+          icon: const Icon(Icons.picture_as_pdf)
+        )
+      ],
+    );
 }
