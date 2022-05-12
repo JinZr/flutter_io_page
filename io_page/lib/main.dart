@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'home.dart';
+import 'theme/purple.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
+        colorScheme: lightColorScheme,
         textTheme: TextTheme(
           headline1: GoogleFonts.roboto(
             fontSize: 16,
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
           button: GoogleFonts.roboto(
-            color: Colors.blue.shade500,
+            color: lightColorScheme.primary,
             fontWeight: FontWeight.w500,
             fontSize: 14,
           ),
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        primarySwatch: Colors.yellow,
+        colorScheme: darkColorScheme,
         textTheme: TextTheme(
           headline1: GoogleFonts.roboto(
             fontSize: 16,
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
           button: GoogleFonts.roboto(
-            color: Colors.yellow,
+            color: darkColorScheme.primary,
             fontWeight: FontWeight.w500,
             fontSize: 14,
           ),

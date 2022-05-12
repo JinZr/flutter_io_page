@@ -11,7 +11,6 @@ class UpdateEventListTile extends StatelessWidget {
       leading: Chip(label: Text(json["date"], style: Theme.of(context).textTheme.button!,)),
       title: Text(
         "${json["content"]}",
-        style: Theme.of(context).textTheme.bodyText1!,
       )
     );
   }
