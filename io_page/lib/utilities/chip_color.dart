@@ -19,3 +19,11 @@ TextStyle chipTextStyle(String publisher) {
     );
   }
 }
+
+Color chipColor(String publisher) {
+  if (chipColors.containsKey(publisher)) {
+    return chipColors[publisher]!;
+  } else {
+    return Colors.purple.shade500;
+  }
+}

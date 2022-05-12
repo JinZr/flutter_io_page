@@ -6,6 +6,7 @@ class PublicationItem {
     publisher = json["publisher"];
     link = json["link"];
     year = json["year"];
+    abs = json["abstract"];
   }
 
   dynamic json;
@@ -14,6 +15,7 @@ class PublicationItem {
   late String authorList;
   late String publisher;
   late String link;
+  late String abs;
   late int year;
 }
 

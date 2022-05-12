@@ -32,8 +32,9 @@ class _PublicationListTileState extends State<PublicationListTile> {
             Chip(label: 
               Text(
                 widget.json["publisher"],
-                style: chipTextStyle(widget.json["publisher"]),
-              )
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+              backgroundColor: Theme.of(context).colorScheme.surface,
             ),
           ]),
         )
@@ -43,9 +44,10 @@ class _PublicationListTileState extends State<PublicationListTile> {
         child: ListTile(
           leading: Chip(
             label: Text(
-              widget.json["publisher"], 
-              style: chipTextStyle(widget.json["publisher"])
-            )
+                widget.json["publisher"], 
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+            backgroundColor: Theme.of(context).colorScheme.surface,
           ),
           title: Text(
             "${widget.json["title"]}",

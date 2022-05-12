@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           subtitle1: GoogleFonts.roboto(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withOpacity(0.8),
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
           subtitle2: GoogleFonts.longCang(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withOpacity(0.8),
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
           bodyText2: GoogleFonts.roboto(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withOpacity(0.8), 
             fontWeight: FontWeight.bold,
             fontSize: 14,
             decoration: TextDecoration.underline,
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           headline5: GoogleFonts.roboto(
-            color: Colors.white.withOpacity(.8),
+            color: Colors.white.withOpacity(0.8),
             fontSize: 16,
             fontWeight: FontWeight.normal,
           ),
@@ -83,12 +83,12 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           subtitle1: GoogleFonts.roboto(
-            color: Colors.white.withOpacity(.8),
+            color: Colors.white.withOpacity(0.8),
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
           subtitle2: GoogleFonts.longCang(
-            color: Colors.white.withOpacity(.8),
+            color: Colors.white.withOpacity(0.8),
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
