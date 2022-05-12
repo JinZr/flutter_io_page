@@ -101,7 +101,7 @@ class FullPublicationCell extends StatelessWidget {
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
               const Spacer(flex: 2),
-              screenSize.height < screenSize.width - 100 ? _buildButton(item) : _buildIconButton(item)
+              screenSize.height < screenSize.width - 100 ? _buildButton(context, item) : _buildIconButton(context, item)
             ],
           )
         ]),
@@ -109,7 +109,7 @@ class FullPublicationCell extends StatelessWidget {
     ));
   }
 
-  Widget _buildButton(PublicationItem item) =>
+  Widget _buildButton(BuildContext context, PublicationItem item) =>
     Row(
       children: [
         ElevatedButton(
@@ -123,17 +123,25 @@ class FullPublicationCell extends StatelessWidget {
       ],
     );
   
-  Widget _buildIconButton(PublicationItem item) =>
+  Widget _buildIconButton(BuildContext context, PublicationItem item) =>
     Row(
       children: [
         IconButton(
           onPressed: () => _launchURL(
               "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-          icon: const Icon(Icons.web)
+          icon: Icon(
+            Icons.web,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
+          color: Theme.of(context).colorScheme.secondaryContainer,
         ),
         IconButton(
           onPressed: () => _launchURL(item.link),
-          icon: const Icon(Icons.picture_as_pdf)
+          icon: Icon(
+            Icons.picture_as_pdf,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
+          color: Theme.of(context).colorScheme.secondaryContainer,
         )
       ],
     );
