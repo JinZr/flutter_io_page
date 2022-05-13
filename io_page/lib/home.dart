@@ -70,13 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
             InkWell(
               child: ListTile(
                   leading: const Icon(Icons.library_books),
-                  title: const Text("Full Publication List"),
+                  title: const Text("Publication"),
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) =>
                             const FullPublicationView(
-                              title: 'Full Publication List',
+                              title: 'Publication',
                             )));
                   }),
             )

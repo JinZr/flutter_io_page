@@ -26,7 +26,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Full Publication List"),
+        title: Text(widget.title),
       ),
       body: Center(
         child: FutureBuilder(
