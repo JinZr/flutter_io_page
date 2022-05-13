@@ -31,7 +31,7 @@ class Introduction extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.favorite),
-                  title: Text("Collecting vintage Polaroid cameras! 📷 📸️",
+                  title: Text("Collecting vintage Polaroid cameras. (SLR680 & 670AF)",
                       style: Theme.of(context).textTheme.subtitle1!),
                 ),
               ],
