@@ -53,11 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   NavigationRail _rail(bool extended) => NavigationRail(
-        destinations: const [
+        destinations: [
           NavigationRailDestination(
-              icon: Icon(Icons.home), label: Text("Home")),
+              icon: const Icon(Icons.home), 
+              label: Text("Home", style: GoogleFonts.roboto())),
           NavigationRailDestination(
-              icon: Icon(Icons.library_books), label: Text("Publications")),
+              icon: const Icon(Icons.library_books), 
+              label: Text("Publications", style: GoogleFonts.roboto())),
         ],
         selectedIndex: _selectedDestination,
         extended: extended,
