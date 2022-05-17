@@ -28,8 +28,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-    bool extended = screenSize.height < screenSize.width - 200 && screenSize.width > 900;
-    bool notUseDrawer = screenSize.height < screenSize.width - 100 && screenSize.width > 900;
+    bool extended =
+        screenSize.height < screenSize.width - 500 && screenSize.width > 900;
+    bool notUseDrawer =
+        screenSize.height < screenSize.width - 100 && screenSize.width > 900;
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     List<Widget> _bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),
@@ -40,9 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title_en),
         ),
-        drawer: notUseDrawer
-            ? null
-            : _buildDrawer(context),
+        drawer: notUseDrawer ? null : _buildDrawer(context),
         body: Row(children: [
           if (notUseDrawer) _rail(extended),
           Expanded(
@@ -55,10 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
   NavigationRail _rail(bool extended) => NavigationRail(
         destinations: [
           NavigationRailDestination(
-              icon: const Icon(Icons.home), 
+              icon: const Icon(Icons.home),
               label: Text("Home", style: GoogleFonts.roboto())),
           NavigationRailDestination(
-              icon: const Icon(Icons.library_books), 
+              icon: const Icon(Icons.library_books),
               label: Text("Publications", style: GoogleFonts.roboto())),
         ],
         selectedIndex: _selectedDestination,
