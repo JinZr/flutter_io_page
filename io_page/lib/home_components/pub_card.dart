@@ -1,0 +1,57 @@
+import 'dart:convert' show json;
+
+import 'package:flutter/material.dart';
+
+import 'pub_list_tile.dart';
+
+class PublicationCard extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _PublicationCardState();
+}
+
+class _PublicationCardState extends State<PublicationCard> {
+  @override
+  Widget build(BuildContext context) {
+    final assetStr = DefaultAssetBundle.of(context)
+        .loadString('assets/texts/publication_list.json');
+
+    return Card(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.book),
+            title: Text(
+              "Publications",
+              style: Theme.of(context).textTheme.headline6!,
+            ),
+          ),
+          const Divider(
+            indent: 10,
+          ),
+          Padding(
+              padding: const EdgeInsets.all(16),
+              child: FutureBuilder(
+                  future: assetStr,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var items = json.decode(snapshot.data.toString());
+                      return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return PublicationListTile(json: items[index]);
+                          });
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }))
+        ],
+      ),
+    );
+  }
+}

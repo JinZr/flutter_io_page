@@ -13,6 +13,7 @@ class PublicationListTile extends StatefulWidget {
 }
 
 class _PublicationListTileState extends State<PublicationListTile> {
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;

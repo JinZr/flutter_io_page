@@ -4,9 +4,9 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "362fe0b10d91714e4762e9f4c60843de",
-"index.html": "f51fba3b2be16750b46f9f7cbe688b06",
-"/": "f51fba3b2be16750b46f9f7cbe688b06",
-"main.dart.js": "a1cd1cb8099a89327f779ddbdb54cf6b",
+"index.html": "a82f23942f1dd619f73dfeaaeca6fb0e",
+"/": "a82f23942f1dd619f73dfeaaeca6fb0e",
+"main.dart.js": "c6407f477144d6bd01dd732989c7c4fc",
 "avatar.png": "e150f709f7be360be05ba1854017deda",
 "favicon.png": "0bb15817c995f272a08b7ea2305b596e",
 "icons/Icon-192.png": "7994dc3668f32b3f5ac36e215272fd1c",
@@ -22,7 +22,7 @@ const RESOURCES = {
 "assets/assets/images/cameras/af670.jpeg": "b6d6171b5fcfafe781960119472172af",
 "assets/assets/images/avatar/avatar.jpeg": "b1e7771d398fa0194f33e3501444e80f",
 "assets/assets/images/bg.jpeg": "ac2df277df884d0afabc4ec606c9b510",
-"assets/assets/texts/latest_update_list.json": "0404971aa3d4bd2a62b2b6f9e4e452ed",
+"assets/assets/texts/latest_update_list.json": "c5cac28267526618d7302d5831b30815",
 "assets/assets/texts/publication_list.json": "e2d4a46f88228e29f55f88fdab223dde",
 "avatar.jpeg": "f5784678e2f4a1aa83fd5190efe85da9"
 };

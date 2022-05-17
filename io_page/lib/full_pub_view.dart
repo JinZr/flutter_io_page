@@ -24,30 +24,25 @@ class _FullPublicationViewState extends State<FullPublicationView> {
         .loadString('assets/texts/publication_list.json');
     var screenSize = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: FutureBuilder(
-          future: assetStr,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              var items = json.decode(snapshot.data.toString());
-              _data = generateItems(items);
-              return Padding(
-                padding: screenSize.height < screenSize.width - 200
-                    ? const EdgeInsets.fromLTRB(100, 8, 100, 8)
-                    : const EdgeInsets.all(8),
-                child: _buildPanel(),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
+    return Center(
+      child: FutureBuilder(
+        future: assetStr,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var items = json.decode(snapshot.data.toString());
+            _data = generateItems(items);
+            return Padding(
+              padding: screenSize.height < screenSize.width - 200
+                  ? const EdgeInsets.fromLTRB(100, 8, 100, 8)
+                  : const EdgeInsets.all(8),
+              child: _buildPanel(),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
