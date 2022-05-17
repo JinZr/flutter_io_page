@@ -28,8 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-    bool extended = screenSize.height < screenSize.width - 200;
-    bool notUseDrawer = screenSize.height < screenSize.width - 100;
+    bool extended = screenSize.height < screenSize.width - 200 && screenSize.width > 900;
+    bool notUseDrawer = screenSize.height < screenSize.width - 100 && screenSize.width > 900;
 
     List<Widget> _bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),

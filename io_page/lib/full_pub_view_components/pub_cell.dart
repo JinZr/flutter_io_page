@@ -26,42 +26,8 @@ class FullPublicationCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-
-    // final popupMenuButton = PopupMenuButton(
-    //           icon: const Icon(Icons.more_vert),
-    //           itemBuilder: (BuildContext context) =>
-    //               <PopupMenuEntry<PublicationTileDropdownMenuAction>>[
-    //                 PopupMenuItem(
-    //                     value: PublicationTileDropdownMenuAction.openInBrowser,
-    //                     child: Text(
-    //                       "Open in Browser",
-    //                       style: Theme.of(context).textTheme.caption,
-    //                     )),
-    //                 const PopupMenuDivider(),
-    //                 PopupMenuItem(
-    //                     value: PublicationTileDropdownMenuAction.copyTitle,
-    //                     child: Text(
-    //                       "Copy Title",
-    //                       style: Theme.of(context).textTheme.caption,
-    //                     )),
-    //                 PopupMenuItem(
-    //                     value: PublicationTileDropdownMenuAction.copyAuthor,
-    //                     child: Text("Copy Author List",
-    //                         style: Theme.of(context).textTheme.caption)),
-    //               ],
-    //           onSelected: (PublicationTileDropdownMenuAction action) {
-    //             switch (action) {
-    //               case PublicationTileDropdownMenuAction.openInBrowser:
-    //                 _launchURL(item.link);
-    //                 break;
-    //               case PublicationTileDropdownMenuAction.copyTitle:
-    //                 Clipboard.setData(ClipboardData(text: item.title));
-    //                 break;
-    //               case PublicationTileDropdownMenuAction.copyAuthor:
-    //                 Clipboard.setData(ClipboardData(text: item.authorList));
-    //                 break;
-    //             }
-    //           });
+    bool isWideScreen =
+        screenSize.height < screenSize.width - 200 && screenSize.width > 900;
 
     return Card(
         child: Padding(
@@ -81,7 +47,7 @@ class FullPublicationCell extends StatelessWidget {
           Text(
             item.abs,
             style: Theme.of(context).textTheme.caption!,
-            maxLines: screenSize.height < screenSize.width - 100 ? null : 5,
+            maxLines: isWideScreen ? null : 5,
           ),
           const Divider(indent: 10.0),
           Row(
@@ -89,19 +55,23 @@ class FullPublicationCell extends StatelessWidget {
               Chip(
                 label: Text(
                   item.publisher,
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
               Chip(
                 label: Text(
                   "${item.year}",
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
               const Spacer(flex: 2),
-              screenSize.height < screenSize.width - 100 ? _buildButton(context, item) : _buildIconButton(context, item)
+              isWideScreen
+                  ? _buildButton(context, item)
+                  : _buildIconButton(context, item)
             ],
           )
         ]),
@@ -109,40 +79,38 @@ class FullPublicationCell extends StatelessWidget {
     ));
   }
 
-  Widget _buildButton(BuildContext context, PublicationItem item) =>
-    Row(
-      children: [
-        ElevatedButton(
+  Widget _buildButton(BuildContext context, PublicationItem item) => Row(
+        children: [
+          ElevatedButton(
+              onPressed: () => _launchURL(
+                  "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
+              child: const Text("Google Scholar")),
+          ElevatedButton(
+            onPressed: () => _launchURL(item.link),
+            child: const Text("PDF"),
+          )
+        ],
+      );
+
+  Widget _buildIconButton(BuildContext context, PublicationItem item) => Row(
+        children: [
+          IconButton(
             onPressed: () => _launchURL(
                 "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-            child: const Text("Google Scholar")),
-        ElevatedButton(
-          onPressed: () => _launchURL(item.link),
-          child: const Text("PDF"),
-        )
-      ],
-    );
-  
-  Widget _buildIconButton(BuildContext context, PublicationItem item) =>
-    Row(
-      children: [
-        IconButton(
-          onPressed: () => _launchURL(
-              "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-          icon: Icon(
-            Icons.web,
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            icon: Icon(
+              Icons.web,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+            color: Theme.of(context).colorScheme.secondaryContainer,
           ),
-          color: Theme.of(context).colorScheme.secondaryContainer,
-        ),
-        IconButton(
-          onPressed: () => _launchURL(item.link),
-          icon: Icon(
-            Icons.picture_as_pdf,
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
-          ),
-          color: Theme.of(context).colorScheme.secondaryContainer,
-        )
-      ],
-    );
+          IconButton(
+            onPressed: () => _launchURL(item.link),
+            icon: Icon(
+              Icons.picture_as_pdf,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+            color: Theme.of(context).colorScheme.secondaryContainer,
+          )
+        ],
+      );
 }

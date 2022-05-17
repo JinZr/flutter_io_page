@@ -66517,12 +66517,13 @@ I(a,b){var s=A.Tu(b).A9("assets/texts/publication_list.json")
 return A.mc(A.aev(new A.a7H(this,b.L(t.w).f.a),s,t.N),null,null)},
 Va(){return A.aeO(new A.a7G(this),J.bG(A.a(this.d,"_data")),null,!1)}}
 A.a7H.prototype={
-$2(a,b){var s,r=b.b
-if(r!=null){s=this.a
-s.d=A.aAe(B.ap.cw(0,J.di(r)))
-r=this.b
-r=r.b<r.a-200?B.Ap:B.aO
-return new A.co(r,s.Va(),null)}else return B.fb},
+$2(a,b){var s,r,q=b.b
+if(q!=null){s=this.a
+s.d=A.aAe(B.ap.cw(0,J.di(q)))
+q=this.b
+r=q.a
+q=q.b<r-200&&r>900?B.Ap:B.aO
+return new A.co(q,s.Va(),null)}else return B.fb},
 $S:417}
 A.a7G.prototype={
 $2(a,b){return new A.pq(J.ay(A.a(this.a.d,"_data"),b),null)},
@@ -66545,26 +66546,28 @@ s=1
 break
 case 1:return A.X(q,r)}})
 return A.Y($async$j1,r)},
-I(a,b){var s,r,q,p,o,n,m=null,l=b.L(t.w).f.a,k=this.c,j=A.a(k.b,"title"),i=A.M(b).R8.y
-i.toString
-i=A.dp(j,m,m,i,m,m)
-j=A.a(k.c,"authorList")
-s=A.M(b).R8.w
-s.toString
-r=A.M(b).R8.z
+I(a,b){var s,r,q,p,o,n,m,l,k=null,j=b.L(t.w).f.a,i=j.a,h=j.b<i-200&&i>900
+i=this.c
+s=A.a(i.b,"title")
+r=A.M(b).R8.y
 r.toString
-q=A.a(k.f,"abs")
-p=A.M(b).R8.Q
+r=A.dp(s,k,k,r,k,k)
+s=A.a(i.c,"authorList")
+q=A.M(b).R8.w
+q.toString
+p=A.M(b).R8.z
 p.toString
-o=l.b<l.a-100
-q=A.dp(q,o?m:5,m,p,m,m)
-p=A.dp(A.a(k.d,"publisher"),m,m,A.jY(m,m,A.M(b).as.b,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m)
-p=A.De(A.M(b).as.cy,p)
-n=A.dp(A.e(A.a(k.r,"year")),m,m,A.jY(m,m,A.M(b).as.b,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m)
+o=A.a(i.f,"abs")
+n=A.M(b).R8.Q
+n.toString
+o=A.dp(o,h?k:5,k,n,k,k)
+n=A.dp(A.a(i.d,"publisher"),k,k,A.jY(k,k,A.M(b).as.b,k,k,k,k,k,k,k,k,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),k,k)
 n=A.De(A.M(b).as.cy,n)
-k=o?this.UY(b,k):this.V2(b,k)
-o=t.p
-return A.Da(new A.co(B.aO,A.fK(m,m,!1,A.hg(A.b([new A.oz(j,s,r,m),B.c8,q,B.c8,A.qo(A.b([p,n,B.If,k],o),B.ag,B.a2)],o),B.dH,B.at,B.a2),i),m))},
+m=A.dp(A.e(A.a(i.r,"year")),k,k,A.jY(k,k,A.M(b).as.b,k,k,k,k,k,k,k,k,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),k,k)
+m=A.De(A.M(b).as.cy,m)
+i=h?this.UY(b,i):this.V2(b,i)
+l=t.p
+return A.Da(new A.co(B.aO,A.fK(k,k,!1,A.hg(A.b([new A.oz(s,q,p,k),B.c8,o,B.c8,A.qo(A.b([n,m,B.If,i],l),B.ag,B.a2)],l),B.dH,B.at,B.a2),r),k))},
 UY(a,b){return A.qo(A.b([A.aiC(B.Ns,new A.VY(this,b)),A.aiC(B.Nr,new A.VZ(this,b))],t.p),B.ag,B.a2)},
 V2(a,b){var s,r,q=null,p=A.M(a).as,o=p.x
 p=A.aeB(B.B1,o==null?p.r:o)
@@ -66595,14 +66598,17 @@ A.H8.prototype={}
 A.ws.prototype={
 am(){return new A.Mr(B.n)}}
 A.Mr.prototype={
-I(a,b){var s,r,q=this,p=null,o=b.L(t.w).f.a,n=o.b,m=o.a,l=n<m-100,k=l?2:1,j=t.p,i=A.b([A.a3R(new A.Fp(p),1),A.a3R(new A.yS(p),1),A.a3R(new A.x5(p),2),A.a3R(new A.H1(p),1)],j)
-q.a.toString
-s=A.dp("Zengrui JIN",p,p,p,p,p)
-r=l?p:q.V_(b)
-j=A.b([],j)
-if(l)j.push(q.a1x(n<m-200))
-j.push(A.V6(A.mc([new A.co(B.aO,new A.Ik(!0,new A.IP(new A.a3Q(k),0,0,p,i,p),p),p),B.AC][q.d],p,p),1))
-return new A.xC(new A.tY(s,new A.N9(p,p,1/0,56),p),A.qo(j,B.ag,B.a2),r,p)},
+I(a,b){var s,r,q,p=this,o=null,n=b.L(t.w).f.a,m=n.b,l=n.a,k=m<l-200&&l>900,j=m<l-100&&l>900
+m=j?2:1
+l=t.p
+s=A.b([A.a3R(new A.Fp(o),1),A.a3R(new A.yS(o),1),A.a3R(new A.x5(o),2),A.a3R(new A.H1(o),1)],l)
+p.a.toString
+r=A.dp("Zengrui JIN",o,o,o,o,o)
+q=j?o:p.V_(b)
+l=A.b([],l)
+if(j)l.push(p.a1x(k))
+l.push(A.V6(A.mc([new A.co(B.aO,new A.Ik(!0,new A.IP(new A.a3Q(m),0,0,o,s,o),o),o),B.AC][p.d],o,o),1))
+return new A.xC(new A.tY(r,new A.N9(o,o,1/0,56),o),A.qo(l,B.ag,B.a2),q,o)},
 a1x(a){var s=null
 return new A.wy(a,A.b([A.ajz(B.mM,A.dp("Home",s,s,A.dL(s,s,s,s),s,s)),A.ajz(B.mL,A.dp("Publications",s,s,A.dL(s,s,s,s),s,s))],t.P2),this.d,new A.a98(this),s)},
 V_(a){var s=null,r=t.p,q=A.iM(B.b0,A.b([A.cJ(s,s,B.q,s,s,B.wb,s,350,s,s,s,s,s),A.cJ(s,s,B.q,s,s,new A.dw(B.k,s,s,s,s,new A.mP(B.mE,B.mD,B.cv,A.b([A.a2(0,158,158,158),B.k],t.t_),B.fQ,s),B.an),s,350,s,s,s,s,s)],r),B.aV),p=this.d
