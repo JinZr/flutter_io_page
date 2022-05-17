@@ -32,9 +32,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
             var items = json.decode(snapshot.data.toString());
             _data = generateItems(items);
             return Padding(
-              padding: screenSize.height < screenSize.width - 200 && screenSize.width > 900
-                  ? const EdgeInsets.fromLTRB(100, 8, 100, 8)
-                  : const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: _buildPanel(),
             );
           } else {
