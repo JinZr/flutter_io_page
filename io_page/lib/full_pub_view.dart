@@ -22,7 +22,6 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   Widget build(BuildContext context) {
     final assetStr = DefaultAssetBundle.of(context)
         .loadString('assets/texts/publication_list.json');
-    var screenSize = MediaQuery.of(context).size;
 
     return Center(
       child: FutureBuilder(
@@ -31,10 +30,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
           if (snapshot.hasData) {
             var items = json.decode(snapshot.data.toString());
             _data = generateItems(items);
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: _buildPanel(),
-            );
+            return _buildPanel();
           } else {
             return const Center(
               child: CircularProgressIndicator(),

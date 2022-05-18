@@ -21,20 +21,26 @@ class _PublicationListTileState extends State<PublicationListTile> {
             enableInteractiveSelection: true,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          subtitle: AuthorListText(
-              text: widget.json["author"],
-              regularStyle: regularTextStyle(
-                  Theme.of(context).brightness == Brightness.light,
-                  Theme.of(context).textTheme.bodyMedium!.fontSize!),
-              matchStyle: matchTextStyle(
-                  Theme.of(context).brightness == Brightness.light,
-                  Theme.of(context).textTheme.bodyMedium!.fontSize!)),
-          leading: Chip(
-            label: Text(
-              widget.json["publisher"],
-              style: TextStyle(color: Theme.of(context).colorScheme.primary),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.surface,
+          subtitle: Row(
+            children: [
+              Chip(
+                label: Text(
+                  widget.json["publisher"],
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.surface,
+              ),
+              Flexible(child: 
+              AuthorListText(
+                  text: widget.json["author"],
+                  regularStyle: regularTextStyle(
+                      Theme.of(context).brightness == Brightness.light,
+                      Theme.of(context).textTheme.bodyMedium!.fontSize!),
+                  matchStyle: matchTextStyle(
+                      Theme.of(context).brightness == Brightness.light,
+                      Theme.of(context).textTheme.bodyMedium!.fontSize!))),
+            ],
           ),
         ),
       );

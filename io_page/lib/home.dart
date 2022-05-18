@@ -133,9 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _buildGridViewPanel(bool notUseDrawer) => Padding(
-      padding: const EdgeInsets.all(8),
-      child: SingleChildScrollView(
+  Widget _buildGridViewPanel(bool notUseDrawer) => SingleChildScrollView(
           child: StaggeredGrid.count(
         crossAxisCount: notUseDrawer ? 2 : 1,
         children: [
@@ -156,5 +154,5 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PolaroidCard(),
           ),
         ],
-      )));
+      ));
 }

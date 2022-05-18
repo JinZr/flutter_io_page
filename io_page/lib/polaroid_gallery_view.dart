@@ -19,10 +19,7 @@ class _PolaroidGalleryViewState extends State<PolaroidGalleryView> {
     bool notUseDrawer =
         screenSize.height < screenSize.width - 100 && screenSize.width > 900;
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: _buildPanel(notUseDrawer),
-    );
+    return _buildPanel(notUseDrawer);
   }
 
   Widget _buildPanel(bool notUseDrawer) {

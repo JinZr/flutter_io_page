@@ -36,6 +36,9 @@ class AuthorListText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(text: _buildText(text));
+    return RichText(
+      text: _buildText(text)
+      
+    );
   }
 }
