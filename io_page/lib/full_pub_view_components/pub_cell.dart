@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'pub_item.dart';
 // import 'pub_cell_action.dart';
 import '../home_components/author_text.dart';
-import '../utilities/chip_color.dart';
+import '../theme/author_list_text_theme.dart';
 
 class FullPublicationCell extends StatelessWidget {
   final PublicationItem item;
@@ -33,21 +31,26 @@ class FullPublicationCell extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
-        title: Text(
+        title: SelectableText(
           item.title,
-          style: Theme.of(context).textTheme.bodyText1!,
+          enableInteractiveSelection: true,
         ),
         subtitle:
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           AuthorListText(
               text: item.authorList,
-              regularStyle: Theme.of(context).textTheme.subtitle1!,
-              matchStyle: Theme.of(context).textTheme.bodyText2!),
+              regularStyle: regularTextStyle(
+                  Theme.of(context).brightness == Brightness.light,
+                  Theme.of(context).textTheme.bodyMedium!.fontSize!),
+              matchStyle: matchTextStyle(
+                  Theme.of(context).brightness == Brightness.light,
+                  Theme.of(context).textTheme.bodyMedium!.fontSize!)),
           const Divider(indent: 10.0),
-          Text(
+          SelectableText(
             item.abs,
             style: Theme.of(context).textTheme.caption!,
             maxLines: isWideScreen ? null : 5,
+            enableInteractiveSelection: true,
           ),
           const Divider(indent: 10.0),
           Row(
@@ -81,11 +84,11 @@ class FullPublicationCell extends StatelessWidget {
 
   Widget _buildButton(BuildContext context, PublicationItem item) => Row(
         children: [
-          ElevatedButton(
+          TextButton(
               onPressed: () => _launchURL(
                   "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-              child: const Text("Google Scholar")),
-          ElevatedButton(
+              child: const Text("GOOGLE SCHOLAR")),
+          OutlinedButton(
             onPressed: () => _launchURL(item.link),
             child: const Text("PDF"),
           )

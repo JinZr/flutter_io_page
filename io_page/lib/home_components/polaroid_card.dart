@@ -8,12 +8,9 @@ class PolaroidCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-          ListTile(
-            leading: const Icon(Icons.camera),
-            title: Text(
-              "My Polaroid Camera Gallery",
-              style: Theme.of(context).textTheme.headline6!,
-            ),
+          const ListTile(
+            leading: Icon(Icons.camera),
+            title: Text("My Polaroid Camera Gallery"),
           ),
           const Divider(
             indent: 10,
@@ -24,9 +21,8 @@ class PolaroidCard extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.transparent,
                 image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/cameras/af670.jpeg')
-                ),
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/cameras/af670.jpeg')),
               ),
             ),
             Container(
@@ -40,18 +36,19 @@ class PolaroidCard extends StatelessWidget {
                         Colors.grey.withOpacity(0.0),
                         Colors.black,
                       ],
-                      stops: const [0.0, 1.0])
-                    ),
-                ),
-              ]), 
-              Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    "I have one Polaroid Spectra for shooting B&W files, one SX-70 Sonar for regular shooting, one SX-70 Model 2 and one 670-AF for collection.",
-                    style: Theme.of(context).textTheme.bodyText1!,
-                  )
-                ), 
-            ])
-          );
+                      stops: const [
+                        0.0,
+                        1.0
+                      ])),
+            ),
+          ]),
+          Padding(
+              padding: const EdgeInsets.all(16),
+              child: SelectableText(
+                "I have one Polaroid Spectra for shooting B&W files, one SX-70 Sonar for regular shooting, one SX-70 Model 2 and one 670-AF for collection.",
+                style: Theme.of(context).textTheme.bodyMedium,
+                enableInteractiveSelection: true,
+              )),
+        ]));
   }
 }

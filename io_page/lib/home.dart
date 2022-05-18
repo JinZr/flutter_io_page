@@ -8,7 +8,6 @@ import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
-import 'polaroid_gallery_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title_en, required this.title_zh})

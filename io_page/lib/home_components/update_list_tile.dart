@@ -15,8 +15,10 @@ class UpdateEventListTile extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.surface,
       ),
-      title: Text(
+      title: SelectableText(
         "${json["content"]}",
+        style: Theme.of(context).textTheme.bodyMedium,
+        enableInteractiveSelection: true,
       )
     );
   }

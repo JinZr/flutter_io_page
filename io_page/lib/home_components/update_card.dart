@@ -17,9 +17,9 @@ class _UpdateCardState extends State<UpdateCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ListTile(
-            leading: const Icon(Icons.fiber_new),
-            title: Text("News", style: Theme.of(context).textTheme.headline6!),
+          const ListTile(
+            leading: Icon(Icons.fiber_new),
+            title: Text("News"),
           ),
           const Divider(
             indent: 10,

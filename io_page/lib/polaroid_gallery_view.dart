@@ -1,4 +1,3 @@
-import 'dart:convert' show json;
 import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -17,25 +16,19 @@ class _PolaroidGalleryViewState extends State<PolaroidGalleryView> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: screenSize.height < screenSize.width - 200
-            ? const EdgeInsets.fromLTRB(100, 8, 100, 8)
-            : const EdgeInsets.all(8),
-        child: _buildPanel(screenSize),
-      ),
+    bool notUseDrawer =
+        screenSize.height < screenSize.width - 100 && screenSize.width > 900;
+
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: _buildPanel(notUseDrawer),
     );
   }
 
-  Widget _buildPanel(Size screenSize) {
-      return StaggeredGrid.count(
-        crossAxisCount: screenSize.height < screenSize.width - 100 ? 2 : 1,
-        children: [
-         
-        ],
-      );
-    }
+  Widget _buildPanel(bool notUseDrawer) {
+    return StaggeredGrid.count(
+      crossAxisCount: notUseDrawer ? 2 : 1,
+      children: const [],
+    );
+  }
 }
