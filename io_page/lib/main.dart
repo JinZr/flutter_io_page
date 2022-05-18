@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'home.dart';
 import 'theme/purple.dart';
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.light,
         colorScheme: lightColorScheme,
+        fontFamily: GoogleFonts.roboto().fontFamily,
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
         colorScheme: darkColorScheme,
+        fontFamily: GoogleFonts.roboto().fontFamily,
       ),
       themeMode: ThemeMode.system,
       home: const MyHomePage(
