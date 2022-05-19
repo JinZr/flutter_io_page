@@ -22,7 +22,18 @@ class _PublicationListTileState extends State<PublicationListTile> {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           subtitle: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Flexible(
+                flex: 2,
+                  child: AuthorListText(
+                      text: widget.json["author"],
+                      regularStyle: regularTextStyle(
+                          Theme.of(context).brightness == Brightness.light,
+                          Theme.of(context).textTheme.bodyMedium!.fontSize!),
+                      matchStyle: matchTextStyle(
+                          Theme.of(context).brightness == Brightness.light,
+                          Theme.of(context).textTheme.bodyMedium!.fontSize!))),
               Chip(
                 label: Text(
                   widget.json["publisher"],
@@ -31,15 +42,6 @@ class _PublicationListTileState extends State<PublicationListTile> {
                 ),
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
-              Flexible(child: 
-              AuthorListText(
-                  text: widget.json["author"],
-                  regularStyle: regularTextStyle(
-                      Theme.of(context).brightness == Brightness.light,
-                      Theme.of(context).textTheme.bodyMedium!.fontSize!),
-                  matchStyle: matchTextStyle(
-                      Theme.of(context).brightness == Brightness.light,
-                      Theme.of(context).textTheme.bodyMedium!.fontSize!))),
             ],
           ),
         ),
