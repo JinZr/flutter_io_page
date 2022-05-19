@@ -34,9 +34,10 @@ class _PublicationCardState extends State<PublicationCard> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       var items = json.decode(snapshot.data.toString());
-                      return ListView.builder(
+                      return ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
+                          separatorBuilder: (BuildContext context, int index) => const Divider(indent: 10),
                           itemCount: items.length,
                           itemBuilder: (BuildContext context, int index) {
                             return PublicationListTile(json: items[index]);
