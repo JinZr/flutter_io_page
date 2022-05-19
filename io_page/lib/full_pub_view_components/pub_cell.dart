@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'pub_item.dart';
-// import 'pub_cell_action.dart';
 import '../home_components/author_text.dart';
 import '../theme/author_list_text_theme.dart';
 
@@ -13,13 +11,7 @@ class FullPublicationCell extends StatelessWidget {
   const FullPublicationCell({Key? key, required this.item}) : super(key: key);
 
   _launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
-
-  _copyTitle(BuildContext context, PublicationItem item) {
-    Clipboard.setData(ClipboardData(text: item.title));
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Title ${item.title} copied.")));
-  }
+      await canLaunchUrlString(url) ? await launchUrlString(url) : throw 'Could not launch $url';
 
   @override
   Widget build(BuildContext context) {

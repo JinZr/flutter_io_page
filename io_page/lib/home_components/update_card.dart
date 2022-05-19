@@ -4,6 +4,8 @@ import 'dart:convert' show json;
 import 'update_list_tile.dart';
 
 class UpdateCard extends StatefulWidget {
+  const UpdateCard({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _UpdateCardState();
 }

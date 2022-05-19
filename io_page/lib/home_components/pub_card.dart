@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'pub_list_tile.dart';
 
 class PublicationCard extends StatefulWidget {
+  const PublicationCard({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _PublicationCardState();
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'intro.dart';
 
 class IntroductionCard extends StatelessWidget {
+  const IntroductionCard({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,8 +23,8 @@ class IntroductionCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              ListTile(
-                  leading: const Icon(Icons.people_alt_rounded),
+              const ListTile(
+                  leading: Icon(Icons.people_alt_rounded),
                   title: MyIntroduction()),
               ListTile(
                 leading: const Icon(Icons.mail),
@@ -64,5 +66,5 @@ class IntroductionCard extends StatelessWidget {
   }
 
   _launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+      await canLaunchUrlString(url) ? await launchUrlString(url) : throw 'Could not launch $url';
 }

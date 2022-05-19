@@ -10,11 +10,11 @@ import 'home_components/polaroid_card.dart';
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title_en, required this.title_zh})
+  const MyHomePage({Key? key, required this.titleEn, required this.titleZh})
       : super(key: key);
 
-  final String title_en;
-  final String title_zh;
+  final String titleEn;
+  final String titleZh;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title_en),
+          title: Text(widget.titleEn),
         ),
         drawer: notUseDrawer ? null : _buildDrawer(context),
         body: Row(children: [
@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildGridViewPanel(bool notUseDrawer) => SingleChildScrollView(
           child: StaggeredGrid.count(
         crossAxisCount: notUseDrawer ? 2 : 1,
-        children: [
+        children: const [
           StaggeredGridTile.fit(
             crossAxisCellCount: 1,
             child: IntroductionCard(),

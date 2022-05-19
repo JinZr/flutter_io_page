@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../theme/clickable_text_theme.dart';
 
@@ -9,6 +9,8 @@ class MyIntroduction extends StatelessWidget {
   final String str = """
     Prof. Xunying Liu. 
   """;
+
+  const MyIntroduction({Key? key}) : super(key: key);
   // Text(str,
   // softWrap: true, style: )
   @override
@@ -32,5 +34,5 @@ class MyIntroduction extends StatelessWidget {
   }
 
   _launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+      await canLaunchUrlString(url) ? await launchUrlString(url) : throw 'Could not launch $url';
 }
