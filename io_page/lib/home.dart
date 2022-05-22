@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
     bool extended =
         screenSize.height < screenSize.width - 500 && screenSize.width > 900;
     bool notUseDrawer =
-        screenSize.height < screenSize.width - 100 && screenSize.width > 900;
+        screenSize.height < screenSize.width + 200 && screenSize.width > 700;
     bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 

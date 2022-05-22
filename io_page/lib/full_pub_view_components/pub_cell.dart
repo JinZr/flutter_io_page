@@ -10,8 +10,9 @@ class FullPublicationCell extends StatelessWidget {
 
   const FullPublicationCell({Key? key, required this.item}) : super(key: key);
 
-  _launchURL(String url) async =>
-      await canLaunchUrlString(url) ? await launchUrlString(url) : throw 'Could not launch $url';
+  _launchURL(String url) async => await canLaunchUrlString(url)
+      ? await launchUrlString(url)
+      : throw 'Could not launch $url';
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class FullPublicationCell extends StatelessWidget {
               onPressed: () => _launchURL(
                   "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
               child: const Text("GOOGLE SCHOLAR")),
-          OutlinedButton(
+          ElevatedButton(
             onPressed: () => _launchURL(item.link),
             child: const Text("PDF"),
           )
@@ -92,20 +93,14 @@ class FullPublicationCell extends StatelessWidget {
           IconButton(
             onPressed: () => _launchURL(
                 "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-            icon: Icon(
-              Icons.web,
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
-            ),
-            color: Theme.of(context).colorScheme.secondaryContainer,
+            icon: const Icon(Icons.web),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           IconButton(
-            onPressed: () => _launchURL(item.link),
-            icon: Icon(
-              Icons.picture_as_pdf,
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
+              onPressed: () => _launchURL(item.link),
+              icon: const Icon(Icons.picture_as_pdf),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
-            color: Theme.of(context).colorScheme.secondaryContainer,
-          )
         ],
       );
 }
