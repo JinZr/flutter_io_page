@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         selectedIndex: _selectedDestination,
         extended: extended,
+        labelType: extended ? null : NavigationRailLabelType.all,
         onDestinationSelected: (int index) {
           _selectDestinationRail(index);
         },
@@ -77,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                   leading: const Icon(Icons.home),
                   title: const Text("Home"),
+                  selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
+                  selectedColor: Theme.of(context).colorScheme.onSecondaryContainer,
                   selected: _selectedDestination == 0,
                   onTap: () => _selectDestinationDrawer(0)),
             ),
@@ -84,6 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                   leading: const Icon(Icons.library_books),
                   title: const Text("Publications"),
+                  selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
+                  selectedColor: Theme.of(context).colorScheme.onSecondaryContainer,
                   selected: _selectedDestination == 1,
                   onTap: () => _selectDestinationDrawer(1)),
             ),
