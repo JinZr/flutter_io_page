@@ -73,35 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              child: Stack(children: <Widget>[
-                Container(
-                  height: 350,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                    image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/bg.jpeg')),
-                  ),
-                ),
-                Container(
-                  height: 350,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      gradient: LinearGradient(
-                          begin: FractionalOffset.topCenter,
-                          end: FractionalOffset.bottomCenter,
-                          colors: [
-                            Colors.grey.withOpacity(0.0),
-                            Colors.white,
-                          ],
-                          stops: const [
-                            0.0,
-                            1.0
-                          ])),
-                ),
-              ]),
-            ),
             InkWell(
               child: ListTile(
                   leading: const Icon(Icons.home),
