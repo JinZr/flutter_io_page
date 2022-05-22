@@ -11,40 +11,67 @@ class IntroductionCard extends StatelessWidget {
     return Card(
         child: Column(
       children: [
-        ListTile(
-          leading: Image.asset('assets/images/avatar/avatar.jpeg'),
+        Stack(children: <Widget>[
+          Container(
+            height: 350,
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/avatar/avatar.jpeg')),
+            ),
+          ),
+          Container(
+            height: 350,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                gradient: LinearGradient(
+                    begin: FractionalOffset.topCenter,
+                    end: FractionalOffset.bottomCenter,
+                    colors: [
+                      Colors.grey.withOpacity(0.0),
+                      Colors.black,
+                    ],
+                    stops: const [
+                      0.0,
+                      1.0
+                    ])),
+          ),
+        ]),
+        // Image.asset('assets/images/avatar/avatar.jpeg'),
+        ExpansionTile(
+          leading: Icon(Icons.person,
+              color: Theme.of(context).colorScheme.onSecondaryContainer),
           title: const Text("Zengrui JIN"),
           subtitle: const Text("金增锐"),
-        ),
-        const Divider(
-          indent: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              const ListTile(
-                  leading: Icon(Icons.people_alt_rounded),
-                  title: MyIntroduction()),
-              ListTile(
-                leading: const Icon(Icons.mail),
-                title: SelectableText("zengrui.jin [at] icloud.com",
-                    style: Theme.of(context).textTheme.bodyMedium!,
-                    enableInteractiveSelection: true,
-                  ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.favorite),
-                title: SelectableText(
-                    "Collecting vintage Polaroid cameras. (SLR680 & 670AF)",
-                    style: Theme.of(context).textTheme.bodyMedium!,
-                    enableInteractiveSelection: true,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const ListTile(
+                      leading: Icon(Icons.info), title: MyIntroduction()),
+                  ListTile(
+                    leading: const Icon(Icons.mail),
+                    title: SelectableText(
+                      "zengrui.jin [at] icloud.com",
+                      style: Theme.of(context).textTheme.bodyMedium!,
+                      enableInteractiveSelection: true,
                     ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: SelectableText(
+                      "Collecting vintage Polaroid cameras. (SLR680 & 670AF)",
+                      style: Theme.of(context).textTheme.bodyMedium!,
+                      enableInteractiveSelection: true,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        const Divider(),
         ButtonBar(alignment: MainAxisAlignment.start, children: [
           TextButton(
               child: const Text("GOOGLE SCHOLAR"),
@@ -65,6 +92,7 @@ class IntroductionCard extends StatelessWidget {
     ));
   }
 
-  _launchURL(String url) async =>
-      await canLaunchUrlString(url) ? await launchUrlString(url) : throw 'Could not launch $url';
+  _launchURL(String url) async => await canLaunchUrlString(url)
+      ? await launchUrlString(url)
+      : throw 'Could not launch $url';
 }

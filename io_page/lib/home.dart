@@ -135,22 +135,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildGridViewPanel(bool notUseDrawer) => SingleChildScrollView(
           child: StaggeredGrid.count(
-        crossAxisCount: notUseDrawer ? 2 : 1,
+        crossAxisCount: notUseDrawer ? 3 : 1,
         children: const [
           StaggeredGridTile.fit(
             crossAxisCellCount: 1,
             child: IntroductionCard(),
           ),
           StaggeredGridTile.fit(
-            crossAxisCellCount: 1,
+            crossAxisCellCount: 2,
             child: UpdateCard(),
           ),
           StaggeredGridTile.fit(
-            crossAxisCellCount: 2,
+            crossAxisCellCount: 3,
             child: PublicationCard(),
           ),
           StaggeredGridTile.fit(
-            crossAxisCellCount: 1,
+            crossAxisCellCount: 2,
             child: PolaroidCard(),
           ),
         ],
