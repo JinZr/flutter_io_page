@@ -41,10 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     return Container(
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.primaryContainer,
       child: SafeArea(
         child: Scaffold(
-            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: Text(widget.titleEn),
             ),
