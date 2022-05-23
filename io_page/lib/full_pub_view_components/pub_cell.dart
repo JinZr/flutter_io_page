@@ -47,6 +47,7 @@ class FullPublicationCell extends StatelessWidget {
           ),
           const Divider(indent: 10.0),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Chip(
                 label: Text(
@@ -76,6 +77,7 @@ class FullPublicationCell extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context, PublicationItem item) => Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextButton(
               onPressed: () => _launchURL(
@@ -89,6 +91,7 @@ class FullPublicationCell extends StatelessWidget {
       );
 
   Widget _buildIconButton(BuildContext context, PublicationItem item) => Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IconButton(
             onPressed: () => _launchURL(
@@ -97,10 +100,10 @@ class FullPublicationCell extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           IconButton(
-              onPressed: () => _launchURL(item.link),
-              icon: const Icon(Icons.picture_as_pdf),
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+            onPressed: () => _launchURL(item.link),
+            icon: const Icon(Icons.picture_as_pdf),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ],
       );
 }
