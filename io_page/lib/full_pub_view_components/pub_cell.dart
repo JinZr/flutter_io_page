@@ -29,9 +29,7 @@ class FullPublicationCell extends StatelessWidget {
           enableInteractiveSelection: true,
         ),
         subtitle:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start, 
-              children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           AuthorListText(
               text: item.authorList,
               regularStyle: regularTextStyle(
@@ -58,6 +56,7 @@ class FullPublicationCell extends StatelessWidget {
                 ),
                 backgroundColor: Theme.of(context).colorScheme.surface,
               ),
+              const SizedBox(width: 8),
               Chip(
                 label: Text(
                   "${item.year}",
@@ -83,6 +82,7 @@ class FullPublicationCell extends StatelessWidget {
               onPressed: () => _launchURL(
                   "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
               child: const Text("GOOGLE SCHOLAR")),
+          const SizedBox(width: 8),
           ElevatedButton(
             onPressed: () => _launchURL(item.link),
             child: const Text("PDF"),
@@ -98,6 +98,7 @@ class FullPublicationCell extends StatelessWidget {
             icon: const Icon(Icons.web),
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
+          const SizedBox(width: 8),
           IconButton(
             onPressed: () => _launchURL(item.link),
             icon: const Icon(Icons.picture_as_pdf),
