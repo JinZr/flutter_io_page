@@ -7,6 +7,7 @@ import 'home_components/update_card.dart';
 import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
+import 'colorful_safe_area.dart';
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -44,13 +45,15 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.titleEn),
         ),
         drawer: notUseDrawer ? null : _buildDrawer(context),
-        body: Row(children: [
-          if (notUseDrawer) _rail(extended),
-          Expanded(
-              child: Center(
-            child: _bodyWithDrawer[_selectedDestination],
-          )),
-        ]));
+        body: ColorfulSafeArea(
+            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+            child: Row(children: [
+              if (notUseDrawer) _rail(extended),
+              Expanded(
+                  child: Center(
+                child: _bodyWithDrawer[_selectedDestination],
+              )),
+            ])));
   }
 
   NavigationRail _rail(bool extended) => NavigationRail(
@@ -78,8 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                   leading: const Icon(Icons.home),
                   title: const Text("Home"),
-                  selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
-                  selectedColor: Theme.of(context).colorScheme.onSecondaryContainer,
+                  selectedTileColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
+                  selectedColor:
+                      Theme.of(context).colorScheme.onSecondaryContainer,
                   selected: _selectedDestination == 0,
                   onTap: () => _selectDestinationDrawer(0)),
             ),
@@ -87,8 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                   leading: const Icon(Icons.library_books),
                   title: const Text("Publications"),
-                  selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
-                  selectedColor: Theme.of(context).colorScheme.onSecondaryContainer,
+                  selectedTileColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
+                  selectedColor:
+                      Theme.of(context).colorScheme.onSecondaryContainer,
                   selected: _selectedDestination == 1,
                   onTap: () => _selectDestinationDrawer(1)),
             ),
