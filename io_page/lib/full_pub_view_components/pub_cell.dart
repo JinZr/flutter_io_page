@@ -29,7 +29,9 @@ class FullPublicationCell extends StatelessWidget {
           enableInteractiveSelection: true,
         ),
         subtitle:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start, 
+              children: [
           AuthorListText(
               text: item.authorList,
               regularStyle: regularTextStyle(
@@ -47,7 +49,6 @@ class FullPublicationCell extends StatelessWidget {
           ),
           const Divider(indent: 10.0),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Chip(
                 label: Text(
@@ -77,7 +78,6 @@ class FullPublicationCell extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context, PublicationItem item) => Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextButton(
               onPressed: () => _launchURL(
@@ -91,7 +91,6 @@ class FullPublicationCell extends StatelessWidget {
       );
 
   Widget _buildIconButton(BuildContext context, PublicationItem item) => Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IconButton(
             onPressed: () => _launchURL(
