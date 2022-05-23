@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
 import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
-import 'colorful_safe_area.dart';
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -40,14 +40,15 @@ class _MyHomePageState extends State<MyHomePage> {
       const FullPublicationView(title: "Publications")
     ];
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.titleEn),
-        ),
-        drawer: notUseDrawer ? null : _buildDrawer(context),
-        body: ColorfulSafeArea(
-            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-            child: Row(children: [
+    return ColorfulSafeArea(
+      color: Theme.of(context).colorScheme.background,
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              title: Text(widget.titleEn),
+            ),
+            drawer: notUseDrawer ? null : _buildDrawer(context),
+            body: Row(children: [
               if (notUseDrawer) _rail(extended),
               Expanded(
                   child: Center(
