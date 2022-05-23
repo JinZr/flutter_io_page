@@ -40,8 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
       const FullPublicationView(title: "Publications")
     ];
 
-    return ColorfulSafeArea(
+    return Container(
       color: Theme.of(context).colorScheme.background,
+      child: SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Center(
                 child: _bodyWithDrawer[_selectedDestination],
               )),
-            ])));
+            ]))));
   }
 
   NavigationRail _rail(bool extended) => NavigationRail(
