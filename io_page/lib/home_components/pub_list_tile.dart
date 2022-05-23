@@ -25,7 +25,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
-                flex: 2,
+                  flex: 2,
                   child: AuthorListText(
                       text: widget.json["author"],
                       regularStyle: regularTextStyle(
@@ -34,6 +34,9 @@ class _PublicationListTileState extends State<PublicationListTile> {
                       matchStyle: matchTextStyle(
                           Theme.of(context).brightness == Brightness.light,
                           Theme.of(context).textTheme.bodyMedium!.fontSize!))),
+              const SizedBox(
+                width: 8,
+              ),
               Chip(
                 label: Text(
                   widget.json["publisher"],

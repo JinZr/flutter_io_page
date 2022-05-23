@@ -48,22 +48,25 @@ class FullPublicationCell extends StatelessWidget {
           const Divider(indent: 10.0),
           Row(
             children: [
-              Chip(
-                label: Text(
-                  item.publisher,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                ),
-                backgroundColor: Theme.of(context).colorScheme.surface,
-              ),
-              const SizedBox(width: 8),
-              Chip(
-                label: Text(
-                  "${item.year}",
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                ),
-                backgroundColor: Theme.of(context).colorScheme.surface,
+              ButtonBar(
+                children: [
+                  Chip(
+                    label: Text(
+                      item.publisher,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                  ),
+                  Chip(
+                    label: Text(
+                      "${item.year}",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                  ),
+                ],
               ),
               const Spacer(flex: 2),
               isWideScreen
@@ -76,13 +79,12 @@ class FullPublicationCell extends StatelessWidget {
     ));
   }
 
-  Widget _buildButton(BuildContext context, PublicationItem item) => Row(
+  Widget _buildButton(BuildContext context, PublicationItem item) => ButtonBar(
         children: [
           TextButton(
               onPressed: () => _launchURL(
                   "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
               child: const Text("GOOGLE SCHOLAR")),
-          const SizedBox(width: 8),
           ElevatedButton(
             onPressed: () => _launchURL(item.link),
             child: const Text("PDF"),
@@ -90,7 +92,8 @@ class FullPublicationCell extends StatelessWidget {
         ],
       );
 
-  Widget _buildIconButton(BuildContext context, PublicationItem item) => Row(
+  Widget _buildIconButton(BuildContext context, PublicationItem item) =>
+      ButtonBar(
         children: [
           IconButton(
             onPressed: () => _launchURL(
@@ -98,7 +101,6 @@ class FullPublicationCell extends StatelessWidget {
             icon: const Icon(Icons.web),
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 8),
           IconButton(
             onPressed: () => _launchURL(item.link),
             icon: const Icon(Icons.picture_as_pdf),
