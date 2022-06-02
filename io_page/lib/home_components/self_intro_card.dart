@@ -44,6 +44,7 @@ class IntroductionCard extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSecondaryContainer),
           title: const Text("Zengrui JIN"),
           subtitle: const Text("金增锐"),
+          initiallyExpanded: true,
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
