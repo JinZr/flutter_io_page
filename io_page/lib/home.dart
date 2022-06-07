@@ -122,11 +122,11 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisCount: notUseDrawer ? 3 : 1,
         children: const [
           StaggeredGridTile.fit(
-            crossAxisCellCount: 1,
+            crossAxisCellCount: 2,
             child: IntroductionCard(),
           ),
           StaggeredGridTile.fit(
-            crossAxisCellCount: 2,
+            crossAxisCellCount: 1,
             child: UpdateCard(),
           ),
           StaggeredGridTile.fit(
