@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
@@ -120,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildGridViewPanel(bool notUseDrawer) => SingleChildScrollView(
           child: StaggeredGrid.count(
         crossAxisCount: notUseDrawer ? 4 : 1,
+        
         children: const [
           StaggeredGridTile.fit(
             crossAxisCellCount: 2,

@@ -38,7 +38,6 @@ dependencies:
   google_fonts: ^3.0.1
   path_provider_ios: ^2.0.9
   morpheus: ^1.2.3
-  colorful_safe_area: ^0.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

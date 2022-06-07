@@ -13,7 +13,7 @@ class IntroductionCard extends StatelessWidget {
       children: [
         Stack(children: <Widget>[
           Container(
-            height: 350,
+            height: 200,
             decoration: const BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
@@ -22,7 +22,7 @@ class IntroductionCard extends StatelessWidget {
             ),
           ),
           Container(
-            height: 350,
+            height: 200,
             decoration: BoxDecoration(
                 color: Colors.white,
                 gradient: LinearGradient(

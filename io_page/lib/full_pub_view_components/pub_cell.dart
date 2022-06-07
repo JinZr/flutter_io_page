@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:morpheus/morpheus.dart';
 
 import 'pub_item.dart';
 import '../home_components/author_text.dart';
@@ -43,6 +44,8 @@ class FullPublicationCell extends StatelessWidget {
             item.abs,
             style: Theme.of(context).textTheme.caption!,
             maxLines: isWideScreen ? null : 5,
+            scrollPhysics: const BouncingScrollPhysics(),
+            
             enableInteractiveSelection: true,
           ),
           const Divider(indent: 10.0),
