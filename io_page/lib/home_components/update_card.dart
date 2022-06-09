@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'dart:convert' show json;
 import 'update_list_tile.dart';
@@ -15,13 +18,14 @@ class _UpdateCardState extends State<UpdateCard> {
   Widget build(BuildContext context) {
     final assetStr = DefaultAssetBundle.of(context)
         .loadString('assets/texts/latest_update_list.json');
+
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ListTile(
-            leading: Icon(Icons.fiber_new, 
-            color: Theme.of(context).colorScheme.onSecondaryContainer),
+            leading: Icon(Icons.fiber_new,
+                color: Theme.of(context).colorScheme.onSecondaryContainer),
             title: const Text("News"),
           ),
           const Divider(

@@ -39,12 +39,14 @@ class FullPublicationCell extends StatelessWidget {
                   Theme.of(context).brightness == Brightness.light,
                   Theme.of(context).textTheme.bodyMedium!.fontSize!)),
           const Divider(indent: 10.0),
-          SelectableText(
-            item.abs,
-            style: Theme.of(context).textTheme.caption!,
-            maxLines: isWideScreen ? null : 5,
-            enableInteractiveSelection: true,
-          ),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SelectableText(
+                item.abs,
+                style: Theme.of(context).textTheme.caption!,
+                maxLines: isWideScreen ? null : 5,
+                enableInteractiveSelection: true,
+              )),
           const Divider(indent: 10.0),
           Row(
             children: [
