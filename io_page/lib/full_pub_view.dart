@@ -43,6 +43,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
 
   Widget _buildPanel() {
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: _data.length,
       itemBuilder: (BuildContext context, int index) {
         return FullPublicationCell(item: _data[index]);
