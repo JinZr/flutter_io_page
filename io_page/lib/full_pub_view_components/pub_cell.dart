@@ -86,9 +86,11 @@ class FullPublicationCell extends StatelessWidget {
           TextButton(
               onPressed: () => _launchURL(
                   "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-              child: const Text("GOOGLE SCHOLAR")),
+              child: const Text("GOOGLE SCHOLAR"),
+              ),
           ElevatedButton(
             onPressed: () => _launchURL(item.link),
+            style: Theme.of(context).elevatedButtonTheme.style,
             child: const Text("PDF"),
           )
         ],
