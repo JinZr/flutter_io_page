@@ -34,7 +34,8 @@ class _PublicationCardState extends State<PublicationCard> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ListTile(
-            leading: Icon(Icons.library_books, color: Theme.of(context).colorScheme.onSecondaryContainer),
+            leading: Icon(Icons.library_books,
+                color: Theme.of(context).colorScheme.onSecondaryContainer),
             title: const Text("Publications"),
           ),
           const Divider(
@@ -50,21 +51,22 @@ class _PublicationCardState extends State<PublicationCard> {
                       return ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          separatorBuilder: (BuildContext context, int index) => const Divider(indent: 10),
-                          itemCount: items.length,
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(indent: 10),
+                          itemCount: items.length <= 5 ? items.length : 5,
                           itemBuilder: (BuildContext context, int index) {
                             return PublicationListTile(json: items[index]);
                           });
                     } else if (snapshot.hasError) {
-                    return Center(
-                      child: Column(
-                        children: [
-                          const Icon(Icons.warning),
-                          Text("${snapshot.error}")
-                        ],
-                      ),
-                    );
-                  } else {
+                      return Center(
+                        child: Column(
+                          children: [
+                            const Icon(Icons.warning),
+                            Text("${snapshot.error}")
+                          ],
+                        ),
+                      );
+                    } else {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
