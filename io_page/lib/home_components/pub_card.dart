@@ -1,4 +1,5 @@
 import 'dart:convert' show json;
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,20 @@ class PublicationCard extends StatefulWidget {
 }
 
 class _PublicationCardState extends State<PublicationCard> {
+  Future<String> _futureString() async {
+    final response = await http.Client().get(Uri.parse(
+        'https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/texts/publication_list.json'));
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to load update');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final assetStr = DefaultAssetBundle.of(context)
-        .loadString('assets/texts/publication_list.json');
+    // final assetStr = DefaultAssetBundle.of(context)
+    //     .loadString('assets/texts/publication_list.json');
 
     return Card(
       child: Column(
@@ -32,7 +43,7 @@ class _PublicationCardState extends State<PublicationCard> {
           Padding(
               padding: const EdgeInsets.all(16),
               child: FutureBuilder(
-                  future: assetStr,
+                  future: _futureString(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       var items = json.decode(snapshot.data.toString());
@@ -44,7 +55,16 @@ class _PublicationCardState extends State<PublicationCard> {
                           itemBuilder: (BuildContext context, int index) {
                             return PublicationListTile(json: items[index]);
                           });
-                    } else {
+                    } else if (snapshot.hasError) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          const Icon(Icons.warning),
+                          Text("${snapshot.error}")
+                        ],
+                      ),
+                    );
+                  } else {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
