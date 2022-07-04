@@ -14,8 +14,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        "/": (context) => const MyHomePage(
+              titleEn: 'Zengrui JIN',
+              titleZh: '金增锐',
+              route: "/",
+        ),
+        "/publication": (context) => const MyHomePage(
+              titleEn: 'Zengrui JIN',
+              titleZh: '金增锐',
+              route: "/publication",
+        ),
+      },
       title: 'Zengrui JIN (金增锐)',
       theme: ThemeData(
         useMaterial3: true,
@@ -30,10 +42,6 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.roboto().fontFamily,
       ),
       themeMode: ThemeMode.system,
-      home: const MyHomePage(
-        titleEn: 'Zengrui JIN',
-        titleZh: '金增锐',
-      ),
       debugShowCheckedModeBanner: false,
     );
   }

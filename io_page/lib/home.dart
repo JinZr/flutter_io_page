@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -10,11 +11,16 @@ import 'home_components/polaroid_card.dart';
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.titleEn, required this.titleZh})
+  const MyHomePage(
+      {Key? key,
+      required this.titleEn,
+      required this.titleZh,
+      required this.route})
       : super(key: key);
 
   final String titleEn;
   final String titleZh;
+  final String route;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -22,6 +28,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
+
+  void _parseRoute(String route) {
+    if (route == "/") {
+      _selectedDestination = 0;
+    } else if (route == '/publication') {
+      _selectedDestination = 1;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +48,28 @@ class _MyHomePageState extends State<MyHomePage> {
     bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
+    _parseRoute(widget.route);
+
     List<Widget> _bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),
       const FullPublicationView(title: "Publications")
     ];
 
     return Container(
-      color: Theme.of(context).colorScheme.primaryContainer,
-      child: SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.titleEn),
-            ),
-            drawer: notUseDrawer ? null : _buildDrawer(context),
-            body: Row(children: [
-              if (notUseDrawer) _rail(extended),
-              Expanded(
-                  child: Center(
-                child: _bodyWithDrawer[_selectedDestination],
-              )),
-            ]))));
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: SafeArea(
+            child: Scaffold(
+                appBar: AppBar(
+                  title: Text(widget.titleEn),
+                ),
+                drawer: notUseDrawer ? null : _buildDrawer(context),
+                body: Row(children: [
+                  if (notUseDrawer) _rail(extended),
+                  Expanded(
+                      child: Center(
+                    child: _bodyWithDrawer[_selectedDestination],
+                  )),
+                ]))));
   }
 
   NavigationRail _rail(bool extended) => NavigationRail(
@@ -119,7 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildGridViewPanel(bool notUseDrawer) => SingleChildScrollView(
           child: StaggeredGrid.count(
         crossAxisCount: notUseDrawer ? 4 : 1,
-        
         children: const [
           StaggeredGridTile.fit(
             crossAxisCellCount: 2,
