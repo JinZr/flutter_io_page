@@ -116,8 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       Theme.of(context).colorScheme.secondaryContainer,
                   selectedColor:
                       Theme.of(context).colorScheme.onSecondaryContainer,
-                  selected: _selectedDestination == 1,
-                  onTap: () => _selectDestinationDrawer(1)),
+                  selected: _selectedDestination == 2,
+                  onTap: () => _selectDestinationDrawer(2)),
             ),
           ],
         ),
