@@ -14,13 +14,11 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage(
       {Key? key,
       required this.titleEn,
-      required this.titleZh,
-      required this.route})
+      required this.titleZh})
       : super(key: key);
 
   final String titleEn;
   final String titleZh;
-  final String route;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -28,14 +26,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
-
-  void _parseRoute(String route) {
-    if (route == "/") {
-      _selectedDestination = 0;
-    } else if (route == '/publication') {
-      _selectedDestination = 1;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
         screenSize.height < screenSize.width + 200 && screenSize.width > 700;
     bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-
-    _parseRoute(widget.route);
 
     List<Widget> _bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),

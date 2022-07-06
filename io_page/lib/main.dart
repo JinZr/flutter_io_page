@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zr_jin_page/home.dart';
 
 import 'home.dart';
 import 'theme/purple.dart';
@@ -15,19 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        "/": (context) => const MyHomePage(
-              titleEn: 'Zengrui JIN',
-              titleZh: '金增锐',
-              route: "/",
-        ),
-        "/publication": (context) => const MyHomePage(
-              titleEn: 'Zengrui JIN',
-              titleZh: '金增锐',
-              route: "/publication",
-        ),
-      },
+      home: const MyHomePage(
+        titleEn: "Zengrui JIN",
+        titleZh: "金增锐",
+      ),
       title: 'Zengrui JIN (金增锐)',
       theme: ThemeData(
         useMaterial3: true,
