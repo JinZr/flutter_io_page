@@ -1,5 +1,21 @@
 [
     {
+        "publisher": "INTERSPEECH",
+        "title": "Confidence Score Based Conformer Speaker Adaptation for Speech Recognition",
+        "link": "https://arxiv.org/abs/2206.12045",
+        "author": "Jiajun Deng, Xurong Xie, Tianzi Wang, Mingyu Cui, Boyang Xue, Zengrui Jin, Mengzhe Geng, Guinan Li, Xunying Liu, Helen Meng",
+        "year": 2022,
+        "abstract": "A key challenge for automatic speech recognition (ASR) systems is to model the speaker level variability. In this paper, compact speaker dependent learning hidden unit contributions (LHUC) are used to facilitate both speaker adaptive training (SAT) and test time unsupervised speaker adaptation for state-of-the-art Conformer based end-to-end ASR systems. The sensitivity during adaptation to supervision error rate is reduced using confidence score based selection of the more \"trustworthy\" subset of speaker specific data. A confidence estimation module is used to smooth the over-confident Conformer decoder output probabilities before serving as confidence scores. The increased data sparsity due to speaker level data selection is addressed using Bayesian estimation of LHUC parameters. Experiments on the 300-hour Switchboard corpus suggest that the proposed LHUC-SAT Conformer with confidence score based test time unsupervised adaptation outperformed the baseline speaker independent and i-vector adapted Conformer systems by up to 1.0%, 1.0%, and 1.2% absolute (9.0%, 7.9%, and 8.9% relative) word error rate (WER) reductions on the NIST Hub5'00, RT02, and RT03 evaluation sets respectively. Consistent performance improvements were retained after external Transformer and LSTM language models were used for rescoring."
+    },
+    {
+        "publisher": "INTERSPEECH",
+        "title": "Conformer Based Elderly Speech Recognition System for Alzheimer's Disease Detection",
+        "link": "https://arxiv.org/abs/2206.13232",
+        "author": "Tianzi Wang, Jiajun Deng, Mengzhe Geng, Zi Ye, Shoukang Hu, Yi Wang, Mingyu Cui, Zengrui Jin, Xunying Liu, Helen Meng",
+        "year": 2022,
+        "abstract": "Early diagnosis of Alzheimer's disease (AD) is crucial in facilitating preventive care to delay further progression. This paper presents the development of a state-of-the-art Conformer based speech recognition system built on the DementiaBank Pitt corpus for automatic AD detection. The baseline Conformer system trained with speed perturbation and SpecAugment based data augmentation is significantly improved by incorporating a set of purposefully designed modeling features, including neural architecture search based auto-configuration of domain-specific Conformer hyper-parameters in addition to parameter fine-tuning; fine-grained elderly speaker adaptation using learning hidden unit contributions (LHUC); and two-pass cross-system rescoring based combination with hybrid TDNN systems. An overall word error rate (WER) reduction of 13.6% absolute (34.8% relative) was obtained on the evaluation data of 48 elderly speakers. Using the final systems' recognition outputs to extract textual features, the best-published speech recognition based AD detection accuracy of 91.7% was obtained."
+    },
+    {
         "publisher": "arXiv",
         "title": "Personalized Adversarial Data Augmentation for Dysarthric and Elderly Speech Recognition",
         "link": "https://arxiv.org/abs/2205.06445",
