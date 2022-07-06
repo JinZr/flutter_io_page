@@ -9,6 +9,7 @@ import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
+import 'polaroid_gallery_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage(
@@ -40,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     List<Widget> _bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),
-      const FullPublicationView(title: "Publications")
+      const FullPublicationView(title: "Publications"),
+      const PolaroidGalleryView(title: "Polaroid Cameras"),
     ];
 
     return Container(
@@ -68,6 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
           NavigationRailDestination(
               icon: const Icon(Icons.library_books),
               label: Text("Publications", style: GoogleFonts.roboto())),
+          NavigationRailDestination(
+              icon: const Icon(Icons.camera_alt_sharp),
+              label: Text("Polaroid Cameras", style: GoogleFonts.roboto())),
         ],
         selectedIndex: _selectedDestination,
         extended: extended,
@@ -96,6 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                   leading: const Icon(Icons.library_books),
                   title: const Text("Publications"),
+                  selectedTileColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
+                  selectedColor:
+                      Theme.of(context).colorScheme.onSecondaryContainer,
+                  selected: _selectedDestination == 1,
+                  onTap: () => _selectDestinationDrawer(1)),
+            ),
+            InkWell(
+              child: ListTile(
+                  leading: const Icon(Icons.camera_alt_sharp),
+                  title: const Text("Polaroid Cameras"),
                   selectedTileColor:
                       Theme.of(context).colorScheme.secondaryContainer,
                   selectedColor:
