@@ -44,7 +44,7 @@ class FullPublicationCell extends StatelessWidget {
               child: SelectableText(
                 item.abs,
                 style: Theme.of(context).textTheme.caption!,
-                maxLines: isWideScreen ? null : 5,
+                // maxLines: isWideScreen ? null : 5,
                 enableInteractiveSelection: true,
               )),
           const Divider(indent: 10.0),
