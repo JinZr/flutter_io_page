@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Zengrui JIN (金增锐)',
       theme: ThemeData(
-        useMaterial3: true,
+        useMaterial3: false,
         brightness: Brightness.light,
         colorScheme: lightColorScheme,
         fontFamily: GoogleFonts.roboto().fontFamily,
       ),
       darkTheme: ThemeData(
-        useMaterial3: true,
+        useMaterial3: false,
         brightness: Brightness.dark,
         colorScheme: darkColorScheme,
         fontFamily: GoogleFonts.roboto().fontFamily,

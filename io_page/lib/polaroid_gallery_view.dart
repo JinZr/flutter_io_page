@@ -34,13 +34,16 @@ class _PolaroidGalleryViewState extends State<PolaroidGalleryView> {
         StaggeredGrid.count(
           crossAxisCount: notUseDrawer ? 3 : 1,
           children: const [
+            Card(
+              child: ListTile(title: Text("This is my polaroid camera collection.")),
+            ),
             PolaroidCard(
                 title: "AF670", imagePath: "assets/images/cameras/af670.jpeg"),
             PolaroidCard(
                 title: "Spectra",
                 imagePath: "assets/images/cameras/spectra.jpeg"),
             PolaroidCard(
-                title: "SX 70", imagePath: "assets/images/cameras/sx-70.jpeg")
+                title: "SX-70", imagePath: "assets/images/cameras/sx-70.jpeg")
           ],
         )
       ],
