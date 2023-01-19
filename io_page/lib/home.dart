@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // bool isLandscape =
     //     MediaQuery.of(context).orientation == Orientation.landscape;
 
-    List<Widget> _bodyWithDrawer = <Widget>[
+    List<Widget> bodyWithDrawer = <Widget>[
       _buildGridViewPanel(notUseDrawer),
       const FullPublicationView(title: "Publications"),
       const PolaroidGalleryView(title: "Polaroid Cameras"),
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 secondaryAnimation: secondaryAnimation,
                 child: child,
               ),
-              child: _bodyWithDrawer[_selectedDestination],
+              child: bodyWithDrawer[_selectedDestination],
             ),
           )),
         ]));

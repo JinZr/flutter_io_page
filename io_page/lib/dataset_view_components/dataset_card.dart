@@ -64,10 +64,12 @@ class DatasetCard extends StatelessWidget {
               ),
               ButtonBar(
                 children: [
-                  TextButton(onPressed: () {}, child: Text("COPY BIBTEX")),
-                  TextButton(onPressed: () {}, child: Text("DOWNLOAD PAPER")),
+                  TextButton(
+                      onPressed: () {}, child: const Text("COPY BIBTEX")),
+                  TextButton(
+                      onPressed: () {}, child: const Text("DOWNLOAD PAPER")),
                   ElevatedButton(
-                      onPressed: () {}, child: Text("DOWNLOAD DATASET")),
+                      onPressed: () {}, child: const Text("DOWNLOAD DATASET")),
                 ],
               )
             ],
