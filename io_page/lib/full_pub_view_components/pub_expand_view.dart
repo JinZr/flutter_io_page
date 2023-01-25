@@ -40,10 +40,12 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
           child: ListTile(
             title: SelectableText(widget.item.title),
             trailing: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.close)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.close),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
             subtitle:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AuthorListText(

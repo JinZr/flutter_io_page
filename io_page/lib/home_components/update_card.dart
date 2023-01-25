@@ -48,7 +48,7 @@ class _UpdateCardState extends State<UpdateCard> {
                 return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: items.length <= 10 ? items.length : 10,
+                    itemCount: items.length <= 5 ? items.length : 5,
                     itemBuilder: (BuildContext context, int index) {
                       return UpdateEventListTile(json: items[index]);
                     });
