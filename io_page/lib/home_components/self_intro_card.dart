@@ -40,7 +40,8 @@ class IntroductionCard extends StatelessWidget {
         // ]),
         ExpansionTile(
           leading: const Image(
-              image: AssetImage('assets/images/avatar/avatar.jpeg')),
+              image: NetworkImage(
+                  "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg")),
           title: const Text("Zengrui JIN"),
           subtitle: const Text("金增锐"),
           initiallyExpanded: true,
@@ -68,12 +69,6 @@ class IntroductionCard extends StatelessWidget {
               child: const Text("RESEARCH GATE"),
               onPressed: () => _launchURL(
                   "https://www.researchgate.net/profile/Zengrui-Jin")),
-          // TextButton(
-          //     child: const Text("CURRICULUM VITAE"),
-          //     onPressed: () => {
-          //           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          //               content: Text("My CV is not available so far.")))
-          //         }),
         ])
       ],
     ));

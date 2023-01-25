@@ -117,19 +117,14 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
   NavigationRail _rail(bool extended) => NavigationRail(
-        destinations: [
+        destinations: const [
           NavigationRailDestination(
-              icon: const Icon(Icons.home),
-              label:
-                  Text("Home", style: Theme.of(context).textTheme.labelLarge)),
+              icon: Icon(Icons.home), label: Text("Home")),
           NavigationRailDestination(
-              icon: const Icon(Icons.library_books),
-              label: Text("Publications",
-                  style: Theme.of(context).textTheme.labelLarge)),
+              icon: Icon(Icons.library_books), label: Text("Publications")),
           NavigationRailDestination(
-              icon: const Icon(Icons.camera_alt_sharp),
-              label: Text("Polaroid Cameras",
-                  style: Theme.of(context).textTheme.labelLarge)),
+              icon: Icon(Icons.camera_alt_sharp),
+              label: Text("Polaroid Cameras")),
           // NavigationRailDestination(
           //     icon: const Icon(Icons.data_object),
           //     label: Text("Datasets", style: GoogleFonts.roboto())),
