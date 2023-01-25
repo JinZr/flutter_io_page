@@ -24,9 +24,9 @@ class MyIntroduction extends StatelessWidget {
       TextSpan(
           text: "Prof. Xunying Liu",
           style: clickableTextStyle(
-              Theme.of(context).brightness == Brightness.light,
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).textTheme.titleMedium!.fontSize!),
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).textTheme.titleMedium!.fontSize!,
+          ),
           recognizer: TapGestureRecognizer()
             ..onTap = () => _launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
       TextSpan(
