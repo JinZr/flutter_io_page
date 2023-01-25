@@ -37,16 +37,11 @@ class PublicationListTile extends StatelessWidget {
                     Theme.of(context).textTheme.bodyLarge!.fontSize!)),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 8.0),
+            padding: const EdgeInsets.fromLTRB(16.0, 2.0, 4.0, 4.0),
             child: Row(
               children: [
-                RawChip(
-                  labelStyle: TextStyle(
-                      fontSize:
-                          Theme.of(context).textTheme.labelLarge!.fontSize!,
-                      color: Theme.of(context).colorScheme.primary),
+                Chip(
                   label: Text("${_data.publisher} · ${_data.year}"),
-                  backgroundColor: Theme.of(context).colorScheme.surface,
                 ),
               ],
             ),

@@ -45,25 +45,17 @@ class IntroductionCard extends StatelessWidget {
           subtitle: const Text("金增锐"),
           initiallyExpanded: true,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  const ListTile(title: MyIntroduction()),
-                  ListTile(
-                    title: SelectableText(
-                      "zengrui.jin [at] icloud.com",
-                      style: Theme.of(context).textTheme.bodyLarge!,
-                    ),
-                  ),
-                  ListTile(
-                    title: SelectableText(
-                      "Collecting vintage Polaroid cameras. (SLR680 & 670AF)",
-                      style: Theme.of(context).textTheme.bodyLarge!,
-                    ),
-                  ),
-                ],
-              ),
+            Column(
+              children: const [
+                ListTile(title: MyIntroduction()),
+                ListTile(
+                  title: SelectableText("zengrui.jin [at] icloud.com"),
+                ),
+                ListTile(
+                  title: SelectableText(
+                      "Collecting vintage Polaroid cameras. (SLR680 & 670AF)"),
+                ),
+              ],
             ),
           ],
         ),

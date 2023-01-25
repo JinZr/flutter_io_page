@@ -40,34 +40,32 @@ class _UpdateCardState extends State<UpdateCard> {
           const Divider(
             indent: 10,
           ),
-          Padding(
-              padding: const EdgeInsets.all(16),
-              child: FutureBuilder(
-                future: _futureString(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var items = json.decode(snapshot.data.toString());
-                    return ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: items.length <= 10 ? items.length : 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return UpdateEventListTile(json: items[index]);
-                        });
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Column(
-                        children: [
-                          const Icon(Icons.warning),
-                          Text("${snapshot.error}")
-                        ],
-                      ),
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                },
-              ))
+          FutureBuilder(
+            future: _futureString(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var items = json.decode(snapshot.data.toString());
+                return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: items.length <= 10 ? items.length : 10,
+                    itemBuilder: (BuildContext context, int index) {
+                      return UpdateEventListTile(json: items[index]);
+                    });
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Column(
+                    children: [
+                      const Icon(Icons.warning),
+                      Text("${snapshot.error}")
+                    ],
+                  ),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          )
         ],
       ),
     );

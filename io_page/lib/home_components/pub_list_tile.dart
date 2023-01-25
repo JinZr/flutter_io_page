@@ -26,7 +26,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
                 "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
             child: const Text("Search at Google Scholar"),
           ),
-          OutlinedButton(
+          FilledButton.tonal(
             onPressed: () => _launchURL(item.link),
             child: const Text("Download PDF"),
           )
@@ -86,17 +86,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
         const Divider(indent: 10),
         Row(
           children: [
-            RawChip(
-              label: Text(
-                "${widget.item.publisher} · ${widget.item.year}",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: Theme.of(context).textTheme.labelLarge!.fontSize,
-                ),
-              ),
-              backgroundColor: Theme.of(context).colorScheme.surface,
-              visualDensity: VisualDensity.compact,
-            ),
+            Chip(label: Text("${widget.item.publisher} · ${widget.item.year}")),
             const Spacer(flex: 2),
             isWideScreen
                 ? _buildButton(context, widget.item)

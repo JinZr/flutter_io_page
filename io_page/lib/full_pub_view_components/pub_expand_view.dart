@@ -37,8 +37,6 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
         },
         child: SingleChildScrollView(
             child: Card(
-                child: Padding(
-          padding: const EdgeInsets.all(8.0),
           child: ListTile(
             title: SelectableText(widget.item.title),
             trailing: IconButton(
@@ -66,15 +64,9 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
               const Divider(indent: 10.0),
               Row(
                 children: [
-                  RawChip(
-                    labelStyle: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.labelLarge!.fontSize!,
-                        color: Theme.of(context).colorScheme.primary),
-                    label:
-                        Text("${widget.item.publisher} · ${widget.item.year}"),
-                    backgroundColor: Theme.of(context).colorScheme.surface,
-                  ),
+                  Chip(
+                      label: Text(
+                          "${widget.item.publisher} · ${widget.item.year}")),
                   const Spacer(flex: 2),
                   // _buildChipBar(context, item),
                   isWideScreen
@@ -84,7 +76,7 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
               )
             ]),
           ),
-        ))));
+        )));
   }
 
   // Widget _buildChipBar(BuildContext context, PublicationItem item) => ButtonBar(
@@ -122,7 +114,7 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
                 "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${widget.item.title}&btnG="),
             child: const Text("Search at Google Scholar"),
           ),
-          OutlinedButton(
+          FilledButton.tonal(
             onPressed: () => _launchURL(item.link),
             child: const Text("Download PDF"),
           )

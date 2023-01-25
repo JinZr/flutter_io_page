@@ -20,16 +20,19 @@ class MyIntroduction extends StatelessWidget {
       TextSpan(
           text:
               "I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ",
-          style: Theme.of(context).textTheme.bodyLarge!),
+          style: Theme.of(context).textTheme.titleMedium!),
       TextSpan(
           text: "Prof. Xunying Liu",
           style: clickableTextStyle(
               Theme.of(context).brightness == Brightness.light,
               Theme.of(context).colorScheme.primary,
-              Theme.of(context).textTheme.bodyLarge!.fontSize!),
+              Theme.of(context).textTheme.titleMedium!.fontSize!),
           recognizer: TapGestureRecognizer()
             ..onTap = () => _launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
-      TextSpan(text: ".", style: Theme.of(context).textTheme.bodyLarge!),
+      TextSpan(
+          text:
+              ". My research interests include adversarial data augmentation in the context of automatic speech recognition.",
+          style: Theme.of(context).textTheme.titleMedium!),
     ]));
   }
 

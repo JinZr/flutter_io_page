@@ -38,39 +38,32 @@ class _PublicationCardState extends State<PublicationCard> {
                 color: Theme.of(context).colorScheme.onSecondaryContainer),
             title: const Text("Recent Publications"),
           ),
-          const Divider(
-            indent: 10,
-          ),
-          Padding(
-              padding: const EdgeInsets.all(16),
-              child: FutureBuilder(
-                  future: _futureString(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      var items = json.decode(snapshot.data.toString());
-                      _data = generateItems(items);
-                      return ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: items.length <= 5 ? items.length : 5,
-                          itemBuilder: (BuildContext context, int index) {
-                            return PublicationListTile(item: _data[index]);
-                          });
-                    } else if (snapshot.hasError) {
-                      return Center(
-                        child: Column(
-                          children: [
-                            const Icon(Icons.warning),
-                            Text("${snapshot.error}")
-                          ],
-                        ),
-                      );
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }))
+          const Divider(indent: 10),
+          FutureBuilder(
+              future: _futureString(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var items = json.decode(snapshot.data.toString());
+                  _data = generateItems(items);
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: items.length <= 5 ? items.length : 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return PublicationListTile(item: _data[index]);
+                      });
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Column(
+                      children: [
+                        const Icon(Icons.warning),
+                        Text("${snapshot.error}")
+                      ],
+                    ),
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              })
         ],
       ),
     );

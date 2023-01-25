@@ -8,15 +8,7 @@ class UpdateEventListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: RawChip(
-          label: Text(
-            json["date"],
-            style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: Theme.of(context).textTheme.labelLarge!.fontSize!),
-          ),
-          backgroundColor: Theme.of(context).colorScheme.surface,
-        ),
+        leading: Chip(label: Text(json["date"])),
         title: SelectableText(
           "${json["content"]}",
         ));
