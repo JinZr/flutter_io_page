@@ -46,6 +46,7 @@ class _PublicationCardState extends State<PublicationCard> {
                   var items = json.decode(snapshot.data.toString());
                   _data = generateItems(items);
                   return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: items.length <= 5 ? items.length : 5,
                       itemBuilder: (BuildContext context, int index) {
