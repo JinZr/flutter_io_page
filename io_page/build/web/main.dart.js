@@ -72907,7 +72907,7 @@ $S:97}
 A.Ia.prototype={
 E(a){var s,r,q=null,p=A.C(a).p3.w
 p.toString
-p=A.cn(q,q,p,"I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ")
+p=A.cn(q,q,p,"I received my B. Eng. degree in School of Software Engineering, Dalian University of Technology. I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ")
 s=A.C(a)
 r=A.C(a).p3.w.r
 r.toString
