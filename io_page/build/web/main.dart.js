@@ -72907,7 +72907,7 @@ $S:97}
 A.Ia.prototype={
 E(a){var s,r,q=null,p=A.C(a).p3.w
 p.toString
-p=A.cn(q,q,p,"I received my B. Eng. degree in School of Software Engineering, Dalian University of Technology. I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong. My supervisor is ")
+p=A.cn(q,q,p,"I received my B. Eng. degree in School of Software Engineering, Dalian University of Technology. I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong. Under the supervision of ")
 s=A.C(a)
 r=A.C(a).p3.w.r
 r.toString
@@ -72917,7 +72917,7 @@ s.ar=new A.a3l(this)
 r=A.cn(q,s,r,"Prof. Xunying Liu")
 s=A.C(a).p3.w
 s.toString
-return A.a6k(q,q,B.b_,q,q,!0,q,A.cn(A.a([p,r,A.cn(q,q,s,". My research interests include adversarial data augmentation in the context of automatic speech recognition.")],t.VO),q,q,q),B.aO,q,q,1,B.ai)},
+return A.a6k(q,q,B.b_,q,q,!0,q,A.cn(A.a([p,r,A.cn(q,q,s,", my research interests include adversarial learning based data augmentation in the context of automatic speech recognition.")],t.VO),q,q,q),B.aO,q,q,1,B.ai)},
 oT(a){return this.a_n(a)},
 a_n(a){var s=0,r=A.a5(t.z),q
 var $async$oT=A.a6(function(b,c){if(b===1)return A.a2(c,r)
