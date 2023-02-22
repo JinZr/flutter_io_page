@@ -38,11 +38,10 @@ class PublicationListTile extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 2.0, 4.0, 4.0),
-            child: Row(
+            child: ButtonBar(
               children: [
-                Chip(
-                  label: Text("${_data.publisher} · ${_data.year}"),
-                ),
+                Chip(label: Text(_data.publisher)),
+                Chip(label: Text("${_data.year}"))
               ],
             ),
           )

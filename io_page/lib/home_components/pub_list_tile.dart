@@ -86,7 +86,12 @@ class _PublicationListTileState extends State<PublicationListTile> {
         const Divider(indent: 10),
         Row(
           children: [
-            Chip(label: Text("${widget.item.publisher} · ${widget.item.year}")),
+            ButtonBar(
+              children: [
+                Chip(label: Text(widget.item.publisher)),
+                Chip(label: Text("${widget.item.year}"))
+              ],
+            ),
             const Spacer(flex: 2),
             isWideScreen
                 ? _buildButton(context, widget.item)

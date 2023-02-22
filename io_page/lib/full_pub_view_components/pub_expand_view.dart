@@ -66,9 +66,12 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
               const Divider(indent: 10.0),
               Row(
                 children: [
-                  Chip(
-                      label: Text(
-                          "${widget.item.publisher} · ${widget.item.year}")),
+                  ButtonBar(
+                    children: [
+                      Chip(label: Text(widget.item.publisher)),
+                      Chip(label: Text("${widget.item.year}"))
+                    ],
+                  ),
                   const Spacer(flex: 2),
                   // _buildChipBar(context, item),
                   isWideScreen
