@@ -24,8 +24,7 @@ class PublicationListTile extends StatelessWidget {
         },
         tag: tag,
         child: Card(
-            child: Column(children: [
-          ListTile(
+          child: ListTile(
             title: Text(_data.title),
             subtitle: AuthorListText(
                 text: _data.authorList,
@@ -36,15 +35,6 @@ class PublicationListTile extends StatelessWidget {
                     Theme.of(context).brightness == Brightness.light,
                     Theme.of(context).textTheme.bodyLarge!.fontSize!)),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 2.0, 4.0, 4.0),
-            child: ButtonBar(
-              children: [
-                Chip(label: Text(_data.publisher)),
-                Chip(label: Text("${_data.year}"))
-              ],
-            ),
-          )
-        ])));
+        ));
   }
 }

@@ -88,8 +88,12 @@ class _PublicationListTileState extends State<PublicationListTile> {
           children: [
             ButtonBar(
               children: [
-                Chip(label: Text(widget.item.publisher)),
-                Chip(label: Text("${widget.item.year}"))
+                Chip(
+                    avatar: const Icon(Icons.book),
+                    label: Text(widget.item.publisher)),
+                Chip(
+                    avatar: const Icon(Icons.calendar_month),
+                    label: Text("${widget.item.year}")),
               ],
             ),
             const Spacer(flex: 2),
