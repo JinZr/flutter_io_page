@@ -32,6 +32,7 @@ class PublicationListTile extends StatelessWidget {
                         Theme.of(context).brightness == Brightness.light,
                         Theme.of(context).textTheme.bodyLarge!.fontSize!),
                     matchStyle: matchTextStyle(
+                        context,
                         Theme.of(context).brightness == Brightness.light,
                         Theme.of(context).textTheme.bodyLarge!.fontSize!)))));
   }

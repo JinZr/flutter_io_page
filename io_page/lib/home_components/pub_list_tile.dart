@@ -69,6 +69,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
                       Theme.of(context).brightness == Brightness.light,
                       Theme.of(context).textTheme.bodyLarge!.fontSize!),
                   matchStyle: matchTextStyle(
+                      context,
                       Theme.of(context).brightness == Brightness.light,
                       Theme.of(context).textTheme.bodyLarge!.fontSize!))),
           const SizedBox(width: 8),

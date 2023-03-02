@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Zengrui JIN (金增锐)',
       theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-      ),
+          useMaterial3: true,
+          brightness: Brightness.light,
+          colorSchemeSeed: null),
       darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-      ),
+          useMaterial3: true,
+          brightness: Brightness.dark,
+          colorSchemeSeed: null),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
     );
