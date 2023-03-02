@@ -24,17 +24,15 @@ class PublicationListTile extends StatelessWidget {
         },
         tag: tag,
         child: Card(
-          child: ListTile(
-            title: Text(_data.title),
-            subtitle: AuthorListText(
-                text: _data.authorList,
-                regularStyle: regularTextStyle(
-                    Theme.of(context).brightness == Brightness.light,
-                    Theme.of(context).textTheme.bodyLarge!.fontSize!),
-                matchStyle: matchTextStyle(
-                    Theme.of(context).brightness == Brightness.light,
-                    Theme.of(context).textTheme.bodyLarge!.fontSize!)),
-          ),
-        ));
+            child: ListTile(
+                title: Text(_data.title),
+                subtitle: AuthorListText(
+                    text: _data.authorList,
+                    regularStyle: regularTextStyle(
+                        Theme.of(context).brightness == Brightness.light,
+                        Theme.of(context).textTheme.bodyLarge!.fontSize!),
+                    matchStyle: matchTextStyle(
+                        Theme.of(context).brightness == Brightness.light,
+                        Theme.of(context).textTheme.bodyLarge!.fontSize!)))));
   }
 }
