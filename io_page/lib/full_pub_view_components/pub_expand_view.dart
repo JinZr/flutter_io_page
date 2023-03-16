@@ -78,12 +78,10 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
                     ],
                   ),
                   const Spacer(flex: 2),
-                  // _buildChipBar(context, item),
-                  isWideScreen
-                      ? _buildButton(context, widget.item)
-                      : _buildIconButton(context, widget.item)
+                  if (isWideScreen) _buildButton(context, widget.item)
                 ],
-              )
+              ),
+              if (!isWideScreen) _buildIconButton(context, widget.item)
             ]),
           ),
         )));
