@@ -81,7 +81,8 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
                   if (isWideScreen) _buildButton(context, widget.item)
                 ],
               ),
-              if (!isWideScreen) _buildIconButton(context, widget.item)
+              if (!isWideScreen) const Divider(indent: 10.0),
+              if (!isWideScreen) _buildIconButton(context, widget.item),
             ]),
           ),
         )));
