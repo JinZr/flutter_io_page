@@ -99,10 +99,10 @@ class _PublicationListTileState extends State<PublicationListTile> {
             ),
             const Spacer(flex: 2),
             if (isWideScreen) _buildButton(context, widget.item),
-            if (!isWideScreen) const Divider(indent: 10),
-            if (!isWideScreen) _buildIconButton(context, widget.item),
           ],
-        )
+        ),
+        if (!isWideScreen) const Divider(indent: 10),
+        if (!isWideScreen) _buildIconButton(context, widget.item),
       ],
     );
   }
