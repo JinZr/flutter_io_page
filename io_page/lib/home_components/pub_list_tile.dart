@@ -54,7 +54,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     bool isWideScreen =
-        screenSize.height < screenSize.width + 200 && screenSize.width > 700;
+        screenSize.height < screenSize.width - 200 && screenSize.width > 900;
     return ExpansionTile(
       initiallyExpanded: false,
       title: Text(widget.item.title),
@@ -98,9 +98,9 @@ class _PublicationListTileState extends State<PublicationListTile> {
               ],
             ),
             const Spacer(flex: 2),
-            isWideScreen
-                ? _buildButton(context, widget.item)
-                : _buildIconButton(context, widget.item)
+            if (isWideScreen) _buildButton(context, widget.item),
+            if (!isWideScreen) const Divider(indent: 10),
+            if (!isWideScreen) _buildIconButton(context, widget.item),
           ],
         )
       ],

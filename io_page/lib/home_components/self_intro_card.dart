@@ -38,28 +38,24 @@ class IntroductionCard extends StatelessWidget {
         //             ])),
         //   ),
         // ]),
-        ExpansionTile(
-          leading: const Image(
+        const ListTile(
+          leading: Image(
               image: NetworkImage(
                   "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg")),
-          title: const Text("Zengrui JIN"),
-          subtitle: const Text("金增锐"),
-          initiallyExpanded: true,
-          children: [
-            Column(
-              children: const [
-                ListTile(title: MyIntroduction()),
-                ListTile(
-                  title: SelectableText("zengrui.jin [at] icloud.com"),
-                ),
-                ListTile(
-                  title: SelectableText(
-                      "Collecting vintage Polaroid cameras. (SLR680 & 670AF)"),
-                ),
-              ],
-            ),
+          title: Text("Zengrui JIN"),
+          subtitle: Text("金增锐"),
+        ),
+        const Divider(indent: 10),
+        Column(
+          children: const [
+            ListTile(title: MyIntroduction()),
+            ListTile(title: SelectableText("zengrui.jin [at] icloud.com")),
+            ListTile(
+                title: SelectableText(
+                    "Collecting vintage Polaroid cameras. (SLR680 & 670AF)")),
           ],
         ),
+        const Divider(indent: 10),
         ButtonBar(alignment: MainAxisAlignment.start, children: [
           TextButton(
               child: const Text("GOOGLE SCHOLAR"),
