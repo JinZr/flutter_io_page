@@ -15,20 +15,20 @@ class PolaroidCard extends StatefulWidget {
 }
 
 class _PolaroidCardState extends State<PolaroidCard> {
-  bool onHover = false;
+  // bool onHover = false;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      onHover: (value) {
-        setState(() {
-          onHover = value;
-        });
-      },
+      // onTap: () {},
+      // onHover: (value) {
+      //   setState(() {
+      //     onHover = value;
+      //   });
+      // },
       hoverColor: Theme.of(context).colorScheme.onSurface,
       child: Card(
-        elevation: onHover ? 2 : 1,
+        // elevation: onHover ? 2 : 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
