@@ -26,9 +26,12 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    bool isWideScreen =
+    final screenSize = MediaQuery.of(context).size;
+    final isWideScreen =
         screenSize.height < screenSize.width - 200 && screenSize.width > 900;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
 
     return Hero(
         tag: widget.tag,
@@ -44,25 +47,25 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
                 Navigator.of(context).pop();
               },
               icon: const Icon(Icons.close),
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              color: colorScheme.onSurfaceVariant,
             ),
             subtitle:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AuthorListText(
                   text: widget.item.authorList,
                   regularStyle: regularTextStyle(
-                      Theme.of(context).brightness == Brightness.light,
-                      Theme.of(context).textTheme.bodyLarge!.fontSize!),
+                      theme.brightness == Brightness.light,
+                      textTheme.bodyLarge!.fontSize!),
                   matchStyle: matchTextStyle(
                       context,
-                      Theme.of(context).brightness == Brightness.light,
-                      Theme.of(context).textTheme.bodyLarge!.fontSize!)),
+                      theme.brightness == Brightness.light,
+                      textTheme.bodyLarge!.fontSize!)),
               const Divider(indent: 10.0),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SelectableText(
                     widget.item.abs,
-                    style: Theme.of(context).textTheme.bodyLarge!,
+                    style: textTheme.bodyLarge!,
                   )),
               const Divider(indent: 10.0),
               Row(

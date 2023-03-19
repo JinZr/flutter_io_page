@@ -4,27 +4,18 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'polaroid_gallery_view_components/polaroid_card.dart';
 
-class PolaroidGalleryView extends StatefulWidget {
+class PolaroidGalleryView extends StatelessWidget {
   const PolaroidGalleryView({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<PolaroidGalleryView> createState() => _PolaroidGalleryViewState();
-}
-
-class _PolaroidGalleryViewState extends State<PolaroidGalleryView> {
-  @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
-    bool notUseDrawer =
+    final screenSize = MediaQuery.of(context).size;
+    final notUseDrawer =
         screenSize.height < screenSize.width + 200 && screenSize.width > 700;
 
-    return _buildPanel(notUseDrawer);
-  }
-
-  Widget _buildPanel(bool notUseDrawer) => ConstrainedBox(
+    return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
       child: ListView(
         children: [
@@ -32,19 +23,24 @@ class _PolaroidGalleryViewState extends State<PolaroidGalleryView> {
             crossAxisCount: notUseDrawer ? 3 : 1,
             children: const [
               PolaroidCard(
-                  title: "Supercolor 670 AF",
-                  imagePath:
-                      "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/af670.jpeg"),
+                title: "Supercolor 670 AF",
+                imagePath:
+                    "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/af670.jpeg",
+              ),
               PolaroidCard(
-                  title: "Spectra",
-                  imagePath:
-                      "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/spectra.jpeg"),
+                title: "Spectra",
+                imagePath:
+                    "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/spectra.jpeg",
+              ),
               PolaroidCard(
-                  title: "SX-70",
-                  imagePath:
-                      "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/sx-70.jpeg")
+                title: "SX-70",
+                imagePath:
+                    "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/cameras/sx-70.jpeg",
+              ),
             ],
-          )
+          ),
         ],
-      ));
+      ),
+    );
+  }
 }

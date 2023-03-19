@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         titleEn: "Zengrui JIN",
         titleZh: "金增锐",
       ),
-      title: 'Zengrui JIN (金增锐)',
+      title: 'Zengrui JIN',
       theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.light,
