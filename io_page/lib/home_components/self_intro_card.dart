@@ -62,7 +62,7 @@ class IntroductionCard extends StatelessWidget {
               onPressed: () => _launchURL(
                   'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
           TextButton(
-              child: const Text("RESEARCH GATE"),
+              child: const Text("RESEARCHGATE"),
               onPressed: () => _launchURL(
                   "https://www.researchgate.net/profile/Zengrui-Jin")),
         ])

@@ -40,9 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Tab(icon: Icon(Icons.camera_alt_sharp))
               ]),
             ),
-            body: TabBarView(
-              children: body,
-            )));
+            body: TabBarView(children: body)));
   }
 
   Widget _buildGridViewPanel() => ConstrainedBox(

@@ -69192,7 +69192,7 @@ return this.a.jD(s)},
 $S:0}
 A.FI.prototype={
 H(a){var s=t.p
-return A.oF(A.eE(A.a([B.BT,B.aR,A.eE(B.BX,B.ac,B.W,B.a_),B.aR,A.oC(B.W,A.a([A.y_(B.NC,new A.a_r(this),null),A.y_(B.Nw,new A.a_s(this),null)],s))],s),B.ac,B.W,B.a_))},
+return A.oF(A.eE(A.a([B.BT,B.aR,A.eE(B.BX,B.ac,B.W,B.a_),B.aR,A.oC(B.W,A.a([A.y_(B.NC,new A.a_r(this),null),A.y_(B.Nx,new A.a_s(this),null)],s))],s),B.ac,B.W,B.a_))},
 m1(a){return this.Z4(a)},
 Z4(a){var s=0,r=A.a2(t.z),q
 var $async$m1=A.a3(function(b,c){if(b===1)return A.a_(c,r)
@@ -69230,7 +69230,7 @@ break}else throw A.d(A.cr("Failed to load update"))
 case 1:return A.a0(q,r)}})
 return A.a1($async$ro,r)},
 H(a){var s=null,r=A.L(a).ax,q=r.x
-return A.oF(A.eE(A.a([A.mJ(s,A.FD(B.B1,q==null?r.r:q),s,s,B.Nx,s),B.aR,A.aj0(new A.afH(),this.ro(),t.j)],t.p),B.c1,B.W,B.a_))}}
+return A.oF(A.eE(A.a([A.mJ(s,A.FD(B.B1,q==null?r.r:q),s,s,B.Nw,s),B.aR,A.aj0(new A.afH(),this.ro(),t.j)],t.p),B.c1,B.W,B.a_))}}
 A.afH.prototype={
 $2(a,b){var s,r=null,q=b.b
 if(q!=null){s=J.au(q)
@@ -73766,8 +73766,8 @@ B.M2=new A.o(!0,B.i,null,"Roboto",null,null,null,null,null,null,null,null,null,n
 B.Nv=new A.dh(B.LI,B.N9,B.MP,B.Kj,B.ME,B.LB,B.Nd,B.KP,B.Li,B.Mx,B.Kc,B.MR,B.MB,B.Mt,B.M2)
 B.we=new A.ye(1,"longestLine")
 B.wf=new A.eS("Search at Google Scholar",null,null,null,null,null,null,null)
-B.Nw=new A.eS("RESEARCH GATE",null,null,null,null,null,null,null)
-B.Nx=new A.eS("News",null,null,null,null,null,null,null)
+B.Nw=new A.eS("News",null,null,null,null,null,null,null)
+B.Nx=new A.eS("RESEARCHGATE",null,null,null,null,null,null,null)
 B.Ny=new A.eS("My Polaroid Camera Gallery",null,null,null,null,null,null,null)
 B.Nz=new A.eS("Recent Publications",null,null,null,null,null,null,null)
 B.wg=new A.eS("Download PDF",null,null,null,null,null,null,null)
