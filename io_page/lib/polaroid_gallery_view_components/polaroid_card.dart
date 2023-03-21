@@ -20,30 +20,18 @@ class _PolaroidCardState extends State<PolaroidCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: () {},
-      // onHover: (value) {
-      //   setState(() {
-      //     onHover = value;
-      //   });
-      // },
       hoverColor: Theme.of(context).colorScheme.onSurface,
       child: Card(
-        // elevation: onHover ? 2 : 1,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: 225,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  image: DecorationImage(
-                    fit: BoxFit.fitWidth,
-                    image: NetworkImage(widget.imagePath),
-                  ),
-                ),
-              ),
-            ),
+                height: 225,
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage(widget.imagePath),
+                )))),
             ListTile(title: Text(widget.title)),
           ],
         ),

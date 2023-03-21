@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
 class DatasetCard extends StatelessWidget {
   final String name;
   final String description;
@@ -34,7 +32,7 @@ class DatasetCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SelectableText(bibtex, style: GoogleFonts.robotoMono()),
+            child: SelectableText(bibtex),
           ),
           const Divider(indent: 10),
           Row(
