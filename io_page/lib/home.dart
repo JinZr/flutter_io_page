@@ -7,7 +7,7 @@ import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
-import 'polaroid_gallery_view.dart';
+// import 'polaroid_gallery_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.titleEn, required this.titleZh})
@@ -63,20 +63,20 @@ class MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
           appBar: AppBar(
             title: Text(titleEn),
             bottom: const TabBar(tabs: [
               Tab(icon: Icon(Icons.home)),
               Tab(icon: Icon(Icons.library_books)),
-              Tab(icon: Icon(Icons.camera_alt_sharp))
+              // Tab(icon: Icon(Icons.camera_alt_sharp))
             ]),
           ),
           body: TabBarView(children: [
             _panel,
             const FullPublicationView(title: "Publications"),
-            const PolaroidGalleryView(title: "Polaroid Cameras"),
+            // const PolaroidGalleryView(title: "Polaroid Cameras"),
             // const DatasetView(title: "Datasets"),
           ])));
 }
@@ -107,7 +107,7 @@ class DesktopLayoutState extends State<DesktopLayout> {
               ],
             ))),
     const FullPublicationView(title: "Publications"),
-    const PolaroidGalleryView(title: "Polaroid Cameras"),
+    // const PolaroidGalleryView(title: "Polaroid Cameras"),
     // const DatasetView(title: "Datasets"),
   ];
 
@@ -134,10 +134,10 @@ class DesktopLayoutState extends State<DesktopLayout> {
                     icon: Icon(Icons.library_books),
                     label: Text('Publications'),
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.camera_alt_sharp),
-                    label: Text('Polaroid'),
-                  ),
+                  // NavigationRailDestination(
+                  //   icon: Icon(Icons.camera_alt_sharp),
+                  //   label: Text('Polaroid'),
+                  // ),
                 ]),
             Expanded(
               child: PageTransitionSwitcher(
