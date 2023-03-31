@@ -52,9 +52,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
               ),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
