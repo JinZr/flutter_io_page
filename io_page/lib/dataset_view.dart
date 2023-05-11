@@ -14,9 +14,9 @@ class DatasetView extends StatefulWidget {
 class _DatasetViewState extends State<DatasetView> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
-        children: const [
+        children: [
           DatasetCard(
             name: "CU_DERAIN",
             description: "for real world",

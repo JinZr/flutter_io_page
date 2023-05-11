@@ -46,8 +46,8 @@ class IntroductionCard extends StatelessWidget {
           subtitle: Text("金增锐"),
         ),
         const Divider(indent: 10),
-        Column(
-          children: const [
+        const Column(
+          children: [
             ListTile(title: MyIntroduction()),
             ListTile(title: SelectableText("zengrui.jin [at] icloud.com")),
             ListTile(
