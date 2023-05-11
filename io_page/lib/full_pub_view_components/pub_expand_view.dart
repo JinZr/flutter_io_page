@@ -39,30 +39,31 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
           return CustomRectTween(begin: begin!, end: end!);
         },
         child: SingleChildScrollView(
-            child: Card(
-          child: ListTile(
-            title: SelectableText(widget.item.title),
-            trailing: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.close),
-              color: colorScheme.onSurfaceVariant,
-            ),
-            subtitle:
+          child: Card(
+            child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              AuthorListText(
-                  text: widget.item.authorList,
-                  regularStyle: regularTextStyle(
-                      theme.brightness == Brightness.light,
-                      textTheme.bodyLarge!.fontSize!),
-                  matchStyle: matchTextStyle(
-                      context,
-                      theme.brightness == Brightness.light,
-                      textTheme.bodyLarge!.fontSize!)),
+              ListTile(
+                title: SelectableText(widget.item.title),
+                trailing: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.close),
+                  color: colorScheme.onSurfaceVariant,
+                ),
+                subtitle: AuthorListText(
+                    text: widget.item.authorList,
+                    regularStyle: regularTextStyle(
+                        theme.brightness == Brightness.light,
+                        textTheme.bodyLarge!.fontSize!),
+                    matchStyle: matchTextStyle(
+                        context,
+                        theme.brightness == Brightness.light,
+                        textTheme.bodyLarge!.fontSize!)),
+              ),
               const Divider(indent: 10.0),
               Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                   child: SelectableText(
                     widget.item.abs,
                     style: textTheme.bodyLarge!,
@@ -88,7 +89,7 @@ class _FullPublicationExpandViewState extends State<FullPublicationExpandView> {
               if (!isWideScreen) _buildIconButton(context, widget.item),
             ]),
           ),
-        )));
+        ));
   }
 
   // Widget _buildChipBar(BuildContext context, PublicationItem item) => ButtonBar(
