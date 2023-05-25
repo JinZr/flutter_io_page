@@ -1,5 +1,13 @@
 [
     {
+        "publisher": "INTERSPEECH",
+        "title": "Use of Speech Impairment Severity for Dysarthric Speech Recognition",
+        "link": "https://arxiv.org/abs/2305.10659",
+        "author": "Mengzhe Geng, Zengrui Jin, Tianzi Wang, Shujie Hu, Jiajun Deng, Mingyu Cui, Guinan Li, Jianwei Yu, Xurong Xie, Xunying Liu",
+        "year": 2023,
+        "abstract": "A key challenge in dysarthric speech recognition is the speaker-level diversity attributed to both speaker-identity associated factors such as gender, and speech impairment severity. Most prior researches on addressing this issue focused on using speaker-identity only. To this end, this paper proposes a novel set of techniques to use both severity and speaker-identity in dysarthric speech recognition: a) multitask training incorporating severity prediction error; b) speaker-severity aware auxiliary feature adaptation; and c) structured LHUC transforms separately conditioned on speaker-identity and severity. Experiments conducted on UASpeech suggest incorporating additional speech impairment severity into state-of-the-art hybrid DNN, E2E Conformer and pre-trained Wav2vec 2.0 ASR systems produced statistically significant WER reductions up to 4.78% (14.03% relative). Using the best system the lowest published WER of 17.82% (51.25% on very low intelligibility) was obtained on UASpeech."
+    },
+    {
         "publisher": "IEEE/ACM TASLP",
         "title": "Confidence Score Based Speaker Adaptation of Conformer Speech Recognition Systems",
         "link": "https://ieeexplore.ieee.org/document/10057052",
