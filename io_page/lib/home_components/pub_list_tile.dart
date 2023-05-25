@@ -55,8 +55,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
     var screenSize = MediaQuery.of(context).size;
     bool isWideScreen =
         screenSize.height < screenSize.width - 200 && screenSize.width > 900;
-    return ExpansionTile(
-      initiallyExpanded: false,
+    return ListTile(
       title: Text(widget.item.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,35 +74,98 @@ class _PublicationListTileState extends State<PublicationListTile> {
           const SizedBox(width: 8),
         ],
       ),
-      childrenPadding: const EdgeInsets.all(8.0),
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-          child: Text(
-            widget.item.abs,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-        ),
-        const Divider(indent: 10),
-        Row(
-          children: [
-            ButtonBar(
-              children: [
-                Chip(
-                    avatar: const Icon(Icons.book),
-                    label: Text(widget.item.publisher)),
-                Chip(
-                    avatar: const Icon(Icons.calendar_month),
-                    label: Text("${widget.item.year}")),
-              ],
-            ),
-            const Spacer(flex: 2),
-            if (isWideScreen) _buildButton(context, widget.item),
-          ],
-        ),
-        if (!isWideScreen) const Divider(indent: 10),
-        if (!isWideScreen) _buildIconButton(context, widget.item),
-      ],
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return ListView(
+                children: [
+                  ListTile(
+                    title: Text(widget.item.title),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                            flex: 2,
+                            child: AuthorListText(
+                                text: widget.item.authorList,
+                                regularStyle: regularTextStyle(
+                                    Theme.of(context).brightness ==
+                                        Brightness.light,
+                                    Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .fontSize!),
+                                matchStyle: matchTextStyle(
+                                    context,
+                                    Theme.of(context).brightness ==
+                                        Brightness.light,
+                                    Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .fontSize!))),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                    trailing: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
+                    ),
+                  ),
+                  const Divider(indent: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                    child: Text(
+                      widget.item.abs,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                  const Divider(indent: 10),
+                  Row(children: [
+                    ButtonBar(children: [
+                      Chip(
+                          avatar: const Icon(Icons.book),
+                          label: Text(widget.item.publisher)),
+                      Chip(
+                          avatar: const Icon(Icons.calendar_month),
+                          label: Text("${widget.item.year}")),
+                    ])
+                  ]),
+                  const Divider(indent: 10),
+                  _buildButton(context, widget.item),
+                ],
+              );
+            });
+      },
     );
   }
 }
+
+// [
+//         Padding(
+//           padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+//           child: Text(
+//             widget.item.abs,
+//             style: Theme.of(context).textTheme.bodyLarge,
+//           ),
+//         ),
+//         const Divider(indent: 10),
+//         Row(
+//           children: [
+//             ButtonBar(
+//               children: [
+//                 Chip(
+//                     avatar: const Icon(Icons.book),
+//                     label: Text(widget.item.publisher)),
+//                 Chip(
+//                     avatar: const Icon(Icons.calendar_month),
+//                     label: Text("${widget.item.year}")),
+//               ],
+//             ),
+//             const Spacer(flex: 2),
+//             if (isWideScreen) _buildButton(context, widget.item),
+//           ],
+//         ),
+//         if (!isWideScreen) const Divider(indent: 10),
+//         if (!isWideScreen) _buildIconButton(context, widget.item),
+//       ]

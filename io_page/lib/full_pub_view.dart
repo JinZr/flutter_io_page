@@ -6,7 +6,7 @@ import 'full_pub_view_components/pub_item.dart';
 import 'full_pub_view_components/pub_expand_view.dart';
 import 'full_pub_view_components/pub_list_tile.dart';
 
-import 'hero_dialog_route.dart';
+// import 'hero_dialog_route.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class FullPublicationView extends StatefulWidget {
@@ -67,20 +67,20 @@ class _FullPublicationViewState extends State<FullPublicationView> {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: PublicationListTile(item: _data[index], tag: index),
-            onTap: () {
-              Navigator.of(context).push(
-                HeroDialogRoute(
-                  builder: (context) => Center(
-                      child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 1200),
-                    child: FullPublicationExpandView(
-                      item: _data[index],
-                      tag: index,
-                    ),
-                  )),
-                ),
-              );
-            },
+            // onTap: () {
+            // Navigator.of(context).push(
+            //   HeroDialogRoute(
+            //     builder: (context) => Center(
+            //         child: ConstrainedBox(
+            //       constraints: const BoxConstraints(maxWidth: 1200),
+            //       child: FullPublicationExpandView(
+            //         item: _data[index],
+            //         tag: index,
+            //       ),
+            //     )),
+            //   ),
+            // );
+            // },
           );
         },
       ));
