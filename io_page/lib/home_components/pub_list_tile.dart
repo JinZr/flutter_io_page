@@ -75,7 +75,7 @@ class _PublicationListTileState extends State<PublicationListTile> {
         ],
       ),
       onTap: () {
-        showModalBottomSheet(
+        showBottomSheet(
             context: context,
             builder: (context) {
               return ListView(
