@@ -52,9 +52,9 @@ class _PublicationListTileState extends State<PublicationListTile> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    bool isWideScreen =
-        screenSize.height < screenSize.width - 200 && screenSize.width > 900;
+    // var screenSize = MediaQuery.of(context).size;
+    // bool isWideScreen =
+    // screenSize.height < screenSize.width - 200 && screenSize.width > 900;
     return ListTile(
       title: Text(widget.item.title),
       subtitle: Row(

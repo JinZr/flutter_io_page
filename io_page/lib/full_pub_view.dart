@@ -62,26 +62,24 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   Widget _buildPanel() => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
       child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         itemCount: _data.length,
         itemBuilder: (BuildContext context, int index) {
-          return InkWell(
-            child: PublicationListTile(item: _data[index], tag: index),
-            // onTap: () {
-            // Navigator.of(context).push(
-            //   HeroDialogRoute(
-            //     builder: (context) => Center(
-            //         child: ConstrainedBox(
-            //       constraints: const BoxConstraints(maxWidth: 1200),
-            //       child: FullPublicationExpandView(
-            //         item: _data[index],
-            //         tag: index,
-            //       ),
-            //     )),
-            //   ),
-            // );
-            // },
-          );
+          return PublicationListTile(item: _data[index], tag: index);
+          // onTap: () {
+          // Navigator.of(context).push(
+          //   HeroDialogRoute(
+          //     builder: (context) => Center(
+          //         child: ConstrainedBox(
+          //       constraints: const BoxConstraints(maxWidth: 1200),
+          //       child: FullPublicationExpandView(
+          //         item: _data[index],
+          //         tag: index,
+          //       ),
+          //     )),
+          //   ),
+          // );
+          // },
         },
       ));
 }
