@@ -59,27 +59,38 @@ class _FullPublicationViewState extends State<FullPublicationView> {
     );
   }
 
+  // Widget _buildPanel() => ConstrainedBox(
+  //     constraints: const BoxConstraints(maxWidth: 1200),
+  //     child: ListView.builder(
+  //       shrinkWrap: true,
+  //       itemCount: _data.length,
+  //       itemBuilder: (BuildContext context, int index) {
+  //         return PublicationListTile(item: _data[index], tag: index);
+  // onTap: () {
+  // Navigator.of(context).push(
+  //   HeroDialogRoute(
+  //     builder: (context) => Center(
+  //         child: ConstrainedBox(
+  //       constraints: const BoxConstraints(maxWidth: 1200),
+  //       child: FullPublicationExpandView(
+  //         item: _data[index],
+  //         tag: index,
+  //       ),
+  //     )),
+  //   ),
+  // );
+  // },
+  //       },
+  //     ));
   Widget _buildPanel() => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: _data.length,
-        itemBuilder: (BuildContext context, int index) {
-          return PublicationListTile(item: _data[index], tag: index);
-          // onTap: () {
-          // Navigator.of(context).push(
-          //   HeroDialogRoute(
-          //     builder: (context) => Center(
-          //         child: ConstrainedBox(
-          //       constraints: const BoxConstraints(maxWidth: 1200),
-          //       child: FullPublicationExpandView(
-          //         item: _data[index],
-          //         tag: index,
-          //       ),
-          //     )),
-          //   ),
-          // );
-          // },
-        },
+      child: Card(
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: _data.length,
+          itemBuilder: (BuildContext context, int index) {
+            return PublicationListTile(item: _data[index], tag: index);
+          },
+        ),
       ));
 }

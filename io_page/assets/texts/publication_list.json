@@ -1,6 +1,14 @@
 [
     {
         "publisher": "INTERSPEECH",
+        "title": "On-the-Fly Feature Based Rapid Speaker Adaptation for Dysarthric and Elderly Speech Recognition",
+        "author": "Mengzhe Geng, Xurong Xie, Rongfeng Su, Jianwei Yu, Zengrui Jin, Tianzi Wang, Shujie Hu, Zi Ye, Helen Meng, Xunying Liu",
+        "abstract": "Accurate recognition of dysarthric and elderly speech remain challenging tasks to date. Speaker-level heterogeneity attributed to accent or gender, when aggregated with age and speech impairment, create large diversity among these speakers. Scarcity of speaker-level data limits the practical use of data-intensive model based speaker adaptation methods. To this end, this paper proposes two novel forms of data-efficient. feature based on-the-fly speaker adaptation methods: variance-regularized spectral basis embedding (SVR) and spectral feature driven f-LHUC transforms. Experiments conducted on UASpeech dysarthric and DementiaBank Pitt elderly speech corpora suggest the proposed on-the-fly speaker adaptation approaches consistently outperform baseline iVector adapted hybrid DNN/TDNN and E2E Conformer systems by statistically significant WER reduction of 2.48%-2.85% absolute (7.92%-8.06% relative), and offline model based LHUC adaptation by 1.82% absolute (5.63% relative) respectively.",
+        "year": 2023,
+        "link": "https://arxiv.org/abs/2203.14593"
+    },
+    {
+        "publisher": "INTERSPEECH",
         "title": "Use of Speech Impairment Severity for Dysarthric Speech Recognition",
         "link": "https://arxiv.org/abs/2305.10659",
         "author": "Mengzhe Geng, Zengrui Jin, Tianzi Wang, Shujie Hu, Jiajun Deng, Mingyu Cui, Guinan Li, Jianwei Yu, Xurong Xie, Xunying Liu",
