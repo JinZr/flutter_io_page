@@ -69,7 +69,7 @@ class PublicationListTile extends StatelessWidget {
               Theme.of(context).brightness == Brightness.light,
               Theme.of(context).textTheme.bodyLarge!.fontSize!)),
       onTap: () {
-        showBottomSheet(
+        showModalBottomSheet(
             context: context,
             builder: (context) {
               return ListView(
