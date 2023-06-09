@@ -46,17 +46,14 @@ class MobileLayout extends StatelessWidget {
   final String titleEn;
   final String titleZh;
   final _panel = Center(
-    child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1200),
-        child: ListView(
-          children: const [
-            IntroductionCard(),
-            UpdateCard(),
-            PublicationCard(),
-            PolaroidCard()
-          ],
-        )),
-  );
+      child: ListView(
+    children: const [
+      IntroductionCard(),
+      UpdateCard(),
+      PublicationCard(),
+      PolaroidCard()
+    ],
+  ));
 
   MobileLayout({Key? key, required this.titleEn, required this.titleZh})
       : super(key: key);
@@ -118,6 +115,7 @@ class DesktopLayoutState extends State<DesktopLayout> {
         body: Row(
           children: [
             NavigationRail(
+                // extended: true,
                 selectedIndex: _selectedIndex,
                 labelType: NavigationRailLabelType.all,
                 onDestinationSelected: (int index) {
@@ -127,11 +125,13 @@ class DesktopLayoutState extends State<DesktopLayout> {
                 },
                 destinations: const [
                   NavigationRailDestination(
-                    icon: Icon(Icons.home),
+                    icon: Icon(Icons.home_outlined),
+                    selectedIcon: Icon(Icons.home),
                     label: Text('Homepage'),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.library_books),
+                    icon: Icon(Icons.library_books_outlined),
+                    selectedIcon: Icon(Icons.library_books),
                     label: Text('Publications'),
                   ),
                   // NavigationRailDestination(
