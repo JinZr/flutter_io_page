@@ -84,7 +84,7 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   //     ));
   Widget _buildPanel() => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
-      child: Expanded(
+      child: Center(
         child: ListView.builder(
           shrinkWrap: true,
           itemCount: _data.length,
