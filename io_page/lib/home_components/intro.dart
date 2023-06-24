@@ -19,7 +19,7 @@ class MyIntroduction extends StatelessWidget {
         text: TextSpan(children: [
       TextSpan(
           text:
-              "I received my B. Eng. degree from the School of Software Engineering, Dalian University of Technology. I am currently a Ph.D. candidate in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong under the supervision of ",
+              "I obtained my B.Eng. degree from the School of Software Engineering, Dalian University of Technology, and am presently pursuing my Ph.D. in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong, where I am being supervised by ",
           style: Theme.of(context).textTheme.titleMedium!),
       TextSpan(
           text: "Prof. Xunying Liu",
@@ -31,7 +31,7 @@ class MyIntroduction extends StatelessWidget {
             ..onTap = () => _launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
       TextSpan(
           text:
-              ". My research interests include adversarial learning based data augmentation in the context of automatic speech recognition.",
+              ". My research is focused on exploring the application of adversarial learning based data augmentation techniques to enhance the performance of automatic speech recognition models. Through my work, I aim to contribute to the development of more robust and accurate speech recognition systems.",
           style: Theme.of(context).textTheme.titleMedium!),
     ]));
   }

@@ -33,10 +33,9 @@ class _PublicationCardState extends State<PublicationCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ListTile(
-            leading: Icon(Icons.library_books,
-                color: Theme.of(context).colorScheme.onSecondaryContainer),
-            title: const Text("Recent Publications"),
+          const ListTile(
+            leading: Icon(Icons.library_books),
+            title: Text("Recent Publications"),
           ),
           const Divider(indent: 10),
           FutureBuilder(

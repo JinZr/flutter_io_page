@@ -10,7 +10,6 @@ class UpdateEventListTile extends StatelessWidget {
     return ListTile(
         leading: Chip(
           label: Text(json["date"]),
-          avatar: const Icon(Icons.calendar_month),
         ),
         title: SelectableText(
           "${json["content"]}",

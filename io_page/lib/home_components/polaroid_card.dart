@@ -10,10 +10,9 @@ class PolaroidCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-          ListTile(
-            leading: Icon(Icons.camera,
-                color: Theme.of(context).colorScheme.onSecondaryContainer),
-            title: const Text("My Polaroid Camera Gallery"),
+          const ListTile(
+            leading: Icon(Icons.camera),
+            title: Text("My Polaroid Camera Gallery"),
           ),
           const Divider(indent: 10),
           SizedBox(

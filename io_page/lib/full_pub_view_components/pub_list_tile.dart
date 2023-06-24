@@ -28,7 +28,7 @@ class PublicationListTile extends StatelessWidget {
                 "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
             child: const Text("Search at Google Scholar"),
           ),
-          FilledButton.tonal(
+          ElevatedButton(
             onPressed: () => _launchURL(item.link),
             child: const Text("Download PDF"),
           )
@@ -75,54 +75,43 @@ class PublicationListTile extends StatelessWidget {
               return ListView(
                 children: [
                   ListTile(
-                    title: Text(_data.title),
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                            flex: 2,
-                            child: AuthorListText(
-                                text: _data.authorList,
-                                regularStyle: regularTextStyle(
-                                    Theme.of(context).brightness ==
-                                        Brightness.light,
-                                    Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .fontSize!),
-                                matchStyle: matchTextStyle(
-                                    context,
-                                    Theme.of(context).brightness ==
-                                        Brightness.light,
-                                    Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .fontSize!))),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                    trailing: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.close),
-                    ),
-                  ),
+                      title: Text(_data.title),
+                      subtitle: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                              flex: 2,
+                              child: AuthorListText(
+                                  text: _data.authorList,
+                                  regularStyle: regularTextStyle(
+                                      Theme.of(context).brightness ==
+                                          Brightness.light,
+                                      Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .fontSize!),
+                                  matchStyle: matchTextStyle(
+                                      context,
+                                      Theme.of(context).brightness ==
+                                          Brightness.light,
+                                      Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .fontSize!))),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                      trailing: const CloseButton()),
                   const Divider(indent: 10),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                    child: Text(
-                      _data.abs,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                    child: Text(_data.abs),
                   ),
                   const Divider(indent: 10),
                   Row(children: [
                     ButtonBar(children: [
-                      Chip(
-                          avatar: const Icon(Icons.book),
-                          label: Text(_data.publisher)),
-                      Chip(
-                          avatar: const Icon(Icons.calendar_month),
-                          label: Text("${_data.year}")),
+                      Chip(label: Text(_data.publisher)),
+                      Chip(label: Text("${_data.year}")),
                     ])
                   ]),
                   const Divider(indent: 10),
