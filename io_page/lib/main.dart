@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Zengrui JIN',
       theme: ThemeData(
-          useMaterial3: true,
+          useMaterial3: false,
           brightness: Brightness.light,
           colorSchemeSeed: null),
       darkTheme: ThemeData(
-          useMaterial3: true,
+          useMaterial3: false,
           brightness: Brightness.dark,
           colorSchemeSeed: null),
       themeMode: ThemeMode.system,
