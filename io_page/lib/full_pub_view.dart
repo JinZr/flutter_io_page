@@ -85,12 +85,13 @@ class _FullPublicationViewState extends State<FullPublicationView> {
   Widget _buildPanel() => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
       child: Center(
-        child: ListView.builder(
+        child: ListView.separated(
           shrinkWrap: true,
           itemCount: _data.length,
           itemBuilder: (BuildContext context, int index) {
             return PublicationListTile(item: _data[index], tag: index);
           },
+          separatorBuilder: (context, index) => const Divider(),
         ),
       ));
 }
