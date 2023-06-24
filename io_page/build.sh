@@ -1,1 +1,1 @@
-flutter build web --release --web-renderer canvaskit 
+flutter build web --release --web-renderer html --pwa-strategy none
