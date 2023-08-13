@@ -21,6 +21,7 @@ class MyIntroduction extends StatelessWidget {
           text:
               "I obtained my B.Eng. degree from the School of Software Engineering, Dalian University of Technology, and am presently pursuing my Ph.D. in the Department of Systems Engineering and Engineering Management at The Chinese University of Hong Kong, where I am being supervised by ",
           style: TextStyle(
+              color: Theme.of(context).textTheme.titleMedium!.color,
               fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!)),
       TextSpan(
           text: "Prof. Xunying Liu",
@@ -34,6 +35,7 @@ class MyIntroduction extends StatelessWidget {
           text:
               ". My research is focused on exploring the application of adversarial learning based data augmentation techniques to enhance the performance of automatic speech recognition models. Through my work, I aim to contribute to the development of more robust and accurate speech recognition systems.",
           style: TextStyle(
+              color: Theme.of(context).textTheme.titleMedium!.color,
               fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!)),
     ]));
   }
