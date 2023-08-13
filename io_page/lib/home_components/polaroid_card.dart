@@ -12,7 +12,10 @@ class PolaroidCard extends StatelessWidget {
             children: [
           const ListTile(
             leading: Icon(Icons.camera),
-            title: Text("My Polaroid Camera Gallery"),
+            title: Text(
+              "My Polaroid Camera Gallery",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           const Divider(indent: 10),
           SizedBox(

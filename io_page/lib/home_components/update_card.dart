@@ -31,7 +31,10 @@ class _UpdateCardState extends State<UpdateCard> {
         children: [
           const ListTile(
             leading: Icon(Icons.fiber_new),
-            title: Text("News"),
+            title: Text(
+              "News",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           const Divider(
             indent: 10,

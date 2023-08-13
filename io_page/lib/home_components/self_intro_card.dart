@@ -42,7 +42,8 @@ class IntroductionCard extends StatelessWidget {
           leading: Image(
               image: NetworkImage(
                   "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg")),
-          title: Text("Zengrui JIN"),
+          title: Text("Zengrui JIN",
+              style: TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text("金增锐"),
         ),
         const Divider(indent: 10),

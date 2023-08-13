@@ -35,7 +35,10 @@ class _PublicationCardState extends State<PublicationCard> {
         children: [
           const ListTile(
             leading: Icon(Icons.library_books),
-            title: Text("Recent Publications"),
+            title: Text(
+              "Recent Publications",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           const Divider(indent: 10),
           FutureBuilder(
