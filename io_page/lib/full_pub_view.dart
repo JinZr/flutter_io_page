@@ -1,6 +1,7 @@
 import 'dart:convert' show json;
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'full_pub_view_components/pub_item.dart';
 import 'full_pub_view_components/pub_expand_view.dart';
@@ -32,31 +33,50 @@ class _FullPublicationViewState extends State<FullPublicationView> {
     }
   }
 
+  _launchURL(String url) async => await canLaunchUrlString(url)
+      ? await launchUrlString(url)
+      : throw 'Could not launch $url';
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder(
-        future: _futureString(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var items = json.decode(snapshot.data.toString());
-            _data = generateItems(items);
-            return _buildPanel();
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                children: [
-                  const Icon(Icons.warning),
-                  Text("${snapshot.error}")
-                ],
-              ),
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
+        child: Column(
+      children: [
+        Card(
+          child: ListTile(
+            title: const Text(
+                "This list is updated manually. For more recent updates, please visit my Google Scholar page."),
+            trailing: FilledButton(
+                child: const Text("Google Scholar"),
+                onPressed: () => _launchURL(
+                    'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
+          ),
+        ),
+        Expanded(
+          child: FutureBuilder(
+            future: _futureString(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var items = json.decode(snapshot.data.toString());
+                _data = generateItems(items);
+                return _buildPanel();
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Column(
+                    children: [
+                      const Icon(Icons.warning),
+                      Text("${snapshot.error}")
+                    ],
+                  ),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        )
+      ],
+    ));
   }
 
   // Widget _buildPanel() => ConstrainedBox(
