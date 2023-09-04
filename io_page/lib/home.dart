@@ -7,7 +7,6 @@ import 'home_components/pub_card.dart';
 import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
-// import 'polaroid_gallery_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.titleEn, required this.titleZh})
@@ -47,11 +46,11 @@ class MobileLayout extends StatelessWidget {
   final String titleZh;
   final _panel = Center(
       child: ListView(
-    children: const [
-      IntroductionCard(),
-      UpdateCard(),
+    children: [
+      const IntroductionCard(),
+      const UpdateCard(),
       PublicationCard(),
-      PolaroidCard()
+      const PolaroidCard()
     ],
   ));
 
@@ -72,7 +71,7 @@ class MobileLayout extends StatelessWidget {
           ),
           body: TabBarView(children: [
             _panel,
-            const FullPublicationView(title: "Publications"),
+            FullPublicationView(),
             // const PolaroidGalleryView(title: "Polaroid Cameras"),
             // const DatasetView(title: "Datasets"),
           ])));
@@ -95,15 +94,13 @@ class DesktopLayoutState extends State<DesktopLayout> {
     Center(
         child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
-            child: ListView(
-              children: const [
-                IntroductionCard(),
-                UpdateCard(),
-                PublicationCard(),
-                PolaroidCard()
-              ],
-            ))),
-    const FullPublicationView(title: "Publications"),
+            child: ListView(children: [
+              const IntroductionCard(),
+              const UpdateCard(),
+              PublicationCard(),
+              const PolaroidCard()
+            ]))),
+    FullPublicationView(),
     // const PolaroidGalleryView(title: "Polaroid Cameras"),
     // const DatasetView(title: "Datasets"),
   ];
@@ -112,45 +109,42 @@ class DesktopLayoutState extends State<DesktopLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(widget.titleEn)),
-        body: Row(
-          children: [
-            NavigationRail(
-                // extended: true,
-                selectedIndex: _selectedIndex,
-                labelType: NavigationRailLabelType.all,
-                onDestinationSelected: (int index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home_outlined),
-                    selectedIcon: Icon(Icons.home),
-                    label: Text('Homepage'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.library_books_outlined),
-                    selectedIcon: Icon(Icons.library_books),
-                    label: Text('Publications'),
-                  ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.camera_alt_sharp),
-                  //   label: Text('Polaroid'),
-                  // ),
-                ]),
-            Expanded(
-              child: PageTransitionSwitcher(
-                transitionBuilder: (child, animation, secondaryAnimation) =>
-                    FadeThroughTransition(
-                  animation: animation,
-                  secondaryAnimation: secondaryAnimation,
-                  child: child,
+        body: Row(children: [
+          NavigationRail(
+              // extended: true,
+              selectedIndex: _selectedIndex,
+              labelType: NavigationRailLabelType.all,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              destinations: const [
+                NavigationRailDestination(
+                  icon: Icon(Icons.home_outlined),
+                  selectedIcon: Icon(Icons.home),
+                  label: Text('Homepage'),
                 ),
-                child: _body[_selectedIndex],
-              ),
-            )
-          ],
-        ));
+                NavigationRailDestination(
+                  icon: Icon(Icons.library_books_outlined),
+                  selectedIcon: Icon(Icons.library_books),
+                  label: Text('Publications'),
+                ),
+                // NavigationRailDestination(
+                //   icon: Icon(Icons.camera_alt_sharp),
+                //   label: Text('Polaroid'),
+                // ),
+              ]),
+          Expanded(
+              child: PageTransitionSwitcher(
+            transitionBuilder: (child, animation, secondaryAnimation) =>
+                FadeThroughTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              child: child,
+            ),
+            child: _body[_selectedIndex],
+          ))
+        ]));
   }
 }
