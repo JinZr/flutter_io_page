@@ -1,11 +1,10 @@
 import 'dart:convert' show json;
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-import 'full_pub_view_components/pub_item.dart';
-import 'full_pub_view_components/pub_expand_view.dart';
-import 'full_pub_view_components/pub_list_tile.dart';
+import 'package:zr_jin_page/utilities/launch_url.dart';
+import 'package:zr_jin_page/modal/pub_item.dart';
+import 'package:zr_jin_page/full_pub_view_components/pub_list_tile.dart';
 
 // import 'hero_dialog_route.dart';
 
@@ -33,85 +32,51 @@ class _FullPublicationViewState extends State<FullPublicationView> {
     }
   }
 
-  _launchURL(String url) async => await canLaunchUrlString(url)
-      ? await launchUrlString(url)
-      : throw 'Could not launch $url';
-
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-      children: [
-        Card(
-          child: ListTile(
-            title: const Text(
-                "This list is updated manually. For more recent updates, please visit my Google Scholar page."),
-            trailing: FilledButton(
-                child: const Text("Google Scholar"),
-                onPressed: () => _launchURL(
-                    'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
-          ),
-        ),
-        Expanded(
-          child: FutureBuilder(
-            future: _futureString(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                var items = json.decode(snapshot.data.toString());
-                _data = generateItems(items);
-                return _buildPanel();
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Column(
-                    children: [
-                      const Icon(Icons.warning),
-                      Text("${snapshot.error}")
-                    ],
-                  ),
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        )
-      ],
-    ));
+        child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(children: [
+              Card(
+                child: ListTile(
+                  title: const Text(
+                      "This list is updated manually. For more recent updates, please visit my Google Scholar or ResearchGate page."),
+                  trailing: FilledButton.tonal(
+                      child: const Text("Google Scholar"),
+                      onPressed: () => launchURL(
+                          'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
+                ),
+              ),
+              Expanded(
+                  child: FutureBuilder(
+                      future: _futureString(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          var items = json.decode(snapshot.data.toString());
+                          _data = generateItems(items);
+                          return _buildPanel();
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Column(children: [
+                            const Icon(Icons.warning),
+                            Text("${snapshot.error}")
+                          ]));
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      }))
+            ])));
   }
 
-  // Widget _buildPanel() => ConstrainedBox(
-  //     constraints: const BoxConstraints(maxWidth: 1200),
-  //     child: ListView.builder(
-  //       shrinkWrap: true,
-  //       itemCount: _data.length,
-  //       itemBuilder: (BuildContext context, int index) {
-  //         return PublicationListTile(item: _data[index], tag: index);
-  // onTap: () {
-  // Navigator.of(context).push(
-  //   HeroDialogRoute(
-  //     builder: (context) => Center(
-  //         child: ConstrainedBox(
-  //       constraints: const BoxConstraints(maxWidth: 1200),
-  //       child: FullPublicationExpandView(
-  //         item: _data[index],
-  //         tag: index,
-  //       ),
-  //     )),
-  //   ),
-  // );
-  // },
-  //       },
-  //     ));
-  Widget _buildPanel() => ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 1200),
-      child: Center(
-        child: ListView.separated(
-          shrinkWrap: true,
-          itemCount: _data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return PublicationListTile(item: _data[index], tag: index);
-          },
-          separatorBuilder: (context, index) => const Divider(),
-        ),
+  Widget _buildPanel() => Center(
+          child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: _data.length,
+        itemBuilder: (BuildContext context, int index) {
+          return PublicationListTile(item: _data[index]);
+        },
+        separatorBuilder: (context, index) => const Divider(),
       ));
 }

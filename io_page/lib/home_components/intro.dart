@@ -1,9 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:url_launcher/url_launcher_string.dart';
-
-import '../theme/clickable_text_theme.dart';
+import 'package:zr_jin_page/utilities/launch_url.dart';
+import 'package:zr_jin_page/theme/clickable_text_theme.dart';
 
 class MyIntroduction extends StatelessWidget {
   final String str = """
@@ -30,7 +29,7 @@ class MyIntroduction extends StatelessWidget {
             Theme.of(context).textTheme.titleMedium!.fontSize!,
           ),
           recognizer: TapGestureRecognizer()
-            ..onTap = () => _launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
+            ..onTap = () => launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
       TextSpan(
           text:
               ". My research focuses on exploring the application of adversarial learning based data augmentation techniques to enhance the performance of automatic speech recognition models. ",
@@ -39,8 +38,4 @@ class MyIntroduction extends StatelessWidget {
               fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!)),
     ]));
   }
-
-  _launchURL(String url) async => await canLaunchUrlString(url)
-      ? await launchUrlString(url)
-      : throw 'Could not launch $url';
 }

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import 'pub_list_tile.dart';
-import '../full_pub_view_components/pub_item.dart';
+import 'package:zr_jin_page/modal/pub_item.dart';
 
 class PublicationCard extends StatefulWidget {
   const PublicationCard({Key? key}) : super(key: key);
