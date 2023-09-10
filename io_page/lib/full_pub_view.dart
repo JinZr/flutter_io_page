@@ -26,7 +26,7 @@ class FullPublicationView extends StatelessWidget {
           child: Column(children: [
             const ListTile(
                 title: Text(
-                    "This list is updated manually. For more recent updates, please visit my Google Scholar or ResearchGate page.")),
+                    "This list is updated manually. Please visit my Google Scholar or ResearchGate for more recent updates.")),
             linkButtonBar
           ])),
       Expanded(
