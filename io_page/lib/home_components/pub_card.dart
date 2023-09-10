@@ -20,12 +20,9 @@ class PublicationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
           const ListTile(
-            leading: Icon(Icons.library_books),
-            title: Text(
-              "Recent Publications",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
+              leading: Icon(Icons.library_books),
+              title: Text("Recent Publications",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
           const Divider(indent: 10),
           FutureBuilder(
               future: futurePub(),
@@ -37,9 +34,8 @@ class PublicationCard extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: items.length <= 5 ? items.length : 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return PublicationListTile(item: _data[index]);
-                      });
+                      itemBuilder: (BuildContext context, int index) =>
+                          PublicationListTile(item: _data[index]));
                 } else if (snapshot.hasError) {
                   return Center(
                       child: Column(children: [

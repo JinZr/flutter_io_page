@@ -5,13 +5,9 @@ import 'package:zr_jin_page/utilities/launch_url.dart';
 import 'package:zr_jin_page/theme/clickable_text_theme.dart';
 
 class MyIntroduction extends StatelessWidget {
-  final String str = """
-    Prof. Xunying Liu. 
-  """;
+  final String str = "Prof. Xunying Liu";
 
   const MyIntroduction({Key? key}) : super(key: key);
-  // Text(str,
-  // softWrap: true, style: )
   @override
   Widget build(BuildContext context) {
     return RichText(
@@ -23,11 +19,9 @@ class MyIntroduction extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!)),
       TextSpan(
-          text: "Prof. Xunying Liu",
-          style: clickableTextStyle(
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).textTheme.titleMedium!.fontSize!,
-          ),
+          text: str,
+          style: clickableTextStyle(Theme.of(context).colorScheme.primary,
+              Theme.of(context).textTheme.titleMedium!.fontSize!),
           recognizer: TapGestureRecognizer()
             ..onTap = () => launchURL("https://www1.se.cuhk.edu.hk/~xyliu/")),
       TextSpan(
@@ -35,7 +29,7 @@ class MyIntroduction extends StatelessWidget {
               ". My research focuses on exploring the application of adversarial learning based data augmentation techniques to enhance the performance of automatic speech recognition models. ",
           style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
-              fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!)),
+              fontSize: Theme.of(context).textTheme.titleMedium!.fontSize!))
     ]));
   }
 }

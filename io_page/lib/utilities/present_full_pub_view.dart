@@ -10,7 +10,7 @@ void presentFullPubView(BuildContext context, PublicationItem item) {
       builder: (context) {
         return ListView(children: [
           ListTile(
-              title: Text(item.title),
+              title: SelectableText(item.title),
               subtitle: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -38,9 +38,8 @@ void presentFullPubView(BuildContext context, PublicationItem item) {
               trailing: const CloseButton()),
           const Divider(indent: 10),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: Text(item.abs),
-          ),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: SelectableText(item.abs)),
           const Divider(indent: 10),
           Row(children: [
             ButtonBar(children: [

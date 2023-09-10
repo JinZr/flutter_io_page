@@ -20,10 +20,7 @@ class IntroductionCard extends StatelessWidget {
       const Divider(indent: 10),
       const Column(children: [
         ListTile(title: MyIntroduction()),
-        ListTile(title: SelectableText("zengrui.jin [at] icloud.com")),
-        ListTile(
-            title: SelectableText(
-                "Collecting vintage Polaroid cameras. (SLR680 & 670AF)")),
+        ListTile(title: SelectableText("zengrui.jin0 [at] gmail.com")),
       ]),
       const Divider(indent: 10),
       ButtonBar(alignment: MainAxisAlignment.start, children: [
@@ -36,9 +33,8 @@ class IntroductionCard extends StatelessWidget {
             onPressed: () =>
                 launchURL("https://www.researchgate.net/profile/Zengrui-Jin")),
         TextButton(
-          child: const Text("GITHUB"),
-          onPressed: () => launchURL("https://github.com/JinZr"),
-        )
+            child: const Text("GITHUB"),
+            onPressed: () => launchURL("https://github.com/JinZr"))
       ])
     ]));
   }

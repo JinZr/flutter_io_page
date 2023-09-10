@@ -19,8 +19,6 @@ class PublicationItem {
   late int year;
 }
 
-List<PublicationItem> generateItems(List<dynamic> json) {
-  return List<PublicationItem>.generate(json.length, (int index) {
-    return PublicationItem(json: json[index]);
-  });
-}
+List<PublicationItem> generateItems(List<dynamic> json) =>
+    List<PublicationItem>.generate(
+        json.length, (int index) => PublicationItem(json: json[index]));

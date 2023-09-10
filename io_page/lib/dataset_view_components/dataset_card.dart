@@ -27,12 +27,12 @@ class DatasetCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            title: SelectableText(name),
-            subtitle: SelectableText(description),
+            title: Text(name),
+            subtitle: Text(description),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SelectableText(bibtex),
+            child: Text(bibtex),
           ),
           const Divider(indent: 10),
           Row(

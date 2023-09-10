@@ -12,9 +12,8 @@ class UpdateCard extends StatelessWidget {
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       const ListTile(
-        leading: Icon(Icons.fiber_new),
-        title: Text("News", style: TextStyle(fontWeight: FontWeight.bold)),
-      ),
+          leading: Icon(Icons.fiber_new),
+          title: Text("News", style: TextStyle(fontWeight: FontWeight.bold))),
       const Divider(indent: 10),
       FutureBuilder<List<dynamic>>(
           future: futureUpdate(),
@@ -25,9 +24,8 @@ class UpdateCard extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: items.length > 5 ? 5 : items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return UpdateEventListTile(json: items[index]);
-                  });
+                  itemBuilder: (BuildContext context, int index) =>
+                      UpdateEventListTile(json: items[index]));
             } else if (snapshot.hasError) {
               return Center(
                   child: Column(children: [

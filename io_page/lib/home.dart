@@ -23,21 +23,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        if (MediaQuery.of(context).size.width <
-            MediaQuery.of(context).size.height) {
-          return MobileLayout(
-            titleEn: widget.titleEn,
-            titleZh: widget.titleZh,
-          );
-        } else {
-          return DesktopLayout(
-            titleEn: widget.titleEn,
-            titleZh: widget.titleZh,
-          );
-        }
-      },
-    );
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (MediaQuery.of(context).size.width <
+          MediaQuery.of(context).size.height) {
+        return MobileLayout(titleEn: widget.titleEn, titleZh: widget.titleZh);
+      } else {
+        return DesktopLayout(titleEn: widget.titleEn, titleZh: widget.titleZh);
+      }
+    });
   }
 }
 
@@ -45,14 +38,12 @@ class MobileLayout extends StatelessWidget {
   final String titleEn;
   final String titleZh;
   final _panel = Center(
-      child: ListView(
-    children: [
-      const IntroductionCard(),
-      const UpdateCard(),
-      PublicationCard(),
-      const PolaroidCard()
-    ],
-  ));
+      child: ListView(children: [
+    const IntroductionCard(),
+    const UpdateCard(),
+    PublicationCard(),
+    const PolaroidCard()
+  ]));
 
   MobileLayout({Key? key, required this.titleEn, required this.titleZh})
       : super(key: key);
@@ -62,17 +53,14 @@ class MobileLayout extends StatelessWidget {
       length: 2,
       child: Scaffold(
           appBar: AppBar(
-            title: Text(titleEn),
-            bottom: const TabBar(tabs: [
-              Tab(icon: Icon(Icons.home)),
-              Tab(icon: Icon(Icons.library_books)),
-              // Tab(icon: Icon(Icons.camera_alt_sharp))
-            ]),
-          ),
+              title: Text(titleEn),
+              bottom: const TabBar(tabs: [
+                Tab(icon: Icon(Icons.home)),
+                Tab(icon: Icon(Icons.library_books))
+              ])),
           body: TabBarView(children: [
             _panel,
             FullPublicationView(),
-            // const PolaroidGalleryView(title: "Polaroid Cameras"),
             // const DatasetView(title: "Datasets"),
           ])));
 }
@@ -92,16 +80,13 @@ class DesktopLayoutState extends State<DesktopLayout> {
   int _selectedIndex = 0;
   final _body = [
     Center(
-        child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: ListView(children: [
-              const IntroductionCard(),
-              const UpdateCard(),
-              PublicationCard(),
-              const PolaroidCard()
-            ]))),
+        child: ListView(children: [
+      const IntroductionCard(),
+      const UpdateCard(),
+      PublicationCard(),
+      const PolaroidCard()
+    ])),
     FullPublicationView(),
-    // const PolaroidGalleryView(title: "Polaroid Cameras"),
     // const DatasetView(title: "Datasets"),
   ];
 
@@ -111,9 +96,8 @@ class DesktopLayoutState extends State<DesktopLayout> {
         appBar: AppBar(title: Text(widget.titleEn)),
         body: Row(children: [
           NavigationRail(
-              // extended: true,
+              extended: true,
               selectedIndex: _selectedIndex,
-              labelType: NavigationRailLabelType.all,
               onDestinationSelected: (int index) {
                 setState(() {
                   _selectedIndex = index;
@@ -121,30 +105,22 @@ class DesktopLayoutState extends State<DesktopLayout> {
               },
               destinations: const [
                 NavigationRailDestination(
-                  icon: Icon(Icons.home_outlined),
-                  selectedIcon: Icon(Icons.home),
-                  label: Text('Homepage'),
-                ),
+                    icon: Icon(Icons.home_outlined),
+                    selectedIcon: Icon(Icons.home),
+                    label: Text('Homepage')),
                 NavigationRailDestination(
-                  icon: Icon(Icons.library_books_outlined),
-                  selectedIcon: Icon(Icons.library_books),
-                  label: Text('Publications'),
-                ),
-                // NavigationRailDestination(
-                //   icon: Icon(Icons.camera_alt_sharp),
-                //   label: Text('Polaroid'),
-                // ),
+                    icon: Icon(Icons.library_books_outlined),
+                    selectedIcon: Icon(Icons.library_books),
+                    label: Text('Publications')),
               ]),
           Expanded(
               child: PageTransitionSwitcher(
-            transitionBuilder: (child, animation, secondaryAnimation) =>
-                FadeThroughTransition(
-              animation: animation,
-              secondaryAnimation: secondaryAnimation,
-              child: child,
-            ),
-            child: _body[_selectedIndex],
-          ))
+                  transitionBuilder: (child, animation, secondaryAnimation) =>
+                      FadeThroughTransition(
+                          animation: animation,
+                          secondaryAnimation: secondaryAnimation,
+                          child: child),
+                  child: _body[_selectedIndex]))
         ]));
   }
 }
