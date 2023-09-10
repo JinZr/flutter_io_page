@@ -1,15 +1,12 @@
-// stores ExpansionPanel state information
 class PublicationItem {
-  PublicationItem({required this.json}) {
+  PublicationItem({required json}) {
     title = json["title"];
     authorList = json["author"];
     publisher = json["publisher"];
     link = json["link"];
-    year = json["year"];
     abs = json["abstract"];
+    year = json["year"];
   }
-
-  dynamic json;
 
   late String title;
   late String authorList;
@@ -21,4 +18,4 @@ class PublicationItem {
 
 List<PublicationItem> generateItems(List<dynamic> json) =>
     List<PublicationItem>.generate(
-        json.length, (int index) => PublicationItem(json: json[index]));
+        json.length, (index) => PublicationItem(json: json[index]));

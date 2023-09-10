@@ -26,11 +26,10 @@ class PublicationListTile extends StatelessWidget {
             Theme.of(context).brightness == Brightness.light,
             Theme.of(context).textTheme.bodyLarge!.fontSize!));
     return ListTile(
-      title: Text(_data.title),
-      subtitle: authorList,
-      onTap: () {
-        presentFullPubView(context, _data, authorList);
-      },
-    );
+        title: Text(_data.title),
+        subtitle: authorList,
+        onTap: () {
+          presentFullPubView(context, _data, authorList);
+        });
   }
 }

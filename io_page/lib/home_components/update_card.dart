@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/utilities/error_view.dart';
 
 import 'update_list_tile.dart';
 import 'package:zr_jin_page/utilities/futures.dart';
@@ -27,11 +28,7 @@ class UpdateCard extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) =>
                       UpdateEventListTile(json: items[index]));
             } else if (snapshot.hasError) {
-              return Center(
-                  child: Column(children: [
-                const Icon(Icons.warning),
-                Text("${snapshot.error}"),
-              ]));
+              return buildErrorView(context, snapshot.error.toString());
             } else {
               return const Center(child: CircularProgressIndicator());
             }
