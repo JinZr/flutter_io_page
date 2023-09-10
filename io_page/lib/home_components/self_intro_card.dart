@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zr_jin_page/utilities/author_name.dart';
-import 'package:zr_jin_page/utilities/launch_url.dart';
+import 'package:zr_jin_page/utilities/link_buttonbar.dart';
 
 import 'intro.dart';
 
@@ -23,20 +23,7 @@ class IntroductionCard extends StatelessWidget {
         ListTile(title: MyIntroduction()),
         ListTile(title: SelectableText("zengrui.jin0 [at] gmail.com")),
       ]),
-      const Divider(indent: 10),
-      ButtonBar(alignment: MainAxisAlignment.start, children: [
-        TextButton(
-            child: const Text("GOOGLE SCHOLAR"),
-            onPressed: () => launchURL(
-                'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en')),
-        TextButton(
-            child: const Text("RESEARCHGATE"),
-            onPressed: () =>
-                launchURL("https://www.researchgate.net/profile/Zengrui-Jin")),
-        TextButton(
-            child: const Text("GITHUB"),
-            onPressed: () => launchURL("https://github.com/JinZr"))
-      ])
+      linkButtonBar
     ]));
   }
 }

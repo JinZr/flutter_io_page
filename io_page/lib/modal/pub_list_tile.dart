@@ -16,19 +16,20 @@ class PublicationListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authorList = AuthorListText(
+        text: _data.authorList,
+        regularStyle: regularTextStyle(
+            Theme.of(context).brightness == Brightness.light,
+            Theme.of(context).textTheme.bodyLarge!.fontSize!),
+        matchStyle: matchTextStyle(
+            context,
+            Theme.of(context).brightness == Brightness.light,
+            Theme.of(context).textTheme.bodyLarge!.fontSize!));
     return ListTile(
       title: Text(_data.title),
-      subtitle: AuthorListText(
-          text: _data.authorList,
-          regularStyle: regularTextStyle(
-              Theme.of(context).brightness == Brightness.light,
-              Theme.of(context).textTheme.bodyLarge!.fontSize!),
-          matchStyle: matchTextStyle(
-              context,
-              Theme.of(context).brightness == Brightness.light,
-              Theme.of(context).textTheme.bodyLarge!.fontSize!)),
+      subtitle: authorList,
       onTap: () {
-        presentFullPubView(context, _data);
+        presentFullPubView(context, _data, authorList);
       },
     );
   }

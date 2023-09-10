@@ -7,7 +7,7 @@ Future<String> futurePub() async {
   if (response.statusCode == 200) {
     return response.body;
   } else {
-    throw Exception('Failed to load update');
+    throw Exception('Failed to load publications.');
   }
 }
 
@@ -18,6 +18,6 @@ Future<List<dynamic>> futureUpdate() async {
     final data = jsonDecode(response.body) as List;
     return data;
   } else {
-    throw Exception('Failed to load update');
+    throw Exception('Failed to load update.');
   }
 }

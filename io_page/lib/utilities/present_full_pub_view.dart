@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zr_jin_page/utilities/author_text.dart';
-import 'package:zr_jin_page/theme/author_list_text_theme.dart';
 import 'package:zr_jin_page/modal/pub_item.dart';
 import 'package:zr_jin_page/utilities/launch_url.dart';
+import 'package:zr_jin_page/utilities/custom_chip.dart';
 
-void presentFullPubView(BuildContext context, PublicationItem item) {
+void presentFullPubView(
+    BuildContext context, PublicationItem item, AuthorListText authorList) {
   showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -14,25 +15,7 @@ void presentFullPubView(BuildContext context, PublicationItem item) {
               subtitle: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(
-                        flex: 2,
-                        child: AuthorListText(
-                            text: item.authorList,
-                            regularStyle: regularTextStyle(
-                                Theme.of(context).brightness ==
-                                    Brightness.light,
-                                Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize!),
-                            matchStyle: matchTextStyle(
-                                context,
-                                Theme.of(context).brightness ==
-                                    Brightness.light,
-                                Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize!))),
+                    Flexible(flex: 2, child: authorList),
                     const SizedBox(width: 8)
                   ]),
               trailing: const CloseButton()),
@@ -43,8 +26,8 @@ void presentFullPubView(BuildContext context, PublicationItem item) {
           const Divider(indent: 10),
           Row(children: [
             ButtonBar(children: [
-              Chip(label: Text(item.publisher)),
-              Chip(label: Text("${item.year}")),
+              CustomChip(str: item.publisher),
+              CustomChip(str: "${item.year}"),
             ])
           ]),
           const Divider(indent: 10),
@@ -53,16 +36,12 @@ void presentFullPubView(BuildContext context, PublicationItem item) {
       });
 }
 
-Widget _buildButton(BuildContext context, PublicationItem item) => ButtonBar(
-      children: [
-        FilledButton.tonal(
+Widget _buildButton(BuildContext context, PublicationItem item) =>
+    ButtonBar(children: [
+      OutlinedButton(
+          onPressed: () => launchURL(item.link), child: const Text("Download")),
+      FilledButton(
           onPressed: () => launchURL(
               "https://scholar.google.com/scholar?hl=en-US&as_sdt=0%2C5&q=${item.title}&btnG="),
-          child: const Text("Search at Google Scholar"),
-        ),
-        FilledButton(
-          onPressed: () => launchURL(item.link),
-          child: const Text("Download PDF"),
-        )
-      ],
-    );
+          child: const Text("Google Scholar")),
+    ]);
