@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/utilities/author_name.dart';
 import 'package:zr_jin_page/utilities/launch_url.dart';
 
 import 'intro.dart';
@@ -14,8 +15,8 @@ class IntroductionCard extends StatelessWidget {
           leading: Image(
               image: NetworkImage(
                   "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg")),
-          title: Text("Zengrui JIN",
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          title:
+              Text(AUTHOR_TEXT, style: TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text("金增锐")),
       const Divider(indent: 10),
       const Column(children: [
