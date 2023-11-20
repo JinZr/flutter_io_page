@@ -42,7 +42,7 @@ class MobileLayout extends StatelessWidget {
     const IntroductionCard(),
     const UpdateCard(),
     PublicationCard(),
-    const PolaroidCard()
+    // const PolaroidCard()
   ]));
 
   MobileLayout({Key? key, required this.titleEn, required this.titleZh})
@@ -84,7 +84,7 @@ class DesktopLayoutState extends State<DesktopLayout> {
       const IntroductionCard(),
       const UpdateCard(),
       PublicationCard(),
-      const PolaroidCard()
+      // const PolaroidCard()
     ])),
     FullPublicationView(),
     // const DatasetView(title: "Datasets"),
