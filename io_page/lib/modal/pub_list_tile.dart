@@ -27,8 +27,6 @@ class PublicationListTile extends StatelessWidget {
     return ListTile(
         title: Text(_data.title),
         subtitle: authorList,
-        onTap: () {
-          presentFullPubView(context, _data, authorList);
-        });
+        onTap: () => presentFullPubView(context, _data, authorList));
   }
 }

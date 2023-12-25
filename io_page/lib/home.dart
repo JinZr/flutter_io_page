@@ -21,17 +21,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (MediaQuery.of(context).size.width <
-          MediaQuery.of(context).size.height) {
-        return MobileLayout(titleEn: widget.titleEn, titleZh: widget.titleZh);
-      } else {
-        return DesktopLayout(titleEn: widget.titleEn, titleZh: widget.titleZh);
-      }
-    });
-  }
+  Widget build(BuildContext context) => LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        if (MediaQuery.of(context).size.width <
+            MediaQuery.of(context).size.height) {
+          return MobileLayout(titleEn: widget.titleEn, titleZh: widget.titleZh);
+        } else {
+          return DesktopLayout(
+              titleEn: widget.titleEn, titleZh: widget.titleZh);
+        }
+      });
 }
 
 class MobileLayout extends StatelessWidget {
@@ -92,36 +91,34 @@ class DesktopLayoutState extends State<DesktopLayout> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(widget.titleEn)),
-        body: Row(children: [
-          NavigationRail(
-              extended: true,
-              selectedIndex: _selectedIndex,
-              onDestinationSelected: (int index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              destinations: const [
-                NavigationRailDestination(
-                    icon: Icon(Icons.home_outlined),
-                    selectedIcon: Icon(Icons.home),
-                    label: Text('Homepage')),
-                NavigationRailDestination(
-                    icon: Icon(Icons.library_books_outlined),
-                    selectedIcon: Icon(Icons.library_books),
-                    label: Text('Publications')),
-              ]),
-          Expanded(
-              child: PageTransitionSwitcher(
-                  transitionBuilder: (child, animation, secondaryAnimation) =>
-                      FadeThroughTransition(
-                          animation: animation,
-                          secondaryAnimation: secondaryAnimation,
-                          child: child),
-                  child: _body[_selectedIndex]))
-        ]));
-  }
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(title: Text(widget.titleEn)),
+      body: Row(children: [
+        NavigationRail(
+            extended: true,
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            destinations: const [
+              NavigationRailDestination(
+                  icon: Icon(Icons.home_outlined),
+                  selectedIcon: Icon(Icons.home),
+                  label: Text('Homepage')),
+              NavigationRailDestination(
+                  icon: Icon(Icons.library_books_outlined),
+                  selectedIcon: Icon(Icons.library_books),
+                  label: Text('Publications')),
+            ]),
+        Expanded(
+            child: PageTransitionSwitcher(
+                transitionBuilder: (child, animation, secondaryAnimation) =>
+                    FadeThroughTransition(
+                        animation: animation,
+                        secondaryAnimation: secondaryAnimation,
+                        child: child),
+                child: _body[_selectedIndex]))
+      ]));
 }
