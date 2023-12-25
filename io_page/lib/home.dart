@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
 import 'home_components/pub_card.dart';
+import 'home_components/contrib_card.dart';
 // import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
@@ -39,6 +40,7 @@ class MobileLayout extends StatelessWidget {
   final _panel = Center(
       child: ListView(children: [
     const IntroductionCard(),
+    const ContribCard(),
     const UpdateCard(),
     PublicationCard(),
     // const PolaroidCard()
@@ -80,6 +82,7 @@ class DesktopLayoutState extends State<DesktopLayout> {
     Center(
         child: ListView(children: [
       const IntroductionCard(),
+      const ContribCard(),
       const UpdateCard(),
       PublicationCard(),
       // const PolaroidCard()

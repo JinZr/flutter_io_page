@@ -30,7 +30,7 @@ class UpdateCard extends StatelessWidget {
             } else if (snapshot.hasError) {
               return buildErrorView(context, snapshot.error.toString());
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: LinearProgressIndicator());
             }
           })
     ]));
