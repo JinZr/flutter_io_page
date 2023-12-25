@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PolaroidCard extends StatelessWidget {
-  const PolaroidCard({Key? key}) : super(key: key);
+  const PolaroidCard({super.key});
 
   @override
   Widget build(BuildContext context) {

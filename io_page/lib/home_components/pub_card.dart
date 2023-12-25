@@ -9,7 +9,7 @@ import 'package:zr_jin_page/utilities/futures.dart';
 
 // ignore: must_be_immutable
 class PublicationCard extends StatelessWidget {
-  PublicationCard({Key? key}) : super(key: key);
+  PublicationCard({super.key});
 
   late List<PublicationItem> _data;
 

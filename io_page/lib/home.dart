@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
 import 'home_components/pub_card.dart';
-import 'home_components/polaroid_card.dart';
+// import 'home_components/polaroid_card.dart';
 
 import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.titleEn, required this.titleZh})
-      : super(key: key);
+  const MyHomePage({super.key, required this.titleEn, required this.titleZh});
 
   final String titleEn;
   final String titleZh;
@@ -45,8 +44,7 @@ class MobileLayout extends StatelessWidget {
     // const PolaroidCard()
   ]));
 
-  MobileLayout({Key? key, required this.titleEn, required this.titleZh})
-      : super(key: key);
+  MobileLayout({super.key, required this.titleEn, required this.titleZh});
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
@@ -69,8 +67,8 @@ class DesktopLayout extends StatefulWidget {
   final String titleEn;
   final String titleZh;
 
-  const DesktopLayout({Key? key, required this.titleEn, required this.titleZh})
-      : super(key: key);
+  const DesktopLayout(
+      {super.key, required this.titleEn, required this.titleZh});
 
   @override
   State<StatefulWidget> createState() => DesktopLayoutState();

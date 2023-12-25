@@ -7,7 +7,7 @@ import 'package:zr_jin_page/theme/clickable_text_theme.dart';
 class MyIntroduction extends StatelessWidget {
   final String str = "Prof. Xunying Liu";
 
-  const MyIntroduction({Key? key}) : super(key: key);
+  const MyIntroduction({super.key});
   @override
   Widget build(BuildContext context) {
     return RichText(

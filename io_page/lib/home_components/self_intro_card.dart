@@ -5,7 +5,7 @@ import 'package:zr_jin_page/utilities/link_buttonbar.dart';
 import 'intro.dart';
 
 class IntroductionCard extends StatelessWidget {
-  const IntroductionCard({Key? key}) : super(key: key);
+  const IntroductionCard({super.key});
 
   @override
   Widget build(BuildContext context) {

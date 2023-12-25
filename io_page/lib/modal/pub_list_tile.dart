@@ -7,10 +7,9 @@ import 'package:zr_jin_page/utilities/present_full_pub_view.dart';
 
 class PublicationListTile extends StatelessWidget {
   const PublicationListTile({
-    Key? key,
+    super.key,
     required PublicationItem item,
-  })  : _data = item,
-        super(key: key);
+  }) : _data = item;
 
   final PublicationItem _data;
 

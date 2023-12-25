@@ -10,7 +10,7 @@ import 'package:zr_jin_page/utilities/error_view.dart';
 
 // ignore: must_be_immutable
 class FullPublicationView extends StatelessWidget {
-  FullPublicationView({Key? key}) : super(key: key);
+  FullPublicationView({super.key});
 
   late List<PublicationItem> _data;
 

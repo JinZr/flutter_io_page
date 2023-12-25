@@ -8,11 +8,10 @@ class AuthorListText extends StatelessWidget {
   final TextStyle matchStyle;
 
   const AuthorListText(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.regularStyle,
-      required this.matchStyle})
-      : super(key: key);
+      required this.matchStyle});
 
   TextSpan _buildText(String s) {
     List<InlineSpan> children = [];

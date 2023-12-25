@@ -5,7 +5,7 @@ import 'update_list_tile.dart';
 import 'package:zr_jin_page/utilities/futures.dart';
 
 class UpdateCard extends StatelessWidget {
-  const UpdateCard({Key? key}) : super(key: key);
+  const UpdateCard({super.key});
 
   @override
   Widget build(BuildContext context) {

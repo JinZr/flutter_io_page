@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomChip extends StatelessWidget {
   final String str;
 
-  const CustomChip({Key? key, required this.str}) : super(key: key);
+  const CustomChip({super.key, required this.str});
 
   @override
   Widget build(BuildContext context) => Chip(

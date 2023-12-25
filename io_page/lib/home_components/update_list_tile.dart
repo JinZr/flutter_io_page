@@ -5,7 +5,7 @@ import 'package:zr_jin_page/utilities/custom_chip.dart';
 class UpdateEventListTile extends StatelessWidget {
   final dynamic json;
 
-  const UpdateEventListTile({Key? key, this.json}) : super(key: key);
+  const UpdateEventListTile({super.key, this.json});
 
   @override
   Widget build(BuildContext context) => ListTile(
