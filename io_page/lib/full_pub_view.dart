@@ -19,7 +19,6 @@ class FullPublicationView extends StatelessWidget {
     return Center(
         child: Column(children: [
       Card(
-          elevation: 0,
           shape: RoundedRectangleBorder(
               side: BorderSide(color: Theme.of(context).colorScheme.outline),
               borderRadius: const BorderRadius.all(Radius.circular(12))),
