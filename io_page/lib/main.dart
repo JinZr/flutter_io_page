@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import 'package:provider/provider.dart';
-
 import 'package:zr_jin_page/utilities/author_name.dart';
-import 'package:zr_jin_page/utilities/futures.dart';
 
 import 'home.dart';
 
 void main() {
   setUrlStrategy(PathUrlStrategy());
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => PubProvider()),
-  ], child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
