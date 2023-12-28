@@ -6,6 +6,7 @@ import 'package:zr_jin_page/modal/pub_list_tile.dart';
 import 'package:zr_jin_page/modal/pub_item.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
 import 'package:zr_jin_page/utilities/futures.dart';
+import 'package:zr_jin_page/utilities/link_buttonbar.dart';
 
 // ignore: must_be_immutable
 class PublicationCard extends StatelessWidget {
@@ -24,6 +25,11 @@ class PublicationCard extends StatelessWidget {
               leading: Icon(Icons.library_books),
               title: Text("Recent Publications",
                   style: TextStyle(fontWeight: FontWeight.bold))),
+          const Divider(indent: 10),
+          const ListTile(
+              title: Text(
+                  "Please visit my Google Scholar or ResearchGate for more recent updates.")),
+          linkButtonBar,
           const Divider(indent: 10),
           FutureBuilder(
               future: futurePub(),
