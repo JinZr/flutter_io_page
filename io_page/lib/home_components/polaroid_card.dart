@@ -23,17 +23,16 @@ class PolaroidCard extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold))),
           const Divider(indent: 10),
           Container(
-            width: double.maxFinite,
-            height: 400,
-            padding: const EdgeInsets.all(10),
-            child: M3Carousel(
-              visible: images.length,
-              borderRadius: 20,
-              slideAnimationDuration: 300,
-              titleFadeAnimationDuration: 300,
-              children: images,
-            ),
-          ),
+              width: double.maxFinite,
+              height: 400,
+              padding: const EdgeInsets.all(10),
+              child: M3Carousel(
+                  visible: images.length,
+                  borderRadius: 20,
+                  slideAnimationDuration: 300,
+                  titleFadeAnimationDuration: 300,
+                  autoSlide: true,
+                  children: images)),
           const ListTile(
               title: Text(
                   "I have one Polaroid Spectra for shooting B&W files, one SX-70 Sonar for regular shooting, one SX-70 Model 2 and one 670-AF for collection."))

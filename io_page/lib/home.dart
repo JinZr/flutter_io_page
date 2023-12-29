@@ -6,7 +6,7 @@ import 'home_components/pub_card.dart';
 import 'home_components/contrib_card.dart';
 import 'home_components/polaroid_card.dart';
 
-import 'full_pub_view.dart';
+// import 'full_pub_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.titleEn, required this.titleZh});

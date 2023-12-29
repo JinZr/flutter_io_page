@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.light,
-          colorSchemeSeed: null),
+          colorSchemeSeed: const Color(0x00687a9e)),
       darkTheme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-          colorSchemeSeed: null),
+          colorSchemeSeed: const Color(0x00687a9e)),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false);
 }
