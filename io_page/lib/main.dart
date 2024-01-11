@@ -21,14 +21,8 @@ class MyApp extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 1200),
           child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐")),
       title: AUTHOR_TEXT,
-      theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.light,
-          colorSchemeSeed: const Color(0x00687a9e)),
-      darkTheme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.dark,
-          colorSchemeSeed: const Color(0x00687a9e)),
+      theme: ThemeData(useMaterial3: true, brightness: Brightness.light),
+      darkTheme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false);
 }
