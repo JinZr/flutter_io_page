@@ -22,12 +22,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final _panel = Center(
       child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1200),
-          child: ListView(children: [
-            const IntroductionCard(),
-            const ContribCard(),
-            const UpdateCard(),
+          child: ListView(children: const [
+            IntroductionCard(),
+            ContribCard(),
+            UpdateCard(),
             PublicationCard(),
-            const PolaroidCard(),
+            PolaroidCard(),
           ])));
   @override
   Widget build(BuildContext context) {

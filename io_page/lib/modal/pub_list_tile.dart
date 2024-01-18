@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:zr_jin_page/modal/pub_item.dart';
 import 'package:zr_jin_page/utilities/author_text.dart';
 import 'package:zr_jin_page/theme/author_list_text_theme.dart';
-import 'package:zr_jin_page/utilities/present_full_pub_view.dart';
 
 class PublicationListTile extends StatelessWidget {
   const PublicationListTile({

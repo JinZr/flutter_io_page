@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:zr_jin_page/utilities/launch_url.dart';
 
-final linkButtonBar = ButtonBar(alignment: MainAxisAlignment.start, children: [
+final linkButtonBar = ButtonBar(children: [
   TextButton(
       child: const Text("Google Scholar"),
       onPressed: () => launchURL(
