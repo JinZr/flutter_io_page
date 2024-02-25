@@ -23,20 +23,21 @@ class IntroductionCard extends StatelessWidget {
       Column(children: [
         const ListTile(title: MyIntroduction()),
         ListTile(
-          title: const Text("zengrui.jin0 [at] gmail.com"),
-          onTap: () {
-            Clipboard.setData(
-                    const ClipboardData(text: "zengrui.jin0@gmail.com"))
-                .catchError((e) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Failed to write the address to clipboard.")));
-            }).then((value) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Email address copied to clipboard.")));
-            });
-          },
-        ),
+            title: const Text("zengrui.jin0 [at] gmail.com"),
+            onTap: () {
+              Clipboard.setData(
+                      const ClipboardData(text: "zengrui.jin0@gmail.com"))
+                  .catchError((e) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content:
+                        Text("Failed to write the address to clipboard.")));
+              }).then((value) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Email address copied to clipboard.")));
+              });
+            })
       ]),
+      const Divider(indent: 10),
       linkButtonBar
     ]));
   }

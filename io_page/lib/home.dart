@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
-import 'home_components/pub_card.dart';
+// import 'home_components/pub_card.dart';
 import 'home_components/contrib_card.dart';
 import 'home_components/polaroid_card.dart';
 
@@ -26,7 +26,6 @@ class _MyHomePageState extends State<MyHomePage> {
             IntroductionCard(),
             ContribCard(),
             UpdateCard(),
-            PublicationCard(),
             PolaroidCard(),
           ])));
   @override
