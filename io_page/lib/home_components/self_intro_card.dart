@@ -15,28 +15,26 @@ class IntroductionCard extends StatelessWidget {
         child: Column(children: [
       ListTile(
           leading: Image.network(
-              "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg"),
+            "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg",
+            fit: BoxFit.cover,
+          ),
           title: const Text(AUTHOR_TEXT,
               style: TextStyle(fontWeight: FontWeight.bold)),
           subtitle: const Text("金增锐")),
-      const Divider(indent: 10),
-      Column(children: [
-        const ListTile(title: MyIntroduction()),
-        ListTile(
-            title: const Text("zengrui.jin0 [at] gmail.com"),
-            onTap: () {
-              Clipboard.setData(
-                      const ClipboardData(text: "zengrui.jin0@gmail.com"))
-                  .catchError((e) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content:
-                        Text("Failed to write the address to clipboard.")));
-              }).then((value) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("Email address copied to clipboard.")));
-              });
-            })
-      ]),
+      const ListTile(title: MyIntroduction()),
+      ListTile(
+          title: const Text("zengrui.jin0 [at] gmail.com"),
+          onTap: () {
+            Clipboard.setData(
+                    const ClipboardData(text: "zengrui.jin0@gmail.com"))
+                .catchError((e) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Failed to write the address to clipboard.")));
+            }).then((value) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Email address copied to clipboard.")));
+            });
+          }),
       const Divider(indent: 10),
       linkButtonBar
     ]));
