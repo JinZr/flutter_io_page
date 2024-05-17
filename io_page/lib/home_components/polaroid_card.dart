@@ -12,7 +12,7 @@ class PolaroidCard extends StatelessWidget {
       {"image": "assets/images/cameras/spectra.jpeg", "title": "Spectra"},
       {"image": "assets/images/cameras/sx-70.jpeg", "title": "SX-70"},
     ];
-    return Card(
+    return Card.outlined(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -35,7 +35,7 @@ class PolaroidCard extends StatelessWidget {
                   children: images)),
           const ListTile(
               title: Text(
-                  "I have one Polaroid Spectra for shooting B&W files, one SX-70 Sonar for regular shooting, one SX-70 Model 2 and one 670-AF for collection."))
+                  "I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also Blue Button Version)."))
         ]));
   }
 }

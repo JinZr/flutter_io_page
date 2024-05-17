@@ -37,7 +37,7 @@ class ContribCard extends StatelessWidget {
   const ContribCard({super.key});
 
   @override
-  Widget build(BuildContext context) => const Card(
+  Widget build(BuildContext context) => const Card.outlined(
           child: Column(children: [
         ListTile(
             leading: Icon(Icons.code),
