@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zr_jin_page/utilities/launch_url.dart';
 
@@ -37,21 +38,22 @@ class ContribCard extends StatelessWidget {
   const ContribCard({super.key});
 
   @override
-  Widget build(BuildContext context) => const Card.outlined(
+  Widget build(BuildContext context) => Card.outlined(
           child: Column(children: [
         ListTile(
-            leading: Icon(Icons.code),
+            leading: const Icon(Icons.code),
             title: Text("Contribution to Open Source",
-                style: TextStyle(fontWeight: FontWeight.bold))),
-        Divider(indent: 10),
-        ContribListTile(
+                style: GoogleFonts.notoSerifDisplay(
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold)))),
+        const Divider(indent: 10),
+        const ContribListTile(
             projectName: "icefall",
             projectUrl: "https://github.com/k2-fsa/icefall",
             projectDescription:
                 "icefall contains ASR recipes for various datasets using https://github.com/k2-fsa/k2.",
             projectIconUrl:
                 "https://raw.githubusercontent.com/k2-fsa/icefall/master/docs/source/_static/logo.png"),
-        ContribListTile(
+        const ContribListTile(
             projectName: "lhotse",
             projectUrl: "https://github.com/lhotse-speech/lhotse",
             projectDescription:

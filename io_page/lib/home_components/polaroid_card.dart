@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:m3_carousel/m3_carousel.dart';
 
@@ -17,10 +18,12 @@ class PolaroidCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-          const ListTile(
-              leading: Icon(Icons.camera),
+          ListTile(
+              leading: const Icon(Icons.camera),
               title: Text("My Polaroid Camera Gallery",
-                  style: TextStyle(fontWeight: FontWeight.bold))),
+                  style: GoogleFonts.notoSerifDisplay(
+                      textStyle:
+                          const TextStyle(fontWeight: FontWeight.bold)))),
           const Divider(indent: 10),
           Container(
               width: double.maxFinite,

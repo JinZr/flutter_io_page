@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zr_jin_page/utilities/author_name.dart';
 import 'package:zr_jin_page/utilities/link_buttonbar.dart';
@@ -18,8 +19,9 @@ class IntroductionCard extends StatelessWidget {
             "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg",
             fit: BoxFit.cover,
           ),
-          title: const Text(AUTHOR_TEXT,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(AUTHOR_TEXT,
+              style: GoogleFonts.notoSerifDisplay(
+                  textStyle: const TextStyle(fontWeight: FontWeight.bold))),
           subtitle: const Text("金增锐")),
       const ListTile(title: MyIntroduction()),
       ListTile(
