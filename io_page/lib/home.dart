@@ -32,8 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text(AUTHOR_TEXT,
                   style: GoogleFonts.notoSerifDisplay(
                       textStyle: const TextStyle(fontWeight: FontWeight.bold))),
-              background: Image.network(
-                  "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg",
+              // background: Image.network(
+              //     "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg",
+              //     fit: BoxFit.cover),
+              background: Image.asset("assets/images/avatar/avatar.jpeg",
                   fit: BoxFit.cover))),
       SliverList(
           delegate: SliverChildListDelegate(const <Widget>[
