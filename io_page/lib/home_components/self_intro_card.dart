@@ -14,6 +14,7 @@ class IntroductionCard extends StatelessWidget {
   Widget build(BuildContext context) => Card.outlined(
           child: Column(children: [
         ListTile(
+            leading: const Icon(Icons.person),
             title: Text(AUTHOR_TEXT,
                 style: GoogleFonts.notoSerifDisplay(
                     textStyle: const TextStyle(fontWeight: FontWeight.bold))),
