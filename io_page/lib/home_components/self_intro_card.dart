@@ -34,7 +34,6 @@ class IntroductionCard extends StatelessWidget {
                     content: Text("Email address copied to clipboard.")));
               });
             }),
-        const Divider(indent: 10),
         linkButtonBar
       ]));
 }

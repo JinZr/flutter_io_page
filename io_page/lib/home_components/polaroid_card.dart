@@ -8,10 +8,19 @@ class PolaroidCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = [
+    final List<Map<String, String>> images = [
       {"image": "assets/images/cameras/af670.jpeg", "title": "AF670"},
       {"image": "assets/images/cameras/spectra.jpeg", "title": "Spectra"},
       {"image": "assets/images/cameras/sx-70.jpeg", "title": "SX-70"},
+      {"image": "assets/images/avatar/avatar.jpeg", "title": "Dalian"},
+      {"image": "assets/images/egs/egs1.jpeg", "title": "Dalian"},
+      {"image": "assets/images/egs/egs2.jpeg", "title": "Dalian"},
+      {"image": "assets/images/egs/egs3.jpeg", "title": "Dalian"},
+      {"image": "assets/images/egs/egs4.jpeg", "title": "Dalian"},
+      {"image": "assets/images/egs/egs5.jpeg", "title": "Hong Kong SAR"},
+      {"image": "assets/images/egs/egs6.jpeg", "title": "Hong Kong SAR"},
+      {"image": "assets/images/egs/egs7.jpeg", "title": "Hong Kong SAR"},
+      {"image": "assets/images/egs/egs8.jpeg", "title": "Hong Kong SAR"},
     ];
     return Card.outlined(
         child: Column(
@@ -30,11 +39,10 @@ class PolaroidCard extends StatelessWidget {
               height: 400,
               padding: const EdgeInsets.all(10),
               child: M3Carousel(
-                  visible: images.length,
+                  visible: 3,
                   borderRadius: 20,
                   slideAnimationDuration: 300,
                   titleFadeAnimationDuration: 300,
-                  autoSlide: true,
                   children: images)),
           const ListTile(
               title: Text(
