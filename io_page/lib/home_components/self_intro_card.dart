@@ -11,7 +11,7 @@ class IntroductionCard extends StatelessWidget {
   const IntroductionCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Card.outlined(
+  Widget build(BuildContext context) => Card(
           child: Column(children: [
         ListTile(
             leading: const Icon(Icons.person),

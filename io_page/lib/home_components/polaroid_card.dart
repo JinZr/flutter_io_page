@@ -22,7 +22,7 @@ class PolaroidCard extends StatelessWidget {
       {"image": "assets/images/cameras/sx-70.jpeg", "title": "SX-70"},
       {"image": "assets/images/avatar/avatar.jpeg", "title": "Dalian"},
     ];
-    return Card.outlined(
+    return Card(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,

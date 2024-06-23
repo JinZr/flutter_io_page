@@ -38,7 +38,7 @@ class ContribCard extends StatelessWidget {
   const ContribCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Card.outlined(
+  Widget build(BuildContext context) => Card(
           child: Column(children: [
         ListTile(
             leading: const Icon(Icons.code),
@@ -47,14 +47,14 @@ class ContribCard extends StatelessWidget {
                     textStyle: const TextStyle(fontWeight: FontWeight.bold)))),
         const Divider(indent: 10),
         const ContribListTile(
-            projectName: "icefall",
+            projectName: "k2-fsa/icefall",
             projectUrl: "https://github.com/k2-fsa/icefall",
             projectDescription:
                 "icefall contains ASR recipes for various datasets using https://github.com/k2-fsa/k2.",
             projectIconUrl:
                 "https://raw.githubusercontent.com/k2-fsa/icefall/master/docs/source/_static/logo.png"),
         const ContribListTile(
-            projectName: "lhotse",
+            projectName: "lhotse-speech/lhotse",
             projectUrl: "https://github.com/lhotse-speech/lhotse",
             projectDescription:
                 "Lhotse is a Python library aiming to make speech and audio data preparation flexible and accessible to a wider community. Alongside k2, it is a part of the next generation Kaldi speech processing library.",

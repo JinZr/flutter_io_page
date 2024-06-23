@@ -21,29 +21,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: <Widget>[
-      SliverAppBar(
-          floating: true,
-          pinned: true,
-          expandedHeight: 300.0,
-          scrolledUnderElevation: 4.0,
-          shadowColor: Theme.of(context).colorScheme.shadow,
-          flexibleSpace: FlexibleSpaceBar(
-              title: Text(AUTHOR_TEXT,
-                  style: GoogleFonts.notoSerifDisplay(
-                      textStyle: const TextStyle(fontWeight: FontWeight.bold))),
-              // background: Image.network(
-              //     "https://raw.githubusercontent.com/JinZr/flutter_io_page/main/io_page/assets/images/avatar/avatar.jpeg",
-              //     fit: BoxFit.cover),
-              background: Image.asset("assets/images/avatar/avatar.jpeg",
-                  fit: BoxFit.cover))),
-      SliverList(
-          delegate: SliverChildListDelegate(const <Widget>[
-        IntroductionCard(),
-        ContribCard(),
-        UpdateCard(),
-        PolaroidCard(),
-      ]))
-    ]);
+    return Container(
+        color: Theme.of(context).colorScheme.surface,
+        child: CustomScrollView(slivers: <Widget>[
+          SliverAppBar(
+              floating: true,
+              pinned: true,
+              expandedHeight: 300.0,
+              scrolledUnderElevation: 4.0,
+              shadowColor: Theme.of(context).colorScheme.shadow,
+              flexibleSpace: FlexibleSpaceBar(
+                  title: Text(AUTHOR_TEXT,
+                      style: GoogleFonts.notoSerifDisplay(
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold))),
+                  background: Image.asset("assets/images/avatar/avatar.jpeg",
+                      fit: BoxFit.cover))),
+          SliverList(
+              delegate: SliverChildListDelegate(const <Widget>[
+            IntroductionCard(),
+            ContribCard(),
+            UpdateCard(),
+            PolaroidCard(),
+          ]))
+        ]));
   }
 }

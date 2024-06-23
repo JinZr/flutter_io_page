@@ -10,7 +10,7 @@ class UpdateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
+    return Card(
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       ListTile(
