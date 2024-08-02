@@ -21,29 +21,52 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Theme.of(context).colorScheme.surface,
-        child: CustomScrollView(slivers: <Widget>[
-          SliverAppBar(
-              floating: true,
-              pinned: true,
-              expandedHeight: 300.0,
-              scrolledUnderElevation: 4.0,
-              shadowColor: Theme.of(context).colorScheme.shadow,
-              flexibleSpace: FlexibleSpaceBar(
-                  title: Text(AUTHOR_TEXT,
-                      style: GoogleFonts.notoSerifDisplay(
-                          textStyle:
-                              const TextStyle(fontWeight: FontWeight.bold))),
-                  background: Image.asset("assets/images/avatar/avatar.jpeg",
-                      fit: BoxFit.cover))),
-          SliverList(
-              delegate: SliverChildListDelegate(const <Widget>[
-            IntroductionCard(),
-            ContribCard(),
-            UpdateCard(),
-            PolaroidCard(),
-          ]))
-        ]));
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    return Scaffold(
+        body: NestedScrollView(
+            floatHeaderSlivers: true,
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
+                      SliverAppBar(
+                          floating: true,
+                          pinned: true,
+                          expandedHeight: 300.0,
+                          scrolledUnderElevation: 4.0,
+                          shadowColor: Theme.of(context).colorScheme.shadow,
+                          flexibleSpace: FlexibleSpaceBar(
+                              title: Text(AUTHOR_TEXT,
+                                  style: GoogleFonts.notoSerifDisplay(
+                                      textStyle: const TextStyle(
+                                          fontWeight: FontWeight.bold))),
+                              background: Image.asset(
+                                  "assets/images/avatar/avatar.jpeg",
+                                  fit: BoxFit.cover)))
+                    ],
+            body: ListView(children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                    constraints: const BoxConstraints(maxWidth: 1200),
+                    width: screenWidth,
+                    child: const IntroductionCard())
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                    constraints: const BoxConstraints(maxWidth: 1200),
+                    width: screenWidth,
+                    child: const ContribCard())
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                    constraints: const BoxConstraints(maxWidth: 1200),
+                    width: screenWidth,
+                    child: const UpdateCard())
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                    constraints: const BoxConstraints(maxWidth: 1200),
+                    width: screenWidth,
+                    child: const PolaroidCard())
+              ])
+            ])));
   }
 }
