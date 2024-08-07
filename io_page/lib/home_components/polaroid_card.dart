@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:m3_carousel/m3_carousel.dart';
-
 class PolaroidCard extends StatelessWidget {
   const PolaroidCard({super.key});
 
@@ -38,12 +36,15 @@ class PolaroidCard extends StatelessWidget {
               width: double.maxFinite,
               height: 400,
               padding: const EdgeInsets.all(10),
-              child: M3Carousel(
-                  visible: 4,
-                  borderRadius: 20,
-                  slideAnimationDuration: 300,
-                  titleFadeAnimationDuration: 300,
-                  children: images)),
+              child: CarouselView.weighted(
+                  controller: CarouselController(initialItem: 1),
+                  itemSnapping: true,
+                  flexWeights: const <int>[1, 2, 1],
+                  children: images.map(
+                    (Map<String, String> image) {
+                      return Image.asset(image["image"]!, fit: BoxFit.cover);
+                    },
+                  ).toList())),
           const ListTile(
               title: Text(
                   "I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also Blue Button Version)."))
