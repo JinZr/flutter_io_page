@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class PolaroidCard extends StatelessWidget {
   const PolaroidCard({super.key});
@@ -27,10 +26,8 @@ class PolaroidCard extends StatelessWidget {
             children: [
           ListTile(
               leading: const Icon(Icons.camera),
-              title: Text("My Polaroid Camera Gallery",
-                  style: GoogleFonts.notoSerifDisplay(
-                      textStyle:
-                          const TextStyle(fontWeight: FontWeight.bold)))),
+              title: Text("My Polaroid Gallery",
+                  style: Theme.of(context).textTheme.titleMedium!)),
           const Divider(indent: 10),
           Container(
               width: double.maxFinite,

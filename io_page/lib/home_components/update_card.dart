@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
 
 import 'update_list_tile.dart';
@@ -15,9 +14,7 @@ class UpdateCard extends StatelessWidget {
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       ListTile(
           leading: const Icon(Icons.fiber_new),
-          title: Text("News",
-              style: GoogleFonts.notoSerifDisplay(
-                  textStyle: const TextStyle(fontWeight: FontWeight.bold)))),
+          title: Text("News", style: Theme.of(context).textTheme.titleMedium!)),
       const Divider(indent: 10),
       FutureBuilder<List<dynamic>>(
           future: futureUpdate(),

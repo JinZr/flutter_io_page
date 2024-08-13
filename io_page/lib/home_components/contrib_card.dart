@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zr_jin_page/utilities/launch_url.dart';
 
@@ -43,8 +42,7 @@ class ContribCard extends StatelessWidget {
         ListTile(
             leading: const Icon(Icons.code),
             title: Text("Contribution to Open Source",
-                style: GoogleFonts.notoSerifDisplay(
-                    textStyle: const TextStyle(fontWeight: FontWeight.bold)))),
+                style: Theme.of(context).textTheme.titleMedium!)),
         const Divider(indent: 10),
         const ContribListTile(
             projectName: "k2-fsa/icefall",

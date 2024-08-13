@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'home_components/self_intro_card.dart';
 import 'home_components/update_card.dart';
@@ -25,23 +24,21 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         body: NestedScrollView(
             floatHeaderSlivers: true,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
-                      SliverAppBar(
-                          floating: true,
-                          pinned: true,
-                          expandedHeight: 300.0,
-                          scrolledUnderElevation: 4.0,
-                          shadowColor: Theme.of(context).colorScheme.shadow,
-                          flexibleSpace: FlexibleSpaceBar(
-                              title: Text(AUTHOR_TEXT,
-                                  style: GoogleFonts.notoSerifDisplay(
-                                      textStyle: const TextStyle(
-                                          fontWeight: FontWeight.bold))),
-                              background: Image.asset(
-                                  "assets/images/avatar/avatar.jpeg",
-                                  fit: BoxFit.cover)))
-                    ],
+            headerSliverBuilder: (BuildContext context,
+                    bool innerBoxIsScrolled) =>
+                <Widget>[
+                  SliverAppBar(
+                      floating: true,
+                      pinned: true,
+                      expandedHeight: 300.0,
+                      scrolledUnderElevation: 4.0,
+                      shadowColor: Theme.of(context).colorScheme.shadow,
+                      flexibleSpace: FlexibleSpaceBar(
+                          title: Text(AUTHOR_TEXT,
+                              style: Theme.of(context).textTheme.titleLarge!),
+                          background: Image.asset("assets/images/header.jpeg",
+                              fit: BoxFit.cover)))
+                ],
             body: ListView(children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Container(
