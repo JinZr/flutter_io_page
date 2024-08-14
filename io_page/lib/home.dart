@@ -33,9 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       expandedHeight: 300.0,
                       scrolledUnderElevation: 4.0,
                       shadowColor: Theme.of(context).colorScheme.shadow,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       flexibleSpace: FlexibleSpaceBar(
                           title: Text(AUTHOR_TEXT,
-                              style: Theme.of(context).textTheme.titleLarge!),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontStyle: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .fontStyle)),
                           background: Image.asset("assets/images/header.jpeg",
                               fit: BoxFit.cover)))
                 ],
