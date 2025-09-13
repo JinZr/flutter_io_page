@@ -7,7 +7,7 @@ Future<List> futureUpdate() async {
       scheme: 'https',
       host: 'raw.githubusercontent.com',
       path:
-          '/JinZr/flutter_io_page/main/io_page/assets/texts/selected_pub_list.json',
+          '/JinZr/flutter_io_page/refs/heads/main/assets/texts/selected_pub_list.json',
     ),
     headers: {'Accept': 'application/json'},
   );

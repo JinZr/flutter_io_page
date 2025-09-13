@@ -30239,7 +30239,7 @@ aGX(){var s=0,r=A.S(t.j),q,p,o
 var $async$aGX=A.O(function(a,b){if(a===1)return A.P(b,r)
 while(true)switch(s){case 0:p=t.N
 s=3
-return A.W(A.bui(A.a1b(null,"raw.githubusercontent.com","/JinZr/flutter_io_page/main/io_page/assets/texts/selected_pub_list.json",null,"https"),A.b(["Accept","application/json"],p,p)),$async$aGX)
+return A.W(A.bui(A.a1b(null,"raw.githubusercontent.com","/JinZr/flutter_io_page/refs/heads/main/assets/texts/selected_pub_list.json",null,"https"),A.b(["Accept","application/json"],p,p)),$async$aGX)
 case 3:o=b
 if(o.b===200){q=t.j.a(B.cq.N2(A.bu4(A.brT(o.e)).e9(o.w),null))
 s=1
