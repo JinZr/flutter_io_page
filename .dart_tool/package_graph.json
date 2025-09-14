@@ -8,6 +8,7 @@
       "version": "2.0.0+1",
       "dependencies": [
         "flutter",
+        "flutter_web_plugins",
         "google_fonts",
         "http",
         "url_launcher"
@@ -74,6 +75,13 @@
         "url_launcher_platform_interface",
         "url_launcher_web",
         "url_launcher_windows"
+      ]
+    },
+    {
+      "name": "flutter_web_plugins",
+      "version": "0.0.0",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
@@ -394,13 +402,6 @@
       "version": "1.4.0",
       "dependencies": [
         "collection"
-      ]
-    },
-    {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
-      "dependencies": [
-        "flutter"
       ]
     },
     {

@@ -5,7 +5,7 @@ import 'home_components/selected_pub_card.dart';
 import 'home_components/contrib_card.dart';
 import 'home_components/polaroid_card.dart';
 import 'utilities/author_name.dart';
-// import 'full_pub_view.dart';
+import 'dart:math' as math;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.titleEn, required this.titleZh});
@@ -20,7 +20,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.sizeOf(context).width;
+    // var screenWidth = MediaQuery.sizeOf(context).width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final cardWidth = math.min(screenWidth, 1200.0);
+
     return Scaffold(
       body: NestedScrollView(
         floatHeaderSlivers: true,
@@ -44,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   background: Image.asset(
-                    "assets/images/header.jpeg",
+                    "assets/images/header.webp",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -52,45 +55,20 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
         body: ListView(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  width: screenWidth,
-                  child: const IntroductionCard(),
-                ),
-              ],
+            Center(
+              child: SizedBox(
+                width: cardWidth,
+                child: const IntroductionCard(),
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  width: screenWidth,
-                  child: const ContribCard(),
-                ),
-              ],
+            Center(
+              child: SizedBox(width: cardWidth, child: const ContribCard()),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  width: screenWidth,
-                  child: const SelectedPubCard(),
-                ),
-              ],
+            Center(
+              child: SizedBox(width: cardWidth, child: const SelectedPubCard()),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  width: screenWidth,
-                  child: const PolaroidCard(),
-                ),
-              ],
+            Center(
+              child: SizedBox(width: cardWidth, child: const PolaroidCard()),
             ),
           ],
         ),

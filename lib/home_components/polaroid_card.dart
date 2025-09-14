@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 class PolaroidCard extends StatelessWidget {
   const PolaroidCard({super.key});
 
+  static const List<Map<String, String>> _images = [
+    {"image": "assets/images/egs/egs1.webp", "title": "Dalian"},
+    {"image": "assets/images/egs/egs2.webp", "title": "Dalian"},
+    {"image": "assets/images/egs/egs3.webp", "title": "Dalian"},
+    {"image": "assets/images/egs/egs4.webp", "title": "Dalian"},
+    {"image": "assets/images/egs/egs5.webp", "title": "Hong Kong SAR"},
+    {"image": "assets/images/egs/egs6.webp", "title": "Hong Kong SAR"},
+    {"image": "assets/images/egs/egs7.webp", "title": "Hong Kong SAR"},
+    {"image": "assets/images/egs/egs8.webp", "title": "Hong Kong SAR"},
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> images = [
-      {"image": "assets/images/egs/egs1.jpeg", "title": "Dalian"},
-      {"image": "assets/images/egs/egs2.jpeg", "title": "Dalian"},
-      {"image": "assets/images/egs/egs3.jpeg", "title": "Dalian"},
-      {"image": "assets/images/egs/egs4.jpeg", "title": "Dalian"},
-      {"image": "assets/images/egs/egs5.jpeg", "title": "Hong Kong SAR"},
-      {"image": "assets/images/egs/egs6.jpeg", "title": "Hong Kong SAR"},
-      {"image": "assets/images/egs/egs7.jpeg", "title": "Hong Kong SAR"},
-      {"image": "assets/images/egs/egs8.jpeg", "title": "Hong Kong SAR"},
-    ];
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -36,9 +37,12 @@ class PolaroidCard extends StatelessWidget {
               controller: CarouselController(initialItem: 1),
               itemSnapping: true,
               flexWeights: const <int>[1, 2, 1],
-              children: images.map((Map<String, String> image) {
-                return Image.asset(image["image"]!, fit: BoxFit.cover);
-              }).toList(),
+              children: _images
+                  .map(
+                    (Map<String, String> image) =>
+                        Image.asset(image["image"]!, fit: BoxFit.cover),
+                  )
+                  .toList(),
             ),
           ),
           const ListTile(

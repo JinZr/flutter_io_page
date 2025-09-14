@@ -10,48 +10,48 @@ class IntroductionCard extends StatelessWidget {
   const IntroductionCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Card(
-    child: Column(
-      children: [
-        ListTile(
-          leading: const Icon(Icons.person),
-          title: Text(
-            AUTHOR_TEXT,
-            style: Theme.of(context).textTheme.titleMedium!,
+  Widget build(BuildContext context) {
+    final messenger = ScaffoldMessenger.of(context);
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: Text(
+              AUTHOR_TEXT,
+              style: Theme.of(context).textTheme.titleMedium!,
+            ),
+            subtitle: const Text("金增锐"),
           ),
-          subtitle: const Text("金增锐"),
-        ),
-        ListTile(title: const MyIntroduction()),
-        ListTile(
-          leading: const Icon(Icons.email),
-          title: Text(
-            "zengrui.jin0 [at] gmail.com",
-            style: Theme.of(context).textTheme.bodyMedium!,
-          ),
-          onTap: () {
-            Clipboard.setData(
+          ListTile(title: const MyIntroduction()),
+          ListTile(
+            leading: const Icon(Icons.email),
+            title: Text(
+              "zengrui.jin0 [at] gmail.com",
+              style: Theme.of(context).textTheme.bodyMedium!,
+            ),
+            onTap: () async {
+              try {
+                await Clipboard.setData(
                   const ClipboardData(text: "zengrui.jin0@gmail.com"),
-                )
-                .catchError((e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "Failed to write the address to clipboard.",
-                      ),
-                    ),
-                  );
-                })
-                .then((value) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Email address copied to clipboard."),
-                    ),
-                  );
-                });
-          },
-        ),
-        linkButtonBar,
-      ],
-    ),
-  );
+                );
+                messenger.showSnackBar(
+                  const SnackBar(
+                    content: Text('Email address copied to clipboard.'),
+                  ),
+                );
+              } catch (_) {
+                messenger.showSnackBar(
+                  const SnackBar(
+                    content: Text("Failed to copy email to clipboard."),
+                  ),
+                );
+              }
+            },
+          ),
+          linkButtonBar,
+        ],
+      ),
+    );
+  }
 }
