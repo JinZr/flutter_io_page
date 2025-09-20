@@ -26,7 +26,10 @@ class _SelectedPubCardState extends State<SelectedPubCard>
               style: Theme.of(context).textTheme.titleMedium!,
             ),
           ),
-          const Divider(indent: 10),
+          Divider(
+            indent:
+                Theme.of(context).listTileTheme.contentPadding?.left ?? 16,
+          ),
           // AnimatedSize wraps the dynamic area so the card expansion animates smoothly
           AnimatedSize(
             duration: const Duration(milliseconds: 300),
