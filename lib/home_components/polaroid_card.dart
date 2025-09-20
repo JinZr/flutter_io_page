@@ -30,7 +30,10 @@ class PolaroidCard extends StatelessWidget {
           ),
           Divider(
             indent:
-                Theme.of(context).listTileTheme.contentPadding?.left ?? 16,
+                Theme.of(context).listTileTheme.contentPadding
+                    ?.resolve(Directionality.of(context))
+                    .left ??
+                16.0,
           ),
           Container(
             width: double.maxFinite,

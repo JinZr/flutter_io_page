@@ -28,7 +28,10 @@ class _SelectedPubCardState extends State<SelectedPubCard>
           ),
           Divider(
             indent:
-                Theme.of(context).listTileTheme.contentPadding?.left ?? 16,
+                Theme.of(context).listTileTheme.contentPadding
+                    ?.resolve(Directionality.of(context))
+                    .left ??
+                16.0,
           ),
           // AnimatedSize wraps the dynamic area so the card expansion animates smoothly
           AnimatedSize(
