@@ -23,7 +23,10 @@ class IntroductionCard extends StatelessWidget {
             ),
             subtitle: const Text("金增锐"),
           ),
-          ListTile(title: const MyIntroduction()),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: MyIntroduction(),
+          ),
           ListTile(
             leading: const Icon(Icons.email),
             title: Text(
