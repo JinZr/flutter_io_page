@@ -29,23 +29,24 @@ class _MyHomePageState extends State<MyHomePage> {
         floatHeaderSlivers: true,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[
-              SliverAppBar(
+              SliverAppBar.large(
                 floating: true,
                 pinned: true,
                 expandedHeight: 300.0,
                 scrolledUnderElevation: 4.0,
                 shadowColor: Theme.of(context).colorScheme.shadow,
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    AUTHOR_TEXT,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontStyle: Theme.of(
-                        context,
-                      ).textTheme.titleLarge!.fontStyle,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                  ),
+                largeTitleTextStyle:
+                    Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                title: const Text(AUTHOR_TEXT),
+                largeTitle: const Text(AUTHOR_TEXT),
+                flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
                     "assets/images/header.webp",
                     fit: BoxFit.cover,
