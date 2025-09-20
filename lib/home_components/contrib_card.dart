@@ -54,7 +54,10 @@ class ContribCard extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium!,
           ),
         ),
-        const Divider(indent: 10),
+        Divider(
+          indent:
+              Theme.of(context).listTileTheme.contentPadding?.left ?? 16,
+        ),
         const ContribListTile(
           projectName: "k2-fsa/icefall",
           projectUrl: "https://github.com/k2-fsa/icefall",

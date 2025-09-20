@@ -28,11 +28,14 @@ class PolaroidCard extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium!,
             ),
           ),
-          const Divider(indent: 10),
+          Divider(
+            indent:
+                Theme.of(context).listTileTheme.contentPadding?.left ?? 16,
+          ),
           Container(
             width: double.maxFinite,
             height: 400,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: CarouselView.weighted(
               controller: CarouselController(initialItem: 1),
               itemSnapping: true,
