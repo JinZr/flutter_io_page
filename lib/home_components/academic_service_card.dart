@@ -114,7 +114,6 @@ class _AcademicServiceTile extends StatelessWidget {
     final role = json['role']?.toString() ?? 'Service';
     final organization = json['organization']?.toString();
     final location = json['location']?.toString();
-    final description = json['description']?.toString();
     final year = json['year']?.toString();
 
     final subtitleParts = <String>[
@@ -124,7 +123,6 @@ class _AcademicServiceTile extends StatelessWidget {
 
     final subtitleLines = <String>[
       if (subtitleParts.isNotEmpty) subtitleParts.join(' • '),
-      if (description != null && description.isNotEmpty) description,
     ];
 
     final subtitleText = subtitleLines.join('\n');
@@ -133,17 +131,10 @@ class _AcademicServiceTile extends StatelessWidget {
       leading: const Icon(Icons.school),
       title: Text(role),
       subtitle: subtitleText.isNotEmpty
-          ? Text(
-              subtitleText,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )
+          ? Text(subtitleText, style: Theme.of(context).textTheme.bodyMedium)
           : null,
-      isThreeLine: subtitleLines.length > 1,
       trailing: year != null && year.isNotEmpty
-          ? Text(
-              year,
-              style: Theme.of(context).textTheme.labelLarge,
-            )
+          ? Text(year, style: Theme.of(context).textTheme.labelLarge)
           : null,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );
