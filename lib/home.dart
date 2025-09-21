@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'home_components/self_intro_card.dart';
-import 'home_components/selected_pub_card.dart';
+import 'home_components/academic_service_card.dart';
 import 'home_components/contrib_card.dart';
 import 'home_components/polaroid_card.dart';
+import 'home_components/selected_pub_card.dart';
+import 'home_components/self_intro_card.dart';
 import 'utilities/author_name.dart';
 import 'dart:math' as math;
 
@@ -63,6 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Center(
               child: SizedBox(width: cardWidth, child: const ContribCard()),
+            ),
+            Center(
+              child:
+                  SizedBox(width: cardWidth, child: const AcademicServiceCard()),
             ),
             Center(
               child: SizedBox(width: cardWidth, child: const SelectedPubCard()),
