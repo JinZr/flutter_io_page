@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
 import 'package:zr_jin_page/utilities/futures.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class AcademicServiceCard extends StatefulWidget {
   const AcademicServiceCard({super.key});
 
@@ -60,14 +62,13 @@ class _DynamicContent extends StatelessWidget {
               .map((e) => (e as Map).cast<String, dynamic>())
               .toList(growable: false);
 
-          child = ListView.separated(
+          child = ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: services.length,
             itemBuilder: (context, index) =>
                 _AcademicServiceTile(json: services[index]),
-            separatorBuilder: (context, index) => const Divider(indent: 72),
           );
           key = const ValueKey('content');
         } else if (snapshot.hasError) {
@@ -128,7 +129,7 @@ class _AcademicServiceTile extends StatelessWidget {
     final subtitleText = subtitleLines.join('\n');
 
     return ListTile(
-      leading: const Icon(Icons.school),
+      // leading: const Icon(Icons.school),
       title: Text(role),
       subtitle: subtitleText.isNotEmpty
           ? Text(subtitleText, style: Theme.of(context).textTheme.bodyMedium)
@@ -136,7 +137,12 @@ class _AcademicServiceTile extends StatelessWidget {
       trailing: year != null && year.isNotEmpty
           ? Text(year, style: Theme.of(context).textTheme.labelLarge)
           : null,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      onTap: () {
+        final link = json['link']?.toString();
+        if (link != null && link.isNotEmpty) {
+          launchUrl(Uri.parse(link));
+        }
+      },
     );
   }
 }
