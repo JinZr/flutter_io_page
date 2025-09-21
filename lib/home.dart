@@ -63,14 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Center(
+              child: SizedBox(width: cardWidth, child: const SelectedPubCard()),
+            ),
+            Center(
               child: SizedBox(width: cardWidth, child: const ContribCard()),
             ),
             Center(
-              child:
-                  SizedBox(width: cardWidth, child: const AcademicServiceCard()),
-            ),
-            Center(
-              child: SizedBox(width: cardWidth, child: const SelectedPubCard()),
+              child: SizedBox(
+                width: cardWidth,
+                child: const AcademicServiceCard(),
+              ),
             ),
             Center(
               child: SizedBox(width: cardWidth, child: const PolaroidCard()),

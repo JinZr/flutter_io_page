@@ -1,20 +1,14 @@
 [
   {
-    "role": "Program Committee Member",
-    "organization": "INTERSPEECH",
-    "year": "2024",
-    "description": "Reviewed submissions on speech recognition and spoken language understanding."
-  },
-  {
-    "role": "Reviewer",
+    "role": "Local Arrangement Chair - Operations Chairs",
     "organization": "IEEE ICASSP",
-    "year": "2023",
-    "description": "Served as an external reviewer for the speech processing track."
+    "location": "Suzhou, China",
+    "year": "2025"
   },
   {
-    "role": "Session Chair",
-    "organization": "IEEE SLT",
-    "year": "2022",
-    "description": "Coordinated the Automatic Speech Recognition session and facilitated Q&A."
+    "role": "Local Arrangement Chair",
+    "organization": "RLChina",
+    "location": "Beijing, China",
+    "year": "2025"
   }
 ]
