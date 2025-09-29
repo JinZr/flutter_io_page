@@ -129,7 +129,6 @@ class _AcademicServiceTile extends StatelessWidget {
     final subtitleText = subtitleLines.join('\n');
 
     return ListTile(
-      // leading: const Icon(Icons.school),
       title: Text(role),
       subtitle: subtitleText.isNotEmpty
           ? Text(subtitleText, style: Theme.of(context).textTheme.bodyMedium)
