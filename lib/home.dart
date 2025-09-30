@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home_components/academic_service_card.dart';
+import 'home_components/card_entrance_wrapper.dart';
 import 'home_components/contrib_card.dart';
 import 'home_components/polaroid_card.dart';
 import 'home_components/selected_pub_card.dart';
@@ -24,6 +25,15 @@ class _MyHomePageState extends State<MyHomePage> {
     // var screenWidth = MediaQuery.sizeOf(context).width;
     final screenWidth = MediaQuery.sizeOf(context).width;
     final cardWidth = math.min(screenWidth, 1200.0);
+
+    Widget animatedCard({required Widget child, required int index}) {
+      return Center(
+        child: HomeCardEntrance(
+          delay: Duration(milliseconds: 120 * index),
+          child: SizedBox(width: cardWidth, child: child),
+        ),
+      );
+    }
 
     return Scaffold(
       body: NestedScrollView(
@@ -56,27 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
         body: ListView(
           children: [
-            Center(
-              child: SizedBox(
-                width: cardWidth,
-                child: const IntroductionCard(),
-              ),
-            ),
-            Center(
-              child: SizedBox(width: cardWidth, child: const SelectedPubCard()),
-            ),
-            Center(
-              child: SizedBox(width: cardWidth, child: const ContribCard()),
-            ),
-            Center(
-              child: SizedBox(
-                width: cardWidth,
-                child: const AcademicServiceCard(),
-              ),
-            ),
-            Center(
-              child: SizedBox(width: cardWidth, child: const PolaroidCard()),
-            ),
+            animatedCard(child: const IntroductionCard(), index: 0),
+            animatedCard(child: const SelectedPubCard(), index: 1),
+            animatedCard(child: const ContribCard(), index: 2),
+            animatedCard(child: const AcademicServiceCard(), index: 3),
+            animatedCard(child: const PolaroidCard(), index: 4),
           ],
         ),
       ),
