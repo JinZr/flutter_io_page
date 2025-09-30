@@ -23,13 +23,15 @@ class MyApp extends StatelessWidget {
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(
-        home: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐")),
-        title: AUTHOR_TEXT,
-        theme: theme.light(),
-        darkTheme: theme.dark(),
-        themeMode: ThemeMode.system,
-        debugShowCheckedModeBanner: false);
+      home: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐"),
+      ),
+      title: AUTHOR_TEXT,
+      theme: theme.light(),
+      darkTheme: theme.dark(),
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
