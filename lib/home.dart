@@ -84,13 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
                   shadowColor: Theme.of(context).colorScheme.shadow,
                   scrolledUnderElevation: 4.0,
-                  actions: [
-                    IconButton(
-                      icon: const Icon(Icons.article_outlined),
-                      tooltip: 'Open source licenses',
-                      onPressed: () => _showLicenses(context),
-                    ),
-                  ],
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(28.0),
