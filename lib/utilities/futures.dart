@@ -1,27 +1,25 @@
-import 'dart:convert';
+import 'dart:async';
 
-import 'package:http/http.dart' as http;
+import 'content_repository.dart';
 
-const _basePath =
-    '/JinZr/flutter_io_page/refs/heads/main/assets/texts/';
+Future<List<dynamic>> loadCachedJsonList(String fileName) async {
+  final repo = ContentRepository.instance;
 
-Future<List> loadRemoteJsonList(String fileName) async {
-  final response = await http.get(
-    Uri(
-      scheme: 'https',
-      host: 'raw.githubusercontent.com',
-      path: '$_basePath$fileName',
-    ),
-    headers: {'Accept': 'application/json'},
-  );
-  if (response.statusCode == 200) {
-    return jsonDecode(response.body) as List;
-  } else {
-    throw Exception('Failed to load $fileName.');
+  try {
+    final local = await repo.loadLocalList(fileName);
+    // Fire and forget remote warm-up.
+    unawaited(_warmUpRemote(repo, fileName));
+    return local;
+  } catch (_) {
+    // No bundled asset; rely on remote fetch and surface errors upstream.
+    return repo.loadRemoteList(fileName);
   }
 }
 
-Future<List> futureUpdate() => loadRemoteJsonList('selected_pub_list.json');
-
-Future<List> futureAcademicService() =>
-    loadRemoteJsonList('academic_service_list.json');
+Future<void> _warmUpRemote(ContentRepository repo, String fileName) async {
+  try {
+    await repo.loadRemoteList(fileName);
+  } catch (_) {
+    // Ignore remote errors in warm-up path; the UI uses the local snapshot.
+  }
+}

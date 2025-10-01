@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zr_jin_page/utilities/author_name.dart';
 import 'theme/theme.dart';
@@ -8,6 +9,7 @@ import 'theme/util.dart';
 import 'home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(PathUrlStrategy());
 
   runApp(const MyApp());

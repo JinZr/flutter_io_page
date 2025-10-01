@@ -1,14 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'home_components/academic_service_card.dart';
+import 'dart:math' as math;
+
+import 'package:flutter/scheduler.dart';
+
+import 'home_components/academic_service_card.dart'
+    deferred as academic_service;
 import 'home_components/card_entrance_wrapper.dart';
-import 'home_components/contrib_card.dart';
-import 'home_components/polaroid_card.dart';
-import 'home_components/selected_pub_card.dart';
+import 'home_components/card_placeholder.dart';
+import 'home_components/contrib_card.dart' deferred as contrib;
+import 'home_components/polaroid_card.dart' deferred as polaroid;
+import 'home_components/selected_pub_card.dart' deferred as selected_pub;
 import 'home_components/self_intro_card.dart';
 import 'utilities/author_name.dart';
-import 'dart:math' as math;
+import 'utilities/deferred_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.titleEn, required this.titleZh});
@@ -21,6 +27,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late final List<Future<void> Function()> _deferredLoaders =
+      <Future<void> Function()>[
+        selected_pub.loadLibrary,
+        academic_service.loadLibrary,
+        contrib.loadLibrary,
+        polaroid.loadLibrary,
+      ];
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      for (final loader in _deferredLoaders) {
+        loader();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // var screenWidth = MediaQuery.sizeOf(context).width;
@@ -31,7 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
       return Center(
         child: HomeCardEntrance(
           delay: Duration(milliseconds: 120 * index),
-          child: SizedBox(width: cardWidth, child: child),
+          child: RepaintBoundary(
+            child: SizedBox(width: cardWidth, child: child),
+          ),
         ),
       );
     }
@@ -86,11 +112,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Theme.of(context).colorScheme.surfaceTint
-                                    .withValues(alpha: 0.35),
                                 Theme.of(
                                   context,
-                                ).colorScheme.surface.withValues(alpha: 0.85),
+                                ).colorScheme.surfaceTint.withOpacity(0.35),
+                                Theme.of(
+                                  context,
+                                ).colorScheme.surface.withOpacity(0.85),
                               ],
                             ),
                           ),
@@ -103,10 +130,38 @@ class _MyHomePageState extends State<MyHomePage> {
           body: ListView(
             children: [
               animatedCard(child: const IntroductionCard(), index: 0),
-              animatedCard(child: const SelectedPubCard(), index: 1),
-              animatedCard(child: const ContribCard(), index: 2),
-              animatedCard(child: const AcademicServiceCard(), index: 3),
-              animatedCard(child: const PolaroidCard(), index: 4),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: selected_pub.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => selected_pub.SelectedPubCard(),
+                ),
+                index: 1,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: contrib.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => contrib.ContribCard(),
+                ),
+                index: 2,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: academic_service.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => academic_service.AcademicServiceCard(),
+                ),
+                index: 3,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: polaroid.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 320),
+                  builder: (_) => polaroid.PolaroidCard(),
+                ),
+                index: 4,
+              ),
             ],
           ),
         ),

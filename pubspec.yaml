@@ -74,6 +74,7 @@ flutter:
     - assets/images/egs/egs6.webp
     - assets/images/egs/egs7.webp
     - assets/images/egs/egs8.webp
+    - assets/texts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

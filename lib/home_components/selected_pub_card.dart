@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/utilities/content_repository.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
+import 'package:zr_jin_page/utilities/futures.dart';
 
 import 'selected_pub_list_tile.dart';
-import 'package:zr_jin_page/utilities/futures.dart';
 
 class SelectedPubCard extends StatefulWidget {
   const SelectedPubCard({super.key});
@@ -12,9 +14,61 @@ class SelectedPubCard extends StatefulWidget {
 }
 
 class _SelectedPubCardState extends State<SelectedPubCard>
-    with SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin {
+  List<Map<String, dynamic>>? _items;
+  Object? _error;
+  late final ContentRepository _repository = ContentRepository.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadContent();
+  }
+
+  Future<void> _loadContent() async {
+    try {
+      final local = await loadCachedJsonList('selected_pub_list.json');
+      final mapped = _mapItems(local);
+      if (mounted) {
+        setState(() {
+          _items = mapped;
+          _error = null;
+        });
+      }
+    } catch (error) {
+      if (mounted) {
+        setState(() {
+          _error = error;
+        });
+      }
+    }
+
+    try {
+      final remote = await _repository.loadRemoteList('selected_pub_list.json');
+      final mapped = _mapItems(remote);
+      if (mounted && !_listEquals(mapped, _items)) {
+        setState(() {
+          _items = mapped;
+          _error = null;
+        });
+      }
+    } catch (error) {
+      if (mounted && _items == null) {
+        setState(() {
+          _error = error;
+        });
+      }
+    } finally {
+      // No-op: ensure callers awaiting the future can continue.
+    }
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,77 +92,87 @@ class _SelectedPubCardState extends State<SelectedPubCard>
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
-            child: _DynamicContent(),
+            child: RepaintBoundary(child: _buildDynamicArea(context)),
           ),
         ],
       ),
     );
   }
-}
 
-class _DynamicContent extends StatelessWidget {
-  const _DynamicContent();
+  Widget _buildDynamicArea(BuildContext context) {
+    Widget child;
+    Key key;
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<dynamic>>(
-      future: futureUpdate(),
-      builder: (context, snapshot) {
-        Widget child;
-        Key key;
+    final items = _items;
+    if (items != null) {
+      final limited = items.take(5).toList(growable: false);
+      final Map<String, List<Map<String, dynamic>>> grouped = {};
+      for (final m in limited) {
+        final theme = _resolveTheme(m);
+        grouped.putIfAbsent(theme, () => <Map<String, dynamic>>[]).add(m);
+      }
 
-        if (snapshot.hasData) {
-          final items = snapshot.data!;
-          final limited = items.take(5).toList();
-          final Map<String, List<Map<String, dynamic>>> grouped = {};
-          for (final e in limited) {
-            final m = (e as Map).cast<String, dynamic>();
-            final theme = _resolveTheme(m);
-            grouped.putIfAbsent(theme, () => <Map<String, dynamic>>[]).add(m);
-          }
-
-          final children = <Widget>[];
-          grouped.forEach((theme, groupItems) {
-            children.add(_SubHeader(theme));
-            for (final m in groupItems) {
-              children.add(SelectedPubListTile(json: m));
-            }
-          });
-
-          child = ListView(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: children,
-          );
-          key = const ValueKey('content');
-        } else if (snapshot.hasError) {
-          child = buildErrorView(context, snapshot.error.toString());
-          key = const ValueKey('error');
-        } else {
-          child = const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: LinearProgressIndicator(),
-          );
-          key = const ValueKey('loading');
+      final children = <Widget>[];
+      grouped.forEach((theme, groupItems) {
+        children.add(_SubHeader(theme));
+        for (final m in groupItems) {
+          children.add(SelectedPubListTile(json: m));
         }
+      });
 
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
-          switchInCurve: Curves.easeOut,
-          switchOutCurve: Curves.easeIn,
-          layoutBuilder: (currentChild, previousChildren) {
-            return Stack(
-              alignment: Alignment.topCenter,
-              children: <Widget>[
-                ...previousChildren,
-                if (currentChild != null) currentChild,
-              ],
-            );
-          },
-          child: KeyedSubtree(key: key, child: child),
+      child = ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        children: children,
+      );
+      key = const ValueKey('content');
+    } else if (_error != null) {
+      child = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: buildErrorView(context, _error.toString()),
+      );
+      key = const ValueKey('error');
+    } else {
+      child = const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: LinearProgressIndicator(),
+      );
+      key = const ValueKey('loading');
+    }
+
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 250),
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
+      layoutBuilder: (currentChild, previousChildren) {
+        return Stack(
+          alignment: Alignment.topCenter,
+          children: <Widget>[
+            ...previousChildren,
+            if (currentChild != null) currentChild,
+          ],
         );
       },
+      child: KeyedSubtree(key: key, child: child),
     );
+  }
+
+  static List<Map<String, dynamic>> _mapItems(List<dynamic> input) {
+    return input
+        .map((e) => (e as Map).cast<String, dynamic>())
+        .toList(growable: false);
+  }
+
+  static bool _listEquals(
+    List<Map<String, dynamic>>? a,
+    List<Map<String, dynamic>>? b,
+  ) {
+    if (identical(a, b)) return true;
+    if (a == null || b == null || a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (!mapEquals(a[i], b[i])) return false;
+    }
+    return true;
   }
 }
 
