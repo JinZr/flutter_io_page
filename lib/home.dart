@@ -5,7 +5,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/scheduler.dart';
 
-import 'home_components/academic_service_card.dart' deferred as academic_service;
+import 'home_components/academic_service_card.dart'
+    deferred as academic_service;
 import 'home_components/card_entrance_wrapper.dart';
 import 'home_components/card_placeholder.dart';
 import 'home_components/contrib_card.dart' deferred as contrib;
@@ -26,12 +27,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late final List<Future<void> Function()> _deferredLoaders = <Future<void> Function()>[
-    selected_pub.loadLibrary,
-    academic_service.loadLibrary,
-    contrib.loadLibrary,
-    polaroid.loadLibrary,
-  ];
+  late final List<Future<void> Function()> _deferredLoaders =
+      <Future<void> Function()>[
+        selected_pub.loadLibrary,
+        academic_service.loadLibrary,
+        contrib.loadLibrary,
+        polaroid.loadLibrary,
+      ];
 
   @override
   void initState() {
@@ -110,10 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Theme.of(context)
-                                    .colorScheme
-                                    .surfaceTint
-                                    .withOpacity(0.35),
+                                Theme.of(
+                                  context,
+                                ).colorScheme.surfaceTint.withOpacity(0.35),
                                 Theme.of(
                                   context,
                                 ).colorScheme.surface.withOpacity(0.85),

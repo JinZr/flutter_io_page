@@ -27,13 +27,15 @@ class ContentRepository {
       final data = jsonDecode(jsonString) as List<dynamic>;
       _localCache[fileName] = data;
       return data;
-    } on FlutterError catch (error) {
+    } on Error catch (error) {
       throw StateError('Missing bundled asset: $assetPath\n$error');
     }
   }
 
-  Future<List<dynamic>> loadRemoteList(String fileName,
-      {Duration timeout = const Duration(seconds: 4)}) {
+  Future<List<dynamic>> loadRemoteList(
+    String fileName, {
+    Duration timeout = const Duration(seconds: 4),
+  }) {
     if (_remoteCache.containsKey(fileName)) {
       return Future.value(_remoteCache[fileName]!);
     }

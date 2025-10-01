@@ -10,7 +10,6 @@ import 'home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  GoogleFonts.config.allowRuntimeFetching = false;
   setUrlStrategy(PathUrlStrategy());
 
   runApp(const MyApp());
