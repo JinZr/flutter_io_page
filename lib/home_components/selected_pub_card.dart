@@ -17,6 +17,7 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     with AutomaticKeepAliveClientMixin {
   List<Map<String, dynamic>>? _items;
   Object? _error;
+  String? _selectedTheme;
   late final ContentRepository _repository = ContentRepository.instance;
 
   @override
@@ -29,12 +30,7 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     try {
       final local = await loadCachedJsonList('selected_pub_list.json');
       final mapped = _mapItems(local);
-      if (mounted) {
-        setState(() {
-          _items = mapped;
-          _error = null;
-        });
-      }
+      _setItems(mapped);
     } catch (error) {
       if (mounted) {
         setState(() {
@@ -46,11 +42,8 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     try {
       final remote = await _repository.loadRemoteList('selected_pub_list.json');
       final mapped = _mapItems(remote);
-      if (mounted && !_listEquals(mapped, _items)) {
-        setState(() {
-          _items = mapped;
-          _error = null;
-        });
+      if (!_listEquals(mapped, _items)) {
+        _setItems(mapped);
       }
     } catch (error) {
       if (mounted && _items == null) {
@@ -61,6 +54,45 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     } finally {
       // No-op: ensure callers awaiting the future can continue.
     }
+  }
+
+  void _setItems(List<Map<String, dynamic>> items) {
+    if (!mounted) return;
+    final themes = _extractThemes(items);
+    final currentSelection = _selectedTheme;
+    final nextSelection = _resolveNextTheme(currentSelection, themes);
+    setState(() {
+      _items = items;
+      _selectedTheme = nextSelection;
+      _error = null;
+    });
+  }
+
+  void _onThemeChipTapped(String theme) {
+    if (_selectedTheme == theme) return;
+    setState(() {
+      _selectedTheme = theme;
+    });
+  }
+
+  String? _resolveNextTheme(String? current, List<String> themes) {
+    if (themes.isEmpty) return null;
+    if (current != null && themes.contains(current)) {
+      return current;
+    }
+    return themes.first;
+  }
+
+  List<String> _extractThemes(List<Map<String, dynamic>> items) {
+    final seen = <String>{};
+    final result = <String>[];
+    for (final item in items) {
+      final theme = _resolveTheme(item);
+      if (seen.add(theme)) {
+        result.add(theme);
+      }
+    }
+    return result;
   }
 
   @override
@@ -105,25 +137,58 @@ class _SelectedPubCardState extends State<SelectedPubCard>
 
     final items = _items;
     if (items != null) {
-      final limited = items.take(5).toList(growable: false);
-      final Map<String, List<Map<String, dynamic>>> grouped = {};
-      for (final m in limited) {
-        final theme = _resolveTheme(m);
-        grouped.putIfAbsent(theme, () => <Map<String, dynamic>>[]).add(m);
-      }
+      final themes = _extractThemes(items);
+      final selectedTheme =
+          _selectedTheme ?? (themes.isNotEmpty ? themes.first : null);
+      final filteredItems = selectedTheme == null
+          ? items
+          : items
+                .where((m) => _resolveTheme(m) == selectedTheme)
+                .toList(growable: false);
 
-      final children = <Widget>[];
-      grouped.forEach((theme, groupItems) {
-        children.add(_SubHeader(theme));
-        for (final m in groupItems) {
-          children.add(SelectedPubListTile(json: m));
-        }
-      });
-
-      child = ListView(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        children: children,
+      child = Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (child, animation) {
+              final curved = CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOut,
+              );
+              return FadeTransition(
+                opacity: curved,
+                child: SizeTransition(
+                  sizeFactor: curved,
+                  axisAlignment: -1.0,
+                  child: child,
+                ),
+              );
+            },
+            child: KeyedSubtree(
+              key: ValueKey<String?>(selectedTheme),
+              child: _buildListForTheme(filteredItems),
+            ),
+          ),
+          if (themes.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.end,
+                children: [
+                  for (final theme in themes)
+                    FilterChip(
+                      label: Text(theme),
+                      selected: theme == selectedTheme,
+                      onSelected: (_) => _onThemeChipTapped(theme),
+                    ),
+                ],
+              ),
+            ),
+        ],
       );
       key = const ValueKey('content');
     } else if (_error != null) {
@@ -157,6 +222,28 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     );
   }
 
+  Widget _buildListForTheme(List<Map<String, dynamic>> items) {
+    if (items.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Text(
+          'No publications available for this theme yet.',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+      );
+    }
+
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return SelectedPubListTile(json: items[index]);
+      },
+    );
+  }
+
   static List<Map<String, dynamic>> _mapItems(List<dynamic> input) {
     return input
         .map((e) => (e as Map).cast<String, dynamic>())
@@ -173,25 +260,6 @@ class _SelectedPubCardState extends State<SelectedPubCard>
       if (!mapEquals(a[i], b[i])) return false;
     }
     return true;
-  }
-}
-
-class _SubHeader extends StatelessWidget {
-  final String label;
-  const _SubHeader(this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.surfaceContainerHighest;
-    final style = Theme.of(
-      context,
-    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: color,
-      child: Text(label, style: style),
-    );
   }
 }
 
