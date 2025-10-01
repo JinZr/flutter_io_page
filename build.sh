@@ -3,11 +3,9 @@ set -euo pipefail
 
 flutter build web \
   --release \
-  --web-renderer html \
-  --pwa-strategy offline-first \
+  --pwa-strategy none \
+  --optimization-level 4 \
   --source-maps \
-  --split-debug-info=perf/symbols \
   --tree-shake-icons \
-  --analyze-size \
   --dart-define=FLUTTER_WEB_AUTO_DETECT=false
 

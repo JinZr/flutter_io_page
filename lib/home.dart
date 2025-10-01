@@ -112,12 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
+                                Theme.of(context).colorScheme.surfaceTint
+                                    .withValues(alpha: 0.35),
                                 Theme.of(
                                   context,
-                                ).colorScheme.surfaceTint.withOpacity(0.35),
-                                Theme.of(
-                                  context,
-                                ).colorScheme.surface.withOpacity(0.85),
+                                ).colorScheme.surface.withValues(alpha: 0.85),
                               ],
                             ),
                           ),

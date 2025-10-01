@@ -16,8 +16,8 @@ class CardPlaceholder extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                color.withOpacity(0.35),
-                color.withOpacity(0.15),
+                color.withValues(alpha: 0.35),
+                color.withValues(alpha: 0.15),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
