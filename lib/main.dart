@@ -4,10 +4,12 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:zr_jin_page/utilities/author_name.dart';
 import 'theme/theme.dart';
 import 'theme/util.dart';
+import 'utilities/browser_navigation.dart';
 
 import 'home.dart';
 
 void main() {
+  disableBrowserNavigation();
   setUrlStrategy(PathUrlStrategy());
 
   runApp(const MyApp());
