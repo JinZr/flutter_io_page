@@ -7,5 +7,5 @@ flutter build web \
   --optimization-level 4 \
   --source-maps \
   --tree-shake-icons \
-  --dart-define=FLUTTER_WEB_AUTO_DETECT=false
+  --wasm
 
