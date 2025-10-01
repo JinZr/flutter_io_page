@@ -1,0 +1,3 @@
+build/web/main.dart.js 3526514
+build/web/flutter.js 9262
+build/web/flutter_bootstrap.js 9589
