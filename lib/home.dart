@@ -35,6 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
         polaroid.loadLibrary,
       ];
 
+  void _showLicenses(BuildContext context) {
+    showLicensePage(context: context, applicationName: widget.titleEn);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -80,6 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
                   shadowColor: Theme.of(context).colorScheme.shadow,
                   scrolledUnderElevation: 4.0,
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.article_outlined),
+                      tooltip: 'Open source licenses',
+                      onPressed: () => _showLicenses(context),
+                    ),
+                  ],
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(28.0),
@@ -160,6 +171,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   builder: (_) => polaroid.PolaroidCard(),
                 ),
                 index: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Center(
+                  child: Text(
+                    'This site is proudly powered by Flutter and composed by Zengrui Jin.',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
               ),
             ],
           ),

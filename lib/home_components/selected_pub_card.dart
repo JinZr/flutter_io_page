@@ -150,6 +150,22 @@ class _SelectedPubCardState extends State<SelectedPubCard>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (themes.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final theme in themes)
+                    FilterChip(
+                      label: Text(theme),
+                      selected: theme == selectedTheme,
+                      onSelected: (_) => _onThemeChipTapped(theme),
+                    ),
+                ],
+              ),
+            ),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
@@ -171,23 +187,6 @@ class _SelectedPubCardState extends State<SelectedPubCard>
               child: _buildListForTheme(filteredItems),
             ),
           ),
-          if (themes.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                alignment: WrapAlignment.end,
-                children: [
-                  for (final theme in themes)
-                    FilterChip(
-                      label: Text(theme),
-                      selected: theme == selectedTheme,
-                      onSelected: (_) => _onThemeChipTapped(theme),
-                    ),
-                ],
-              ),
-            ),
         ],
       );
       key = const ValueKey('content');
