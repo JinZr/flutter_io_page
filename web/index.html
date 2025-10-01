@@ -27,6 +27,10 @@
   <meta name="twitter:description" content="Personal homepage of Zengrui Jin.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Serif:wght@400;600&display=swap"
+  >
   <link rel="icon" type="image/webp" href="favicon.webp">
 
   <!-- iOS meta tags & icons -->
@@ -38,13 +42,23 @@
 
   <title>Zengrui Jin</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    window.flutterConfiguration = Object.assign(
+      {
+        renderer: 'html',
+        assetBase: '.',
+        serviceWorkerVersion: '{{flutter_service_worker_version}}',
+      },
+      window.flutterConfiguration || {},
+    );
+  </script>
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = null;
+    var serviceWorkerVersion = window.flutterConfiguration?.serviceWorkerVersion;
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {

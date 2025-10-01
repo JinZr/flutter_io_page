@@ -45,13 +45,31 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
   }
 }
 
-class _DynamicContent extends StatelessWidget {
+class _DynamicContent extends StatefulWidget {
   const _DynamicContent();
 
   @override
+  State<_DynamicContent> createState() => _DynamicContentState();
+}
+
+class _DynamicContentState extends State<_DynamicContent>
+    with AutomaticKeepAliveClientMixin {
+  late final Future<List<dynamic>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = futureAcademicService();
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<List<dynamic>>(
-      future: futureAcademicService(),
+      future: _future,
       builder: (context, snapshot) {
         Widget child;
         Key key;

@@ -1,0 +1,1 @@
+`flutter build web --analyze-size` is no longer supported on Flutter 3.35.x; the flag returns "Could not find an option named '--analyze-size'" (`ff5c5c`). Size breakdowns rely on the bundle size stats captured separately.

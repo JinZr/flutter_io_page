@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'package:zr_jin_page/utilities/author_name.dart';
 import 'theme/theme.dart';
 import 'theme/util.dart';
 
 import 'home.dart';
+import 'utilities/url_strategy.dart';
 
 void main() {
-  setUrlStrategy(PathUrlStrategy());
-
+  configureUrlStrategy();
   runApp(const MyApp());
 }
 

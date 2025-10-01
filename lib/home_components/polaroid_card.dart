@@ -39,16 +39,18 @@ class PolaroidCard extends StatelessWidget {
             width: double.maxFinite,
             height: 400,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: CarouselView.weighted(
-              controller: CarouselController(initialItem: 1),
-              itemSnapping: true,
-              flexWeights: const <int>[1, 2, 1],
-              children: _images
-                  .map(
-                    (Map<String, String> image) =>
-                        Image.asset(image["image"]!, fit: BoxFit.cover),
-                  )
-                  .toList(),
+            child: RepaintBoundary(
+              child: CarouselView.weighted(
+                controller: CarouselController(initialItem: 1),
+                itemSnapping: true,
+                flexWeights: const <int>[1, 2, 1],
+                children: _images
+                    .map(
+                      (Map<String, String> image) =>
+                          Image.asset(image["image"]!, fit: BoxFit.cover),
+                    )
+                    .toList(),
+              ),
             ),
           ),
           Padding(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'home_components/self_intro_card.dart';
 import 'home_components/selected_pub_card.dart';
@@ -25,8 +24,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           widget.titleEn,
-          style: GoogleFonts.notoSerifDisplay(
-            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontFamily: 'Roboto Serif',
+            fontWeight: FontWeight.bold,
           ),
         ),
         scrolledUnderElevation: 4.0,
