@@ -1,7 +1,13 @@
-#!/bin/bash
-# FILEPATH: /Users/zengruijin/Github Project/flutter_io_page/io_page/build.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
 flutter build web \
-    --release \
-    --pwa-strategy none \
-    --optimization-level 4 
+  --release \
+  --web-renderer html \
+  --pwa-strategy offline-first \
+  --source-maps \
+  --split-debug-info=perf/symbols \
+  --tree-shake-icons \
+  --analyze-size \
+  --dart-define=FLUTTER_WEB_AUTO_DETECT=false
 
