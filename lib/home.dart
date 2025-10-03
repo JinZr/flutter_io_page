@@ -35,10 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
         polaroid.loadLibrary,
       ];
 
-  void _showLicenses(BuildContext context) {
-    showLicensePage(context: context, applicationName: widget.titleEn);
-  }
-
   @override
   void initState() {
     super.initState();
