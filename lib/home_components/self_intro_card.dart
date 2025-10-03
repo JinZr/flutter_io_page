@@ -39,8 +39,12 @@ class IntroductionCard extends StatelessWidget {
               final uri = Uri.parse(
                 "https://www.proquest.com/docview/3252771546?accountid=29018&sourcetype=Dissertations%20&%20Theses",
               );
-              if (!await launchUrl(uri)) {
-                throw 'Could not launch $uri';
+              try {
+                await launchUrl(uri);
+              } catch (_) {
+                messenger.showSnackBar(
+                  const SnackBar(content: Text("Failed to launch URL.")),
+                );
               }
             },
           ),
