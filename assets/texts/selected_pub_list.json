@@ -1,13 +1,5 @@
 [
     {
-        "venue": "Ph.D. Thesis",
-        "title": "Adversarial and Reinforcement Learning Based Data Augmentation for Dysarthric and Elderly Speech Recognition",
-        "link": "https://www.proquest.com/docview/3252771546?accountid=29018&sourcetype=Dissertations%20&%20Theses",
-        "author": "Zengrui Jin",
-        "year": "2024",
-        "theme": "Ph.D. Thesis"
-    },
-    {
         "venue": "ICLR (Oral)",
         "title": "Zipformer: A faster and better encoder for automatic speech recognition",
         "link": "https://openreview.net/forum?id=9WD9KwssyT",
