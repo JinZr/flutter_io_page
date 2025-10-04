@@ -48,22 +48,8 @@
 
     gtag('config', 'G-4SJNNRFW4C');
   </script>
-
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    window.addEventListener('load', function () {
-      if ('serviceWorker' in navigator) {
-        // Register the service worker but don't block the app bootstrap on it.
-        navigator.serviceWorker.register('flutter_service_worker.js').catch((error) => {
-          console.warn('Service worker registration failed:', error);
-        });
-      }
-    });
-  </script>
-  <script defer src="flutter_bootstrap.js"></script>
+  <script async src="flutter_bootstrap.js"></script>
 </body>
 </html>
