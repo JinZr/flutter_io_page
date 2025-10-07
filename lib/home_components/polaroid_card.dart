@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PolaroidCard extends StatefulWidget {
+class PolaroidCard extends StatelessWidget {
   const PolaroidCard({super.key});
 
-  @override
-  State<PolaroidCard> createState() => _PolaroidCardState();
-}
-
-class _PolaroidCardState extends State<PolaroidCard>
-    with AutomaticKeepAliveClientMixin {
   static const List<Map<String, String>> _images = [
     {"image": "assets/images/egs/egs1.webp", "title": "Dalian"},
     {"image": "assets/images/egs/egs2.webp", "title": "Dalian"},
@@ -20,43 +14,8 @@ class _PolaroidCardState extends State<PolaroidCard>
     {"image": "assets/images/egs/egs8.webp", "title": "Hong Kong SAR"},
   ];
 
-  String? _selectedTitle;
-
-  @override
-  bool get wantKeepAlive => true;
-
-  List<String> get _titles {
-    final seen = <String>{};
-    final titles = <String>[];
-    for (final image in _images) {
-      final title = image['title'] ?? 'Other';
-      if (seen.add(title)) {
-        titles.add(title);
-      }
-    }
-    return titles;
-  }
-
-  void _onTitleSelected(String title) {
-    if (title == _selectedTitle) return;
-    setState(() {
-      _selectedTitle = title;
-    });
-  }
-
-  List<Map<String, String>> _filterImages(String? title) {
-    if (title == null) return _images;
-    return _images
-        .where((element) => element['title'] == title)
-        .toList(growable: false);
-  }
-
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    final titles = _titles;
-    final selectedTitle = _effectiveSelection(titles);
-
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,16 +35,20 @@ class _PolaroidCardState extends State<PolaroidCard>
                     .left ??
                 16.0,
           ),
-          AnimatedSize(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            alignment: Alignment.topCenter,
-            child: RepaintBoundary(
-              child: _buildDynamicArea(
-                context,
-                titles,
-                selectedTitle,
-              ),
+          Container(
+            width: double.maxFinite,
+            height: 400,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: CarouselView.weighted(
+              controller: CarouselController(initialItem: 1),
+              itemSnapping: true,
+              flexWeights: const <int>[1, 2, 1],
+              children: _images
+                  .map(
+                    (Map<String, String> image) =>
+                        Image.asset(image["image"]!, fit: BoxFit.cover),
+                  )
+                  .toList(),
             ),
           ),
           Padding(
@@ -98,106 +61,5 @@ class _PolaroidCardState extends State<PolaroidCard>
         ],
       ),
     );
-  }
-
-  Widget _buildDynamicArea(
-    BuildContext context,
-    List<String> titles,
-    String? selectedTitle,
-  ) {
-    final filteredImages = _filterImages(selectedTitle);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (titles.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final title in titles)
-                  FilterChip(
-                    label: Text(title),
-                    selected: title == selectedTitle,
-                    onSelected: (_) => _onTitleSelected(title),
-                  ),
-              ],
-            ),
-          ),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            final curved = CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOut,
-            );
-            return FadeTransition(
-              opacity: curved,
-              child: SizeTransition(
-                sizeFactor: curved,
-                axisAlignment: -1.0,
-                child: child,
-              ),
-            );
-          },
-          child: KeyedSubtree(
-            key: ValueKey<String?>(selectedTitle),
-            child: _buildCarousel(filteredImages),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildCarousel(List<Map<String, String>> images) {
-    if (images.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Text(
-          'No polaroids available for this selection yet.',
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      );
-    }
-
-    return Container(
-      width: double.maxFinite,
-      height: 400,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: CarouselView.weighted(
-        controller: CarouselController(initialItem: 1),
-        itemSnapping: true,
-        flexWeights: const <int>[1, 2, 1],
-        children: images
-            .map(
-              (image) => Image.asset(
-                image["image"]!,
-                fit: BoxFit.cover,
-              ),
-            )
-            .toList(growable: false),
-      ),
-    );
-  }
-
-  String? _effectiveSelection(List<String> titles) {
-    if (titles.isEmpty) return null;
-    final current = _selectedTitle;
-    if (current != null && titles.contains(current)) {
-      return current;
-    }
-    final fallback = titles.isNotEmpty ? titles.first : null;
-    if (_selectedTitle != fallback) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        setState(() {
-          _selectedTitle = fallback;
-        });
-      });
-    }
-    return fallback;
   }
 }
