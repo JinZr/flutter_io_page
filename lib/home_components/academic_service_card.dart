@@ -43,7 +43,9 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
     }
 
     try {
-      final remote = await _repository.loadRemoteList('academic_service_list.json');
+      final remote = await _repository.loadRemoteList(
+        'academic_service_list.json',
+      );
       final mapped = _map(remote);
       if (mounted && !_listEquals(mapped, _services)) {
         setState(() {

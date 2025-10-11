@@ -183,7 +183,7 @@
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///Users/zrjin/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.21",
+      "rootUri": "file:///Users/zrjin/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.24",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -251,6 +251,6 @@
   "generator": "pub",
   "generatorVersion": "3.9.2",
   "flutterRoot": "file:///opt/homebrew/share/flutter",
-  "flutterVersion": "3.35.5",
+  "flutterVersion": "3.35.6",
   "pubCache": "file:///Users/zrjin/.pub-cache"
 }
