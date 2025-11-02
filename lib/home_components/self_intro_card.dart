@@ -37,7 +37,7 @@ class IntroductionCard extends StatelessWidget {
             trailing: const Text("Ph.D. Thesis"),
             onTap: () async {
               final uri = Uri.parse(
-                "https://www.proquest.com/docview/3252771546?accountid=29018&sourcetype=Dissertations%20&%20Theses",
+                "https://www.proquest.com/openview/c516344e47cb916fa89781235f33d445/1?pq-origsite=gscholar&cbl=2026366&diss=y",
               );
               try {
                 await launchUrl(uri);
