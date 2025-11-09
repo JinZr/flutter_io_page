@@ -70,8 +70,9 @@ class _SplashToHomeState extends State<SplashToHome>
       animation: _controller,
       child: widget.home,
       builder: (BuildContext context, Widget? child) {
-        final double animationValue =
-            Curves.easeInOutCubic.transform(_controller.value);
+        final double animationValue = Curves.easeInOutCubic.transform(
+          _controller.value,
+        );
         final bool animationFinished = _controller.value >= 0.999;
 
         final double homeOpacity = _curvedInterval(
@@ -80,13 +81,9 @@ class _SplashToHomeState extends State<SplashToHome>
           1.0,
           curve: Curves.easeOutCubic,
         );
-        final double overlayOpacity = 1 -
-            _curvedInterval(
-              _controller.value,
-              0.62,
-              1.0,
-              curve: Curves.easeIn,
-            );
+        final double overlayOpacity =
+            1 -
+            _curvedInterval(_controller.value, 0.62, 1.0, curve: Curves.easeIn);
         final EdgeInsetsGeometry padding = EdgeInsets.lerp(
           const EdgeInsets.symmetric(horizontal: 72.0, vertical: 160.0),
           EdgeInsets.zero,
@@ -98,14 +95,16 @@ class _SplashToHomeState extends State<SplashToHome>
           animationValue,
         )!;
         final double elevation = lerpDouble(16.0, 0.0, animationValue)!;
-        final double headlineOpacity = 1 -
+        final double headlineOpacity =
+            1 -
             _curvedInterval(
               _controller.value,
               0.4,
               0.85,
               curve: Curves.easeOutCubic,
             );
-        final double progressOpacity = 1 -
+        final double progressOpacity =
+            1 -
             _curvedInterval(
               _controller.value,
               0.52,
@@ -119,10 +118,7 @@ class _SplashToHomeState extends State<SplashToHome>
             Positioned.fill(
               child: IgnorePointer(
                 ignoring: homeOpacity < 1,
-                child: Opacity(
-                  opacity: homeOpacity,
-                  child: child,
-                ),
+                child: Opacity(opacity: homeOpacity, child: child),
               ),
             ),
             if (!animationFinished)
@@ -149,33 +145,15 @@ class _SplashToHomeState extends State<SplashToHome>
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.flutter_dash,
-                                      color: colorScheme.onPrimary,
-                                      size: 64,
-                                    ),
-                                    const SizedBox(height: 24),
                                     Opacity(
                                       opacity: headlineOpacity,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Welcome',
-                                            style: textTheme.headlineSmall?.copyWith(
+                                      child: Text(
+                                        'Welcome',
+                                        style: textTheme.headlineSmall
+                                            ?.copyWith(
                                               color: colorScheme.onPrimary,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                          ),
-                                          const SizedBox(height: 12),
-                                          Text(
-                                            'Building experiences with Flutter',
-                                            textAlign: TextAlign.center,
-                                            style: textTheme.bodyMedium?.copyWith(
-                                              color: colorScheme.onPrimary
-                                                  .withValues(alpha: 0.9),
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ),
                                     const SizedBox(height: 24),
@@ -186,14 +164,12 @@ class _SplashToHomeState extends State<SplashToHome>
                                         liveRegion: true,
                                         child: LinearProgressIndicator(
                                           minHeight: 4,
-                                          backgroundColor:
-                                              colorScheme.onPrimary.withValues(
-                                            alpha: 0.2,
-                                          ),
+                                          backgroundColor: colorScheme.onPrimary
+                                              .withValues(alpha: 0.2),
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                            colorScheme.onPrimary,
-                                          ),
+                                                colorScheme.onPrimary,
+                                              ),
                                         ),
                                       ),
                                     ),
