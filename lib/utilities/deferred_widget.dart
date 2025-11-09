@@ -24,6 +24,7 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   void initState() {
     super.initState();
+    _maybeLoadOrSchedule();
   }
 
   @override
