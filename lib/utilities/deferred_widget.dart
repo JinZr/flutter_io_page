@@ -24,19 +24,23 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   void initState() {
     super.initState();
-    _maybeLoadOrSchedule();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // Access to [Scrollable.recommendDeferredLoadingForContext] relies on
+    // inherited widgets such as [MediaQuery] being fully initialized. Invoke
+    // the loading logic from here so we avoid depending on inherited elements
+    // during [initState], which can trigger framework assertions.
     _maybeLoadOrSchedule();
   }
 
   @override
   void didUpdateWidget(covariant DeferredWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.libraryLoader != widget.libraryLoader && _loadFuture == null) {
+    if (oldWidget.libraryLoader != widget.libraryLoader &&
+        _loadFuture == null) {
       _maybeLoadOrSchedule();
     }
   }
