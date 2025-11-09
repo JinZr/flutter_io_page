@@ -6,6 +6,7 @@ import 'theme/theme.dart';
 import 'theme/util.dart';
 
 import 'home.dart';
+import 'utilities/splash_transition.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +25,11 @@ class MyApp extends StatelessWidget {
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(
-      home: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1200),
-        child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐"),
+      home: SplashToHome(
+        home: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐"),
+        ),
       ),
       title: AUTHOR_TEXT,
       theme: theme.light(),
