@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class DeferredWidget extends StatefulWidget {
   const DeferredWidget({
@@ -17,12 +18,67 @@ class DeferredWidget extends StatefulWidget {
 }
 
 class _DeferredWidgetState extends State<DeferredWidget> {
-  late final Future<void> _loadFuture = widget.libraryLoader();
+  Future<void>? _loadFuture;
+  bool _hasScheduledDeferredLoad = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _maybeLoadOrSchedule();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _maybeLoadOrSchedule();
+  }
+
+  @override
+  void didUpdateWidget(covariant DeferredWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.libraryLoader != widget.libraryLoader && _loadFuture == null) {
+      _maybeLoadOrSchedule();
+    }
+  }
+
+  void _maybeLoadOrSchedule() {
+    if (_loadFuture != null || !mounted) {
+      return;
+    }
+
+    if (Scrollable.recommendDeferredLoadingForContext(context)) {
+      _scheduleDeferredCheck();
+      return;
+    }
+
+    setState(() {
+      _loadFuture = widget.libraryLoader();
+    });
+  }
+
+  void _scheduleDeferredCheck() {
+    if (_hasScheduledDeferredLoad) {
+      return;
+    }
+    _hasScheduledDeferredLoad = true;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      _hasScheduledDeferredLoad = false;
+      _maybeLoadOrSchedule();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final future = _loadFuture;
+    if (future == null) {
+      return widget.placeholder ?? const SizedBox.shrink();
+    }
+
     return FutureBuilder<void>(
-      future: _loadFuture,
+      future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return widget.builder(context);
