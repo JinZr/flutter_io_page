@@ -39,7 +39,8 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   void didUpdateWidget(covariant DeferredWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.libraryLoader != widget.libraryLoader && _loadFuture == null) {
+    if (oldWidget.libraryLoader != widget.libraryLoader &&
+        _loadFuture == null) {
       _maybeLoadOrSchedule();
     }
   }
@@ -76,12 +77,6 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   Widget build(BuildContext context) {
     final future = _loadFuture;
-    if (future == null) {
-      return widget.placeholder ?? const SizedBox.shrink();
-    }
-
-    return FutureBuilder<void>(
-      future: future,
     if (future == null) {
       return widget.placeholder ?? const SizedBox.shrink();
     }
