@@ -24,7 +24,6 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   void initState() {
     super.initState();
-    _maybeLoadOrSchedule();
   }
 
   @override
@@ -77,6 +76,12 @@ class _DeferredWidgetState extends State<DeferredWidget> {
   @override
   Widget build(BuildContext context) {
     final future = _loadFuture;
+    if (future == null) {
+      return widget.placeholder ?? const SizedBox.shrink();
+    }
+
+    return FutureBuilder<void>(
+      future: future,
     if (future == null) {
       return widget.placeholder ?? const SizedBox.shrink();
     }
