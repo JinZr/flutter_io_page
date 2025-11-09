@@ -5,7 +5,7 @@ import 'package:zr_jin_page/utilities/author_name.dart';
 import 'theme/theme.dart';
 import 'theme/util.dart';
 
-import 'splash/splash_to_home.dart';
+import 'home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(
-      home: const SplashToHome(),
+      home: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐"),
+      ),
       title: AUTHOR_TEXT,
       theme: theme.light(),
       darkTheme: theme.dark(),
