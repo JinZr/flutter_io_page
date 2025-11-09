@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'dart:math' as math;
 
-import 'package:flutter/scheduler.dart';
-
 import 'home_components/academic_service_card.dart'
     deferred as academic_service;
 import 'home_components/card_entrance_wrapper.dart';
@@ -27,24 +25,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late final List<Future<void> Function()> _deferredLoaders =
-      <Future<void> Function()>[
-        selected_pub.loadLibrary,
-        academic_service.loadLibrary,
-        contrib.loadLibrary,
-        polaroid.loadLibrary,
-      ];
-
-  @override
-  void initState() {
-    super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      for (final loader in _deferredLoaders) {
-        loader();
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // var screenWidth = MediaQuery.sizeOf(context).width;
