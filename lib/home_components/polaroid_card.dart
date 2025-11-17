@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class PolaroidCard extends StatelessWidget {
@@ -16,6 +18,9 @@ class PolaroidCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
+    final cacheHeight = math.max(1, (400 * devicePixelRatio).round());
+
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,8 +50,11 @@ class PolaroidCard extends StatelessWidget {
               flexWeights: const <int>[1, 2, 1],
               children: _images
                   .map(
-                    (Map<String, String> image) =>
-                        Image.asset(image["image"]!, fit: BoxFit.cover),
+                    (Map<String, String> image) => Image.asset(
+                      image["image"]!,
+                      fit: BoxFit.cover,
+                      cacheHeight: cacheHeight,
+                    ),
                   )
                   .toList(),
             ),
