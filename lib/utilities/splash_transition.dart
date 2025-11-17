@@ -26,6 +26,9 @@ class _SplashToHomeState extends State<SplashToHome>
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 1600),
     vsync: this,
+    // Preserve progress while the page is in a background tab so the
+    // animation completes once the tab becomes visible again.
+    animationBehavior: AnimationBehavior.preserve,
   );
 
   @override
