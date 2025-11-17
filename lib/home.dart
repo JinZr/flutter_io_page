@@ -27,13 +27,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    // var screenWidth = MediaQuery.sizeOf(context).width;
     final screenWidth = MediaQuery.sizeOf(context).width;
     final cardWidth = math.min(screenWidth, 1200.0);
-    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
-    final headerCacheWidth = math.max(
-      1,
-      (screenWidth * devicePixelRatio).round(),
-    );
 
     Widget animatedCard({required Widget child, required int index}) {
       return Center(
@@ -45,51 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     }
-
-    final sectionBuilders = <WidgetBuilder>[
-      (_) => animatedCard(child: const IntroductionCard(), index: 0),
-      (_) => animatedCard(
-        child: DeferredWidget(
-          libraryLoader: selected_pub.loadLibrary,
-          placeholder: const CardPlaceholder(minHeight: 220),
-          builder: (_) => selected_pub.SelectedPubCard(),
-        ),
-        index: 1,
-      ),
-      (_) => animatedCard(
-        child: DeferredWidget(
-          libraryLoader: contrib.loadLibrary,
-          placeholder: const CardPlaceholder(minHeight: 220),
-          builder: (_) => contrib.ContribCard(),
-        ),
-        index: 2,
-      ),
-      (_) => animatedCard(
-        child: DeferredWidget(
-          libraryLoader: academic_service.loadLibrary,
-          placeholder: const CardPlaceholder(minHeight: 220),
-          builder: (_) => academic_service.AcademicServiceCard(),
-        ),
-        index: 3,
-      ),
-      (_) => animatedCard(
-        child: DeferredWidget(
-          libraryLoader: polaroid.loadLibrary,
-          placeholder: const CardPlaceholder(minHeight: 320),
-          builder: (_) => polaroid.PolaroidCard(),
-        ),
-        index: 4,
-      ),
-      (context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24.0),
-        child: Center(
-          child: Text(
-            'This site is proudly powered by Flutter and composed by Zengrui Jin.',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ),
-      ),
-    ];
 
     return PopScope(
       canPop: !kIsWeb,
@@ -134,7 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         Image.asset(
                           "assets/images/header.webp",
                           fit: BoxFit.cover,
-                          cacheWidth: headerCacheWidth,
                         ),
                         DecoratedBox(
                           decoration: BoxDecoration(
@@ -156,12 +106,48 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-          body: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => sectionBuilders[index](context),
-                  childCount: sectionBuilders.length,
+          body: ListView(
+            children: [
+              animatedCard(child: const IntroductionCard(), index: 0),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: selected_pub.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => selected_pub.SelectedPubCard(),
+                ),
+                index: 1,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: contrib.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => contrib.ContribCard(),
+                ),
+                index: 2,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: academic_service.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 220),
+                  builder: (_) => academic_service.AcademicServiceCard(),
+                ),
+                index: 3,
+              ),
+              animatedCard(
+                child: DeferredWidget(
+                  libraryLoader: polaroid.loadLibrary,
+                  placeholder: const CardPlaceholder(minHeight: 320),
+                  builder: (_) => polaroid.PolaroidCard(),
+                ),
+                index: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Center(
+                  child: Text(
+                    'This site is proudly powered by Flutter and composed by Zengrui Jin.',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                 ),
               ),
             ],

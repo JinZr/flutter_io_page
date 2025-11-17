@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:zr_jin_page/utilities/content_repository.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
 import 'package:zr_jin_page/utilities/futures.dart';
@@ -20,7 +19,6 @@ class _SelectedPubCardState extends State<SelectedPubCard>
   Object? _error;
   String? _selectedTheme;
   late final ContentRepository _repository = ContentRepository.instance;
-  bool _remoteRefreshScheduled = false;
 
   @override
   void initState() {
@@ -29,12 +27,10 @@ class _SelectedPubCardState extends State<SelectedPubCard>
   }
 
   Future<void> _loadContent() async {
-    var loadedLocal = false;
     try {
       final local = await loadCachedJsonList('selected_pub_list.json');
       final mapped = _mapItems(local);
       _setItems(mapped);
-      loadedLocal = true;
     } catch (error) {
       if (mounted) {
         setState(() {
@@ -43,27 +39,6 @@ class _SelectedPubCardState extends State<SelectedPubCard>
       }
     }
 
-    if (loadedLocal) {
-      _scheduleRemoteRefresh();
-    } else {
-      await _refreshFromRemote();
-    }
-  }
-
-  void _scheduleRemoteRefresh() {
-    if (_remoteRefreshScheduled) {
-      return;
-    }
-    _remoteRefreshScheduled = true;
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) {
-        return;
-      }
-      _refreshFromRemote();
-    });
-  }
-
-  Future<void> _refreshFromRemote() async {
     try {
       final remote = await _repository.loadRemoteList('selected_pub_list.json');
       final mapped = _mapItems(remote);
@@ -76,6 +51,8 @@ class _SelectedPubCardState extends State<SelectedPubCard>
           _error = error;
         });
       }
+    } finally {
+      // No-op: ensure callers awaiting the future can continue.
     }
   }
 

@@ -51,23 +51,13 @@
   </style>
 
   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SJNNRFW4C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    window.addEventListener('flutter-first-frame', () => {
-      if (window.__gtagLoaded) {
-        return;
-      }
-      window.__gtagLoaded = true;
-      const script = document.createElement('script');
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-4SJNNRFW4C';
-      script.defer = true;
-      script.onload = () => {
-        gtag('js', new Date());
-        gtag('config', 'G-4SJNNRFW4C');
-      };
-      document.head.appendChild(script);
-    }, { once: true });
+    gtag('js', new Date());
+
+    gtag('config', 'G-4SJNNRFW4C');
   </script>
 </head>
 <body>

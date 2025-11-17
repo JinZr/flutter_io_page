@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zr_jin_page/utilities/content_repository.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
@@ -18,7 +17,6 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
   List<Map<String, dynamic>>? _services;
   Object? _error;
   late final ContentRepository _repository = ContentRepository.instance;
-  bool _remoteRefreshScheduled = false;
 
   @override
   void initState() {
@@ -27,7 +25,6 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
   }
 
   Future<void> _loadContent() async {
-    var loadedLocal = false;
     try {
       final local = await loadCachedJsonList('academic_service_list.json');
       final mapped = _map(local);
@@ -37,7 +34,6 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
           _error = null;
         });
       }
-      loadedLocal = true;
     } catch (error) {
       if (mounted) {
         setState(() {
@@ -46,27 +42,6 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
       }
     }
 
-    if (loadedLocal) {
-      _scheduleRemoteRefresh();
-    } else {
-      await _refreshFromRemote();
-    }
-  }
-
-  void _scheduleRemoteRefresh() {
-    if (_remoteRefreshScheduled) {
-      return;
-    }
-    _remoteRefreshScheduled = true;
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) {
-        return;
-      }
-      _refreshFromRemote();
-    });
-  }
-
-  Future<void> _refreshFromRemote() async {
     try {
       final remote = await _repository.loadRemoteList(
         'academic_service_list.json',

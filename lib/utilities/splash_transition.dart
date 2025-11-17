@@ -1,8 +1,6 @@
-import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:zr_jin_page/utilities/splash_visit_storage.dart';
 
 /// A Material motion inspired splash experience that morphs into the provided
 /// [home] widget.
@@ -25,20 +23,6 @@ class SplashToHome extends StatefulWidget {
 
 class _SplashToHomeState extends State<SplashToHome>
     with SingleTickerProviderStateMixin {
-  static const String _headerAsset = 'assets/images/header.webp';
-  static const List<String> _polaroidAssets = [
-    'assets/images/egs/egs1.webp',
-    'assets/images/egs/egs2.webp',
-    'assets/images/egs/egs3.webp',
-    'assets/images/egs/egs4.webp',
-    'assets/images/egs/egs5.webp',
-    'assets/images/egs/egs6.webp',
-    'assets/images/egs/egs7.webp',
-    'assets/images/egs/egs8.webp',
-  ];
-
-  late final SplashVisitStorage _visitStorage = getSplashVisitStorage();
-  late final bool _shouldShowSplash = _determineShouldShowSplash();
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 1600),
     vsync: this,
@@ -47,58 +31,17 @@ class _SplashToHomeState extends State<SplashToHome>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    Future<void>.delayed(widget.startDelay, () {
       if (mounted) {
-        _precacheImportantImages();
+        _controller.forward();
       }
     });
-    if (_shouldShowSplash) {
-      Future<void>.delayed(widget.startDelay, () {
-        if (mounted) {
-          _controller.forward();
-        }
-      });
-    }
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  Future<void> _precacheImportantImages() async {
-    final mediaQuery = MediaQuery.maybeOf(context);
-    final view = View.of(context);
-    final devicePixelRatio =
-        mediaQuery?.devicePixelRatio ?? view.devicePixelRatio;
-    final screenWidth =
-        mediaQuery?.size.width ?? (view.physicalSize.width / devicePixelRatio);
-
-    final headerProvider = ResizeImage(
-      const AssetImage(_headerAsset),
-      width: math.max(1, (screenWidth * devicePixelRatio).round()),
-    );
-    final galleryHeightPx = math.max(1, (400 * devicePixelRatio).round());
-
-    final futures = <Future<void>>[
-      precacheImage(headerProvider, context),
-      for (final asset in _polaroidAssets)
-        precacheImage(
-          ResizeImage(AssetImage(asset), height: galleryHeightPx),
-          context,
-        ),
-    ];
-
-    await Future.wait(futures);
-  }
-
-  bool _determineShouldShowSplash() {
-    if (_visitStorage.hasSeenSplash) {
-      return false;
-    }
-    _visitStorage.markSplashSeen();
-    return true;
   }
 
   double _curvedInterval(
@@ -120,9 +63,6 @@ class _SplashToHomeState extends State<SplashToHome>
 
   @override
   Widget build(BuildContext context) {
-    if (!_shouldShowSplash) {
-      return widget.home;
-    }
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final TextTheme textTheme = Theme.of(context).textTheme;
 
