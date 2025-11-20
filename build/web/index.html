@@ -48,19 +48,91 @@
     #flt-glass-pane {
       touch-action: pan-y;
     }
+
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 20% 20%, #dbeafe 0, #e0e7ff 32%, #f8fafc 78%);
+      color: #0f172a;
+      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      z-index: 9999;
+    }
+
+    #app-loader .card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      padding: 20px 24px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #app-loader .spinner {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid rgba(15, 23, 42, 0.16);
+      border-top-color: #0f172a;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SJNNRFW4C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-4SJNNRFW4C');
-  </script>
 </head>
 <body>
+  <div id="app-loader" aria-label="Loading homepage">
+    <div class="card">
+      <div class="spinner" aria-hidden="true"></div>
+      <div>
+        <div style="font-weight:600;">Loading</div>
+        <div style="font-size:14px; opacity:0.78;">Bringing the splash screen online...</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const loadAnalytics = () => {
+      const gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src =
+        'https://www.googletagmanager.com/gtag/js?id=G-4SJNNRFW4C';
+      document.head.appendChild(gtagScript);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4SJNNRFW4C');
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadAnalytics, {timeout: 2000});
+    } else {
+      setTimeout(loadAnalytics, 1200);
+    }
+
+    window.addEventListener('flutter-first-frame', () => {
+      const loader = document.getElementById('app-loader');
+      if (loader) {
+        loader.remove();
+      }
+    }, { once: true });
+
+    // Fallback cleanup in case the event is missed.
+    setTimeout(() => {
+      const loader = document.getElementById('app-loader');
+      if (loader) {
+        loader.remove();
+      }
+    }, 15000);
+  </script>
   <script async src="flutter_bootstrap.js"></script>
 </body>
 </html>

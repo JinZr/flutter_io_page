@@ -42,7 +42,7 @@ F=c[11]
 B.kf.prototype={
 ai(){return new B.K0(null)}}
 B.K0.prototype={
-an(){this.WB()
+an(){this.WA()
 this.pS()},
 pS(){var x=0,w=A.M(y.v),v=1,u=[],t=this,s,r,q,p,o,n,m,l,k,j
 var $async$pS=A.N(function(d,e){if(d===1){u.push(e)
@@ -66,7 +66,7 @@ break
 case 5:v=8
 l=t.f
 x=11
-return A.R((l===$?t.f=$.aj_():l).wo("academic_service_list.json"),$async$pS)
+return A.R((l===$?t.f=$.aj_():l).wn("academic_service_list.json"),$async$pS)
 case 11:p=e
 o=B.aql(p)
 if(t.c!=null&&!B.aCa(o,t.d))t.al(new B.a93(t,o))
@@ -89,11 +89,11 @@ L(d){var x,w,v=null
 this.pd(d)
 x=A.V(d).ok.w
 x.toString
-x=A.js(v,F.CF,v,v,A.cH("Academic Service",x),v)
+x=A.js(v,F.CE,v,v,A.cH("Academic Service",x),v)
 w=A.V(d).a6.y
 w=w==null?v:w.V(d.aa(y.o).w).a
-return A.tZ(A.j8(A.c([x,G.V0(w==null?16:w),E.amT(C.ck,new A.eV(this.Y7(d),v),C.dl,C.b0)],y.u),C.by,C.al,C.aT),v)},
-Y7(d){var x,w,v,u=null,t=this.d
+return A.tZ(A.j8(A.c([x,G.V0(w==null?16:w),E.amT(C.ck,new A.eV(this.Y6(d),v),C.dl,C.b0)],y.u),C.by,C.al,C.aT),v)},
+Y6(d){var x,w,v,u=null,t=this.d
 if(t!=null){x=E.aox(new B.a9_(t),t.length,C.ak,D.rb,!0)
 w=D.xi}else{v=this.e
 if(v!=null){x=new A.c2(D.eL,A.ko(A.j8(A.c([D.lC,A.cH(J.ci(v),u)],y.u),C.aQ,C.al,C.aT),u,u),u)
@@ -158,7 +158,7 @@ B.a96.prototype={
 $0(){var x=this.a.c.i(0,"link"),w=x==null?null:J.ci(x)
 if(w!=null&&w.length!==0)A.RX(A.ee(w,0,null))},
 $S:0};(function aliases(){var x=B.Cb.prototype
-x.WB=x.an})();(function inheritance(){var x=a.mixinHard,w=a.inherit,v=a.inheritMany
+x.WA=x.an})();(function inheritance(){var x=a.mixinHard,w=a.inherit,v=a.inheritMany
 w(B.kf,A.Z)
 w(B.Cb,A.a6)
 w(B.K0,B.Cb)
@@ -168,7 +168,7 @@ w(B.a95,A.fa)
 w(B.r0,A.ar)
 x(B.Cb,A.j1)})()
 A.t1(b.typeUniverse,JSON.parse('{"r0":{"ar":[],"f":[]},"kf":{"Z":[],"f":[]},"K0":{"a6":["kf"]}}'))
-var y={o:A.a3("e1"),x:A.a3("x<p>"),u:A.a3("x<f>"),y:A.a3("ax<p,@>"),B:A.a3("ax<@,@>"),w:A.a3("p"),l:A.a3("f"),b:A.a3("@"),v:A.a3("~")};(function constants(){F.Cu=new A.e3(59078,"MaterialIcons",!1)
-F.CF=new A.fF(F.Cu,null,null,null)})()};
-(a=>{a["452DnEbgYNLGMTkVXuSwmiQeTFA="]=a.current})($__dart_deferred_initializers__);
+var y={o:A.a3("e1"),x:A.a3("x<p>"),u:A.a3("x<f>"),y:A.a3("ax<p,@>"),B:A.a3("ax<@,@>"),w:A.a3("p"),l:A.a3("f"),b:A.a3("@"),v:A.a3("~")};(function constants(){F.Ct=new A.e3(59078,"MaterialIcons",!1)
+F.CE=new A.fF(F.Ct,null,null,null)})()};
+(a=>{a["FB/y6zWADxh9L28QP7hpxzrKebg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_7.part.js.map
