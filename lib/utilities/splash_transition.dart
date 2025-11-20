@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// A Material motion inspired splash experience that morphs into the provided
@@ -23,15 +24,17 @@ class SplashToHome extends StatefulWidget {
 
 class _SplashToHomeState extends State<SplashToHome>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 1600),
-    vsync: this,
-  );
+  late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(widget.startDelay, () {
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1600),
+      vsync: this,
+    );
+    final Duration delay = kIsWeb ? Duration.zero : widget.startDelay;
+    Future<void>.delayed(delay, () {
       if (mounted) {
         _controller.forward();
       }
