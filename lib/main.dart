@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = createTextTheme(context, "Roboto", "Roboto Serif");
-    MaterialTheme theme = MaterialTheme(textTheme);
+    final TextTheme textTheme = createTextTheme();
+    final MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(
       home: ConstrainedBox(

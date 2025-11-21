@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
 
-TextStyle clickableTextStyle(Color primary, double fontSize) =>
-    TextStyle(color: primary, fontSize: fontSize, fontFamily: 'Roboto Serif');
+TextStyle clickableTextStyle(TextTheme textTheme, Color primary) =>
+    textTheme.bodyMedium!.copyWith(color: primary, decoration: .underline);

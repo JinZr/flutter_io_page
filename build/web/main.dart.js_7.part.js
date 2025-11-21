@@ -1,7 +1,7 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var J,A,C,E,D,G,B={
 aw0(){return new B.kd(null)},
-aqg(d){var x=J.m1(d,new B.a8Z(),y.y)
+aqg(d){var x=J.m1(d,new B.a9_(),y.y)
 x=A.Y(x,x.$ti.h("an.E"))
 x.$flags=1
 return x},
@@ -16,20 +16,20 @@ _.e=_.d=null
 _.f=$
 _.dE$=d
 _.c=_.a=null},
-a8V:function a8V(d,e){this.a=d
-this.b=e},
 a8W:function a8W(d,e){this.a=d
 this.b=e},
 a8X:function a8X(d,e){this.a=d
 this.b=e},
 a8Y:function a8Y(d,e){this.a=d
 this.b=e},
-a8T:function a8T(d){this.a=d},
-a8U:function a8U(){},
-a8Z:function a8Z(){},
-r_:function r_(d,e){this.c=d
+a8Z:function a8Z(d,e){this.a=d
+this.b=e},
+a8U:function a8U(d){this.a=d},
+a8V:function a8V(){},
+a9_:function a9_(){},
+qZ:function qZ(d,e){this.c=d
 this.a=e},
-a9_:function a9_(d){this.a=d},
+a90:function a90(d){this.a=d},
 Ca:function Ca(){}},F
 J=c[1]
 A=c[0]
@@ -42,23 +42,23 @@ F=c[11]
 B.kd.prototype={
 aj(){return new B.JW(null)}}
 B.JW.prototype={
-an(){this.Wz()
-this.pS()},
-pS(){var x=0,w=A.M(y.v),v=1,u=[],t=this,s,r,q,p,o,n,m,l,k,j
-var $async$pS=A.N(function(d,e){if(d===1){u.push(e)
+an(){this.Wy()
+this.pR()},
+pR(){var x=0,w=A.M(y.v),v=1,u=[],t=this,s,r,q,p,o,n,m,l,k,j
+var $async$pR=A.N(function(d,e){if(d===1){u.push(e)
 x=v}for(;;)switch(x){case 0:v=3
 x=6
-return A.R(E.RS("academic_service_list.json"),$async$pS)
+return A.R(E.RS("academic_service_list.json"),$async$pR)
 case 6:s=e
 r=B.aqg(s)
-if(t.c!=null)t.al(new B.a8V(t,r))
+if(t.c!=null)t.al(new B.a8W(t,r))
 v=1
 x=5
 break
 case 3:v=2
 k=u.pop()
 q=A.aa(k)
-if(t.c!=null)t.al(new B.a8W(t,q))
+if(t.c!=null)t.al(new B.a8X(t,q))
 x=5
 break
 case 2:x=1
@@ -66,40 +66,40 @@ break
 case 5:v=8
 l=t.f
 x=11
-return A.R((l===$?t.f=$.aiR():l).wj("academic_service_list.json"),$async$pS)
+return A.R((l===$?t.f=$.aiS():l).wi("academic_service_list.json"),$async$pR)
 case 11:p=e
 o=B.aqg(p)
-if(t.c!=null&&!B.aC4(o,t.d))t.al(new B.a8X(t,o))
+if(t.c!=null&&!B.aC4(o,t.d))t.al(new B.a8Y(t,o))
 v=1
 x=10
 break
 case 8:v=7
 j=u.pop()
 n=A.aa(j)
-if(t.c!=null&&t.d==null)t.al(new B.a8Y(t,n))
+if(t.c!=null&&t.d==null)t.al(new B.a8Z(t,n))
 x=10
 break
 case 7:x=1
 break
 case 10:return A.K(null,w)
 case 1:return A.J(u.at(-1),w)}})
-return A.L($async$pS,w)},
-glf(){return!0},
+return A.L($async$pR,w)},
+glg(){return!0},
 L(d){var x,w,v=null
-this.pd(d)
-x=A.V(d).ok.w
+this.pc(d)
+x=A.W(d).ok.w
 x.toString
-x=A.jp(v,F.Cz,v,v,A.cQ("Academic Service",x),v)
-w=A.V(d).a6.y
+x=A.jp(v,F.CA,v,v,A.cQ("Academic Service",x),v)
+w=A.W(d).a6.y
 w=w==null?v:w.V(d.aa(y.o).w).a
-return A.tW(A.kq(A.c([x,G.UU(w==null?16:w),E.amL(C.cj,new A.eV(this.Y4(d),v),C.dk,C.b0)],y.u),C.bx,C.as,C.aR),v)},
-Y4(d){var x,w,v,u=null,t=this.d
-if(t!=null){x=E.aop(new B.a8T(t),t.length,C.ap,D.r9,!0)
-w=D.xh}else{v=this.e
-if(v!=null){x=new A.ce(D.eK,A.kl(A.kq(A.c([D.lz,A.cQ(J.ch(v),u)],y.u),C.aZ,C.as,C.aR),u,u),u)
-w=D.xi}else{x=D.ri
-w=D.xj}}return E.Db(new A.fk(x,w),C.eI,new B.a8U(),C.hG,C.cr,E.ahU())}}
-B.r_.prototype={
+return A.tV(A.kq(A.c([x,G.UU(w==null?16:w),E.amL(C.cj,new A.eV(this.Y3(d),v),C.dk,C.b0)],y.u),C.bx,C.as,C.aR),v)},
+Y3(d){var x,w,v,u=null,t=this.d
+if(t!=null){x=E.aop(new B.a8U(t),t.length,C.ap,D.ra,!0)
+w=D.xi}else{v=this.e
+if(v!=null){x=new A.ce(D.eK,A.kl(A.kq(A.c([D.lA,A.cQ(J.ch(v),u)],y.u),C.aZ,C.as,C.aR),u,u),u)
+w=D.xj}else{x=D.rj
+w=D.xk}}return E.Db(new A.fk(x,w),C.eI,new B.a8V(),C.hG,C.cr,E.ahV())}}
+B.qZ.prototype={
 L(d){var x,w,v,u,t,s=null,r=this.c,q=r.i(0,"role"),p=q==null?s:J.ch(q)
 if(p==null)p="Service"
 q=r.i(0,"organization")
@@ -116,59 +116,59 @@ r=A.c([],r)
 if(q.length!==0)r.push(C.b.b7(q,"  "))
 u=C.b.b7(r,"\n")
 r=A.cQ(p,s)
-q=u.length!==0?A.cQ(u,A.V(d).ok.z):s
-t=v!=null&&v.length!==0?A.cQ(v,A.V(d).ok.as):s
-return A.jp(s,s,new B.a9_(this),q,r,t)}}
+q=u.length!==0?A.cQ(u,A.W(d).ok.z):s
+t=v!=null&&v.length!==0?A.cQ(v,A.W(d).ok.as):s
+return A.jp(s,s,new B.a90(this),q,r,t)}}
 B.Ca.prototype={
 an(){this.aM()
-this.ls()},
-cD(){var x=this.dE$
+this.lt()},
+cE(){var x=this.dE$
 if(x!=null){x.aC()
 x.dA()
 this.dE$=null}this.kb()}}
-var z=a.updateTypes(["r_(U,o)"])
-B.a8V.prototype={
+var z=a.updateTypes(["qZ(U,o)"])
+B.a8W.prototype={
 $0(){var x=this.a
 x.d=this.b
 x.e=null},
-$S:0}
-B.a8W.prototype={
-$0(){this.a.e=this.b},
 $S:0}
 B.a8X.prototype={
+$0(){this.a.e=this.b},
+$S:0}
+B.a8Y.prototype={
 $0(){var x=this.a
 x.d=this.b
 x.e=null},
 $S:0}
-B.a8Y.prototype={
+B.a8Z.prototype={
 $0(){this.a.e=this.b},
 $S:0}
-B.a8T.prototype={
-$2(d,e){return new B.r_(this.a[e],null)},
-$S:z+0}
 B.a8U.prototype={
+$2(d,e){return new B.qZ(this.a[e],null)},
+$S:z+0}
+B.a8V.prototype={
 $2(d,e){var x=A.Y(e,y.l)
 if(d!=null)x.push(d)
 return A.jL(C.cj,x,C.cP)},
 $S:126}
-B.a8Z.prototype={
+B.a9_.prototype={
 $1(d){return y.B.a(d).fk(0,y.w,y.b)},
 $S:125}
-B.a9_.prototype={
+B.a90.prototype={
 $0(){var x=this.a.c.i(0,"link"),w=x==null?null:J.ch(x)
 if(w!=null&&w.length!==0)A.RR(A.ee(w,0,null))},
 $S:0};(function aliases(){var x=B.Ca.prototype
-x.Wz=x.an})();(function inheritance(){var x=a.mixinHard,w=a.inherit,v=a.inheritMany
+x.Wy=x.an})();(function inheritance(){var x=a.mixinHard,w=a.inherit,v=a.inheritMany
 w(B.kd,A.a_)
 w(B.Ca,A.a6)
 w(B.JW,B.Ca)
-v(A.j5,[B.a8V,B.a8W,B.a8X,B.a8Y,B.a9_])
-v(A.hW,[B.a8T,B.a8U])
-w(B.a8Z,A.eM)
-w(B.r_,A.ar)
+v(A.j5,[B.a8W,B.a8X,B.a8Y,B.a8Z,B.a90])
+v(A.hW,[B.a8U,B.a8V])
+w(B.a9_,A.eM)
+w(B.qZ,A.ar)
 x(B.Ca,A.j0)})()
-A.ou(b.typeUniverse,JSON.parse('{"r_":{"ar":[],"f":[]},"kd":{"a_":[],"f":[]},"JW":{"a6":["kd"]}}'))
-var y={o:A.a1("dP"),x:A.a1("w<p>"),u:A.a1("w<f>"),y:A.a1("ax<p,@>"),B:A.a1("ax<@,@>"),w:A.a1("p"),l:A.a1("f"),b:A.a1("@"),v:A.a1("~")};(function constants(){F.Co=new A.e3(59078,"MaterialIcons",!1)
-F.Cz=new A.fF(F.Co,null,null,null)})()};
-(a=>{a["Tneyi1V0mJM+R4L9Tcsh3luv56A="]=a.current})($__dart_deferred_initializers__);
+A.ot(b.typeUniverse,JSON.parse('{"qZ":{"ar":[],"f":[]},"kd":{"a_":[],"f":[]},"JW":{"a6":["kd"]}}'))
+var y={o:A.a1("dP"),x:A.a1("w<p>"),u:A.a1("w<f>"),y:A.a1("ax<p,@>"),B:A.a1("ax<@,@>"),w:A.a1("p"),l:A.a1("f"),b:A.a1("@"),v:A.a1("~")};(function constants(){F.Cp=new A.e3(59078,"MaterialIcons",!1)
+F.CA=new A.fF(F.Cp,null,null,null)})()};
+(a=>{a["l7Ol2RWlglmoxI3sECgEm365SVs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_7.part.js.map

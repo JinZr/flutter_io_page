@@ -74,7 +74,6 @@ flutter:
     - assets/images/egs/egs7.webp
     - assets/images/egs/egs8.webp
     - assets/texts/
-    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -87,14 +86,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-VariableFont_wdth,wght.ttf
-    - family: Roboto Serif
-      fonts:
-        - asset: assets/fonts/RobotoSerif-VariableFont_GRAD,opsz,wdth,wght.ttf
 
   #
   # For details regarding fonts from package dependencies,
