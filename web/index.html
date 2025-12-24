@@ -25,8 +25,9 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zengrui Jin">
   <meta name="twitter:description" content="Personal homepage of Zengrui Jin.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="flutter_bootstrap.js" as="script">
+  <link rel="preload" href="assets/fonts/DMSerifText-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/images/header.webp" as="image" type="image/webp">
   <link rel="icon" type="image/webp" href="favicon.webp">
 
   <!-- iOS meta tags & icons -->
@@ -39,6 +40,14 @@
   <title>Zengrui Jin</title>
   <link rel="manifest" href="manifest.json">
   <style>
+    @font-face {
+      font-family: "DM Serif Text";
+      src: url("assets/fonts/DMSerifText-Regular.ttf") format("truetype");
+      font-display: swap;
+      font-style: normal;
+      font-weight: 400;
+    }
+
     :root {
       color-scheme: dark;
     }
@@ -96,7 +105,8 @@
 
     .splash-title {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 400;
+      font-family: "DM Serif Text", "Times New Roman", serif;
       letter-spacing: 0.02em;
       margin-bottom: 6px;
     }

@@ -20,7 +20,7 @@ class IntroductionCard extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: Text(
               AUTHOR_TEXT,
-              style: Theme.of(context).textTheme.titleMedium!,
+              style: Theme.of(context).textTheme.titleLarge!,
             ),
             subtitle: const Text("金增锐"),
           ),

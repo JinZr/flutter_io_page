@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:zr_jin_page/theme/util.dart';
+
 class SelectedPubListTile extends StatelessWidget {
   final dynamic json;
 
@@ -11,7 +13,7 @@ class SelectedPubListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         json["title"],
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: publicationTitleTextStyle(Theme.of(context).textTheme),
       ),
       subtitle: Text(json["author"]),
       trailing: Column(

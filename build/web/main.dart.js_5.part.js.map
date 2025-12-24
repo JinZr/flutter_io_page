@@ -5,7 +5,7 @@
   "sourceRoot": "",
   "sources": ["../../../lib/home_components/contrib_card.dart","/opt/homebrew/share/flutter/packages/flutter/lib/src/widgets/basic.dart"],
   "names": ["ContribCard","ContribListTile.build","ContribCard.build","ContribListTile.build.<anonymous function>","of"],
-  "mappings": "A;0DAyBQA;2BAAwBA,C;;;;;;;;;;;;;;CARvBC,IACEA,sBAAKA;AADwBA,gBAG7BA,eADGA,SAAKA,UAEhBA,C;;CAOMC,IAOgBA,qBAAYA,GAAUA;CAAWA;AAJlDA,UACiBA,QACRA;AAOGA,QAAYA,GAAcA;gBCwJZA,SAA4DA,GDtJ3EA;AAdqBA,YAC7BA,KACKA,OAQRA,oBAOMA,KAMAA,4BAQXA,C;;AAvCcC;EAANA,GAAMA,gBAAUA,KAAWA,C",
+  "mappings": "A;0DAyBQA;2BAAwBA,C;;;;;;;;;;;;;;CARvBC,IACEA,sBAAKA;AADwBA,gBAG7BA,eADGA,SAAKA,UAEhBA,C;;CAOMC,IAOgBA,qBAAYA,GAAUA;CAAUA;AAJjDA,UACiBA,QACRA;AAOGA,QAAYA,GAAcA;gBCwJZA,SAA4DA,GDtJ3EA;AAdqBA,YAC7BA,KACKA,OAQRA,oBAOMA,KAMAA,4BAQXA,C;;AAvCcC;EAANA,GAAMA,gBAAUA,KAAWA,C",
   "x_org_dartlang_dart2js": {
     "minified_names": {
       "global": "",

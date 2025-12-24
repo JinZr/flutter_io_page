@@ -33,7 +33,7 @@ class ContribCard extends StatelessWidget {
           leading: const Icon(Icons.code),
           title: Text(
             "Contribution to Open Source",
-            style: Theme.of(context).textTheme.titleMedium!,
+            style: Theme.of(context).textTheme.titleLarge!,
           ),
         ),
         Divider(

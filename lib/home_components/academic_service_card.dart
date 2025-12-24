@@ -76,7 +76,7 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
             leading: const Icon(Icons.volunteer_activism),
             title: Text(
               'Academic Service',
-              style: Theme.of(context).textTheme.titleMedium!,
+              style: Theme.of(context).textTheme.titleLarge!,
             ),
           ),
           Divider(

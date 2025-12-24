@@ -25,7 +25,7 @@ class PolaroidCard extends StatelessWidget {
             leading: const Icon(Icons.camera),
             title: Text(
               "My Polaroid Gallery",
-              style: Theme.of(context).textTheme.titleMedium!,
+              style: Theme.of(context).textTheme.titleLarge!,
             ),
           ),
           Divider(

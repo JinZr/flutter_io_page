@@ -109,7 +109,7 @@ class _SelectedPubCardState extends State<SelectedPubCard>
             leading: const Icon(Icons.newspaper),
             title: Text(
               "Selected Publications",
-              style: Theme.of(context).textTheme.titleMedium!,
+              style: Theme.of(context).textTheme.titleLarge!,
             ),
           ),
           Divider(
