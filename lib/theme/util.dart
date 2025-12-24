@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+const _titleFontFamily = "DM Serif Text";
+
 TextTheme createTextTheme() {
   final baseTheme = ThemeData(useMaterial3: true).textTheme;
-  const titleFontFamily = "DM Serif Text";
 
   TextStyle? applyTitleFont(TextStyle? style) {
     return style?.copyWith(
-      fontFamily: titleFontFamily,
+      fontFamily: _titleFontFamily,
       fontWeight: FontWeight.w400,
     );
   }
@@ -24,12 +25,9 @@ TextTheme createTextTheme() {
   );
 }
 
-const _publicationTitleFontFamily = "Roboto Serif";
-
 TextStyle publicationTitleTextStyle(TextTheme textTheme) {
   final baseStyle = textTheme.titleMedium ?? const TextStyle();
   return baseStyle.copyWith(
-    fontFamily: _publicationTitleFontFamily,
-    fontWeight: FontWeight.w600,
+    fontFamily: _titleFontFamily,
   );
 }

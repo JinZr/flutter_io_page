@@ -78,9 +78,6 @@ flutter:
     - family: "DM Serif Text"
       fonts:
         - asset: assets/fonts/DMSerifText-Regular.ttf
-    - family: "Roboto Serif"
-      fonts:
-        - asset: assets/fonts/RobotoSerif-VariableFont_GRAD,opsz,wdth,wght.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

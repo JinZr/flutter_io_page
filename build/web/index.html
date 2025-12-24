@@ -141,13 +141,39 @@
   </style>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SJNNRFW4C"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    (() => {
+      const GA_ID = 'G-4SJNNRFW4C';
+      let scheduled = false;
 
-    gtag('config', 'G-4SJNNRFW4C');
+      const loadAnalytics = () => {
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(script);
+      };
+
+      const schedule = () => {
+        if (scheduled) return;
+        scheduled = true;
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          setTimeout(loadAnalytics, 1500);
+        }
+      };
+
+      window.addEventListener('flutter-first-frame', schedule, { once: true });
+      window.addEventListener('load', schedule, { once: true });
+    })();
   </script>
 </head>
 <body>

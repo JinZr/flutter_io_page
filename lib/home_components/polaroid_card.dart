@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:zr_jin_page/utilities/lazy_asset_image.dart';
+
 class PolaroidCard extends StatelessWidget {
   const PolaroidCard({super.key});
 
@@ -45,8 +47,10 @@ class PolaroidCard extends StatelessWidget {
               flexWeights: const <int>[1, 2, 1],
               children: _images
                   .map(
-                    (Map<String, String> image) =>
-                        Image.asset(image["image"]!, fit: BoxFit.cover),
+                    (Map<String, String> image) => LazyAssetImage(
+                      assetName: image["image"]!,
+                      fit: BoxFit.cover,
+                    ),
                   )
                   .toList(),
             ),
