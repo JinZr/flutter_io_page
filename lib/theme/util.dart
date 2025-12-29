@@ -24,10 +24,3 @@ TextTheme createTextTheme() {
     titleSmall: applyTitleFont(baseTheme.titleSmall),
   );
 }
-
-TextStyle publicationTitleTextStyle(TextTheme textTheme) {
-  final baseStyle = textTheme.titleMedium ?? const TextStyle();
-  return baseStyle.copyWith(
-    fontFamily: _titleFontFamily,
-  );
-}

@@ -11,10 +11,7 @@ class SelectedPubListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
-        json["title"],
-        style: publicationTitleTextStyle(Theme.of(context).textTheme),
-      ),
+      title: Text(json["title"]),
       subtitle: Text(json["author"]),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
