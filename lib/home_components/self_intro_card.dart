@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:zr_jin_page/utilities/author_name.dart';
 import 'package:zr_jin_page/utilities/link_buttonbar.dart';
 
 import 'intro.dart';
@@ -16,14 +15,6 @@ class IntroductionCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: Text(
-              AUTHOR_TEXT,
-              style: Theme.of(context).textTheme.titleLarge!,
-            ),
-            subtitle: const Text("金增锐"),
-          ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: MyIntroduction(),
