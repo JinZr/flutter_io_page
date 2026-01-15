@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:zr_jin_page/utilities/link_buttonbar.dart';
-
 import 'intro.dart';
 
 class IntroductionCard extends StatelessWidget {
@@ -75,7 +73,6 @@ class IntroductionCard extends StatelessWidget {
               }
             },
           ),
-          linkButtonBar,
         ],
       ),
     );
