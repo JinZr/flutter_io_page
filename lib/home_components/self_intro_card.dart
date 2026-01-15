@@ -15,6 +15,17 @@ class IntroductionCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: Text("Bio", style: Theme.of(context).textTheme.titleLarge!),
+          ),
+          Divider(
+            indent:
+                Theme.of(context).listTileTheme.contentPadding
+                    ?.resolve(Directionality.of(context))
+                    .left ??
+                16.0,
+          ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: MyIntroduction(),
