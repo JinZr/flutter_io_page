@@ -3,14 +3,14 @@
   "engine": "v2",
   "file": "main.dart.js_4.part.js",
   "sourceRoot": "",
-  "sources": ["/opt/homebrew/share/flutter/packages/flutter/lib/src/widgets/scroll_delegate.dart","/opt/homebrew/share/flutter/packages/flutter/lib/src/foundation/assertions.dart","/opt/homebrew/share/flutter/packages/flutter/lib/src/widgets/basic.dart","/opt/homebrew/share/flutter/packages/flutter/lib/src/widgets/automatic_keep_alive.dart"],
-  "names": ["SliverChildBuilderDelegate.findIndexByKey","SliverChildBuilderDelegate.build","_createErrorWidget","SliverChildBuilderDelegate.estimatedChildCount","SliverChildBuilderDelegate.shouldRebuild",""],
-  "mappings": "A;;;;;;;;;;;EAihBOA,IAEDA,WAUJA,C;EAIQC,MACNA;AAAcA,iBAAmCA;KAApBA;AAA7BA,KACEA,QAyBJA;AChLOC;ID2JKD,0BADVA;AAEEA;ACjKEC,iCD+gBKD;AAEEA;AACMA,UA9WjBA,WACEA,QAgBJA;IAdyBA,aAAoCA;CAAGA;AAlU1DA,mBA+UqBA;AAXQA;AE61N7BA;AF11N+CA;AAAtBA;AAC3BA,WEs6OEA;AFj6O2DA;AGhf3DA,WHwtBAA;AAtOJA,OE47OIA,aF37ONA,C;GAGSE,GAAuBA,aAAUA,C;EAGrCC,IAAmEA,QAAIA,C",
+  "sources": ["../../../lib/home_components/contrib_card.dart","/opt/homebrew/share/flutter/packages/flutter/lib/src/widgets/basic.dart"],
+  "names": ["ContribCard","ContribListTile.build","ContribCard.build","ContribListTile.build.<anonymous function>","of"],
+  "mappings": "A;0DAyBQA;2BAAwBA,C;;;;;;;;;;;;;CARvBC,IACEA,sBAAKA;AADwBA,gBAG7BA,eADGA,SAAKA,UAEhBA,C;;CAOMC,IAOgBA,qBAAYA,GAAUA;CAAUA;AAJjDA,UACiBA,QACRA;AAOGA,QAAYA,GAAcA;gBCwJZA,SAA4DA,GDtJ3EA;AAdqBA,YAC7BA,KACKA,OAQRA,oBAOMA,KAMAA,4BAQXA,C;;AAvCcC;EAANA,GAAMA,gBAAUA,KAAWA,C",
   "x_org_dartlang_dart2js": {
     "minified_names": {
       "global": "",
       "instance": ""
     },
-    "frames": "qWAyiBcEAAyWwBGW,A;8CAzWxBHAAyWwBGiC,yC;mDApWGAmB;QAE3BAgB;4BAKEAkB;IAIFAW;AAA0BAiB;OAE7BAa;"
+    "frames": "ykBAyC2CIY;"
   }
 }
