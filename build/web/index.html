@@ -18,6 +18,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Personal homepage of Zengrui Jin.">
   <meta property="og:title" content="Zengrui Jin">
   <meta property="og:description" content="Personal homepage of Zengrui Jin.">
@@ -31,7 +32,8 @@
   <link rel="icon" type="image/webp" href="favicon.webp">
 
   <!-- iOS meta tags & icons -->
-  <meta name="theme-color" content="#hex">
+  <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f9f9ff" media="(prefers-color-scheme: light)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Zengrui Jin">
@@ -50,6 +52,38 @@
 
     :root {
       color-scheme: dark;
+      --md-sys-color-primary: #aec6ff;
+      --md-sys-color-on-primary: #122f60;
+      --md-sys-color-surface: #111318;
+      --md-sys-color-surface-container: #1e1f25;
+      --md-sys-color-surface-container-high: #282a2f;
+      --md-sys-color-on-surface: #e2e2e9;
+      --md-sys-color-on-surface-variant: #c5c6d0;
+      --md-sys-color-outline: rgba(174, 198, 255, 0.3);
+      --splash-bg-start: #1c2230;
+      --splash-bg-end: #0a0b10;
+      --splash-glow: rgba(174, 198, 255, 0.24);
+      --splash-spinner-track: rgba(174, 198, 255, 0.22);
+      --md-elevation-2: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --md-elevation-4: 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --md-sys-color-primary: #455e91;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-surface: #f9f9ff;
+        --md-sys-color-surface-container: #eeedf4;
+        --md-sys-color-surface-container-high: #e8e7ef;
+        --md-sys-color-on-surface: #1a1b20;
+        --md-sys-color-on-surface-variant: #44474f;
+        --md-sys-color-outline: rgba(69, 94, 145, 0.22);
+        --splash-bg-start: #f1f3ff;
+        --splash-bg-end: #dfe3f1;
+        --splash-glow: rgba(69, 94, 145, 0.18);
+        --splash-spinner-track: rgba(69, 94, 145, 0.22);
+      }
     }
 
     html,
@@ -69,11 +103,35 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(120% 120% at 20% 20%, #19233a 0%, #0c121f 45%, #05070d 100%);
-      color: #e7ecf4;
-      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(140% 140% at 15% 10%, var(--splash-bg-start) 0%, var(--md-sys-color-surface) 45%, var(--splash-bg-end) 100%);
+      color: var(--md-sys-color-on-surface);
+      font-family: "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
       z-index: 9999;
       transition: opacity 260ms ease;
+      overflow: hidden;
+    }
+
+    #splash-screen::before,
+    #splash-screen::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--splash-glow), transparent 70%);
+      filter: blur(2px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    #splash-screen::before {
+      top: -120px;
+      left: -80px;
+    }
+
+    #splash-screen::after {
+      bottom: -140px;
+      right: -120px;
     }
 
     #splash-screen.fade-out {
@@ -82,48 +140,49 @@
     }
 
     .splash-card {
-      padding: 32px 28px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow:
-        0 14px 40px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
+      width: min(92vw, 360px);
+      padding: clamp(22px, 5vw, 32px);
+      border-radius: 26px;
+      background: var(--md-sys-color-surface-container);
+      border: 1px solid var(--md-sys-color-outline);
+      box-shadow: var(--md-elevation-2), var(--md-elevation-4);
       text-align: center;
-      backdrop-filter: blur(8px);
-      min-width: 240px;
+      display: grid;
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .splash-logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
-      margin-bottom: 18px;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      padding: 10px;
+      background: var(--md-sys-color-surface-container-high);
+      border: 1px solid var(--md-sys-color-outline);
       object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
     }
 
     .splash-title {
       font-size: 18px;
-      font-weight: 400;
-      font-family: "DM Serif Text", "Times New Roman", serif;
-      letter-spacing: 0.02em;
-      margin-bottom: 6px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
 
     .splash-subtitle {
       font-size: 14px;
-      color: rgba(231, 236, 244, 0.75);
-      margin-bottom: 18px;
+      color: var(--md-sys-color-on-surface-variant);
     }
 
     .splash-spinner {
-      width: 36px;
-      height: 36px;
-      margin: 0 auto;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      border: 3px solid rgba(231, 236, 244, 0.25);
-      border-top-color: #7cc0ff;
+      border: 3px solid var(--splash-spinner-track);
+      border-top-color: var(--md-sys-color-primary);
       animation: spin 900ms linear infinite;
     }
 
@@ -135,7 +194,7 @@
 
     @media (max-width: 480px) {
       .splash-card {
-        margin: 0 18px;
+        width: min(94vw, 360px);
       }
     }
   </style>
