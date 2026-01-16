@@ -13,7 +13,7 @@ import 'home_components/selected_pub_card.dart' deferred as selected_pub;
 import 'home_components/self_intro_card.dart';
 import 'utilities/author_name.dart';
 import 'utilities/deferred_widget.dart';
-import 'utilities/link_buttonbar.dart';
+import 'utilities/link_toolbar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.titleEn, required this.titleZh});
@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return PopScope(
       canPop: !kIsWeb,
       child: Scaffold(
+        extendBody: true,
         bottomNavigationBar: LinkToolbar(floating: _toolbarFloating),
         body: NotificationListener<ScrollNotification>(
           onNotification: _handleScrollNotification,
@@ -111,10 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 colors: [
                                   Theme.of(context).colorScheme.surfaceTint
                                       .withValues(alpha: 0.35),
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .surface
-                                      .withValues(alpha: 0.85),
+                                  Theme.of(
+                                    context,
+                                  ).colorScheme.surface.withValues(alpha: 0.85),
                                 ],
                               ),
                             ),

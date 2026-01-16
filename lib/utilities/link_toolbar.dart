@@ -65,46 +65,52 @@ class LinkToolbar extends StatelessWidget {
             curve: Curves.easeOutCubic,
             margin: margin,
             child: Material(
-              color: backgroundColor,
+              color: Colors.transparent,
               elevation: floating ? 6.0 : 0.0,
               shadowColor: theme.colorScheme.shadow,
               surfaceTintColor: Colors.transparent,
               shape: RoundedRectangleBorder(borderRadius: borderRadius),
               clipBehavior: Clip.antiAlias,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+              child: Ink(
+                decoration: BoxDecoration(
+                  color: backgroundColor,
+                  borderRadius: borderRadius,
                 ),
-                child: OverflowBar(
-                  alignment: MainAxisAlignment.center,
-                  overflowAlignment: OverflowBarAlignment.center,
-                  spacing: 8,
-                  overflowSpacing: 8,
-                  children: [
-                    _buildTonalButton(
-                      showIconAndText: showIconAndText,
-                      icon: Icons.school,
-                      label: 'Google Scholar',
-                      onPressed: () => launchURL(
-                        'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en',
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  child: OverflowBar(
+                    alignment: MainAxisAlignment.center,
+                    overflowAlignment: OverflowBarAlignment.center,
+                    spacing: 8,
+                    overflowSpacing: 8,
+                    children: [
+                      _buildTonalButton(
+                        showIconAndText: showIconAndText,
+                        icon: Icons.school,
+                        label: 'Google Scholar',
+                        onPressed: () => launchURL(
+                          'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en',
+                        ),
                       ),
-                    ),
-                    _buildTextButton(
-                      showIconAndText: showIconAndText,
-                      icon: Icons.code,
-                      label: 'GitHub',
-                      onPressed: () => launchURL('https://github.com/JinZr'),
-                    ),
-                    _buildTextButton(
-                      showIconAndText: showIconAndText,
-                      icon: Icons.science,
-                      label: 'ResearchGate',
-                      onPressed: () => launchURL(
-                        'https://www.researchgate.net/profile/Zengrui-Jin',
+                      _buildTextButton(
+                        showIconAndText: showIconAndText,
+                        icon: Icons.code,
+                        label: 'GitHub',
+                        onPressed: () => launchURL('https://github.com/JinZr'),
                       ),
-                    ),
-                  ],
+                      _buildTextButton(
+                        showIconAndText: showIconAndText,
+                        icon: Icons.science,
+                        label: 'ResearchGate',
+                        onPressed: () => launchURL(
+                          'https://www.researchgate.net/profile/Zengrui-Jin',
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
