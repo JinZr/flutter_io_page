@@ -165,7 +165,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/zrjin/.pub-cache/hosted/pub.dev/test_api-0.7.8",
+      "rootUri": "file:///Users/zrjin/.pub-cache/hosted/pub.dev/test_api-0.7.9",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -251,6 +251,6 @@
   "generator": "pub",
   "generatorVersion": "3.11.0",
   "flutterRoot": "file:///opt/homebrew/share/flutter",
-  "flutterVersion": "3.41.0",
+  "flutterVersion": "3.41.1",
   "pubCache": "file:///Users/zrjin/.pub-cache"
 }
