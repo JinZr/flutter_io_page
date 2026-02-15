@@ -40,6 +40,14 @@
         "theme": "Speech"
     },
     {
+        "venue": "ICLR",
+        "title": "sleep2vec: Unified Cross-Modal Alignment for Heterogeneous Nocturnal Biosignals",
+        "link": "https://openreview.net/forum?id=DDXhRN66eV",
+        "author": "Weixuan Yuan, Zengrui Jin, Yichen Wang, Donglin Xie, Ziyi Ye, Chao Zhang, Xuesong Chen",
+        "year": "2026",
+        "theme": "Sleep Medicine"
+    },
+    {
         "venue": "medRxiv (preprint)",
         "title": "A Zero-Burden Sleep Foundation Model Built on Cardiorespiratory Signals from 800,000+ Hours of Multi-Ethnic Sleep Recordings",
         "link": "https://www.medrxiv.org/content/10.1101/2025.09.06.25335216v2",
