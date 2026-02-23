@@ -1605,7 +1605,7 @@ return e instanceof A.y1&&x.d.k(0,e.d)&&x.c.k(0,e.c)&&x.b.k(0,e.b)&&x.a.k(0,e.a)
 gv(d){var x=this
 return B.K(x.a,x.b,x.c,x.d,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a,C.a)}}
 A.o6.prototype={
-J(d){var x,w,v,u,t,s,r,q,p=null,o=B.T(d),n=o.ax,m=o.ok,l=this.c,k=l.a,j=B.dZ()===C.ag||B.dZ()===C.aU,i=!j,h=o.ae.y,g=h==null?p:h.V(d.a9(y.I).w),f=g==null?p:g.a
+J(d){var x,w,v,u,t,s,r,q,p=null,o=B.T(d),n=o.ax,m=o.ok,l=this.c,k=B.dZ()===C.ag||B.dZ()===C.aU,j=!k,i=l.a||k,h=o.ae.y,g=h==null?p:h.V(d.a9(y.I).w),f=g==null?p:g.a
 if(f==null)f=16
 x=l.ch
 w=l.CW
@@ -1614,14 +1614,14 @@ h.toString
 h=B.HJ(D.D8,B.bN("My Polaroid Gallery",p,p,h))
 v=B.Gs(f)
 u=l.dy
-t=k?"Tap an image to open it full screen":"Swipe to browse the gallery"
+t=i?"Tap an image to open it full screen":"Swipe to browse the gallery"
 s=m.Q
 if(s==null)s=p
 else{r=n.rx
 s=s.cd(r==null?n.k3:r)}r=y.p
 s=B.c([B.bN(t,p,p,s),B.c2(p,w,p)],r)
-if(k)s.push(new A.PE(D.my,l,i,p))
-else s.push(B.c2(new A.uS(!0,A.azM(1),!1,D.Eh,new A.a4U(this,i),8,p),400,17976931348623157e292))
+if(i)s.push(new A.PE(D.my,l,j,p))
+else s.push(B.c2(new A.uS(!0,A.azM(1),!1,D.Eh,new A.a4U(this,j),8,p),400,17976931348623157e292))
 t=l.db
 q=l.dx
 return B.uQ(B.dy(B.c([h,v,new B.bh(new B.ay(x,w,x,l.cx),B.dy(B.c([new A.Bb(l,new B.bh(new B.ay(u,w,u,u),B.dy(s,C.az,C.E,C.a1),p),p),B.c2(p,l.cy,p),new A.Bb(l,new B.bh(new B.ay(t,q,t,q),B.bN("I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also known as the Blue Button Version).",p,p,m.z),p),p)],r),C.az,C.E,C.a1),p)],r),C.az,C.E,C.a1),C.ao)}}
@@ -1816,5 +1816,5 @@ D.eu=new A.Bd(0,"pan")
 D.h9=new A.Bd(1,"scale")
 D.Sz=new A.Bd(2,"rotate")
 D.T9=new A.tx(null)})()};
-(a=>{a["y4z1zzsAVm3us5gqkQNsTJCOfNo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["1LDIUgcb6tpcK3qSlbQfgeikqB8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_8.part.js.map
