@@ -1,0 +1,63 @@
+name: Cleanup Git History
+
+on:
+  schedule:
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "CLEANUP" to run immediately'
+        required: true
+        default: "CANCEL"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cleanup-git-history-main
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    # This job force-pushes a single-commit snapshot to main.
+    if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Require explicit manual confirmation
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'CLEANUP'
+        run: |
+          echo 'Manual cleanup cancelled. Set "confirm" to "CLEANUP" to run it.'
+          exit 1
+
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check commit count
+        id: commit_count
+        run: |
+          count="$(git rev-list --count HEAD)"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Commit count: $count"
+
+      - name: Rewrite main history as a single snapshot commit
+        if: steps.commit_count.outputs.count != '1'
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          branch="${TARGET_BRANCH:-main}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout --orphan history-cleanup
+          git add -A
+          git commit -m "chore: periodic git history cleanup ($(date -u +%Y-%m-%d))"
+
+          git branch -M "$branch"
+          git push --force origin "$branch"
+
+      - name: Nothing to cleanup
+        if: steps.commit_count.outputs.count == '1'
+        run: echo "History already has a single commit."

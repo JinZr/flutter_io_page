@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Personal homepage of Zengrui Jin.">
+  <meta property="og:title" content="Zengrui Jin">
+  <meta property="og:description" content="Personal homepage of Zengrui Jin.">
+  <meta property="og:image" content="icons/Icon-512.webp">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Zengrui Jin">
+  <meta name="twitter:description" content="Personal homepage of Zengrui Jin.">
+  <link rel="preload" href="flutter_bootstrap.js" as="script">
+  <link rel="preload" href="assets/fonts/DMSerifText-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/images/header.webp" as="image" type="image/webp">
+  <link rel="icon" type="image/webp" href="favicon.webp">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f9f9ff" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Zengrui Jin">
+  <link rel="apple-touch-icon" href="icons/Icon-512.webp">
+
+  <title>Zengrui Jin</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    @font-face {
+      font-family: "DM Serif Text";
+      src: url("assets/fonts/DMSerifText-Regular.ttf") format("truetype");
+      font-display: swap;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    :root {
+      color-scheme: dark;
+      --md-sys-color-primary: #aec6ff;
+      --md-sys-color-on-primary: #122f60;
+      --md-sys-color-surface: #111318;
+      --md-sys-color-surface-container: #1e1f25;
+      --md-sys-color-surface-container-high: #282a2f;
+      --md-sys-color-on-surface: #e2e2e9;
+      --md-sys-color-on-surface-variant: #c5c6d0;
+      --md-sys-color-outline: rgba(174, 198, 255, 0.3);
+      --splash-bg-start: #1c2230;
+      --splash-bg-end: #0a0b10;
+      --splash-glow: rgba(174, 198, 255, 0.24);
+      --splash-spinner-track: rgba(174, 198, 255, 0.22);
+      --md-elevation-2: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --md-elevation-4: 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --md-sys-color-primary: #455e91;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-surface: #f9f9ff;
+        --md-sys-color-surface-container: #eeedf4;
+        --md-sys-color-surface-container-high: #e8e7ef;
+        --md-sys-color-on-surface: #1a1b20;
+        --md-sys-color-on-surface-variant: #44474f;
+        --md-sys-color-outline: rgba(69, 94, 145, 0.22);
+        --splash-bg-start: #f1f3ff;
+        --splash-bg-end: #dfe3f1;
+        --splash-glow: rgba(69, 94, 145, 0.18);
+        --splash-spinner-track: rgba(69, 94, 145, 0.22);
+      }
+    }
+
+    html,
+    body {
+      overscroll-behavior-x: none;
+      margin: 0;
+    }
+
+    body,
+    #flt-glass-pane {
+      touch-action: pan-y;
+    }
+
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(140% 140% at 15% 10%, var(--splash-bg-start) 0%, var(--md-sys-color-surface) 45%, var(--splash-bg-end) 100%);
+      color: var(--md-sys-color-on-surface);
+      font-family: "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      z-index: 9999;
+      transition: opacity 260ms ease;
+      overflow: hidden;
+    }
+
+    #splash-screen::before,
+    #splash-screen::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--splash-glow), transparent 70%);
+      filter: blur(2px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    #splash-screen::before {
+      top: -120px;
+      left: -80px;
+    }
+
+    #splash-screen::after {
+      bottom: -140px;
+      right: -120px;
+    }
+
+    #splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-card {
+      width: min(92vw, 360px);
+      padding: clamp(22px, 5vw, 32px);
+      border-radius: 26px;
+      background: var(--md-sys-color-surface-container);
+      border: 1px solid var(--md-sys-color-outline);
+      box-shadow: var(--md-elevation-2), var(--md-elevation-4);
+      text-align: center;
+      display: grid;
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .splash-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      padding: 10px;
+      background: var(--md-sys-color-surface-container-high);
+      border: 1px solid var(--md-sys-color-outline);
+      object-fit: cover;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .splash-title {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .splash-subtitle {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .splash-spinner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid var(--splash-spinner-track);
+      border-top-color: var(--md-sys-color-primary);
+      animation: spin 900ms linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .splash-card {
+        width: min(94vw, 360px);
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script>
+    (() => {
+      const GA_ID = 'G-4SJNNRFW4C';
+      let scheduled = false;
+
+      const loadAnalytics = () => {
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(script);
+      };
+
+      const schedule = () => {
+        if (scheduled) return;
+        scheduled = true;
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          setTimeout(loadAnalytics, 1500);
+        }
+      };
+
+      window.addEventListener('flutter-first-frame', schedule, { once: true });
+      window.addEventListener('load', schedule, { once: true });
+    })();
+  </script>
+</head>
+<body>
+  <div id="splash-screen">
+    <div class="splash-card">
+      <img class="splash-logo" src="icons/Icon-192.webp" alt="Zengrui Jin logo">
+      <div class="splash-title">Zengrui Jin</div>
+      <div class="splash-subtitle">Loading...</div>
+      <div class="splash-spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const splash = document.getElementById('splash-screen');
+      if (!splash) return;
+
+      let hidden = false;
+      const hideSplash = () => {
+        if (hidden) return;
+        hidden = true;
+        splash.classList.add('fade-out');
+        splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+      };
+
+      window.addEventListener('flutter-first-frame', hideSplash, { once: true });
+      window.addEventListener('load', () => setTimeout(hideSplash, 12000), { once: true });
+    })();
+  </script>
+  <script src="./flutter_bootstrap.js" async></script>
+</body>
+</html>
