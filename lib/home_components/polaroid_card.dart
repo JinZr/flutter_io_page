@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:zr_jin_page/theme/layout_tokens.dart';
@@ -22,6 +23,21 @@ class PolaroidCard extends StatelessWidget {
     return webpAssetPath
         .replaceFirst('assets/images/egs/', 'assets/images/egs_jpg/')
         .replaceFirst('.webp', '.jpg');
+  }
+
+  static String _primaryImageFor(String webpAssetPath) {
+    if (kIsWeb) {
+      // Safari can fail to paint some WebP assets in Flutter web.
+      return _jpegFallbackFor(webpAssetPath);
+    }
+    return webpAssetPath;
+  }
+
+  static String _secondaryImageFor(String webpAssetPath) {
+    if (kIsWeb) {
+      return webpAssetPath;
+    }
+    return _jpegFallbackFor(webpAssetPath);
   }
 
   @override
@@ -98,8 +114,8 @@ class PolaroidCard extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) {
                                 final image = _images[index];
                                 return _PolaroidGalleryImage(
-                                  imagePath: image["image"]!,
-                                  fallbackImagePath: _jpegFallbackFor(
+                                  imagePath: _primaryImageFor(image["image"]!),
+                                  fallbackImagePath: _secondaryImageFor(
                                     image["image"]!,
                                   ),
                                   title: image["title"]!,
@@ -161,8 +177,10 @@ class _PolaroidGalleryGrid extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             final image = images[index];
             return _PolaroidGalleryImage(
-              imagePath: image["image"]!,
-              fallbackImagePath: PolaroidCard._jpegFallbackFor(image["image"]!),
+              imagePath: PolaroidCard._primaryImageFor(image["image"]!),
+              fallbackImagePath: PolaroidCard._secondaryImageFor(
+                image["image"]!,
+              ),
               title: image["title"]!,
               layout: layout,
             );
