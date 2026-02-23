@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var J,A,C,F,D,G,B={
-azd(d){return new B.ky(d,null)},
-atr(d){var x=J.mq(d,new B.abz(),y.y)
+azf(d){return new B.ky(d,null)},
+att(d){var x=J.mq(d,new B.abz(),y.y)
 x=A.a0(x,x.$ti.h("at.E"))
 x.$flags=1
 return x},
-aF5(d,e){var x
+aF7(d,e){var x
 if(d===e)return!0
 if(e==null||d.length!==e.length)return!1
 for(x=0;x<d.length;++x)if(!A.ph(d[x],e[x]))return!1
@@ -54,12 +54,12 @@ this.qX()},
 qX(){var x=0,w=A.O(y.v),v=1,u=[],t=this,s,r,q,p,o,n,m,l,k,j,i,h
 var $async$qX=A.P(function(d,e){if(d===1){u.push(e)
 x=v}for(;;)switch(x){case 0:t.a.toString
-s=F.avG()
+s=F.avI()
 v=3
 x=6
 return A.S(s.$1("academic_service_list.json"),$async$qX)
 case 6:r=e
-q=B.atr(r)
+q=B.att(r)
 if(t.c!=null)t.am(new B.abv(t,q))
 v=1
 x=5
@@ -80,8 +80,8 @@ t.f=j
 k=j}x=11
 return A.S(k.xS("academic_service_list.json"),$async$qX)
 case 11:o=e
-n=B.atr(o)
-if(t.c!=null&&!B.aF5(n,t.d))t.am(new B.abx(t,n))
+n=B.att(o)
+if(t.c!=null&&!B.aF7(n,t.d))t.am(new B.abx(t,n))
 v=1
 x=10
 break
@@ -96,7 +96,7 @@ break
 case 10:return A.M(null,w)
 case 1:return A.L(u.at(-1),w)}})
 return A.N($async$qX,w)},
-glQ(){return!0},
+glP(){return!0},
 J(d){var x,w,v,u,t=null
 this.qh(d)
 x=A.T(d)
@@ -186,7 +186,7 @@ else t=r.cd(s?p.z:t)
 return A.ie(new A.bh(new A.ay(w,v,w,v),A.jW(A.c([u,n,A.bN(this.d,q,q,t)],y.u),C.ap,C.E,C.by,0),q),new A.cK(l,q,q,x,q,q,C.an),C.b5)}}
 B.DJ.prototype={
 ao(){this.aL()
-this.m6()},
+this.m5()},
 cV(){var x=this.dZ$
 if(x!=null){x.aH()
 x.e7()
@@ -231,5 +231,5 @@ x(B.DJ,A.jd)})()
 A.p7(b.typeUniverse,JSON.parse('{"ky":{"Y":[],"f":[]},"Ly":{"a4":["ky"]},"Lz":{"ag":[],"f":[]},"CY":{"ag":[],"f":[]}}'))
 var y={F:A.a3("jo"),o:A.a3("dG"),u:A.a3("A<f>"),y:A.a3("aK<p,@>"),B:A.a3("aK<@,@>"),w:A.a3("p"),l:A.a3("f"),b:A.a3("@"),v:A.a3("~")};(function constants(){E.CY=new A.cu(59078,"MaterialIcons",!1)
 E.D7=new A.eD(E.CY,null,null,null,null)})()};
-(a=>{a["O0aivwXu0QxDeUZqnahIyYB0xyw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EshDr1hGqXMpw5Zp/1apouGS/VE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_6.part.js.map
