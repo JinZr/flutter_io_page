@@ -7,6 +7,7 @@ class LinkToolbar extends StatelessWidget {
 
   final bool floating;
   static const double _textBreakpoint = 600;
+  static const double _overflowBreakpoint = 480;
 
   Widget _buildTonalButton({
     required bool showIconAndText,
@@ -60,6 +61,70 @@ class LinkToolbar extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final bool showIconAndText = constraints.maxWidth >= _textBreakpoint;
+          final bool useOverflowActions =
+              constraints.maxWidth < _overflowBreakpoint;
+
+          final Widget primaryAction = _buildTonalButton(
+            showIconAndText: showIconAndText,
+            icon: Icons.school,
+            label: 'Google Scholar',
+            onPressed: () => launchURL(
+              'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en',
+            ),
+          );
+
+          final List<Widget> actions = useOverflowActions
+              ? [
+                  primaryAction,
+                  PopupMenuButton<_SecondaryLink>(
+                    tooltip: 'More links',
+                    icon: const Icon(Icons.more_vert),
+                    onSelected: (value) {
+                      switch (value) {
+                        case _SecondaryLink.github:
+                          launchURL('https://github.com/JinZr');
+                        case _SecondaryLink.researchGate:
+                          launchURL(
+                            'https://www.researchgate.net/profile/Zengrui-Jin',
+                          );
+                      }
+                    },
+                    itemBuilder: (context) => const [
+                      PopupMenuItem<_SecondaryLink>(
+                        value: _SecondaryLink.github,
+                        child: ListTile(
+                          leading: Icon(Icons.code),
+                          title: Text('GitHub'),
+                        ),
+                      ),
+                      PopupMenuItem<_SecondaryLink>(
+                        value: _SecondaryLink.researchGate,
+                        child: ListTile(
+                          leading: Icon(Icons.science),
+                          title: Text('ResearchGate'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]
+              : [
+                  primaryAction,
+                  _buildTextButton(
+                    showIconAndText: showIconAndText,
+                    icon: Icons.code,
+                    label: 'GitHub',
+                    onPressed: () => launchURL('https://github.com/JinZr'),
+                  ),
+                  _buildTextButton(
+                    showIconAndText: showIconAndText,
+                    icon: Icons.science,
+                    label: 'ResearchGate',
+                    onPressed: () => launchURL(
+                      'https://www.researchgate.net/profile/Zengrui-Jin',
+                    ),
+                  ),
+                ];
+
           return AnimatedContainer(
             duration: const Duration(milliseconds: 220),
             curve: Curves.easeOutCubic,
@@ -86,30 +151,7 @@ class LinkToolbar extends StatelessWidget {
                     overflowAlignment: OverflowBarAlignment.center,
                     spacing: 8,
                     overflowSpacing: 8,
-                    children: [
-                      _buildTonalButton(
-                        showIconAndText: showIconAndText,
-                        icon: Icons.school,
-                        label: 'Google Scholar',
-                        onPressed: () => launchURL(
-                          'https://scholar.google.com/citations?user=kgH1mk0AAAAJ&hl=en',
-                        ),
-                      ),
-                      _buildTextButton(
-                        showIconAndText: showIconAndText,
-                        icon: Icons.code,
-                        label: 'GitHub',
-                        onPressed: () => launchURL('https://github.com/JinZr'),
-                      ),
-                      _buildTextButton(
-                        showIconAndText: showIconAndText,
-                        icon: Icons.science,
-                        label: 'ResearchGate',
-                        onPressed: () => launchURL(
-                          'https://www.researchgate.net/profile/Zengrui-Jin',
-                        ),
-                      ),
-                    ],
+                    children: actions,
                   ),
                 ),
               ),
@@ -120,3 +162,5 @@ class LinkToolbar extends StatelessWidget {
     );
   }
 }
+
+enum _SecondaryLink { github, researchGate }
