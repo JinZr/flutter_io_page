@@ -63,6 +63,7 @@ class PolaroidCard extends StatelessWidget {
     final isSafariWeb = isSafariWebOverride ?? _isSafariWebPlatform;
     // Safari web can misrender this card with Hero transitions enabled.
     final enableHero = !isSafariWeb;
+    final useStableGalleryGrid = isCompact || isSafariWeb;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -107,7 +108,7 @@ class PolaroidCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          isCompact
+                          useStableGalleryGrid
                               ? 'Tap an image to open it full screen'
                               : 'Swipe to browse the gallery',
                           style: textTheme.bodySmall?.copyWith(
@@ -115,7 +116,7 @@ class PolaroidCard extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: layout.cardPaddingTop),
-                        if (isCompact)
+                        if (useStableGalleryGrid)
                           _PolaroidGalleryGrid(
                             images: _images,
                             layout: layout,

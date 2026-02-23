@@ -37,7 +37,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('disables Hero transitions on Safari web for wide layouts', (
+  testWidgets('falls back to grid on Safari web for wide layouts', (
     WidgetTester tester,
   ) async {
     await pumpCard(
@@ -46,9 +46,9 @@ void main() {
       width: 1024,
     );
 
-    expect(find.text('Swipe to browse the gallery'), findsOneWidget);
-    expect(find.byType(CarouselView), findsOneWidget);
-    expect(find.byType(GridView), findsNothing);
+    expect(find.text('Tap an image to open it full screen'), findsOneWidget);
+    expect(find.byType(GridView), findsOneWidget);
+    expect(find.byType(CarouselView), findsNothing);
     expect(find.byType(Hero), findsNothing);
     expect(tester.takeException(), isNull);
   });
