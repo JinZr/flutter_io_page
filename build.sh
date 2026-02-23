@@ -6,4 +6,4 @@ flutter build web \
   --optimization-level 4 \
   --source-maps \
   --tree-shake-icons \
-  --wasm
+  --no-wasm-dry-run

@@ -1,26 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 
 class PolaroidCard extends StatelessWidget {
-  const PolaroidCard({
-    super.key,
-    required this.layout,
-    this.isSafariWebOverride,
-  });
+  const PolaroidCard({super.key, required this.layout});
 
   final LayoutTokens layout;
-  @visibleForTesting
-  final bool? isSafariWebOverride;
-
-  static bool get _isSafariWebPlatform {
-    if (!kIsWeb) {
-      return false;
-    }
-    return defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS;
-  }
 
   static const List<Map<String, String>> _images = [
     {"image": "assets/images/egs/egs1.webp", "title": "Dalian"},
@@ -33,37 +18,12 @@ class PolaroidCard extends StatelessWidget {
     {"image": "assets/images/egs/egs8.webp", "title": "Hong Kong SAR"},
   ];
 
-  static String _jpegFallbackFor(String webpAssetPath) {
-    return webpAssetPath
-        .replaceFirst('assets/images/egs/', 'assets/images/egs_jpg/')
-        .replaceFirst('.webp', '.jpg');
-  }
-
-  static String _primaryImageFor(String webpAssetPath) {
-    if (kIsWeb) {
-      // Safari can fail to paint some WebP assets in Flutter web.
-      return _jpegFallbackFor(webpAssetPath);
-    }
-    return webpAssetPath;
-  }
-
-  static String _secondaryImageFor(String webpAssetPath) {
-    if (kIsWeb) {
-      return webpAssetPath;
-    }
-    return _jpegFallbackFor(webpAssetPath);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final isCompact = layout.isCompact;
-    final isSafariWeb = isSafariWebOverride ?? _isSafariWebPlatform;
-    // Safari web can misrender this card with Hero transitions enabled.
-    final enableHero = !isSafariWeb;
-    final useStableGalleryGrid = isCompact || isSafariWeb;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -108,7 +68,7 @@ class PolaroidCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          useStableGalleryGrid
+                          isCompact
                               ? 'Tap an image to open it full screen'
                               : 'Swipe to browse the gallery',
                           style: textTheme.bodySmall?.copyWith(
@@ -116,12 +76,8 @@ class PolaroidCard extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: layout.cardPaddingTop),
-                        if (useStableGalleryGrid)
-                          _PolaroidGalleryGrid(
-                            images: _images,
-                            layout: layout,
-                            enableHero: enableHero,
-                          )
+                        if (isCompact)
+                          _PolaroidGalleryGrid(images: _images, layout: layout)
                         else
                           SizedBox(
                             width: double.maxFinite,
@@ -136,13 +92,9 @@ class PolaroidCard extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) {
                                 final image = _images[index];
                                 return _PolaroidGalleryImage(
-                                  imagePath: _primaryImageFor(image["image"]!),
-                                  fallbackImagePath: _secondaryImageFor(
-                                    image["image"]!,
-                                  ),
+                                  imagePath: image["image"]!,
                                   title: image["title"]!,
                                   layout: layout,
-                                  enableHero: enableHero,
                                 );
                               },
                             ),
@@ -177,15 +129,10 @@ class PolaroidCard extends StatelessWidget {
 }
 
 class _PolaroidGalleryGrid extends StatelessWidget {
-  const _PolaroidGalleryGrid({
-    required this.images,
-    required this.layout,
-    required this.enableHero,
-  });
+  const _PolaroidGalleryGrid({required this.images, required this.layout});
 
   final List<Map<String, String>> images;
   final LayoutTokens layout;
-  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -205,13 +152,9 @@ class _PolaroidGalleryGrid extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             final image = images[index];
             return _PolaroidGalleryImage(
-              imagePath: PolaroidCard._primaryImageFor(image["image"]!),
-              fallbackImagePath: PolaroidCard._secondaryImageFor(
-                image["image"]!,
-              ),
+              imagePath: image["image"]!,
               title: image["title"]!,
               layout: layout,
-              enableHero: enableHero,
             );
           },
         );
@@ -245,17 +188,13 @@ class _GallerySectionContainer extends StatelessWidget {
 class _PolaroidGalleryImage extends StatelessWidget {
   const _PolaroidGalleryImage({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.title,
     required this.layout,
-    required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
-  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -278,18 +217,18 @@ class _PolaroidGalleryImage extends StatelessWidget {
                   fullscreenDialog: true,
                   builder: (BuildContext context) => _PolaroidImageViewer(
                     imagePath: imagePath,
-                    fallbackImagePath: fallbackImagePath,
                     title: title,
                     layout: layout,
-                    enableHero: enableHero,
                   ),
                 ),
               );
             },
-            child: _GalleryImageContent(
-              imagePath: imagePath,
-              fallbackImagePath: fallbackImagePath,
-              enableHero: enableHero,
+            child: Hero(
+              tag: imagePath,
+              child: _PolaroidAssetImage(
+                assetName: imagePath,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -298,45 +237,16 @@ class _PolaroidGalleryImage extends StatelessWidget {
   }
 }
 
-class _GalleryImageContent extends StatelessWidget {
-  const _GalleryImageContent({
-    required this.imagePath,
-    required this.fallbackImagePath,
-    required this.enableHero,
-  });
-
-  final String imagePath;
-  final String fallbackImagePath;
-  final bool enableHero;
-
-  @override
-  Widget build(BuildContext context) {
-    final image = _PolaroidAssetImage(
-      primaryAssetName: imagePath,
-      fallbackAssetName: fallbackImagePath,
-      fit: BoxFit.cover,
-    );
-    if (!enableHero) {
-      return image;
-    }
-    return Hero(tag: imagePath, child: image);
-  }
-}
-
 class _PolaroidImageViewer extends StatelessWidget {
   const _PolaroidImageViewer({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.title,
     required this.layout,
-    required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
-  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -355,10 +265,12 @@ class _PolaroidImageViewer extends StatelessWidget {
             maxScale: 4.0,
             child: SizedBox.expand(
               child: Center(
-                child: _ViewerImageContent(
-                  imagePath: imagePath,
-                  fallbackImagePath: fallbackImagePath,
-                  enableHero: enableHero,
+                child: Hero(
+                  tag: imagePath,
+                  child: _PolaroidAssetImage(
+                    assetName: imagePath,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
@@ -393,76 +305,18 @@ class _PolaroidImageViewer extends StatelessWidget {
   }
 }
 
-class _ViewerImageContent extends StatelessWidget {
-  const _ViewerImageContent({
-    required this.imagePath,
-    required this.fallbackImagePath,
-    required this.enableHero,
-  });
-
-  final String imagePath;
-  final String fallbackImagePath;
-  final bool enableHero;
-
-  @override
-  Widget build(BuildContext context) {
-    final image = _PolaroidAssetImage(
-      primaryAssetName: imagePath,
-      fallbackAssetName: fallbackImagePath,
-      fit: BoxFit.contain,
-    );
-    if (!enableHero) {
-      return image;
-    }
-    return Hero(tag: imagePath, child: image);
-  }
-}
-
 class _PolaroidAssetImage extends StatelessWidget {
-  const _PolaroidAssetImage({
-    required this.primaryAssetName,
-    required this.fallbackAssetName,
-    required this.fit,
-  });
+  const _PolaroidAssetImage({required this.assetName, required this.fit});
 
-  final String primaryAssetName;
-  final String fallbackAssetName;
+  final String assetName;
   final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      primaryAssetName,
+      assetName,
       fit: fit,
       filterQuality: FilterQuality.medium,
-      errorBuilder:
-          (BuildContext context, Object error, StackTrace? stackTrace) {
-            return Image.asset(
-              fallbackAssetName,
-              fit: fit,
-              filterQuality: FilterQuality.medium,
-              errorBuilder:
-                  (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return const _PolaroidImageErrorPlaceholder();
-                  },
-            );
-          },
-    );
-  }
-}
-
-class _PolaroidImageErrorPlaceholder extends StatelessWidget {
-  const _PolaroidImageErrorPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return ColoredBox(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
-      child: Icon(
-        Icons.broken_image_outlined,
-        color: colorScheme.onSurfaceVariant,
-      ),
     );
   }
 }

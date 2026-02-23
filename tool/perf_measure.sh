@@ -29,7 +29,7 @@ flutter test -r expanded | tee "${OUT_DIR}/test.log"
 
 flutter build web \
   --release \
-  --wasm \
+  --no-wasm-dry-run \
   --source-maps \
   --tree-shake-icons \
   --output=build/web-html \
@@ -38,12 +38,6 @@ flutter build web \
 echo "Bundle sizes:" > "${OUT_DIR}/bundle_sizes.txt"
 if [[ -f build/web-html/main.dart.js ]]; then
   wc -c build/web-html/main.dart.js >> "${OUT_DIR}/bundle_sizes.txt"
-fi
-if [[ -f build/web-html/main.dart.wasm ]]; then
-  wc -c build/web-html/main.dart.wasm >> "${OUT_DIR}/bundle_sizes.txt"
-fi
-if [[ -f build/web-html/main.dart.mjs ]]; then
-  wc -c build/web-html/main.dart.mjs >> "${OUT_DIR}/bundle_sizes.txt"
 fi
 find build/web-html -name '*.part.js' -print0 | xargs -0 -I{} wc -c {} >> "${OUT_DIR}/bundle_sizes.txt" || true
 

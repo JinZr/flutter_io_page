@@ -36,20 +36,4 @@ void main() {
     expect(find.byType(GridView), findsNothing);
     expect(tester.takeException(), isNull);
   });
-
-  testWidgets('falls back to grid on Safari web for wide layouts', (
-    WidgetTester tester,
-  ) async {
-    await pumpCard(
-      tester,
-      PolaroidCard(layout: LayoutTokens.regular(), isSafariWebOverride: true),
-      width: 1024,
-    );
-
-    expect(find.text('Tap an image to open it full screen'), findsOneWidget);
-    expect(find.byType(GridView), findsOneWidget);
-    expect(find.byType(CarouselView), findsNothing);
-    expect(find.byType(Hero), findsNothing);
-    expect(tester.takeException(), isNull);
-  });
 }
