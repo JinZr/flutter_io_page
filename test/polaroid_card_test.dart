@@ -36,4 +36,20 @@ void main() {
     expect(find.byType(GridView), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('disables Hero transitions on Safari web for wide layouts', (
+    WidgetTester tester,
+  ) async {
+    await pumpCard(
+      tester,
+      PolaroidCard(layout: LayoutTokens.regular(), isSafariWebOverride: true),
+      width: 1024,
+    );
+
+    expect(find.text('Swipe to browse the gallery'), findsOneWidget);
+    expect(find.byType(CarouselView), findsOneWidget);
+    expect(find.byType(GridView), findsNothing);
+    expect(find.byType(Hero), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }

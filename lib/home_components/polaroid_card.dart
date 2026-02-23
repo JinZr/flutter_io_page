@@ -4,9 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 
 class PolaroidCard extends StatelessWidget {
-  const PolaroidCard({super.key, required this.layout});
+  const PolaroidCard({
+    super.key,
+    required this.layout,
+    this.isSafariWebOverride,
+  });
 
   final LayoutTokens layout;
+  @visibleForTesting
+  final bool? isSafariWebOverride;
+
+  static bool get _isSafariWebPlatform {
+    if (!kIsWeb) {
+      return false;
+    }
+    return defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.macOS;
+  }
 
   static const List<Map<String, String>> _images = [
     {"image": "assets/images/egs/egs1.webp", "title": "Dalian"},
@@ -46,6 +60,9 @@ class PolaroidCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final isCompact = layout.isCompact;
+    final isSafariWeb = isSafariWebOverride ?? _isSafariWebPlatform;
+    // Safari web can misrender this card with Hero transitions enabled.
+    final enableHero = !isSafariWeb;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -99,7 +116,11 @@ class PolaroidCard extends StatelessWidget {
                         ),
                         SizedBox(height: layout.cardPaddingTop),
                         if (isCompact)
-                          _PolaroidGalleryGrid(images: _images, layout: layout)
+                          _PolaroidGalleryGrid(
+                            images: _images,
+                            layout: layout,
+                            enableHero: enableHero,
+                          )
                         else
                           SizedBox(
                             width: double.maxFinite,
@@ -120,6 +141,7 @@ class PolaroidCard extends StatelessWidget {
                                   ),
                                   title: image["title"]!,
                                   layout: layout,
+                                  enableHero: enableHero,
                                 );
                               },
                             ),
@@ -154,10 +176,15 @@ class PolaroidCard extends StatelessWidget {
 }
 
 class _PolaroidGalleryGrid extends StatelessWidget {
-  const _PolaroidGalleryGrid({required this.images, required this.layout});
+  const _PolaroidGalleryGrid({
+    required this.images,
+    required this.layout,
+    required this.enableHero,
+  });
 
   final List<Map<String, String>> images;
   final LayoutTokens layout;
+  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +210,7 @@ class _PolaroidGalleryGrid extends StatelessWidget {
               ),
               title: image["title"]!,
               layout: layout,
+              enableHero: enableHero,
             );
           },
         );
@@ -219,12 +247,14 @@ class _PolaroidGalleryImage extends StatelessWidget {
     required this.fallbackImagePath,
     required this.title,
     required this.layout,
+    required this.enableHero,
   });
 
   final String imagePath;
   final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
+  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -250,22 +280,45 @@ class _PolaroidGalleryImage extends StatelessWidget {
                     fallbackImagePath: fallbackImagePath,
                     title: title,
                     layout: layout,
+                    enableHero: enableHero,
                   ),
                 ),
               );
             },
-            child: Hero(
-              tag: imagePath,
-              child: _PolaroidAssetImage(
-                primaryAssetName: imagePath,
-                fallbackAssetName: fallbackImagePath,
-                fit: BoxFit.cover,
-              ),
+            child: _GalleryImageContent(
+              imagePath: imagePath,
+              fallbackImagePath: fallbackImagePath,
+              enableHero: enableHero,
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class _GalleryImageContent extends StatelessWidget {
+  const _GalleryImageContent({
+    required this.imagePath,
+    required this.fallbackImagePath,
+    required this.enableHero,
+  });
+
+  final String imagePath;
+  final String fallbackImagePath;
+  final bool enableHero;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = _PolaroidAssetImage(
+      primaryAssetName: imagePath,
+      fallbackAssetName: fallbackImagePath,
+      fit: BoxFit.cover,
+    );
+    if (!enableHero) {
+      return image;
+    }
+    return Hero(tag: imagePath, child: image);
   }
 }
 
@@ -275,12 +328,14 @@ class _PolaroidImageViewer extends StatelessWidget {
     required this.fallbackImagePath,
     required this.title,
     required this.layout,
+    required this.enableHero,
   });
 
   final String imagePath;
   final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
+  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -299,13 +354,10 @@ class _PolaroidImageViewer extends StatelessWidget {
             maxScale: 4.0,
             child: SizedBox.expand(
               child: Center(
-                child: Hero(
-                  tag: imagePath,
-                  child: _PolaroidAssetImage(
-                    primaryAssetName: imagePath,
-                    fallbackAssetName: fallbackImagePath,
-                    fit: BoxFit.contain,
-                  ),
+                child: _ViewerImageContent(
+                  imagePath: imagePath,
+                  fallbackImagePath: fallbackImagePath,
+                  enableHero: enableHero,
                 ),
               ),
             ),
@@ -337,6 +389,31 @@ class _PolaroidImageViewer extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _ViewerImageContent extends StatelessWidget {
+  const _ViewerImageContent({
+    required this.imagePath,
+    required this.fallbackImagePath,
+    required this.enableHero,
+  });
+
+  final String imagePath;
+  final String fallbackImagePath;
+  final bool enableHero;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = _PolaroidAssetImage(
+      primaryAssetName: imagePath,
+      fallbackAssetName: fallbackImagePath,
+      fit: BoxFit.contain,
+    );
+    if (!enableHero) {
+      return image;
+    }
+    return Hero(tag: imagePath, child: image);
   }
 }
 
