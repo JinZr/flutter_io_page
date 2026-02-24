@@ -60,6 +60,9 @@ class _PolaroidCardState extends State<PolaroidCard> {
     final bottomPadding = layout.cardPaddingBottom;
     final sectionGap = layout.sectionGap;
     final galleryHeight = 400.0;
+    final cardHeaderStyle = textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
+    );
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -69,7 +72,7 @@ class _PolaroidCardState extends State<PolaroidCard> {
         children: [
           ListTile(
             leading: const Icon(Icons.camera),
-            title: Text("My Polaroid Gallery", style: textTheme.titleLarge!),
+            title: Text("My Polaroid Gallery", style: cardHeaderStyle),
           ),
           Divider(indent: headerIndent),
           Padding(
@@ -162,7 +165,7 @@ class _PolaroidCardState extends State<PolaroidCard> {
                     ),
                     child: Text(
                       "I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also known as the Blue Button Version).",
-                      style: textTheme.bodyMedium,
+                      style: textTheme.bodyLarge,
                     ),
                   ),
                 ),

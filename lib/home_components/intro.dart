@@ -18,7 +18,7 @@ class MyIntroduction extends StatelessWidget {
           TextSpan(
             text:
                 "I received my B.Eng. degree in Software Engineering from Dalian University of Technology and completed my Ph.D. in Systems Engineering and Engineering Management at The Chinese University of Hong Kong under the supervision of ",
-            style: textTheme.bodyMedium!,
+            style: textTheme.bodyLarge!,
           ),
           TextSpan(
             text: "Prof. Xunying Liu",
@@ -29,7 +29,7 @@ class MyIntroduction extends StatelessWidget {
           TextSpan(
             text:
                 ". My doctoral research centered on adversarial and reinforcement learning based data augmentation for automatic speech recognition, with a particular focus on dysarthric and elderly speech. I am currently a Postdoctoral Researcher at Tsinghua University working with ",
-            style: textTheme.bodyMedium!,
+            style: textTheme.bodyLarge!,
           ),
           TextSpan(
             text: "Prof. Chao Zhang",
@@ -40,7 +40,7 @@ class MyIntroduction extends StatelessWidget {
           TextSpan(
             text:
                 ", where my research explores multimodal foundation models for speech and physiological signal processing, including applications in sleep studies, speech disorders, and clinical health assessment.",
-            style: textTheme.bodyMedium!,
+            style: textTheme.bodyLarge!,
           ),
         ],
       ),

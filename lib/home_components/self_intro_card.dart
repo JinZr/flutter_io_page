@@ -27,11 +27,14 @@ class IntroductionCard extends StatelessWidget {
     final bottomPadding = layout.cardPaddingBottom;
     final sectionGap = layout.sectionGap;
     final leadingIconSize = layout.media - layout.micro;
-    final thesisTitleStyle = defaultTextStyle.copyWith(
-      fontSize: (defaultTextStyle.fontSize ?? 14) + (isCompact ? 2 : 3),
-      fontWeight: FontWeight.w600,
-      height: isCompact ? 1.18 : 1.2,
+    final cardHeaderStyle = textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
     );
+    final thesisTitleStyle =
+        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+          fontWeight: FontWeight.w600,
+          height: isCompact ? 1.18 : 1.2,
+        );
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -39,7 +42,7 @@ class IntroductionCard extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.person),
-            title: Text('Bio', style: textTheme.titleLarge),
+            title: Text('Bio', style: cardHeaderStyle),
           ),
           Divider(indent: headerIndent),
           Padding(

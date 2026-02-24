@@ -81,6 +81,9 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
   Widget build(BuildContext context) {
     super.build(context);
     final theme = Theme.of(context);
+    final cardHeaderStyle = theme.textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
+    );
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -92,7 +95,7 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
         children: [
           ListTile(
             leading: const Icon(Icons.volunteer_activism),
-            title: Text('Academic Service', style: theme.textTheme.titleLarge!),
+            title: Text('Academic Service', style: cardHeaderStyle),
           ),
           Divider(indent: headerIndent),
           AnimatedSize(
@@ -204,18 +207,14 @@ class _AcademicServiceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final defaultTextStyle = DefaultTextStyle.of(context).style;
     final isCompact = layout.isCompact;
     final role = json['role']?.toString() ?? 'Service';
     final organization = json['organization']?.toString();
     final location = json['location']?.toString();
     final year = json['year']?.toString();
     final uri = Uri.tryParse(json['link']?.toString() ?? '');
-    final roleStyle = defaultTextStyle.copyWith(
-      fontSize: (defaultTextStyle.fontSize ?? 14) + (isCompact ? 2 : 3),
-      fontWeight: FontWeight.w600,
-      height: isCompact ? 1.18 : 1.2,
-    );
+    final roleStyle = (isCompact ? textTheme.titleSmall : textTheme.titleMedium)
+        ?.copyWith(fontWeight: FontWeight.w500, height: isCompact ? 1.18 : 1.2);
     final descriptionStyle =
         (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,

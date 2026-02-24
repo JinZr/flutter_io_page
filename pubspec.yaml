@@ -75,10 +75,6 @@ flutter:
     - assets/images/egs/egs8.webp
     - assets/images/egs_jpg/
     - assets/texts/
-  fonts:
-    - family: "DM Serif Text"
-      fonts:
-        - asset: assets/fonts/DMSerifText-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

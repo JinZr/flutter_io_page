@@ -62,6 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final screenWidth = MediaQuery.sizeOf(context).width;
     final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
     final layout = screenWidth < 700 ? LayoutTokens.compact() : baseLayout;
+    final pageHeaderStyle =
+        (layout.isCompact ? textTheme.headlineSmall : textTheme.headlineMedium)
+            ?.copyWith(fontWeight: FontWeight.w700);
     final cardWidth = math.min(screenWidth, 1200.0);
     final headerCacheWidth = (cardWidth * devicePixelRatio).round();
     final headerCacheHeight = (320.0 * devicePixelRatio).round();
@@ -179,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         start: layout.xxxl,
                         bottom: layout.xxxl,
                       ),
-                      title: Text(AUTHOR_TEXT, style: textTheme.headlineSmall),
+                      title: Text(AUTHOR_TEXT, style: pageHeaderStyle),
                       background: Stack(
                         fit: StackFit.expand,
                         children: [

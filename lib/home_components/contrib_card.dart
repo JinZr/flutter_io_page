@@ -36,6 +36,9 @@ class ContribCard extends StatelessWidget {
     final topPadding = layout.cardPaddingTop;
     final bottomPadding = layout.cardPaddingBottom;
     final itemGap = layout.cardPaddingTop;
+    final cardHeaderStyle = textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
+    );
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -44,10 +47,7 @@ class ContribCard extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.code),
-            title: Text(
-              'Contribution to Open Source',
-              style: textTheme.titleLarge,
-            ),
+            title: Text('Contribution to Open Source', style: cardHeaderStyle),
           ),
           Divider(indent: headerIndent),
           Padding(
@@ -90,13 +90,12 @@ class _ContribTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final defaultTextStyle = DefaultTextStyle.of(context).style;
     final isCompact = layout.isCompact;
-    final titleStyle = defaultTextStyle.copyWith(
-      fontSize: (defaultTextStyle.fontSize ?? 14) + (isCompact ? 2 : 3),
-      fontWeight: FontWeight.w600,
-      height: isCompact ? 1.18 : 1.2,
-    );
+    final titleStyle =
+        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+          fontWeight: FontWeight.w500,
+          height: isCompact ? 1.18 : 1.2,
+        );
     final descriptionStyle =
         (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,

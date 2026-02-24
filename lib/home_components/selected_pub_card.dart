@@ -114,6 +114,9 @@ class _SelectedPubCardState extends State<SelectedPubCard>
   Widget build(BuildContext context) {
     super.build(context);
     final theme = Theme.of(context);
+    final cardHeaderStyle = theme.textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
+    );
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -125,10 +128,7 @@ class _SelectedPubCardState extends State<SelectedPubCard>
         children: [
           ListTile(
             leading: const Icon(Icons.newspaper),
-            title: Text(
-              "Selected Publications",
-              style: theme.textTheme.titleLarge!,
-            ),
+            title: Text("Selected Publications", style: cardHeaderStyle),
           ),
           Divider(indent: headerIndent),
           // AnimatedSize wraps the dynamic area so the card expansion animates smoothly

@@ -30,12 +30,11 @@ class SelectedPubListTile extends StatelessWidget {
     final headerGap = layout.xs + layout.micro;
     final sectionGap = layout.cardPaddingTop;
     final metadataGap = layout.md;
-    final baseTitleStyle = DefaultTextStyle.of(context).style;
-    final titleStyle = baseTitleStyle.copyWith(
-      fontSize: (baseTitleStyle.fontSize ?? 14) + (isCompact ? 2 : 3),
-      fontWeight: FontWeight.w600,
-      height: isCompact ? 1.18 : 1.2,
-    );
+    final titleStyle =
+        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+          fontWeight: FontWeight.w600,
+          height: isCompact ? 1.18 : 1.2,
+        );
     final authorStyle = (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)
         ?.copyWith(color: colorScheme.onSurfaceVariant, height: 1.2);
 
