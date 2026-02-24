@@ -37,5 +37,8 @@ _flutter.buildConfig = {"engineRevision":"6c0baaebf70e0148f485f27d5616b3d3382da7
 
 
 _flutter.loader.load({
-  // Disable service worker caching to avoid stale deferred chunks after deploys.
+  // Keep renderer auto-selection so Flutter can pick the best backend.
+  config: {
+    renderer: 'auto',
+  },
 });
