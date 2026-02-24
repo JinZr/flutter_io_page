@@ -33,7 +33,7 @@ class IntroductionCard extends StatelessWidget {
       fontWeight: cardUi.cardHeaderFontWeight,
     );
     final thesisTitleStyle =
-        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+        (isCompact ? textTheme.titleMedium : textTheme.titleMedium)?.copyWith(
           fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
@@ -95,7 +95,7 @@ class IntroductionCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style:
                             (isCompact
-                                    ? textTheme.bodySmall
+                                    ? textTheme.bodyMedium
                                     : textTheme.bodyMedium)
                                 ?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
@@ -208,7 +208,7 @@ class _ThesisMetadataChip extends StatelessWidget {
             SizedBox(width: layout.chipIconGap),
             Text(
               'Ph.D. Thesis',
-              style: (isCompact ? textTheme.labelSmall : textTheme.labelMedium)
+              style: (isCompact ? textTheme.labelMedium : textTheme.labelMedium)
                   ?.copyWith(color: colorScheme.onSecondaryContainer),
             ),
           ],

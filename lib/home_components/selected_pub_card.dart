@@ -162,17 +162,17 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     final isCompact = layout.isCompact;
     final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     final tileTitleStyle =
-        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+        (isCompact ? textTheme.titleMedium : textTheme.titleMedium)?.copyWith(
           fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
     final tileAuthorStyle =
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+        (isCompact ? textTheme.bodyMedium : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,
           height: 1.2,
         );
     final metadataLabelStyle =
-        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+        (isCompact ? textTheme.labelMedium : textTheme.labelMedium)?.copyWith(
           color: colorScheme.onSecondaryContainer,
         );
     final tileSurfaceColor = colorScheme.surfaceContainerLow;
@@ -397,7 +397,7 @@ class _ThemeFilterSection extends StatelessWidget {
           children: [
             Text(
               'Theme',
-              style: (isCompact ? textTheme.labelMedium : textTheme.labelLarge)
+              style: (isCompact ? textTheme.labelLarge : textTheme.labelLarge)
                   ?.copyWith(color: colorScheme.onSurfaceVariant),
             ),
             SizedBox(height: layout.listItemGap),

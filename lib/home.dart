@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final layout = screenWidth < 700 ? LayoutTokens.compact() : baseLayout;
     final cardUi = layout.isCompact ? CardUiTokens.compact() : context.cardUi;
     final pageHeaderStyle =
-        (layout.isCompact ? textTheme.headlineSmall : textTheme.headlineMedium)
+        (layout.isCompact ? textTheme.headlineMedium : textTheme.headlineMedium)
             ?.copyWith(fontWeight: cardUi.cardHeaderFontWeight);
     final cardWidth = math.min(screenWidth, 1200.0);
     final headerCacheWidth = (cardWidth * devicePixelRatio).round();

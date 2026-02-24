@@ -122,15 +122,15 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
     final textTheme = theme.textTheme;
     final isCompact = layout.isCompact;
     final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
-    final roleStyle = (isCompact ? textTheme.titleSmall : textTheme.titleMedium)
+    final roleStyle = (isCompact ? textTheme.titleMedium : textTheme.titleMedium)
         ?.copyWith(fontWeight: FontWeight.w500, height: isCompact ? 1.18 : 1.2);
     final descriptionStyle =
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+        (isCompact ? textTheme.bodyMedium : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,
           height: 1.2,
         );
     final metadataChipLabelStyle =
-        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+        (isCompact ? textTheme.labelMedium : textTheme.labelMedium)?.copyWith(
           color: colorScheme.onSecondaryContainer,
         );
     final tileSurfaceColor = colorScheme.surfaceContainerLow;
