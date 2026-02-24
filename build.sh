@@ -3,6 +3,7 @@ set -euo pipefail
 
 flutter build web \
   --release \
+  --wasm \
   --optimization-level 4 \
   --source-maps \
   --tree-shake-icons \

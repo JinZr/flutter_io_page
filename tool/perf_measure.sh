@@ -29,6 +29,7 @@ flutter test -r expanded | tee "${OUT_DIR}/test.log"
 
 flutter build web \
   --release \
+  --wasm \
   --no-wasm-dry-run \
   --source-maps \
   --tree-shake-icons \
