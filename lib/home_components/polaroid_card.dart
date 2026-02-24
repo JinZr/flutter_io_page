@@ -1,27 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:zr_jin_page/utilities/lazy_asset_image.dart';
 
-class PolaroidCard extends StatelessWidget {
-  const PolaroidCard({
-    super.key,
-    required this.layout,
-    this.isAppleWebHostOverride,
-  });
+int? _cacheDimensionFor(double logicalDimension, double pixelRatio) {
+  if (!logicalDimension.isFinite || logicalDimension <= 0) {
+    return null;
+  }
+  return (logicalDimension * pixelRatio).round();
+}
+
+class PolaroidCard extends StatefulWidget {
+  const PolaroidCard({super.key, required this.layout});
 
   final LayoutTokens layout;
-  @visibleForTesting
-  final bool? isAppleWebHostOverride;
-
-  static bool get _isAppleWebHostPlatform {
-    if (!kIsWeb) {
-      return false;
-    }
-    return defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS;
-  }
 
   static const List<Map<String, String>> _images = [
     {"image": "assets/images/egs/egs1.webp", "title": "Dalian"},
@@ -35,12 +27,30 @@ class PolaroidCard extends StatelessWidget {
   ];
 
   @override
+  State<PolaroidCard> createState() => _PolaroidCardState();
+}
+
+class _PolaroidCardState extends State<PolaroidCard> {
+  late final CarouselController _carouselController;
+
+  @override
+  void initState() {
+    super.initState();
+    _carouselController = CarouselController(initialItem: 1);
+  }
+
+  @override
+  void dispose() {
+    _carouselController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
-    final isAppleWebHost = isAppleWebHostOverride ?? _isAppleWebHostPlatform;
-    final enableHero = !isAppleWebHost;
+    final layout = widget.layout;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -94,22 +104,46 @@ class PolaroidCard extends StatelessWidget {
                         SizedBox(
                           width: double.maxFinite,
                           height: galleryHeight,
-                          child: CarouselView.weightedBuilder(
-                            controller: CarouselController(initialItem: 1),
-                            itemSnapping: true,
-                            enableSplash: false,
-                            flexWeights: const <int>[1, 2, 1],
-                            itemCount: _images.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final image = _images[index];
-                              final imagePath = image["image"]!;
-                              return _PolaroidGalleryImage(
-                                imagePath: imagePath,
-                                title: image["title"]!,
-                                layout: layout,
-                                enableHero: enableHero,
-                              );
-                            },
+                          child: LayoutBuilder(
+                            builder:
+                                (
+                                  BuildContext context,
+                                  BoxConstraints constraints,
+                                ) {
+                                  final pixelRatio =
+                                      MediaQuery.devicePixelRatioOf(context);
+                                  final carouselCacheWidth = _cacheDimensionFor(
+                                    constraints.maxWidth,
+                                    pixelRatio,
+                                  );
+                                  final carouselCacheHeight =
+                                      _cacheDimensionFor(
+                                        galleryHeight,
+                                        pixelRatio,
+                                      );
+
+                                  return CarouselView.weightedBuilder(
+                                    controller: _carouselController,
+                                    itemSnapping: true,
+                                    enableSplash: false,
+                                    flexWeights: const <int>[1, 2, 1],
+                                    itemCount: PolaroidCard._images.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                          final image =
+                                              PolaroidCard._images[index];
+                                          final imagePath = image["image"]!;
+                                          return _PolaroidGalleryImage(
+                                            key: ValueKey(imagePath),
+                                            imagePath: imagePath,
+                                            title: image["title"]!,
+                                            layout: layout,
+                                            cacheWidth: carouselCacheWidth,
+                                            cacheHeight: carouselCacheHeight,
+                                          );
+                                        },
+                                  );
+                                },
                           ),
                         ),
                       ],
@@ -165,16 +199,19 @@ class _GallerySectionContainer extends StatelessWidget {
 
 class _PolaroidGalleryImage extends StatelessWidget {
   const _PolaroidGalleryImage({
+    super.key,
     required this.imagePath,
     required this.title,
     required this.layout,
-    required this.enableHero,
+    this.cacheWidth,
+    this.cacheHeight,
   });
 
   final String imagePath;
   final String title;
   final LayoutTokens layout;
-  final bool enableHero;
+  final int? cacheWidth;
+  final int? cacheHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -199,14 +236,14 @@ class _PolaroidGalleryImage extends StatelessWidget {
                     imagePath: imagePath,
                     title: title,
                     layout: layout,
-                    enableHero: enableHero,
                   ),
                 ),
               );
             },
             child: _GalleryImageContent(
               imagePath: imagePath,
-              enableHero: enableHero,
+              cacheWidth: cacheWidth,
+              cacheHeight: cacheHeight,
             ),
           ),
         ),
@@ -218,18 +255,22 @@ class _PolaroidGalleryImage extends StatelessWidget {
 class _GalleryImageContent extends StatelessWidget {
   const _GalleryImageContent({
     required this.imagePath,
-    required this.enableHero,
+    this.cacheWidth,
+    this.cacheHeight,
   });
 
   final String imagePath;
-  final bool enableHero;
+  final int? cacheWidth;
+  final int? cacheHeight;
 
   @override
   Widget build(BuildContext context) {
-    final image = _PolaroidAssetImage(assetName: imagePath, fit: BoxFit.cover);
-    if (!enableHero) {
-      return image;
-    }
+    final image = _PolaroidAssetImage(
+      assetName: imagePath,
+      fit: BoxFit.cover,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
     return Hero(tag: imagePath, child: image);
   }
 }
@@ -239,13 +280,11 @@ class _PolaroidImageViewer extends StatelessWidget {
     required this.imagePath,
     required this.title,
     required this.layout,
-    required this.enableHero,
   });
 
   final String imagePath;
   final String title;
   final LayoutTokens layout;
-  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -263,12 +302,7 @@ class _PolaroidImageViewer extends StatelessWidget {
             minScale: 1.0,
             maxScale: 4.0,
             child: SizedBox.expand(
-              child: Center(
-                child: _ViewerImageContent(
-                  imagePath: imagePath,
-                  enableHero: enableHero,
-                ),
-              ),
+              child: Center(child: _ViewerImageContent(imagePath: imagePath)),
             ),
           ),
           SafeArea(
@@ -302,13 +336,9 @@ class _PolaroidImageViewer extends StatelessWidget {
 }
 
 class _ViewerImageContent extends StatelessWidget {
-  const _ViewerImageContent({
-    required this.imagePath,
-    required this.enableHero,
-  });
+  const _ViewerImageContent({required this.imagePath});
 
   final String imagePath;
-  final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
@@ -316,28 +346,39 @@ class _ViewerImageContent extends StatelessWidget {
       assetName: imagePath,
       fit: BoxFit.contain,
     );
-    if (!enableHero) {
-      return image;
-    }
     return Hero(tag: imagePath, child: image);
   }
 }
 
 class _PolaroidAssetImage extends StatelessWidget {
-  const _PolaroidAssetImage({required this.assetName, required this.fit});
+  const _PolaroidAssetImage({
+    required this.assetName,
+    required this.fit,
+    this.cacheWidth,
+    this.cacheHeight,
+  });
 
   final String assetName;
   final BoxFit fit;
-
-  int? _cacheDimensionFor(double logicalDimension, double pixelRatio) {
-    if (!logicalDimension.isFinite || logicalDimension <= 0) {
-      return null;
-    }
-    return (logicalDimension * pixelRatio).round();
-  }
+  final int? cacheWidth;
+  final int? cacheHeight;
 
   @override
   Widget build(BuildContext context) {
+    if (cacheWidth != null || cacheHeight != null) {
+      return LazyAssetImage(
+        assetName: assetName,
+        fit: fit,
+        filterQuality: FilterQuality.medium,
+        cacheWidth: cacheWidth,
+        cacheHeight: cacheHeight,
+        errorBuilder: (BuildContext context, Object error, StackTrace? trace) =>
+            ColoredBox(
+              color: Theme.of(context).colorScheme.surfaceContainerHigh,
+            ),
+      );
+    }
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final size = MediaQuery.sizeOf(context);
