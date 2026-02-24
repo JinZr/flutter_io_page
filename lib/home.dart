@@ -11,6 +11,7 @@ import 'home_components/contrib_card.dart' deferred as contrib;
 import 'home_components/polaroid_card.dart' deferred as polaroid;
 import 'home_components/selected_pub_card.dart' deferred as selected_pub;
 import 'home_components/self_intro_card.dart';
+import 'theme/card_ui_tokens.dart';
 import 'utilities/author_name.dart';
 import 'utilities/deferred_widget.dart';
 import 'utilities/link_toolbar.dart';
@@ -29,6 +30,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _toolbarFloating = false;
   late final DisposableBuildContext<State> _imageLoadContext;
+  ScrollAwareImageProvider<Object>? _headerImageProvider;
+  int? _headerCacheWidth;
+  int? _headerCacheHeight;
 
   @override
   void initState() {
@@ -53,6 +57,31 @@ class _MyHomePageState extends State<MyHomePage> {
     return false;
   }
 
+  ImageProvider<Object> _resolveHeaderImageProvider({
+    required int cacheWidth,
+    required int cacheHeight,
+  }) {
+    final existingProvider = _headerImageProvider;
+    if (existingProvider != null &&
+        cacheWidth == _headerCacheWidth &&
+        cacheHeight == _headerCacheHeight) {
+      return existingProvider;
+    }
+
+    final nextProvider = ScrollAwareImageProvider<Object>(
+      context: _imageLoadContext,
+      imageProvider: ResizeImage.resizeIfNeeded(
+        cacheWidth,
+        cacheHeight,
+        const AssetImage('assets/images/header.webp'),
+      ),
+    );
+    _headerImageProvider = nextProvider;
+    _headerCacheWidth = cacheWidth;
+    _headerCacheHeight = cacheHeight;
+    return nextProvider;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -62,19 +91,16 @@ class _MyHomePageState extends State<MyHomePage> {
     final screenWidth = MediaQuery.sizeOf(context).width;
     final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
     final layout = screenWidth < 700 ? LayoutTokens.compact() : baseLayout;
+    final cardUi = layout.isCompact ? CardUiTokens.compact() : context.cardUi;
     final pageHeaderStyle =
         (layout.isCompact ? textTheme.headlineSmall : textTheme.headlineMedium)
-            ?.copyWith(fontWeight: FontWeight.w700);
+            ?.copyWith(fontWeight: cardUi.cardHeaderFontWeight);
     final cardWidth = math.min(screenWidth, 1200.0);
     final headerCacheWidth = (cardWidth * devicePixelRatio).round();
     final headerCacheHeight = (320.0 * devicePixelRatio).round();
-    final headerImageProvider = ScrollAwareImageProvider<Object>(
-      context: _imageLoadContext,
-      imageProvider: ResizeImage.resizeIfNeeded(
-        headerCacheWidth,
-        headerCacheHeight,
-        const AssetImage('assets/images/header.webp'),
-      ),
+    final headerImageProvider = _resolveHeaderImageProvider(
+      cacheWidth: headerCacheWidth,
+      cacheHeight: headerCacheHeight,
     );
 
     Widget animatedCard({required Widget child, required int index}) {

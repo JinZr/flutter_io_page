@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SelectedPubListTile extends StatelessWidget {
   final Map<String, dynamic> json;
   final LayoutTokens layout;
+  final TextStyle? titleStyle;
+  final TextStyle? authorStyle;
+  final Color? tileColor;
+  final Color? metadataChipColor;
+  final Color? metadataChipForeground;
+  final TextStyle? metadataLabelStyle;
+  final double? metadataIconSize;
 
   const SelectedPubListTile({
     super.key,
     required this.json,
     required this.layout,
+    this.titleStyle,
+    this.authorStyle,
+    this.tileColor,
+    this.metadataChipColor,
+    this.metadataChipForeground,
+    this.metadataLabelStyle,
+    this.metadataIconSize,
   });
 
   @override
@@ -23,6 +38,7 @@ class SelectedPubListTile extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     final horizontalPadding = layout.cardInnerHorizontal;
     final verticalPadding = layout.cardInnerVertical;
     final titleMaxLines = isCompact ? 2 : 3;
@@ -30,16 +46,39 @@ class SelectedPubListTile extends StatelessWidget {
     final headerGap = layout.xs + layout.micro;
     final sectionGap = layout.cardPaddingTop;
     final metadataGap = layout.md;
-    final titleStyle =
+    final resolvedTitleStyle =
+        titleStyle ??
         (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
-    final authorStyle = (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)
-        ?.copyWith(color: colorScheme.onSurfaceVariant, height: 1.2);
+    final resolvedAuthorStyle =
+        authorStyle ??
+        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+          color: colorScheme.onSurfaceVariant,
+          height: 1.2,
+        );
+    final resolvedTileColor = tileColor ?? colorScheme.surfaceContainerLow;
+    final resolvedMetadataChipColor =
+        metadataChipColor ??
+        colorScheme.secondaryContainer.withValues(
+          alpha: cardUi.metadataChipAlpha,
+        );
+    final resolvedMetadataChipForeground =
+        metadataChipForeground ?? colorScheme.onSecondaryContainer;
+    final resolvedMetadataLabelStyle =
+        metadataLabelStyle ??
+        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+          color: resolvedMetadataChipForeground,
+        );
+    final resolvedMetadataIconSize =
+        metadataIconSize ??
+        (isCompact
+            ? cardUi.metadataIconSizeCompact
+            : cardUi.metadataIconSizeRegular);
 
     return Material(
-      color: colorScheme.surfaceContainerLow,
+      color: resolvedTileColor,
       borderRadius: BorderRadius.circular(layout.radiusContainer),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -58,7 +97,7 @@ class SelectedPubListTile extends StatelessWidget {
                 title,
                 maxLines: titleMaxLines,
                 overflow: TextOverflow.ellipsis,
-                style: titleStyle,
+                style: resolvedTitleStyle,
               ),
               if (authors.isNotEmpty) ...[
                 SizedBox(height: headerGap),
@@ -66,7 +105,7 @@ class SelectedPubListTile extends StatelessWidget {
                   authors,
                   maxLines: authorMaxLines,
                   overflow: TextOverflow.ellipsis,
-                  style: authorStyle,
+                  style: resolvedAuthorStyle,
                 ),
               ],
               if (venue.isNotEmpty || year.isNotEmpty) ...[
@@ -80,12 +119,20 @@ class SelectedPubListTile extends StatelessWidget {
                         icon: Icons.auto_stories_outlined,
                         label: venue,
                         layout: layout,
+                        backgroundColor: resolvedMetadataChipColor,
+                        foregroundColor: resolvedMetadataChipForeground,
+                        labelStyle: resolvedMetadataLabelStyle,
+                        iconSize: resolvedMetadataIconSize,
                       ),
                     if (year.isNotEmpty)
                       _MetadataChip(
                         icon: Icons.calendar_today_outlined,
                         label: year,
                         layout: layout,
+                        backgroundColor: resolvedMetadataChipColor,
+                        foregroundColor: resolvedMetadataChipForeground,
+                        labelStyle: resolvedMetadataLabelStyle,
+                        iconSize: resolvedMetadataIconSize,
                       ),
                   ],
                 ),
@@ -103,20 +150,25 @@ class _MetadataChip extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.layout,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.labelStyle,
+    required this.iconSize,
   });
 
   final IconData icon;
   final String label;
   final LayoutTokens layout;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final TextStyle? labelStyle;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final isCompact = layout.isCompact;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.55),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(layout.radiusPill),
       ),
       child: Padding(
@@ -127,17 +179,9 @@ class _MetadataChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: isCompact ? 12 : 13,
-              color: colorScheme.onSecondaryContainer,
-            ),
+            Icon(icon, size: iconSize, color: foregroundColor),
             SizedBox(width: layout.chipIconGap),
-            Text(
-              label,
-              style: (isCompact ? textTheme.labelSmall : textTheme.labelMedium)
-                  ?.copyWith(color: colorScheme.onSecondaryContainer),
-            ),
+            Text(label, style: labelStyle),
           ],
         ),
       ),

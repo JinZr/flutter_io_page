@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:zr_jin_page/utilities/lazy_asset_image.dart';
 
@@ -51,6 +52,8 @@ class _PolaroidCardState extends State<PolaroidCard> {
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final layout = widget.layout;
+    final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -61,7 +64,7 @@ class _PolaroidCardState extends State<PolaroidCard> {
     final sectionGap = layout.sectionGap;
     final galleryHeight = 400.0;
     final cardHeaderStyle = textTheme.titleLarge?.copyWith(
-      fontWeight: FontWeight.w700,
+      fontWeight: cardUi.cardHeaderFontWeight,
     );
 
     return Card(
@@ -165,7 +168,9 @@ class _PolaroidCardState extends State<PolaroidCard> {
                     ),
                     child: Text(
                       "I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also known as the Blue Button Version).",
-                      style: textTheme.bodyLarge,
+                      style: isCompact
+                          ? textTheme.bodyMedium
+                          : textTheme.bodyLarge,
                     ),
                   ),
                 ),
@@ -187,12 +192,15 @@ class _GallerySectionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final cardUi = layout.isCompact ? CardUiTokens.compact() : context.cardUi;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(layout.radiusContainer),
         border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.55),
+          color: colorScheme.outlineVariant.withValues(
+            alpha: cardUi.containerOutlineAlpha,
+          ),
         ),
       ),
       child: child,

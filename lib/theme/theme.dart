@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import 'card_ui_tokens.dart';
 import 'layout_tokens.dart';
 
 class MaterialTheme {
@@ -341,7 +342,10 @@ class MaterialTheme {
     useMaterial3: true,
     brightness: colorScheme.brightness,
     colorScheme: colorScheme,
-    extensions: <ThemeExtension<dynamic>>[LayoutTokens.regular()],
+    extensions: <ThemeExtension<dynamic>>[
+      LayoutTokens.regular(),
+      CardUiTokens.regular(),
+    ],
     textTheme: textTheme.apply(
       bodyColor: colorScheme.onSurface,
       displayColor: colorScheme.onSurface,

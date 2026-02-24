@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:zr_jin_page/utilities/content_repository.dart';
 import 'package:zr_jin_page/utilities/error_view.dart';
@@ -28,6 +29,9 @@ class _SelectedPubCardState extends State<SelectedPubCard>
   List<Map<String, dynamic>>? _items;
   Object? _error;
   String? _selectedTheme;
+  List<String> _themes = const <String>[];
+  Map<String, List<Map<String, dynamic>>> _itemsByTheme =
+      const <String, List<Map<String, dynamic>>>{};
   late final ContentRepository _repository =
       widget.repository ?? ContentRepository.instance;
 
@@ -70,11 +74,14 @@ class _SelectedPubCardState extends State<SelectedPubCard>
 
   void _setItems(List<Map<String, dynamic>> items) {
     if (!mounted) return;
-    final themes = _extractThemes(items);
+    final groupedItems = _groupItemsByTheme(items);
+    final themes = groupedItems.keys.toList(growable: false);
     final currentSelection = _selectedTheme;
     final nextSelection = _resolveNextTheme(currentSelection, themes);
     setState(() {
       _items = items;
+      _themes = themes;
+      _itemsByTheme = groupedItems;
       _selectedTheme = nextSelection;
       _error = null;
     });
@@ -95,16 +102,15 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     return themes.first;
   }
 
-  List<String> _extractThemes(List<Map<String, dynamic>> items) {
-    final seen = <String>{};
-    final result = <String>[];
+  Map<String, List<Map<String, dynamic>>> _groupItemsByTheme(
+    List<Map<String, dynamic>> items,
+  ) {
+    final grouped = <String, List<Map<String, dynamic>>>{};
     for (final item in items) {
       final theme = _resolveTheme(item);
-      if (seen.add(theme)) {
-        result.add(theme);
-      }
+      grouped.putIfAbsent(theme, () => <Map<String, dynamic>>[]).add(item);
     }
-    return result;
+    return grouped;
   }
 
   @override
@@ -114,8 +120,11 @@ class _SelectedPubCardState extends State<SelectedPubCard>
   Widget build(BuildContext context) {
     super.build(context);
     final theme = Theme.of(context);
+    final cardUi = widget.layout.isCompact
+        ? CardUiTokens.compact()
+        : context.cardUi;
     final cardHeaderStyle = theme.textTheme.titleLarge?.copyWith(
-      fontWeight: FontWeight.w700,
+      fontWeight: cardUi.cardHeaderFontWeight,
     );
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
@@ -150,17 +159,39 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
+    final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
+    final tileTitleStyle =
+        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+          fontWeight: FontWeight.w500,
+          height: isCompact ? 1.18 : 1.2,
+        );
+    final tileAuthorStyle =
+        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+          color: colorScheme.onSurfaceVariant,
+          height: 1.2,
+        );
+    final metadataLabelStyle =
+        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+          color: colorScheme.onSecondaryContainer,
+        );
+    final tileSurfaceColor = colorScheme.surfaceContainerLow;
+    final metadataChipColor = colorScheme.secondaryContainer.withValues(
+      alpha: cardUi.metadataChipAlpha,
+    );
+    final metadataChipForeground = colorScheme.onSecondaryContainer;
+    final metadataIconSize = isCompact
+        ? cardUi.metadataIconSizeCompact
+        : cardUi.metadataIconSizeRegular;
 
     final items = _items;
     if (items != null) {
-      final themes = _extractThemes(items);
+      final themes = _themes;
       final selectedTheme =
           _selectedTheme ?? (themes.isNotEmpty ? themes.first : null);
       final filteredItems = selectedTheme == null
           ? items
-          : items
-                .where((m) => _resolveTheme(m) == selectedTheme)
-                .toList(growable: false);
+          : (_itemsByTheme[selectedTheme] ?? const <Map<String, dynamic>>[]);
 
       child = Padding(
         padding: EdgeInsets.fromLTRB(
@@ -210,6 +241,13 @@ class _SelectedPubCardState extends State<SelectedPubCard>
                   filteredItems,
                   layout: layout,
                   textTheme: textTheme,
+                  titleStyle: tileTitleStyle,
+                  authorStyle: tileAuthorStyle,
+                  tileColor: tileSurfaceColor,
+                  metadataChipColor: metadataChipColor,
+                  metadataChipForeground: metadataChipForeground,
+                  metadataLabelStyle: metadataLabelStyle,
+                  metadataIconSize: metadataIconSize,
                 ),
               ),
             ),
@@ -255,6 +293,13 @@ class _SelectedPubCardState extends State<SelectedPubCard>
     List<Map<String, dynamic>> items, {
     required LayoutTokens layout,
     required TextTheme textTheme,
+    required TextStyle? titleStyle,
+    required TextStyle? authorStyle,
+    required Color tileColor,
+    required Color metadataChipColor,
+    required Color metadataChipForeground,
+    required TextStyle? metadataLabelStyle,
+    required double metadataIconSize,
   }) {
     if (items.isEmpty) {
       return Text(
@@ -268,7 +313,17 @@ class _SelectedPubCardState extends State<SelectedPubCard>
       children: [
         for (var index = 0; index < items.length; index++) ...[
           if (index > 0) SizedBox(height: layout.listItemGap),
-          SelectedPubListTile(json: items[index], layout: layout),
+          SelectedPubListTile(
+            json: items[index],
+            layout: layout,
+            titleStyle: titleStyle,
+            authorStyle: authorStyle,
+            tileColor: tileColor,
+            metadataChipColor: metadataChipColor,
+            metadataChipForeground: metadataChipForeground,
+            metadataLabelStyle: metadataLabelStyle,
+            metadataIconSize: metadataIconSize,
+          ),
         ],
       ],
     );
@@ -319,12 +374,15 @@ class _ThemeFilterSection extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(layout.radiusContainer),
         border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.55),
+          color: colorScheme.outlineVariant.withValues(
+            alpha: cardUi.containerOutlineAlpha,
+          ),
         ),
       ),
       child: Padding(

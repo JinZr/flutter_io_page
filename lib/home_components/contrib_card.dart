@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:zr_jin_page/utilities/launch_url.dart';
 
@@ -28,6 +29,8 @@ class ContribCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
+    final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -37,8 +40,30 @@ class ContribCard extends StatelessWidget {
     final bottomPadding = layout.cardPaddingBottom;
     final itemGap = layout.cardPaddingTop;
     final cardHeaderStyle = textTheme.titleLarge?.copyWith(
-      fontWeight: FontWeight.w700,
+      fontWeight: cardUi.cardHeaderFontWeight,
     );
+    final projectTitleStyle =
+        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+          fontWeight: FontWeight.w500,
+          height: isCompact ? 1.18 : 1.2,
+        );
+    final projectDescriptionStyle =
+        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+          color: colorScheme.onSurfaceVariant,
+          height: 1.2,
+        );
+    final metadataChipLabelStyle =
+        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+          color: colorScheme.onSecondaryContainer,
+        );
+    final tileSurfaceColor = colorScheme.surfaceContainerLow;
+    final metadataChipColor = colorScheme.secondaryContainer.withValues(
+      alpha: cardUi.metadataChipAlpha,
+    );
+    final metadataChipForeground = colorScheme.onSecondaryContainer;
+    final metadataIconSize = isCompact
+        ? cardUi.metadataIconSizeCompact
+        : cardUi.metadataIconSizeRegular;
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -69,7 +94,17 @@ class ContribCard extends StatelessWidget {
                 SizedBox(height: layout.cardPaddingTop),
                 for (var index = 0; index < _projects.length; index++) ...[
                   if (index > 0) SizedBox(height: itemGap),
-                  _ContribTile(project: _projects[index], layout: layout),
+                  _ContribTile(
+                    project: _projects[index],
+                    layout: layout,
+                    titleStyle: projectTitleStyle,
+                    descriptionStyle: projectDescriptionStyle,
+                    tileColor: tileSurfaceColor,
+                    metadataChipColor: metadataChipColor,
+                    metadataChipForeground: metadataChipForeground,
+                    metadataChipLabelStyle: metadataChipLabelStyle,
+                    metadataIconSize: metadataIconSize,
+                  ),
                 ],
               ],
             ),
@@ -81,29 +116,32 @@ class ContribCard extends StatelessWidget {
 }
 
 class _ContribTile extends StatelessWidget {
-  const _ContribTile({required this.project, required this.layout});
+  const _ContribTile({
+    required this.project,
+    required this.layout,
+    required this.titleStyle,
+    required this.descriptionStyle,
+    required this.tileColor,
+    required this.metadataChipColor,
+    required this.metadataChipForeground,
+    required this.metadataChipLabelStyle,
+    required this.metadataIconSize,
+  });
 
   final _ContribProject project;
   final LayoutTokens layout;
+  final TextStyle? titleStyle;
+  final TextStyle? descriptionStyle;
+  final Color tileColor;
+  final Color metadataChipColor;
+  final Color metadataChipForeground;
+  final TextStyle? metadataChipLabelStyle;
+  final double metadataIconSize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final isCompact = layout.isCompact;
-    final titleStyle =
-        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
-          fontWeight: FontWeight.w500,
-          height: isCompact ? 1.18 : 1.2,
-        );
-    final descriptionStyle =
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
-          color: colorScheme.onSurfaceVariant,
-          height: 1.2,
-        );
-
     return Material(
-      color: colorScheme.surfaceContainerLow,
+      color: tileColor,
       borderRadius: BorderRadius.circular(layout.radiusContainer),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -135,11 +173,19 @@ class _ContribTile extends StatelessWidget {
                     icon: Icons.code_outlined,
                     label: 'GitHub Repository',
                     layout: layout,
+                    backgroundColor: metadataChipColor,
+                    foregroundColor: metadataChipForeground,
+                    labelStyle: metadataChipLabelStyle,
+                    iconSize: metadataIconSize,
                   ),
                   _ContribMetadataChip(
                     icon: Icons.open_in_new,
                     label: 'Open Project',
                     layout: layout,
+                    backgroundColor: metadataChipColor,
+                    foregroundColor: metadataChipForeground,
+                    labelStyle: metadataChipLabelStyle,
+                    iconSize: metadataIconSize,
                   ),
                 ],
               ),
@@ -156,20 +202,25 @@ class _ContribMetadataChip extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.layout,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.labelStyle,
+    required this.iconSize,
   });
 
   final IconData icon;
   final String label;
   final LayoutTokens layout;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final TextStyle? labelStyle;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final isCompact = layout.isCompact;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.55),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(layout.radiusPill),
       ),
       child: Padding(
@@ -180,17 +231,9 @@ class _ContribMetadataChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: isCompact ? 12 : 13,
-              color: colorScheme.onSecondaryContainer,
-            ),
+            Icon(icon, size: iconSize, color: foregroundColor),
             SizedBox(width: layout.chipIconGap),
-            Text(
-              label,
-              style: (isCompact ? textTheme.labelSmall : textTheme.labelMedium)
-                  ?.copyWith(color: colorScheme.onSecondaryContainer),
-            ),
+            Text(label, style: labelStyle),
           ],
         ),
       ),

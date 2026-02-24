@@ -35,6 +35,7 @@ class _LazyAssetImageState extends State<LazyAssetImage> {
   bool _hasScheduledCheck = false;
   int _deferredFrames = 0;
   late final DisposableBuildContext<State> _imageLoadContext;
+  ImageProvider<Object>? _cachedImageProvider;
 
   @override
   void initState() {
@@ -57,9 +58,18 @@ class _LazyAssetImageState extends State<LazyAssetImage> {
   @override
   void didUpdateWidget(covariant LazyAssetImage oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (_didImageConfigChange(oldWidget)) {
+      _cachedImageProvider = null;
+    }
     if (oldWidget.assetName != widget.assetName && !_shouldLoad) {
       _maybeLoadOrSchedule();
     }
+  }
+
+  bool _didImageConfigChange(LazyAssetImage oldWidget) {
+    return oldWidget.assetName != widget.assetName ||
+        oldWidget.cacheWidth != widget.cacheWidth ||
+        oldWidget.cacheHeight != widget.cacheHeight;
   }
 
   void _maybeLoadOrSchedule() {
@@ -86,15 +96,21 @@ class _LazyAssetImageState extends State<LazyAssetImage> {
   }
 
   ImageProvider<Object> _buildImageProvider(BuildContext context) {
-    final resized = ResizeImage.resizeIfNeeded(
-      widget.cacheWidth,
-      widget.cacheHeight,
-      AssetImage(widget.assetName),
-    );
-    return ScrollAwareImageProvider<Object>(
+    final cachedProvider = _cachedImageProvider;
+    if (cachedProvider != null) {
+      return cachedProvider;
+    }
+
+    final nextProvider = ScrollAwareImageProvider<Object>(
       context: _imageLoadContext,
-      imageProvider: resized,
+      imageProvider: ResizeImage.resizeIfNeeded(
+        widget.cacheWidth,
+        widget.cacheHeight,
+        AssetImage(widget.assetName),
+      ),
     );
+    _cachedImageProvider = nextProvider;
+    return nextProvider;
   }
 
   void _scheduleDeferredCheck() {

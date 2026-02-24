@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zr_jin_page/utilities/content_repository.dart';
@@ -81,8 +82,11 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
   Widget build(BuildContext context) {
     super.build(context);
     final theme = Theme.of(context);
+    final cardUi = widget.layout.isCompact
+        ? CardUiTokens.compact()
+        : context.cardUi;
     final cardHeaderStyle = theme.textTheme.titleLarge?.copyWith(
-      fontWeight: FontWeight.w700,
+      fontWeight: cardUi.cardHeaderFontWeight,
     );
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
@@ -116,6 +120,27 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
+    final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
+    final roleStyle = (isCompact ? textTheme.titleSmall : textTheme.titleMedium)
+        ?.copyWith(fontWeight: FontWeight.w500, height: isCompact ? 1.18 : 1.2);
+    final descriptionStyle =
+        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+          color: colorScheme.onSurfaceVariant,
+          height: 1.2,
+        );
+    final metadataChipLabelStyle =
+        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+          color: colorScheme.onSecondaryContainer,
+        );
+    final tileSurfaceColor = colorScheme.surfaceContainerLow;
+    final metadataChipColor = colorScheme.secondaryContainer.withValues(
+      alpha: cardUi.metadataChipAlpha,
+    );
+    final metadataChipForeground = colorScheme.onSecondaryContainer;
+    final metadataIconSize = isCompact
+        ? cardUi.metadataIconSizeCompact
+        : cardUi.metadataIconSizeRegular;
 
     final services = _services;
     if (services != null) {
@@ -138,7 +163,17 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
             SizedBox(height: layout.cardPaddingTop),
             for (var index = 0; index < services.length; index++) ...[
               if (index > 0) SizedBox(height: layout.cardPaddingTop),
-              _AcademicServiceTile(json: services[index], layout: layout),
+              _AcademicServiceTile(
+                json: services[index],
+                layout: layout,
+                roleStyle: roleStyle,
+                descriptionStyle: descriptionStyle,
+                tileColor: tileSurfaceColor,
+                metadataChipColor: metadataChipColor,
+                metadataChipForeground: metadataChipForeground,
+                metadataChipLabelStyle: metadataChipLabelStyle,
+                metadataIconSize: metadataIconSize,
+              ),
             ],
           ],
         ),
@@ -198,31 +233,39 @@ class _AcademicServiceCardState extends State<AcademicServiceCard>
 }
 
 class _AcademicServiceTile extends StatelessWidget {
-  const _AcademicServiceTile({required this.json, required this.layout});
+  const _AcademicServiceTile({
+    required this.json,
+    required this.layout,
+    required this.roleStyle,
+    required this.descriptionStyle,
+    required this.tileColor,
+    required this.metadataChipColor,
+    required this.metadataChipForeground,
+    required this.metadataChipLabelStyle,
+    required this.metadataIconSize,
+  });
 
   final Map<String, dynamic> json;
   final LayoutTokens layout;
+  final TextStyle? roleStyle;
+  final TextStyle? descriptionStyle;
+  final Color tileColor;
+  final Color metadataChipColor;
+  final Color metadataChipForeground;
+  final TextStyle? metadataChipLabelStyle;
+  final double metadataIconSize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
     final isCompact = layout.isCompact;
     final role = json['role']?.toString() ?? 'Service';
     final organization = json['organization']?.toString();
     final location = json['location']?.toString();
     final year = json['year']?.toString();
     final uri = Uri.tryParse(json['link']?.toString() ?? '');
-    final roleStyle = (isCompact ? textTheme.titleSmall : textTheme.titleMedium)
-        ?.copyWith(fontWeight: FontWeight.w500, height: isCompact ? 1.18 : 1.2);
-    final descriptionStyle =
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
-          color: colorScheme.onSurfaceVariant,
-          height: 1.2,
-        );
 
     return Material(
-      color: colorScheme.surfaceContainerLow,
+      color: tileColor,
       borderRadius: BorderRadius.circular(layout.radiusContainer),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -264,12 +307,20 @@ class _AcademicServiceTile extends StatelessWidget {
                         icon: Icons.place_outlined,
                         label: location,
                         layout: layout,
+                        backgroundColor: metadataChipColor,
+                        foregroundColor: metadataChipForeground,
+                        labelStyle: metadataChipLabelStyle,
+                        iconSize: metadataIconSize,
                       ),
                     if (year != null && year.isNotEmpty)
                       _ServiceMetadataChip(
                         icon: Icons.calendar_today_outlined,
                         label: year,
                         layout: layout,
+                        backgroundColor: metadataChipColor,
+                        foregroundColor: metadataChipForeground,
+                        labelStyle: metadataChipLabelStyle,
+                        iconSize: metadataIconSize,
                       ),
                   ],
                 ),
@@ -287,20 +338,25 @@ class _ServiceMetadataChip extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.layout,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.labelStyle,
+    required this.iconSize,
   });
 
   final IconData icon;
   final String label;
   final LayoutTokens layout;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final TextStyle? labelStyle;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final isCompact = layout.isCompact;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.55),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(layout.radiusPill),
       ),
       child: Padding(
@@ -311,17 +367,9 @@ class _ServiceMetadataChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: isCompact ? 12 : 13,
-              color: colorScheme.onSecondaryContainer,
-            ),
+            Icon(icon, size: iconSize, color: foregroundColor),
             SizedBox(width: layout.chipIconGap),
-            Text(
-              label,
-              style: (isCompact ? textTheme.labelSmall : textTheme.labelMedium)
-                  ?.copyWith(color: colorScheme.onSecondaryContainer),
-            ),
+            Text(label, style: labelStyle),
           ],
         ),
       ),

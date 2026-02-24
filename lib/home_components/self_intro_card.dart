@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:zr_jin_page/theme/card_ui_tokens.dart';
 import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +19,7 @@ class IntroductionCard extends StatelessWidget {
     final textTheme = theme.textTheme;
     final defaultTextStyle = DefaultTextStyle.of(context).style;
     final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -28,7 +30,7 @@ class IntroductionCard extends StatelessWidget {
     final sectionGap = layout.sectionGap;
     final leadingIconSize = layout.media - layout.micro;
     final cardHeaderStyle = textTheme.titleLarge?.copyWith(
-      fontWeight: FontWeight.w700,
+      fontWeight: cardUi.cardHeaderFontWeight,
     );
     final thesisTitleStyle =
         (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
@@ -59,7 +61,7 @@ class IntroductionCard extends StatelessWidget {
                   layout: layout,
                   child: Padding(
                     padding: EdgeInsets.all(layout.cardInnerHorizontal),
-                    child: const MyIntroduction(),
+                    child: MyIntroduction(isCompact: isCompact),
                   ),
                 ),
                 SizedBox(height: sectionGap),
@@ -179,9 +181,15 @@ class _ThesisMetadataChip extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final isCompact = layout.isCompact;
+    final cardUi = isCompact ? CardUiTokens.compact() : context.cardUi;
+    final metadataIconSize = isCompact
+        ? cardUi.metadataIconSizeCompact
+        : cardUi.metadataIconSizeRegular;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.55),
+        color: colorScheme.secondaryContainer.withValues(
+          alpha: cardUi.metadataChipAlpha,
+        ),
         borderRadius: BorderRadius.circular(layout.radiusPill),
       ),
       child: Padding(
@@ -194,7 +202,7 @@ class _ThesisMetadataChip extends StatelessWidget {
           children: [
             Icon(
               Icons.auto_stories_outlined,
-              size: isCompact ? 12 : 13,
+              size: metadataIconSize,
               color: colorScheme.onSecondaryContainer,
             ),
             SizedBox(width: layout.chipIconGap),
@@ -219,12 +227,15 @@ class _SectionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final cardUi = layout.isCompact ? CardUiTokens.compact() : context.cardUi;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(layout.radiusContainer),
         border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.55),
+          color: colorScheme.outlineVariant.withValues(
+            alpha: cardUi.containerOutlineAlpha,
+          ),
         ),
       ),
       child: child,
