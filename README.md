@@ -37,3 +37,11 @@ Structured data (academic services, publications) is bundled in
 `assets/texts/`. The widgets hydrate with the local snapshot immediately and
 refresh from the GitHub raw endpoint in the background when a network
 connection is available.
+
+### Loading strategy
+
+- Above-the-fold shell content loads eagerly.
+- Below-the-fold sections are code-split with Dart deferred imports and loaded
+  through `DeferredWidget` placeholders.
+- Web builds keep Flutter renderer selection on `auto` in
+  `web/flutter_bootstrap.js`.

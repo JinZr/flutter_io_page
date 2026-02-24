@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:zr_jin_page/theme/layout_tokens.dart';
+import 'package:zr_jin_page/utilities/lazy_asset_image.dart';
 
 class PolaroidCard extends StatelessWidget {
   const PolaroidCard({
@@ -225,10 +226,7 @@ class _GalleryImageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = _PolaroidAssetImage(
-      assetName: imagePath,
-      fit: BoxFit.cover,
-    );
+    final image = _PolaroidAssetImage(assetName: imagePath, fit: BoxFit.cover);
     if (!enableHero) {
       return image;
     }
@@ -326,22 +324,44 @@ class _ViewerImageContent extends StatelessWidget {
 }
 
 class _PolaroidAssetImage extends StatelessWidget {
-  const _PolaroidAssetImage({
-    required this.assetName,
-    required this.fit,
-  });
+  const _PolaroidAssetImage({required this.assetName, required this.fit});
 
   final String assetName;
   final BoxFit fit;
 
+  int? _cacheDimensionFor(double logicalDimension, double pixelRatio) {
+    if (!logicalDimension.isFinite || logicalDimension <= 0) {
+      return null;
+    }
+    return (logicalDimension * pixelRatio).round();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      assetName,
-      fit: fit,
-      filterQuality: FilterQuality.medium,
-      errorBuilder: (BuildContext context, Object error, StackTrace? trace) =>
-          ColoredBox(color: Theme.of(context).colorScheme.surfaceContainerHigh),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final size = MediaQuery.sizeOf(context);
+        final pixelRatio = MediaQuery.devicePixelRatioOf(context);
+        final logicalWidth = constraints.hasBoundedWidth
+            ? constraints.maxWidth
+            : size.width;
+        final logicalHeight = constraints.hasBoundedHeight
+            ? constraints.maxHeight
+            : size.height;
+
+        return LazyAssetImage(
+          assetName: assetName,
+          fit: fit,
+          filterQuality: FilterQuality.medium,
+          cacheWidth: _cacheDimensionFor(logicalWidth, pixelRatio),
+          cacheHeight: _cacheDimensionFor(logicalHeight, pixelRatio),
+          errorBuilder:
+              (BuildContext context, Object error, StackTrace? trace) =>
+                  ColoredBox(
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  ),
+        );
+      },
     );
   }
 }

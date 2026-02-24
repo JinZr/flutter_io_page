@@ -43,4 +43,25 @@ void main() {
 
     await _disposeHome(tester);
   });
+
+  testWidgets('MyApp loads deferred sections when scrolled into view', (
+    WidgetTester tester,
+  ) async {
+    await _pumpHomeAtSize(tester, const Size(1024, 900));
+
+    final scrollable = find.byType(Scrollable).last;
+    await tester.scrollUntilVisible(
+      find.text('My Polaroid Gallery'),
+      420,
+      scrollable: scrollable,
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('My Polaroid Gallery'), findsOneWidget);
+    expect(find.byType(LinkToolbar), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await _disposeHome(tester);
+  });
 }

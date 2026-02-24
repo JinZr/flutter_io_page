@@ -28,6 +28,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _toolbarFloating = false;
+  late final DisposableBuildContext<State> _imageLoadContext;
+
+  @override
+  void initState() {
+    super.initState();
+    _imageLoadContext = DisposableBuildContext<State>(this);
+  }
+
+  @override
+  void dispose() {
+    _imageLoadContext.dispose();
+    super.dispose();
+  }
 
   bool _handleScrollNotification(ScrollNotification notification) {
     if (notification.metrics.axis != Axis.vertical) {
@@ -47,8 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
     final textTheme = theme.textTheme;
     final baseLayout = context.layout;
     final screenWidth = MediaQuery.sizeOf(context).width;
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
     final layout = screenWidth < 700 ? LayoutTokens.compact() : baseLayout;
     final cardWidth = math.min(screenWidth, 1200.0);
+    final headerCacheWidth = (cardWidth * devicePixelRatio).round();
+    final headerCacheHeight = (320.0 * devicePixelRatio).round();
+    final headerImageProvider = ScrollAwareImageProvider<Object>(
+      context: _imageLoadContext,
+      imageProvider: ResizeImage.resizeIfNeeded(
+        headerCacheWidth,
+        headerCacheHeight,
+        const AssetImage('assets/images/header.webp'),
+      ),
+    );
 
     Widget animatedCard({required Widget child, required int index}) {
       return Center(
@@ -159,9 +183,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       background: Stack(
                         fit: StackFit.expand,
                         children: [
-                          Image.asset(
-                            "assets/images/header.webp",
+                          Image(
+                            image: headerImageProvider,
                             fit: BoxFit.cover,
+                            filterQuality: FilterQuality.medium,
                           ),
                           DecoratedBox(
                             decoration: BoxDecoration(
