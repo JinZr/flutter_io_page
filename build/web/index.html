@@ -144,7 +144,6 @@
       padding: clamp(22px, 5vw, 32px);
       border-radius: 26px;
       background: var(--md-sys-color-surface-container);
-      border: 1px solid var(--md-sys-color-outline);
       box-shadow: var(--md-elevation-2), var(--md-elevation-4);
       text-align: center;
       display: grid;
@@ -153,23 +152,6 @@
       justify-items: center;
       position: relative;
       z-index: 1;
-    }
-
-    .splash-logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      padding: 10px;
-      background: var(--md-sys-color-surface-container-high);
-      border: 1px solid var(--md-sys-color-outline);
-      object-fit: cover;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-    }
-
-    .splash-title {
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
     }
 
     .splash-subtitle {
@@ -238,8 +220,6 @@
 <body>
   <div id="splash-screen">
     <div class="splash-card">
-      <img class="splash-logo" src="icons/Icon-192.webp" alt="Zengrui Jin logo">
-      <div class="splash-title">Zengrui Jin</div>
       <div class="splash-subtitle">Loading...</div>
       <div class="splash-spinner" aria-hidden="true"></div>
     </div>
