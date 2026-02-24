@@ -52,6 +52,11 @@ void main() {
     );
 
     final compactStyle = tester.widget<Text>(find.text(descriptionText)).style;
+    final compactContext = tester.element(find.byType(PolaroidCard));
+    final compactTextTheme = Theme.of(compactContext).textTheme;
+    final expectedCompactFontSize =
+        (compactTextTheme.bodyLarge ?? compactTextTheme.bodyMedium!)
+            .fontSize;
 
     await pumpCard(
       tester,
@@ -60,8 +65,13 @@ void main() {
     );
 
     final regularStyle = tester.widget<Text>(find.text(descriptionText)).style;
+    final regularContext = tester.element(find.byType(PolaroidCard));
+    final regularTextTheme = Theme.of(regularContext).textTheme;
+    final expectedRegularFontSize =
+        (regularTextTheme.bodyLarge ?? regularTextTheme.bodyMedium!).fontSize;
 
-    expect(compactStyle?.fontSize, regularStyle?.fontSize);
+    expect(compactStyle?.fontSize, expectedCompactFontSize);
+    expect(regularStyle?.fontSize, expectedRegularFontSize);
   });
 
   testWidgets('keeps weighted carousel on narrow widths', (

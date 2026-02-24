@@ -63,7 +63,9 @@ class _PolaroidCardState extends State<PolaroidCard> {
     final bottomPadding = layout.cardPaddingBottom;
     final sectionGap = layout.sectionGap;
     final galleryHeight = 400.0;
-    final descriptionStyle = textTheme.bodyLarge ?? textTheme.bodyMedium;
+    final descriptionStyle =
+        (isCompact ? textTheme.bodyLarge : textTheme.bodyLarge) ??
+        textTheme.bodyMedium!;
     final cardHeaderStyle = textTheme.titleLarge?.copyWith(
       fontWeight: cardUi.cardHeaderFontWeight,
     );
