@@ -7,7 +7,7 @@ import 'package:zr_jin_page/theme/layout_tokens.dart';
 import 'helpers/test_app.dart';
 
 void main() {
-  testWidgets('uses compact gallery grid on narrow widths', (
+  testWidgets('keeps weighted carousel on narrow widths', (
     WidgetTester tester,
   ) async {
     await pumpCard(
@@ -16,9 +16,8 @@ void main() {
       width: 430,
     );
 
-    expect(find.text('Tap an image to open it full screen'), findsOneWidget);
-    expect(find.byType(GridView), findsOneWidget);
-    expect(find.byType(CarouselView), findsNothing);
+    expect(find.text('Swipe to browse the gallery'), findsOneWidget);
+    expect(find.byType(CarouselView), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -33,11 +32,10 @@ void main() {
 
     expect(find.text('Swipe to browse the gallery'), findsOneWidget);
     expect(find.byType(CarouselView), findsOneWidget);
-    expect(find.byType(GridView), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('uses stable grid fallback for Apple-hosted web rendering', (
+  testWidgets('keeps carousel for Apple-hosted web rendering', (
     WidgetTester tester,
   ) async {
     await pumpCard(
@@ -49,9 +47,8 @@ void main() {
       width: 1024,
     );
 
-    expect(find.text('Tap an image to open it full screen'), findsOneWidget);
-    expect(find.byType(GridView), findsOneWidget);
-    expect(find.byType(CarouselView), findsNothing);
+    expect(find.text('Swipe to browse the gallery'), findsOneWidget);
+    expect(find.byType(CarouselView), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

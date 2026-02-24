@@ -58,10 +58,8 @@ class PolaroidCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
-    final isCompact = layout.isCompact;
     final isAppleWebHost = isAppleWebHostOverride ?? _isAppleWebHostPlatform;
     final enableHero = !isAppleWebHost;
-    final useStableGalleryGrid = isCompact || isAppleWebHost;
     final contentPadding = theme.listTileTheme.contentPadding?.resolve(
       Directionality.of(context),
     );
@@ -106,46 +104,36 @@ class PolaroidCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          useStableGalleryGrid
-                              ? 'Tap an image to open it full screen'
-                              : 'Swipe to browse the gallery',
+                          'Swipe to browse the gallery',
                           style: textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
                         ),
                         SizedBox(height: layout.cardPaddingTop),
-                        if (useStableGalleryGrid)
-                          _PolaroidGalleryGrid(
-                            images: _images,
-                            layout: layout,
-                            enableHero: enableHero,
-                          )
-                        else
-                          SizedBox(
-                            width: double.maxFinite,
-                            height: galleryHeight,
-                            child: CarouselView.weightedBuilder(
-                              // Keep carousel behavior unchanged on wider layouts.
-                              controller: CarouselController(initialItem: 1),
-                              itemSnapping: true,
-                              enableSplash: false,
-                              flexWeights: const <int>[1, 2, 1],
-                              itemCount: _images.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final image = _images[index];
-                                final webpPath = image["image"]!;
-                                return _PolaroidGalleryImage(
-                                  imagePath: _primaryImageFor(webpPath),
-                                  fallbackImagePath: _secondaryImageFor(
-                                    webpPath,
-                                  ),
-                                  title: image["title"]!,
-                                  layout: layout,
-                                  enableHero: enableHero,
-                                );
-                              },
-                            ),
+                        SizedBox(
+                          width: double.maxFinite,
+                          height: galleryHeight,
+                          child: CarouselView.weightedBuilder(
+                            controller: CarouselController(initialItem: 1),
+                            itemSnapping: true,
+                            enableSplash: false,
+                            flexWeights: const <int>[1, 2, 1],
+                            itemCount: _images.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final image = _images[index];
+                              final webpPath = image["image"]!;
+                              return _PolaroidGalleryImage(
+                                imagePath: _primaryImageFor(webpPath),
+                                fallbackImagePath: _secondaryImageFor(
+                                  webpPath,
+                                ),
+                                title: image["title"]!,
+                                layout: layout,
+                                enableHero: enableHero,
+                              );
+                            },
                           ),
+                        ),
                       ],
                     ),
                   ),
@@ -171,49 +159,6 @@ class PolaroidCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _PolaroidGalleryGrid extends StatelessWidget {
-  const _PolaroidGalleryGrid({
-    required this.images,
-    required this.layout,
-    required this.enableHero,
-  });
-
-  final List<Map<String, String>> images;
-  final LayoutTokens layout;
-  final bool enableHero;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final crossAxisCount = constraints.maxWidth < 560 ? 2 : 3;
-        return GridView.builder(
-          itemCount: images.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: layout.md,
-            mainAxisSpacing: layout.md,
-            childAspectRatio: 0.75,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            final image = images[index];
-            final webpPath = image["image"]!;
-            return _PolaroidGalleryImage(
-              imagePath: PolaroidCard._primaryImageFor(webpPath),
-              fallbackImagePath: PolaroidCard._secondaryImageFor(webpPath),
-              title: image["title"]!,
-              layout: layout,
-              enableHero: enableHero,
-            );
-          },
-        );
-      },
     );
   }
 }
