@@ -34,7 +34,7 @@ class IntroductionCard extends StatelessWidget {
     );
     final thesisTitleStyle =
         (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
 
