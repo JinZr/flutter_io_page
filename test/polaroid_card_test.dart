@@ -36,4 +36,22 @@ void main() {
     expect(find.byType(GridView), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('uses stable grid fallback for Apple-hosted web rendering', (
+    WidgetTester tester,
+  ) async {
+    await pumpCard(
+      tester,
+      PolaroidCard(
+        layout: LayoutTokens.regular(),
+        isAppleWebHostOverride: true,
+      ),
+      width: 1024,
+    );
+
+    expect(find.text('Tap an image to open it full screen'), findsOneWidget);
+    expect(find.byType(GridView), findsOneWidget);
+    expect(find.byType(CarouselView), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }
