@@ -43,17 +43,17 @@ class ContribCard extends StatelessWidget {
       fontWeight: cardUi.cardHeaderFontWeight,
     );
     final projectTitleStyle =
-        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+        (isCompact ? textTheme.titleMedium : textTheme.titleMedium)?.copyWith(
           fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
     final projectDescriptionStyle =
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+        (isCompact ? textTheme.bodyMedium : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,
           height: 1.2,
         );
     final metadataChipLabelStyle =
-        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+        (isCompact ? textTheme.labelMedium : textTheme.labelMedium)?.copyWith(
           color: colorScheme.onSecondaryContainer,
         );
     final tileSurfaceColor = colorScheme.surfaceContainerLow;

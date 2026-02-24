@@ -48,13 +48,13 @@ class SelectedPubListTile extends StatelessWidget {
     final metadataGap = layout.md;
     final resolvedTitleStyle =
         titleStyle ??
-        (isCompact ? textTheme.titleSmall : textTheme.titleMedium)?.copyWith(
+        (isCompact ? textTheme.titleMedium : textTheme.titleMedium)?.copyWith(
           fontWeight: FontWeight.w500,
           height: isCompact ? 1.18 : 1.2,
         );
     final resolvedAuthorStyle =
         authorStyle ??
-        (isCompact ? textTheme.bodySmall : textTheme.bodyMedium)?.copyWith(
+        (isCompact ? textTheme.bodyMedium : textTheme.bodyMedium)?.copyWith(
           color: colorScheme.onSurfaceVariant,
           height: 1.2,
         );
@@ -68,7 +68,7 @@ class SelectedPubListTile extends StatelessWidget {
         metadataChipForeground ?? colorScheme.onSecondaryContainer;
     final resolvedMetadataLabelStyle =
         metadataLabelStyle ??
-        (isCompact ? textTheme.labelSmall : textTheme.labelMedium)?.copyWith(
+        (isCompact ? textTheme.labelMedium : textTheme.labelMedium)?.copyWith(
           color: resolvedMetadataChipForeground,
         );
     final resolvedMetadataIconSize =

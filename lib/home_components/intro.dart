@@ -15,7 +15,7 @@ class MyIntroduction extends StatelessWidget {
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
     final bodyStyle =
-        (isCompact ? textTheme.bodyMedium : textTheme.bodyLarge) ??
+        (isCompact ? textTheme.bodyLarge : textTheme.bodyLarge) ??
         textTheme.bodyMedium!;
     final linkStyle = clickableTextStyle(textTheme, colorScheme.primary)
         .copyWith(
