@@ -2,8 +2,5 @@
 {{flutter_build_config}}
 
 _flutter.loader.load({
-  // Keep renderer auto-selection so Flutter can pick the best backend.
-  config: {
-    renderer: 'auto',
-  },
+  // Keep default loader behavior so Flutter can auto-select a compatible renderer.
 });
