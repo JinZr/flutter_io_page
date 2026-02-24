@@ -33,26 +33,6 @@ class PolaroidCard extends StatelessWidget {
     {"image": "assets/images/egs/egs8.webp", "title": "Hong Kong SAR"},
   ];
 
-  static String _jpegFallbackFor(String webpAssetPath) {
-    return webpAssetPath
-        .replaceFirst('assets/images/egs/', 'assets/images/egs_jpg/')
-        .replaceFirst('.webp', '.jpg');
-  }
-
-  static String _primaryImageFor(String webpAssetPath) {
-    if (kIsWeb) {
-      return _jpegFallbackFor(webpAssetPath);
-    }
-    return webpAssetPath;
-  }
-
-  static String _secondaryImageFor(String webpAssetPath) {
-    if (kIsWeb) {
-      return webpAssetPath;
-    }
-    return _jpegFallbackFor(webpAssetPath);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -121,12 +101,9 @@ class PolaroidCard extends StatelessWidget {
                             itemCount: _images.length,
                             itemBuilder: (BuildContext context, int index) {
                               final image = _images[index];
-                              final webpPath = image["image"]!;
+                              final imagePath = image["image"]!;
                               return _PolaroidGalleryImage(
-                                imagePath: _primaryImageFor(webpPath),
-                                fallbackImagePath: _secondaryImageFor(
-                                  webpPath,
-                                ),
+                                imagePath: imagePath,
                                 title: image["title"]!,
                                 layout: layout,
                                 enableHero: enableHero,
@@ -188,14 +165,12 @@ class _GallerySectionContainer extends StatelessWidget {
 class _PolaroidGalleryImage extends StatelessWidget {
   const _PolaroidGalleryImage({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.title,
     required this.layout,
     required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
   final bool enableHero;
@@ -221,7 +196,6 @@ class _PolaroidGalleryImage extends StatelessWidget {
                   fullscreenDialog: true,
                   builder: (BuildContext context) => _PolaroidImageViewer(
                     imagePath: imagePath,
-                    fallbackImagePath: fallbackImagePath,
                     title: title,
                     layout: layout,
                     enableHero: enableHero,
@@ -231,7 +205,6 @@ class _PolaroidGalleryImage extends StatelessWidget {
             },
             child: _GalleryImageContent(
               imagePath: imagePath,
-              fallbackImagePath: fallbackImagePath,
               enableHero: enableHero,
             ),
           ),
@@ -244,19 +217,16 @@ class _PolaroidGalleryImage extends StatelessWidget {
 class _GalleryImageContent extends StatelessWidget {
   const _GalleryImageContent({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
     final image = _PolaroidAssetImage(
-      primaryAssetName: imagePath,
-      fallbackAssetName: fallbackImagePath,
+      assetName: imagePath,
       fit: BoxFit.cover,
     );
     if (!enableHero) {
@@ -269,14 +239,12 @@ class _GalleryImageContent extends StatelessWidget {
 class _PolaroidImageViewer extends StatelessWidget {
   const _PolaroidImageViewer({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.title,
     required this.layout,
     required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final String title;
   final LayoutTokens layout;
   final bool enableHero;
@@ -300,7 +268,6 @@ class _PolaroidImageViewer extends StatelessWidget {
               child: Center(
                 child: _ViewerImageContent(
                   imagePath: imagePath,
-                  fallbackImagePath: fallbackImagePath,
                   enableHero: enableHero,
                 ),
               ),
@@ -339,19 +306,16 @@ class _PolaroidImageViewer extends StatelessWidget {
 class _ViewerImageContent extends StatelessWidget {
   const _ViewerImageContent({
     required this.imagePath,
-    required this.fallbackImagePath,
     required this.enableHero,
   });
 
   final String imagePath;
-  final String fallbackImagePath;
   final bool enableHero;
 
   @override
   Widget build(BuildContext context) {
     final image = _PolaroidAssetImage(
-      primaryAssetName: imagePath,
-      fallbackAssetName: fallbackImagePath,
+      assetName: imagePath,
       fit: BoxFit.contain,
     );
     if (!enableHero) {
@@ -363,33 +327,21 @@ class _ViewerImageContent extends StatelessWidget {
 
 class _PolaroidAssetImage extends StatelessWidget {
   const _PolaroidAssetImage({
-    required this.primaryAssetName,
-    required this.fallbackAssetName,
+    required this.assetName,
     required this.fit,
   });
 
-  final String primaryAssetName;
-  final String fallbackAssetName;
+  final String assetName;
   final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      primaryAssetName,
+      assetName,
       fit: fit,
       filterQuality: FilterQuality.medium,
-      errorBuilder: (BuildContext context, Object error, StackTrace? trace) {
-        return Image.asset(
-          fallbackAssetName,
-          fit: fit,
-          filterQuality: FilterQuality.medium,
-          errorBuilder:
-              (BuildContext context, Object error, StackTrace? trace) =>
-                  ColoredBox(
-                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                  ),
-        );
-      },
+      errorBuilder: (BuildContext context, Object error, StackTrace? trace) =>
+          ColoredBox(color: Theme.of(context).colorScheme.surfaceContainerHigh),
     );
   }
 }
