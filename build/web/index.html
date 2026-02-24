@@ -101,11 +101,14 @@
       position: fixed;
       inset: 0;
       display: flex;
+      flex-direction: column;
+      gap: 10px;
       align-items: center;
       justify-content: center;
       background: radial-gradient(140% 140% at 15% 10%, var(--splash-bg-start) 0%, var(--md-sys-color-surface) 45%, var(--splash-bg-end) 100%);
       color: var(--md-sys-color-on-surface);
       font-family: "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      text-align: center;
       z-index: 9999;
       transition: opacity 260ms ease;
       overflow: hidden;
@@ -139,24 +142,10 @@
       pointer-events: none;
     }
 
-    .splash-card {
-      width: min(92vw, 360px);
-      padding: clamp(22px, 5vw, 32px);
-      border-radius: 26px;
-      background: var(--md-sys-color-surface-container);
-      box-shadow: var(--md-elevation-2), var(--md-elevation-4);
-      text-align: center;
-      display: grid;
-      gap: 12px;
-      align-items: center;
-      justify-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
     .splash-subtitle {
       font-size: 14px;
       color: var(--md-sys-color-on-surface-variant);
+      z-index: 1;
     }
 
     .splash-spinner {
@@ -166,6 +155,7 @@
       border: 3px solid var(--splash-spinner-track);
       border-top-color: var(--md-sys-color-primary);
       animation: spin 900ms linear infinite;
+      z-index: 1;
     }
 
     @keyframes spin {
@@ -174,11 +164,6 @@
       }
     }
 
-    @media (max-width: 480px) {
-      .splash-card {
-        width: min(94vw, 360px);
-      }
-    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -219,10 +204,8 @@
 </head>
 <body>
   <div id="splash-screen">
-    <div class="splash-card">
-      <div class="splash-subtitle">Loading...</div>
-      <div class="splash-spinner" aria-hidden="true"></div>
-    </div>
+    <div class="splash-subtitle">Loading...</div>
+    <div class="splash-spinner" aria-hidden="true"></div>
   </div>
   <script>
     (() => {
