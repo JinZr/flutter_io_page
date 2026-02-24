@@ -39,6 +39,31 @@ class _PolaroidCardRebuildHostState extends State<_PolaroidCardRebuildHost> {
 }
 
 void main() {
+  testWidgets('uses same description typography in compact and regular layouts', (
+    WidgetTester tester,
+  ) async {
+    const descriptionText =
+        'I have one Polaroid Spectra for shooting B&W film, one SX-70 Sonar, and one SLR680 for regular shooting. My Polaroid camera collection also includes an SLR680 Special Edition (Blue Button Version), an SX-70 Model 2, a 670-AF, and a 670-AF Special Edition (also known as the Blue Button Version).';
+
+    await pumpCard(
+      tester,
+      PolaroidCard(layout: LayoutTokens.compact()),
+      width: 430,
+    );
+
+    final compactStyle = tester.widget<Text>(find.text(descriptionText)).style;
+
+    await pumpCard(
+      tester,
+      PolaroidCard(layout: LayoutTokens.regular()),
+      width: 1024,
+    );
+
+    final regularStyle = tester.widget<Text>(find.text(descriptionText)).style;
+
+    expect(compactStyle?.fontSize, regularStyle?.fontSize);
+  });
+
   testWidgets('keeps weighted carousel on narrow widths', (
     WidgetTester tester,
   ) async {
