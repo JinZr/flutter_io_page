@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "engine": "v2",
+  "file": "main.dart.js_5.part.js",
+  "sourceRoot": "",
+  "sources": ["../../../lib/home_components/contrib_card.dart","../../../lib/theme/card_ui_tokens.dart","/opt/hostedtoolcache/flutter/stable-3.41.2-x64/packages/flutter/lib/src/widgets/basic.dart","/opt/hostedtoolcache/flutter/stable-3.41.2-x64/packages/flutter/lib/src/material/color_scheme.dart","/opt/hostedtoolcache/flutter/stable-3.41.2-x64/packages/flutter/lib/src/painting/edge_insets.dart","/opt/hostedtoolcache/flutter/stable-3.41.2-x64/packages/flutter/lib/src/painting/box_decoration.dart"],
+  "names": ["ContribCard","_ContribMetadataChip","ContribCard.build","_ContribTile.build","_ContribMetadataChip.build","_ContribTile.build.<anonymous function>","","compact","fromLTRB","of","onSecondaryContainer","onSurfaceVariant","secondaryContainer","surfaceContainerLow","symmetric"],
+  "mappings": "A;0DAOQA;8BAA8CA,C;GAkM9CC,mDAQJA,C;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAtLKC,KACeA,sDACMA,OACFA,UACNA,MAAOA,SCaOA,IDZ4BA,aAC/BA,GAAcA,sBEkKbA,UAA4DA,oBF/JrDA;YAAQA;GACZA;GACPA;IAGQA;qBAEfA,KADEA;IAIMA;YA4EbA;KA5ECA,SACcA;IAIFA;YAwEbA;QG4oCcA;AHptCbA,iBGotCkCA,eH/sCtBA;YAuEbA;QGq9BkBA;AH5hCjBA,iBG4hC0CA,SAiJ1BA;cAAwBA;IA3JzBA;gBAAuBA;AH9gCfA,UACtBA;GGuhCgBA;cAAyBA;MHnhC5CA,KACAA;AAOPA,SACiBA,IACRA;AAETA;GAayBA;;QG6qCHA;AH7qCGA,gBG6qCkBA;AHhrC7BA,OACRA,oCAMAA;AACAA,iBAA0DA;AACxDA,OAAeA,OE+kFzBA;AF9kFUA,OAsBVA,UAxBoCA,GAGfA;AAH6CA,WA3BtEA,OAAOA,KAEEA,KAEKA,UEqrEVA,SEt3DAA,gBJhWyBA,KA8CdA,QAd4BA,qCAFtBA,IA8CvBA,C;;CA2BOC,IACEA,qBAE+BA,MAMvBA,OACAA,OAQHA,MASgBA,MAOKA,MACAA,MACLA,MACFA;AApC1BA,sBAE6BA,MAAgBA,KAEpCA,aE0mELA,SEt3DAA,kBJ3OSA,KAEKA,KACRA,MACUA,MAEeA,KAChBA,IAETA,QAAwBA,IAAYA,MACpCA,MAAaA,QAAoBA,IACjCA,QAAwBA,OACxBA,KAGYA,KACRA,WACcA,+BAQdA,WACcA,wCAzBmBA,wCATpCA,6BAFUA,KAFZA,oBAqDXA,C;;CAuBOC,IAI0BA,qBAASA,WAAOA,QAItBA,OACFA;AARvBA,OAAOA,KEgiEHA,SEl1DAA,kBJpMOA,KAEKA,KACRA,MAAKA,IAA6BA,MAAjBA,IACjBA,UAAuBA,KACvBA,MAAKA,QAAcA,oBAJMA,UK5I7BA,ULmIOA,cK3HNA,UL6IPA,C;;;AA7FmBC;EAANA,GAAMA,gBAAUA,IAAQA,GAAIA,C",
+  "x_org_dartlang_dart2js": {
+    "minified_names": {
+      "global": "",
+      "instance": ""
+    },
+    "frames": "msBAgC4COI;sCAEvBE8B;2FA+DHHS;2CAAAAY;AA7CWKI;iBAAAAe;gBA6CXLY;AAxCWII;iBAAAAS;AAEYG0B;AACCDsB;iBAGKF2B;wGA4BRCI;gBAAAAa;sGAKNLmB;OACfAU;iEAnBRAS;AACsBEgB;6MAsEjBFS;AACeEkB;+WA4EjBFS;AACeQkB;yFALVRU;cAAAAU;"
+  }
+}
