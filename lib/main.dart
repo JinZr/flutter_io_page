@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
+import 'package:zr_jin_page/utilities/author_name.dart';
+import 'theme/theme.dart';
+import 'theme/util.dart';
+
+import 'home.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setUrlStrategy(PathUrlStrategy());
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = createTextTheme();
+    final MaterialTheme theme = MaterialTheme(textTheme);
+
+    return MaterialApp(
+      home: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: const MyHomePage(titleEn: AUTHOR_TEXT, titleZh: "金增锐"),
+      ),
+      title: AUTHOR_TEXT,
+      theme: theme.light(),
+      darkTheme: theme.dark(),
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
